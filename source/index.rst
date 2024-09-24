@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-pan.webui.plus documentation
+人工智能模型分类加速
 ============================
 
 Add your content using ``reStructuredText`` syntax. See the

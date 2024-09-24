@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'AI 模型国内加速'
-copyright = '2024@harry'
+copyright = '2024, harry'
 author = 'harry'
 
 # -- General configuration ---------------------------------------------------
