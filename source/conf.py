@@ -6,8 +6,8 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'get.webui.plus'
-copyright = '2024, harry'
+project = 'AI 模型国内加速'
+copyright = '2024@harry'
 author = 'harry'
 
 # -- General configuration ---------------------------------------------------
