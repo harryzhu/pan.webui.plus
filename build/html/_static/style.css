@@ -13,8 +13,7 @@ footer .view_counter {
 .img_view_counter{
     height:47px!important;
     width:293px!important;
-    margin:2px;
-    
+    margin:2px; 
 }
 
 /* override table width restrictions */
