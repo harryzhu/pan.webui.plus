@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3.5. Go语言中的通道 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="4.3.6. Go语言并发编程：原子操作" href="golang-concurrent-synchronization-for-atomic-operation.html" />
+    <link rel="prev" title="4.3.4. Go语言中的字符串拼接方法介绍" href="golang-notes-for-string-concatenation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../style-guides/index.html">3. 编程语言 规范</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 语法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reStructureText_syntax.html">4.1. reStructureText语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MarkDown_syntax.html">4.2. Markdown: 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. Go 语法</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-basic-syntax.html">4.3.1. Go语言基础语法（一）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-basic-syntax-function.html">4.3.2. Go语言基础语法（二）：函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-struct-and-method.html">4.3.3. Go语言基础语法（三）：结构体及方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-string-concatenation.html">4.3.4. Go语言中的字符串拼接方法介绍</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.5. Go语言中的通道</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">4.3.5.1. 通道的发送和接收</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">4.3.5.2. 通道阻塞</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">4.3.5.3. 通道关闭</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#select">4.3.5.4. select语句与通道</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">4.3.5.5. 小结</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-atomic-operation.html">4.3.6. Go语言并发编程：原子操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-context.html">4.3.7. Go语言并发编程：上下文Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-mutex.html">4.3.8. Go语言并发编程：互斥锁</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-sync-once.html">4.3.9. Go语言并发编程：sync.Once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-waitgroup.html">4.3.10. Go语言并发编程：WaitGroup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 语法</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>Go 语法</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.5. </span>Go语言中的通道</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/coding/golang/golang-notes-for-channel-sync.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="go">
+<h1><span class="section-number">4.3.5. </span>Go语言中的通道<a class="headerlink" href="#go" title="Permalink to this heading"></a></h1>
+<p>通道（channel）是Go 语言中一种特殊的数据类型，通道本身就是并发安全的，可以通过它在多个 goroutine 之间传递数据。通道是Go 语言编程理念：“<em>Do not communicate by sharing memory; instead, share memory by communicating</em>”（不要通过共享数据来通信，而应该通过通信来共享数据。）的完美实现，在并发编程中经常会遇到它。下面来介绍一下通道的使用方法。</p>
+<!--more--><section id="id1">
+<h2><span class="section-number">4.3.5.1. </span>通道的发送和接收<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>通道包括双向通道和单向通道，这里双向通道只的是支持发送和接收的通道，而单向通道是只能发送或者只能接收的通道。</p>
+<section id="id2">
+<h3><span class="section-number">4.3.5.1.1. </span>双向通道<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>使用make函数声明并初始化一个通道：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">ch1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">chan</span></code> 是表示通道类型的关键字</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">string</span></code> 表示该通道类型的元素类型</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> 表示该通道的容量为3，最多可以缓存3个元素值。</p></li>
+</ul>
+<p>一个通道相当于一个先进先出（FIFO）的队列，使用操作符 <code class="docutils literal notranslate"><span class="pre">&lt;-</span></code> 进行元素值的发送和接收：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="w">  </span><span class="c1">//向通道ch1发送数据 &quot;1&quot;</span>
+</pre></div>
+</div>
+<p>接收元素值：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">elem1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nx">ch1</span><span class="w"> </span><span class="c1">// 接收通道中的元素值</span>
+</pre></div>
+</div>
+<p>首先接收到的元素为先存入通道中的元素值，也就是先进先出：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">str1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;hello&quot;</span><span class="p">,</span><span class="s">&quot;world&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;!&quot;</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">str1</span><span class="p">))</span>
+
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">str1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nx">str</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">str1</span><span class="p">);</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">elem</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nx">ch1</span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">elem</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">hello</span>
+<span class="nx">world</span>
+<span class="p">!</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3><span class="section-number">4.3.5.1.2. </span>单向通道<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>单向通道包括只能发送的通道和只能接收的通道：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">WriteChan</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="o">&lt;-</span><span class="w"> </span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="c1">// 只能发送不能接收的通道</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">ReadChan</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="o">&lt;-</span><span class="kd">chan</span><span class="w"> </span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="c1">// 只能接收不能发送的通道</span>
+</pre></div>
+</div>
+<p>单向通道的这种特性可以用来约束函数的输入类型或者输出类型，比如下面的例子约束了只能从通道中接收元素值：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">OnlyReadChan</span><span class="p">(</span><span class="nx">num</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="kd">chan</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">ch</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">ch</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nx">num</span>
+<span class="w">	</span><span class="nb">close</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">ch</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">	</span><span class="nx">Chan1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">OnlyReadChan</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">num</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nx">Chan1</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="mi">6</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2><span class="section-number">4.3.5.2. </span>通道阻塞<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<p>通道操作是<strong>并发安全</strong>的，在同一时刻，只会执行对同一个通道的任意个发送操作中的某一个，直到这个元素值被完全复制进该通道之后，其他针对该通道的发送操作才可能被执行。接收操作也一样。另外，对于通道中的同一个元素值来说，发送操作和接收操作之间也是互斥的。</p>
+<p>发送操作和接收操作是原子操作，也就是说，发送操作绝不会出现只复制了一部分的情况，要么还没有复制，要么已经复制完毕。接收操作在准备好元素值的副本之后，一定会删除掉通道中的原值，绝不会出现通道中仍有残留的情况。在进行发送操作和接收操作时，代码会一直阻塞在那里，完成操作后才会继续执行后面的代码。通道的发送操作和接收操作是很快的，那么什么情况下会出现长时间的阻塞呢？下面介绍几种情况。</p>
+<section id="id5">
+<h3><span class="section-number">4.3.5.2.1. </span>缓冲通道的阻塞<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>缓冲通道是容量大于0的通道，也就是可以缓存数据的通道。</p>
+<p><strong>1、发送阻塞</strong></p>
+<p>如果缓冲通道已经填满，如果有goroutine继续向该通道发送数据就会阻塞。请看下面的例子：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">fatal</span><span class="w"> </span><span class="kt">error</span><span class="p">:</span><span class="w"> </span><span class="nx">all</span><span class="w"> </span><span class="nx">goroutines</span><span class="w"> </span><span class="nx">are</span><span class="w"> </span><span class="nx">asleep</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">deadlock</span><span class="p">!</span>
+
+<span class="nx">goroutine</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">[</span><span class="kd">chan</span><span class="w"> </span><span class="nx">send</span><span class="p">]:</span>
+<span class="o">.........</span><span class="p">..</span>
+</pre></div>
+</div>
+<p>如果通道可以接收数据（有元素被接收），通道会通知最先等待发送操作的 goroutine再次执行发送操作。</p>
+<p><strong>2、接收阻塞</strong></p>
+<p>类似的，如果通道已空，如果继续进行接收操作就会被阻塞。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">	</span><span class="o">&lt;-</span><span class="w"> </span><span class="nx">ch1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">fatal</span><span class="w"> </span><span class="kt">error</span><span class="p">:</span><span class="w"> </span><span class="nx">all</span><span class="w"> </span><span class="nx">goroutines</span><span class="w"> </span><span class="nx">are</span><span class="w"> </span><span class="nx">asleep</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">deadlock</span><span class="p">!</span>
+
+<span class="nx">goroutine</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">[</span><span class="kd">chan</span><span class="w"> </span><span class="nx">receive</span><span class="p">]:</span>
+<span class="o">.........</span><span class="p">..</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3><span class="section-number">4.3.5.2.2. </span>非缓冲通道<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p>非缓冲通道是容量为0的通道，不能缓存数据。</p>
+<p>非缓冲通道的数据传递是同步的，发送操作或者接收操作在执行后就会阻塞，需要对应的接收操作或者发送操作执行才会继续传递。由此可以看出缓冲通道使用的是异步方式进行数据传递。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">str1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;hello&quot;</span><span class="p">,</span><span class="s">&quot;world&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;!&quot;</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">go</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">str1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nx">str</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}()</span>
+
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">str1</span><span class="p">);</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">elem</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nx">ch1</span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">elem</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">hello</span>
+<span class="nx">world</span>
+<span class="p">!</span><span class="w">  </span>
+</pre></div>
+</div>
+<p>上面的代码中3个goroutine向通道写了三次数据，必须有三次接收，不然会阻塞。</p>
+<p>对值为nil的通道进行发送操作和接收操作也会发生阻塞：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">ch1</span><span class="w"> </span><span class="kd">chan</span><span class="w"> </span><span class="kt">int</span>
+<span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="c1">// 阻塞</span>
+<span class="o">&lt;-</span><span class="nx">ch1</span><span class="w"> </span><span class="c1">// 阻塞</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">4.3.5.3. </span>通道关闭<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<p>可以使用close()方法来关闭通道，通道关闭后，不能再对通道进行发送操作，可以进行接收操作。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">	</span><span class="nb">close</span><span class="p">(</span><span class="nx">ch1</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="nx">ele</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">ch1</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">ele</span><span class="p">)</span><span class="w">  </span>
+<span class="w">    </span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+<span class="nx">panic</span><span class="p">:</span><span class="w"> </span><span class="nx">send</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">closed</span><span class="w"> </span><span class="nx">channel</span>
+
+<span class="nx">goroutine</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">[</span><span class="nx">running</span><span class="p">]:</span>
+<span class="o">...</span><span class="p">..</span>
+</pre></div>
+</div>
+<p>如果通道关闭时，里面还有元素，进行接收操作时，返回的通道关闭标志仍然为true：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">	</span><span class="nb">close</span><span class="p">(</span><span class="nx">ch1</span><span class="p">)</span>
+
+<span class="w">	</span><span class="nx">ele1</span><span class="p">,</span><span class="w"> </span><span class="nx">statu1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">ch1</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">ele1</span><span class="p">,</span><span class="w"> </span><span class="nx">statu1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">ele2</span><span class="p">,</span><span class="w"> </span><span class="nx">statu2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">ch1</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">ele2</span><span class="p">,</span><span class="w"> </span><span class="nx">statu2</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="w"> </span><span class="kc">true</span>
+<span class="mi">0</span><span class="w"> </span><span class="kc">false</span>
+</pre></div>
+</div>
+<p>由于通道的这种特性，可以让发送方来关闭通道。前面的例子可以这样写：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">str1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;hello&quot;</span><span class="p">,</span><span class="s">&quot;world&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;!&quot;</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">go</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">str1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nx">str</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nb">close</span><span class="p">(</span><span class="nx">ch1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}()</span>
+
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">str1</span><span class="p">);</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">elem</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nx">ch1</span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">elem</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>另外，不能对关闭的通道再次关闭：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="c1">// import &quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">	</span><span class="nb">close</span><span class="p">(</span><span class="nx">ch1</span><span class="p">)</span>
+<span class="w">	</span><span class="nb">close</span><span class="p">(</span><span class="nx">ch1</span><span class="p">)</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">panic</span><span class="p">:</span><span class="w"> </span><span class="nx">close</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">closed</span><span class="w"> </span><span class="nx">channel</span>
+</pre></div>
+</div>
+</section>
+<section id="select">
+<h2><span class="section-number">4.3.5.4. </span>select语句与通道<a class="headerlink" href="#select" title="Permalink to this heading"></a></h2>
+<p>select语句通常与通道联用，它是专为通道而设计的。select语句执行时，一般只有一个case表达式或者default语句会被运行。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">ch1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">num</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="k">select</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="k">case</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">ch1</span><span class="p">:</span>
+<span class="w">			</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Read data: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">)</span>
+<span class="w">		</span><span class="k">case</span><span class="w"> </span><span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nx">num</span><span class="p">:</span>
+<span class="w">			</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Write data: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">num</span><span class="p">)</span><span class="w">	</span>
+<span class="w">		</span><span class="k">default</span><span class="p">:</span>
+<span class="w">			</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;No candidate case is selected!&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">Write</span><span class="w"> </span><span class="nx">data</span><span class="p">:</span><span class="w">  </span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>需要注意的是，如果没有default默认分支，case表达式都没有满足条件，那么select语句就会被阻塞，直到至少有一个case表达式满足条件为止。</p>
+<p>如果同时有多个分支满足条件，会随机选择一个分支执行</p>
+<p>for语句与select语句联用时，分支中的break语句只能结束当前select语句的执行，而不会退出for循环。下面的代码永远不会退出循环：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">ch1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="k">select</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="k">case</span><span class="w"> </span><span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="mi">6</span><span class="p">:</span>
+<span class="w">			</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Write data: 6&quot;</span><span class="p">)</span>
+<span class="w">		</span><span class="k">case</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">ch1</span><span class="p">:</span>
+<span class="w">			</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+<span class="w">			</span><span class="k">break</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>解决方案是使用goto语句和标签。</p>
+<p>方法1：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">ch1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">num</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">6</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="k">select</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="k">case</span><span class="w"> </span><span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nx">num</span><span class="p">:</span>
+<span class="w">			</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Write data: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">num</span><span class="p">)</span>
+<span class="w">		</span><span class="k">case</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">ch1</span><span class="p">:</span>
+<span class="w">			</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Read data: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">)</span>
+<span class="w">			</span><span class="k">goto</span><span class="w"> </span><span class="nx">loop</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">	</span><span class="p">}</span><span class="w">	</span>
+<span class="w">	</span><span class="nx">loop</span><span class="p">:</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">ch1</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">Write</span><span class="w"> </span><span class="nx">data</span><span class="p">:</span><span class="w">  </span><span class="mi">6</span>
+<span class="nx">Read</span><span class="w"> </span><span class="nx">data</span><span class="p">:</span><span class="w">  </span><span class="mi">6</span>
+<span class="mh">0xc00000e0e0</span>
+</pre></div>
+</div>
+<p>方法2：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">ch1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">num</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">6</span>
+<span class="w">	</span><span class="nx">loop</span><span class="p">:</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="k">select</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="k">case</span><span class="w"> </span><span class="nx">ch1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nx">num</span><span class="p">:</span>
+<span class="w">			</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Write data: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">num</span><span class="p">)</span>
+<span class="w">		</span><span class="k">case</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">ch1</span><span class="p">:</span>
+<span class="w">			</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Read data: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">)</span>
+<span class="w">			</span><span class="k">break</span><span class="w"> </span><span class="nx">loop</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">ch1</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">Write</span><span class="w"> </span><span class="nx">data</span><span class="p">:</span><span class="w">  </span><span class="mi">6</span>
+<span class="nx">Read</span><span class="w"> </span><span class="nx">data</span><span class="p">:</span><span class="w">  </span><span class="mi">6</span>
+<span class="mh">0xc0000e4000</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h2><span class="section-number">4.3.5.5. </span>小结<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<p>本文主要介绍了通道的基本操作：初始化、发送、接收和关闭，要注意在什么情况下会引起通道阻塞。select语句通常与通道联用，介绍了分支的选择规则以及for语句与select语句联用时如何退出循环。</p>
+<p>通道是 Go 语言并发编程的重要实现基础，还是有必要掌握的。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="golang-notes-for-string-concatenation.html" class="btn btn-neutral float-left" title="4.3.4. Go语言中的字符串拼接方法介绍" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="golang-concurrent-synchronization-for-atomic-operation.html" class="btn btn-neutral float-right" title="4.3.6. Go语言并发编程：原子操作" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

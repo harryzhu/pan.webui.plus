@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3.7. Go语言并发编程：上下文Context &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="4.3.8. Go语言并发编程：互斥锁" href="golang-concurrent-synchronization-for-mutex.html" />
+    <link rel="prev" title="4.3.6. Go语言并发编程：原子操作" href="golang-concurrent-synchronization-for-atomic-operation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../style-guides/index.html">3. 编程语言 规范</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 语法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reStructureText_syntax.html">4.1. reStructureText语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MarkDown_syntax.html">4.2. Markdown: 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. Go 语法</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-basic-syntax.html">4.3.1. Go语言基础语法（一）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-basic-syntax-function.html">4.3.2. Go语言基础语法（二）：函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-struct-and-method.html">4.3.3. Go语言基础语法（三）：结构体及方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-string-concatenation.html">4.3.4. Go语言中的字符串拼接方法介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-channel-sync.html">4.3.5. Go语言中的通道</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-atomic-operation.html">4.3.6. Go语言并发编程：原子操作</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.7. Go语言并发编程：上下文Context</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#context">4.3.7.1. Context介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">4.3.7.2. Context 衍生</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">4.3.7.3. 小结</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-mutex.html">4.3.8. Go语言并发编程：互斥锁</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-sync-once.html">4.3.9. Go语言并发编程：sync.Once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-waitgroup.html">4.3.10. Go语言并发编程：WaitGroup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 语法</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>Go 语法</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.7. </span>Go语言并发编程：上下文Context</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/coding/golang/golang-concurrent-synchronization-for-context.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="go-context">
+<h1><span class="section-number">4.3.7. </span>Go语言并发编程：上下文Context<a class="headerlink" href="#go-context" title="Permalink to this heading"></a></h1>
+<p>context.Context类型是在 Go 1.7 版本引入到标准库的，上下文Context主要用来在goroutine之间传递截止日期、停止信号等上下文信息，并且它是并发安全的，可以控制多个goroutine，因此它可以很方便的用于并发控制和超时控制，标准库中的一些代码包也引入了Context参数，比如os/exec包、net包、database/sql包，等等。下面来介绍Context类型的使用方法。</p>
+<section id="context">
+<h2><span class="section-number">4.3.7.1. </span>Context介绍<a class="headerlink" href="#context" title="Permalink to this heading"></a></h2>
+<p>Context类型的应用还是比较广的，比如http后台服务，多个客户端或者请求会导致启动多个goroutine来提供服务，通过Context，我们可以很方便的实现请求数据的共享，比如token值，超时时间等，可以让系统避免额外的资源消耗。</p>
+<section id="id1">
+<h3><span class="section-number">4.3.7.1.1. </span>Context类型<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>Context类型是一个接口类型，定义了4个方法：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Context</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">Deadline</span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="nx">deadline</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">,</span><span class="w"> </span><span class="nx">ok</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">Done</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;-</span><span class="kd">chan</span><span class="w"> </span><span class="kd">struct</span><span class="p">{}</span>
+<span class="w">    </span><span class="nx">Err</span><span class="p">()</span><span class="w"> </span><span class="kt">error</span>
+<span class="w">    </span><span class="nx">Value</span><span class="p">(</span><span class="nx">key</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="kd">interface</span><span class="p">{}</span>
+<span class="p">}</span><span class="w">    </span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Deadline()</span></code> ：获取设置的截止日期，到截止日期时，Context会自动发起取消请求，ok为false表示没有设置截止日期；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Done()</span></code>：返回一个只读通道chan，在当前工作完成、超时或者context被取消后关闭；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Err()</span></code>：返回Context结束原因，取消时返回<code class="docutils literal notranslate"><span class="pre">Canceled</span></code> 错误，超时返回 <code class="docutils literal notranslate"><span class="pre">DeadlineExceeded</span></code> 错误。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Value</span></code>：获取 key 对应的 value值，可以用它来传递额外的信息和信号。</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h2><span class="section-number">4.3.7.2. </span>Context 衍生<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>Context值是可以繁衍的，也就是可以通过一个Context值产生任意个子值，这些子值携带了父值的属性和数据，也可以响应通过其父值传达的信号。</p>
+<p>Context根节点是一个已经在context包中预定义好的Context值，是全局唯一的，它既不可以被撤销，也不能携带任何数据，可以通过调用context.Background函数获取到它。</p>
+<p>context包提供了4个用于繁衍Context值的函数：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">WithCancel</span></code>：基于parent context 产生一个可撤销（cancel）的子context</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WithDeadline</span></code>：产生可以定时撤销的子context，达到截止日期后，context会收到cancel通知。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WithTimeout</span></code>：与 <code class="docutils literal notranslate"><span class="pre">WithDeadline</span></code> 类似，产生可以定时撤销的子context</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WithValue</span></code>：产生携带额外数据的子context</p></li>
+</ul>
+<p>下面介绍这4个函数的使用示例。</p>
+<section id="withcancel">
+<h3><span class="section-number">4.3.7.2.1. </span>WithCancel<a class="headerlink" href="#withcancel" title="Permalink to this heading"></a></h3>
+<p>WithCancel返回两个结果值，第一个是可撤销的Context值，第二个则是用于触发撤销信号的函数。在撤销函数被执行后，先关闭内部的接收通道，然后向所有子Context发送cancel信号，最终断开与父Context之间的关联。其中cancel信号的传递采用的是深度优先搜索算法。</p>
+<p>仍然是取钱的例子，要求是账户的钱大于10000后停止存钱：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;context&quot;</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="w">	</span><span class="s">&quot;math/rand&quot;</span>
+<span class="w">	</span><span class="s">&quot;sync/atomic&quot;</span>
+<span class="w">	</span><span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="nx">balance</span><span class="w"> </span><span class="kt">int32</span>
+<span class="p">)</span>
+
+<span class="c1">// 存钱</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">deposit</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="kt">int32</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">deferFunc</span><span class="w"> </span><span class="kd">func</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">defer</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">deferFunc</span><span class="p">()</span>
+<span class="w">	</span><span class="p">}()</span>
+
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">currBalance</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">atomic</span><span class="p">.</span><span class="nx">LoadInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">balance</span><span class="p">)</span>
+<span class="w">		</span><span class="nx">newBalance</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">currBalance</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">value</span>
+<span class="w">		</span><span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">500</span><span class="p">)</span>
+
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nx">atomic</span><span class="p">.</span><span class="nx">CompareAndSwapInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">balance</span><span class="p">,</span><span class="w"> </span><span class="nx">currBalance</span><span class="p">,</span><span class="w"> </span><span class="nx">newBalance</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;ID: %d, 存 %d 后的余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">)</span>
+<span class="w">			</span><span class="k">break</span>
+<span class="w">		</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="c1">// fmt.Printf(&quot;操作失败\n&quot;)</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 取钱</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">withdraw</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="kt">int32</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">	</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">currBalance</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">atomic</span><span class="p">.</span><span class="nx">LoadInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">balance</span><span class="p">)</span>
+<span class="w">		</span><span class="nx">newBalance</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">currBalance</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">value</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nx">atomic</span><span class="p">.</span><span class="nx">CompareAndSwapInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">balance</span><span class="p">,</span><span class="w"> </span><span class="nx">currBalance</span><span class="p">,</span><span class="w"> </span><span class="nx">newBalance</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;取 %d 后的余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">)</span>
+<span class="w">			</span><span class="k">break</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">WithCancelDemo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">total</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">10000</span>
+<span class="w">	</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">cancelFunc</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">WithCancel</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">())</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">num</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span><span class="w"> </span><span class="c1">// 随机数</span>
+<span class="w">		</span><span class="k">go</span><span class="w"> </span><span class="nx">deposit</span><span class="p">(</span><span class="nb">int32</span><span class="p">(</span><span class="nx">num</span><span class="p">),</span><span class="w"> </span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="k">if</span><span class="w"> </span><span class="nx">atomic</span><span class="p">.</span><span class="nx">LoadInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">balance</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nb">int32</span><span class="p">(</span><span class="nx">total</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">				</span><span class="nx">cancelFunc</span><span class="p">()</span>
+<span class="w">			</span><span class="p">}</span>
+<span class="w">		</span><span class="p">})</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="o">&lt;-</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+<span class="w">	</span><span class="nx">withdraw</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;退出&quot;</span><span class="p">)</span>
+
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">	</span>
+<span class="w">	</span><span class="nx">WithCancelDemo</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">balance</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="c1">// 初始账户余额为1000</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">1940</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">2940</span>
+<span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">1237</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">4177</span>
+<span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">78</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">1463</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">5640</span>
+<span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">1211</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">6851</span>
+<span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">420</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">7271</span>
+<span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">888</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">8159</span>
+<span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">408</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">8567</span>
+<span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">1353</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">9920</span>
+<span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">631</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">10551</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">551</span>
+<span class="nx">退出</span>
+</pre></div>
+</div>
+</section>
+<section id="withdeadline">
+<h3><span class="section-number">4.3.7.2.2. </span>WithDeadline<a class="headerlink" href="#withdeadline" title="Permalink to this heading"></a></h3>
+<p>设置截止日期，达到截止日期后停止存钱：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">DeadlineDemo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">total</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">10000</span>
+<span class="w">	</span><span class="nx">deadline</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">().</span><span class="nx">Add</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">cancelFunc</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">WithDeadline</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">(),</span><span class="w"> </span><span class="nx">deadline</span><span class="p">)</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">num</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span><span class="w"> </span><span class="c1">// 随机数</span>
+<span class="w">		</span><span class="k">go</span><span class="w"> </span><span class="nx">deposit</span><span class="p">(</span><span class="nb">int32</span><span class="p">(</span><span class="nx">num</span><span class="p">),</span><span class="w"> </span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="k">if</span><span class="w"> </span><span class="nx">atomic</span><span class="p">.</span><span class="nx">LoadInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">balance</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nb">int32</span><span class="p">(</span><span class="nx">total</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">				</span><span class="nx">cancelFunc</span><span class="p">()</span>
+<span class="w">			</span><span class="p">}</span>
+<span class="w">		</span><span class="p">})</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="k">select</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">case</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">Done</span><span class="p">():</span>
+<span class="w">	    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">Err</span><span class="p">())</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;超时退出&quot;</span><span class="p">)</span><span class="w">	</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>截止日期参数deadline是一个时间对象：time.Time</p>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">1410</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1961</span>
+<span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">81</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">2042</span>
+<span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">69</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">783</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">2825</span>
+<span class="nx">context</span><span class="w"> </span><span class="nx">deadline</span><span class="w"> </span><span class="nx">exceeded</span>
+<span class="nx">超时退出</span>
+</pre></div>
+</div>
+<p>WithDeadline和WithTimeout函数生成的Context值也是可撤销的，可以实现自动定时撤销，也可以在截止时间达到之前进行手动撤销（代码中的cancelFunc()操作）。</p>
+</section>
+<section id="withtimeout">
+<h3><span class="section-number">4.3.7.2.3. </span>WithTimeout<a class="headerlink" href="#withtimeout" title="Permalink to this heading"></a></h3>
+<p>和WithDeadline不同之处在于，时间参数为持续时间：time.Duration：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">WithTimeoutDemo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">total</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">10000</span>
+<span class="w">	</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">cancelFunc</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">WithTimeout</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">(),</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">num</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span><span class="w"> </span><span class="c1">// 随机数</span>
+<span class="w">		</span><span class="k">go</span><span class="w"> </span><span class="nx">deposit</span><span class="p">(</span><span class="nb">int32</span><span class="p">(</span><span class="nx">num</span><span class="p">),</span><span class="w"> </span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="k">if</span><span class="w"> </span><span class="nx">atomic</span><span class="p">.</span><span class="nx">LoadInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">balance</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nb">int32</span><span class="p">(</span><span class="nx">total</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">				</span><span class="nx">cancelFunc</span><span class="p">()</span>
+<span class="w">			</span><span class="p">}</span>
+<span class="w">		</span><span class="p">})</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="k">select</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">case</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">Done</span><span class="p">():</span>
+<span class="w">	    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">Err</span><span class="p">())</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;超时退出&quot;</span><span class="p">)</span><span class="w">	</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">1356</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">4181</span>
+<span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">1598</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">5779</span>
+<span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">47</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">5826</span>
+<span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nx">存</span><span class="w"> </span><span class="mi">292</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">6118</span>
+<span class="nx">context</span><span class="w"> </span><span class="nx">deadline</span><span class="w"> </span><span class="nx">exceeded</span>
+<span class="nx">超时退出</span>
+</pre></div>
+</div>
+</section>
+<section id="withvalue">
+<h3><span class="section-number">4.3.7.2.4. </span>WithValue<a class="headerlink" href="#withvalue" title="Permalink to this heading"></a></h3>
+<p>WithValue函数产生的Context可以携带数据，和另外3种函数不同，它是不可撤销的。Value方法用来获取数据，没有提供改变数据的方法。</p>
+<p>WithValue函数产生的Context携带的值可以在子Context中传递。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">WithValueDemo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">	</span><span class="nx">rootNode</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">()</span>
+<span class="w">	</span><span class="nx">ctx1</span><span class="p">,</span><span class="w"> </span><span class="nx">cancelFunc</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">WithCancel</span><span class="p">(</span><span class="nx">rootNode</span><span class="p">)</span>
+<span class="w">	</span><span class="k">defer</span><span class="w"> </span><span class="nx">cancelFunc</span><span class="p">()</span>
+
+<span class="w">	</span><span class="nx">ctx2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">WithValue</span><span class="p">(</span><span class="nx">ctx1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;key2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value2&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">ctx3</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">WithValue</span><span class="p">(</span><span class="nx">ctx2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;key3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;value3&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;ctx3: key2 %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx3</span><span class="p">.</span><span class="nx">Value</span><span class="p">(</span><span class="s">&quot;key2&quot;</span><span class="p">))</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;ctx3: key3 %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx3</span><span class="p">.</span><span class="nx">Value</span><span class="p">(</span><span class="s">&quot;key3&quot;</span><span class="p">))</span>
+
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">()</span>
+
+<span class="w">	</span><span class="nx">ctx4</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">WithTimeout</span><span class="p">(</span><span class="nx">ctx3</span><span class="p">,</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Hour</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;ctx4: key2 %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx4</span><span class="p">.</span><span class="nx">Value</span><span class="p">(</span><span class="s">&quot;key2&quot;</span><span class="p">))</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;ctx4: key3 %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">ctx4</span><span class="p">.</span><span class="nx">Value</span><span class="p">(</span><span class="s">&quot;key3&quot;</span><span class="p">))</span>
+<span class="w">	</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">ctx3</span><span class="p">:</span><span class="w"> </span><span class="nx">key2</span><span class="w"> </span><span class="nx">value2</span>
+<span class="nx">ctx3</span><span class="p">:</span><span class="w"> </span><span class="nx">key3</span><span class="w"> </span><span class="nx">value3</span>
+
+<span class="nx">ctx4</span><span class="p">:</span><span class="w"> </span><span class="nx">key2</span><span class="w"> </span><span class="nx">value2</span>
+<span class="nx">ctx4</span><span class="p">:</span><span class="w"> </span><span class="nx">key3</span><span class="w"> </span><span class="nx">value3</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id3">
+<h2><span class="section-number">4.3.7.3. </span>小结<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>Context类型是一个可以实现多 goroutine 并发控制的同步工具。Context类型主要分为三种，即：根Context、可撤销的Context和携带数据的Context。根Context和衍生的Context构成一颗Context树。需要注意的是，携带数据的Context不能被撤销，可撤销的Context无法携带数据。</p>
+<p>Context比sync.WaitGroup更加灵活，在使用WaitGroup时，我们需要确定执行子任务的 goroutine 数量，如果不知道这个数量，使用WaitGroup就有风险了，采用Context就很容易解决了。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="golang-concurrent-synchronization-for-atomic-operation.html" class="btn btn-neutral float-left" title="4.3.6. Go语言并发编程：原子操作" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="golang-concurrent-synchronization-for-mutex.html" class="btn btn-neutral float-right" title="4.3.8. Go语言并发编程：互斥锁" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

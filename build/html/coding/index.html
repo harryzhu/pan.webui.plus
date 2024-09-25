@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. 编程语言 语法 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="4.1. reStructureText语法" href="reStructureText_syntax.html" />
+    <link rel="prev" title="3.2.60. Reduce Scope of Variables" href="../style-guides/uber_go/var-scope.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../style-guides/index.html">3. 编程语言 规范</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. 编程语言 语法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html">4.1. reStructureText语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MarkDown_syntax.html">4.2. Markdown: 语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="golang/index.html">4.3. Go 语法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>编程语言 语法</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/coding/index.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">4. </span>编程语言 语法<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">全部章节目录:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reStructureText_syntax.html">4.1. reStructureText语法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#inline-markup">4.1.1. 内联标记 Inline Markup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#escaping-with-backslashes">4.1.2. 反斜杠转义 Escaping with Backslashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#section-structure">4.1.3. 章节标记 Section Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#paragraphs">4.1.4. 段落 Paragraphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#bullet-lists">4.1.5. 无序列表 Bullet Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#enumerated-lists">4.1.6. 有序列表 Enumerated Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#definition-lists">4.1.7. 定义列表Definition Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#field-lists">4.1.8. 字段列表 Field Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#option-lists">4.1.9. 参数(选项)列表 Option Lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#literal-blocks">4.1.10. 文字块 Literal Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#line-blocks">4.1.11. 行块 Line Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#block-quotes">4.1.12. 块引用 Block Quotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#doctest-blocks">4.1.13. 文档测试块 Doctest Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#tables">4.1.14. 表格 Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#transitions">4.1.15. Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#footnotes">4.1.16. 脚注 Footnotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#citations">4.1.17. 引用Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#hyperlink-targets">4.1.18. 超链接Hyperlink Targets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#directives">4.1.19. 扩展指令 Directives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#substitution-references-and-definitions">4.1.20. Substitution References and Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html#comments">4.1.21. Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MarkDown_syntax.html">4.2. Markdown: 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="golang/index.html">4.3. Go 语法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="golang/golang-notes-basic-syntax.html">4.3.1. Go语言基础语法（一）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="golang/golang-notes-for-basic-syntax-function.html">4.3.2. Go语言基础语法（二）：函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="golang/golang-notes-for-struct-and-method.html">4.3.3. Go语言基础语法（三）：结构体及方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="golang/golang-notes-for-string-concatenation.html">4.3.4. Go语言中的字符串拼接方法介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="golang/golang-notes-for-channel-sync.html">4.3.5. Go语言中的通道</a></li>
+<li class="toctree-l2"><a class="reference internal" href="golang/golang-concurrent-synchronization-for-atomic-operation.html">4.3.6. Go语言并发编程：原子操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="golang/golang-concurrent-synchronization-for-context.html">4.3.7. Go语言并发编程：上下文Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="golang/golang-concurrent-synchronization-for-mutex.html">4.3.8. Go语言并发编程：互斥锁</a></li>
+<li class="toctree-l2"><a class="reference internal" href="golang/golang-concurrent-synchronization-for-sync-once.html">4.3.9. Go语言并发编程：sync.Once</a></li>
+<li class="toctree-l2"><a class="reference internal" href="golang/golang-concurrent-synchronization-for-waitgroup.html">4.3.10. Go语言并发编程：WaitGroup</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../style-guides/uber_go/var-scope.html" class="btn btn-neutral float-left" title="3.2.60. Reduce Scope of Variables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="reStructureText_syntax.html" class="btn btn-neutral float-right" title="4.1. reStructureText语法" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

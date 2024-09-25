@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3.10. Go语言并发编程：WaitGroup &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="5. Cheat Sheet" href="../../cheatsheet/index.html" />
+    <link rel="prev" title="4.3.9. Go语言并发编程：sync.Once" href="golang-concurrent-synchronization-for-sync-once.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../style-guides/index.html">3. 编程语言 规范</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 语法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reStructureText_syntax.html">4.1. reStructureText语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MarkDown_syntax.html">4.2. Markdown: 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. Go 语法</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-basic-syntax.html">4.3.1. Go语言基础语法（一）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-basic-syntax-function.html">4.3.2. Go语言基础语法（二）：函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-struct-and-method.html">4.3.3. Go语言基础语法（三）：结构体及方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-string-concatenation.html">4.3.4. Go语言中的字符串拼接方法介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-channel-sync.html">4.3.5. Go语言中的通道</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-atomic-operation.html">4.3.6. Go语言并发编程：原子操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-context.html">4.3.7. Go语言并发编程：上下文Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-mutex.html">4.3.8. Go语言并发编程：互斥锁</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-sync-once.html">4.3.9. Go语言并发编程：sync.Once</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.10. Go语言并发编程：WaitGroup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 语法</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>Go 语法</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.10. </span>Go语言并发编程：WaitGroup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/coding/golang/golang-concurrent-synchronization-for-waitgroup.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="go-waitgroup">
+<h1><span class="section-number">4.3.10. </span>Go语言并发编程：WaitGroup<a class="headerlink" href="#go-waitgroup" title="Permalink to this heading"></a></h1>
+<p>我们知道，在并发编程中，主要线程需要等待子线程运行结束后才能退出，go语言中，主 goroutine 等待其他 goroutine 运行结束可以使用通道来解决，具体实现可以参考文章<a class="reference external" href="https://blog.csdn.net/u010698107/article/details/120248679">Go语言并发编程：互斥锁</a>中的例子。使用通道可能不是很简洁，本文介绍另一种方法，也就是sync包中的WaitGroup类型来等待 goroutine执行完成。</p>
+<p>sync.WaitGroup类型主要包括3个方法：</p>
+<ul class="simple">
+<li><p>Add：用于需要等待的 goroutine 的数量</p></li>
+<li><p>Done：对计数器的值进行减一操作，一般在需要等待的goroutine运行完成之前执行这一操作，可以通过defer语句调用它</p></li>
+<li><p>Wait：用于阻塞当前的 goroutine，直到其所属值中的计数器归零</p></li>
+</ul>
+<p>下面直接修改<a class="reference external" href="https://blog.csdn.net/u010698107/article/details/120248679">Go语言并发编程：互斥锁</a>中的例子，使用WaitGroup来等待goroutine：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;flag&quot;</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="w">	</span><span class="s">&quot;sync&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="nx">mutex</span><span class="w">   </span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+<span class="w">    </span><span class="nx">balance</span><span class="w"> </span><span class="kt">int</span>
+<span class="w">    </span><span class="nx">protecting</span><span class="w"> </span><span class="kt">uint</span><span class="w">  </span><span class="c1">// 是否加锁</span>
+<span class="w">    </span><span class="nx">sign</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kd">struct</span><span class="p">{},</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="c1">//通道，用于等待所有goroutine</span>
+<span class="p">)</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">wg</span><span class="w"> </span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+
+<span class="c1">// 存钱</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">deposit</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">protecting</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">mutex</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+<span class="w">        </span><span class="k">defer</span><span class="w"> </span><span class="nx">mutex</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">balance</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">value</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;存 %d 后的余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">()</span>
+
+<span class="w">    </span><span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// 取钱</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">withdraw</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">protecting</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">mutex</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+<span class="w">        </span><span class="k">defer</span><span class="w"> </span><span class="nx">mutex</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">balance</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="nx">value</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;取 %d 后的余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">go</span><span class="w"> </span><span class="nx">withdraw</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="w"> </span><span class="c1">// 取500</span>
+<span class="w">        </span><span class="k">go</span><span class="w"> </span><span class="nx">deposit</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="w">  </span><span class="c1">// 存500</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;当前余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">balance</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="c1">// 初始账户余额为1000</span>
+<span class="w">    </span><span class="nx">flag</span><span class="p">.</span><span class="nx">UintVar</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">protecting</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;protecting&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;是否加锁，0表示不加锁，1表示加锁&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>先声明了一个WaitGroup类型的全局变量wg。main方法中的wg.Add(10)表示有10个goroutine需要等待，wg.Wait()表示等待那10个goroutine执行结束。</p>
+<p>另外，WaitGroup值是可以被复用的，wg归0后，可以继续使用：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">go</span><span class="w"> </span><span class="nx">deposit</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="w">  </span><span class="c1">// 存500</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+
+<span class="w">    </span><span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">go</span><span class="w"> </span><span class="nx">withdraw</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="w"> </span><span class="c1">// 取500</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;当前余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>如果你有多组任务，而这些任务需要串行执行，可以使用上面这种写法。</p>
+<p>比如实现按顺序存钱：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">        </span><span class="k">go</span><span class="w"> </span><span class="nx">deposit</span><span class="p">(</span><span class="mi">500</span><span class="o">+</span><span class="nx">i</span><span class="p">)</span><span class="w">  </span><span class="c1">// 存500</span>
+<span class="w">        </span><span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;当前余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">501</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">2001</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">2001</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">502</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">2503</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">2503</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">503</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">3006</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">3006</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">504</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">3510</span>
+
+<span class="nx">当前余额</span><span class="p">:</span><span class="w"> </span><span class="mi">3510</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="golang-concurrent-synchronization-for-sync-once.html" class="btn btn-neutral float-left" title="4.3.9. Go语言并发编程：sync.Once" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../../cheatsheet/index.html" class="btn btn-neutral float-right" title="5. Cheat Sheet" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1. Uber Go语言规范 中文 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.1.1. English" href="uber_go_cn.html" />
+    <link rel="prev" title="3. 编程语言 规范" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.1. Uber Go语言规范 中文</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="uber_go_cn.html">3.1.1. English</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uber_go_cn.html#uber-go">3.1.2. Uber Go 语言编码规范</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uber_go_cn.html#id1">3.1.3. 版本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uber_go_cn.html#id2">3.1.4. 目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uber_go_cn.html#id3">3.1.5. 介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uber_go_cn.html#id4">3.1.6. 指导原则</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uber_go_cn.html#id20">3.1.7. 性能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uber_go_cn.html#id24">3.1.8. 规范</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uber_go_cn.html#id42">3.1.9. 编程模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uber_go_cn.html#linting">3.1.10. Linting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.1. </span>Uber Go语言规范 中文</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/uber_go_cn/index.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="uber-go">
+<h1><span class="section-number">3.1. </span>Uber Go语言规范 中文<a class="headerlink" href="#uber-go" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">全部章节目录:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="uber_go_cn.html">3.1.1. English</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uber_go_cn.html#uber-go">3.1.2. Uber Go 语言编码规范</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uber_go_cn.html#id1">3.1.3. 版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uber_go_cn.html#id2">3.1.4. 目录</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uber_go_cn.html#id3">3.1.5. 介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uber_go_cn.html#id4">3.1.6. 指导原则</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#interface">3.1.6.1. 指向 interface 的指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id5">3.1.6.2. Interface 合理性验证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#receiver">3.1.6.3. 接收器 (receiver) 与接口</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#mutex">3.1.6.4. 零值 Mutex 是有效的</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#slices-maps">3.1.6.5. 在边界处拷贝 Slices 和 Maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#defer">3.1.6.6. 使用 defer 释放资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#channel-size-1">3.1.6.7. Channel 的 size 要么是 1，要么是无缓冲的</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id8">3.1.6.8. 枚举从 1 开始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#time">3.1.6.9. 使用 time 处理时间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#errors">3.1.6.10. Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id13">3.1.6.11. 处理断言失败</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#panic">3.1.6.12. 不要使用 panic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#go-uber-org-atomic">3.1.6.13. 使用 go.uber.org/atomic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id14">3.1.6.14. 避免可变全局变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id15">3.1.6.15. 避免在公共结构中嵌入类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id16">3.1.6.16. 避免使用内置名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#init">3.1.6.17. 避免使用 <code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id17">3.1.6.18. 追加时优先指定切片容量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#exit">3.1.6.19. 主函数退出方式 (Exit)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id19">3.1.6.20. 在序列化结构中使用字段标记</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#goroutine">3.1.6.21. 不要一劳永逸地使用 goroutine</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="uber_go_cn.html#id20">3.1.7. 性能</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#strconv-fmt">3.1.7.1. 优先使用 strconv 而不是 fmt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id21">3.1.7.2. 避免字符串到字节的转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id22">3.1.7.3. 指定容器容量</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="uber_go_cn.html#id24">3.1.8. 规范</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id25">3.1.8.1. 避免过长的行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id26">3.1.8.2. 一致性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id27">3.1.8.3. 相似的声明放在一组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#import">3.1.8.4. import 分组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id28">3.1.8.5. 包名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id29">3.1.8.6. 函数名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id30">3.1.8.7. 导入别名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id31">3.1.8.8. 函数分组与顺序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id32">3.1.8.9. 减少嵌套</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#else">3.1.8.10. 不必要的 else</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id33">3.1.8.11. 顶层变量声明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id34">3.1.8.12. 对于未导出的顶层常量和变量，使用_作为前缀</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id35">3.1.8.13. 结构体中的嵌入</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id36">3.1.8.14. 本地变量声明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#nil-slice">3.1.8.15. nil 是一个有效的 slice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id37">3.1.8.16. 缩小变量作用域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#avoid-naked-parameters">3.1.8.17. 避免参数语义不明确 (Avoid Naked Parameters)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id38">3.1.8.18. 使用原始字符串字面值，避免转义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id39">3.1.8.19. 初始化结构体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#maps">3.1.8.20. 初始化 Maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#string-format">3.1.8.21. 字符串 string format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#printf">3.1.8.22. 命名 Printf 样式的函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="uber_go_cn.html#id42">3.1.9. 编程模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id43">3.1.9.1. 表驱动测试</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#id44">3.1.9.2. 功能选项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="uber_go_cn.html#linting">3.1.10. Linting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn.html#lint-runners">3.1.10.1. Lint Runners</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../index.html" class="btn btn-neutral float-left" title="3. 编程语言 规范" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="uber_go_cn.html" class="btn btn-neutral float-right" title="3.1.1. English" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

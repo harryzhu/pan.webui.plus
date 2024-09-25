@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.3.5. Go语言开发环境安装 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=1331" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="5.3.6. Go语言中的字符串拼接方法介绍" href="golang-notes-for-string-concatenation.html" />
+    <link rel="prev" title="5.3.4. Go语言中的通道" href="golang-notes-for-channel-sync.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">全部章节目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../style-guides/index.html">3. 编程语言 规范</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">4. Cheat Sheet</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">5. 编程语言 语法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reStructureText_syntax.html">5.1. reStructureText语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MarkDown_syntax.html">5.2. Markdown: 语法(syntax)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">5.3. Go 语法</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-basic-syntax.html">5.3.1. Go语言基础语法（一）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-basic-syntax-function.html">5.3.2. Go语言基础语法（二）：函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-struct-and-method.html">5.3.3. Go语言基础语法（三）：结构体及方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-channel-sync.html">5.3.4. Go语言中的通道</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.3.5. Go语言开发环境安装</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">5.3.5.1. 安装</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">5.3.5.2. Go代码编写运行</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">5.3.5.3. 开发环境</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">5.3.5.4. 学习资源</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-string-concatenation.html">5.3.6. Go语言中的字符串拼接方法介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-atomic-operation.html">5.3.7. Go语言并发编程：原子操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-context.html">5.3.8. Go语言并发编程：上下文Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-mutex.html">5.3.9. Go语言并发编程：互斥锁</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-sync-once.html">5.3.10. Go语言并发编程：sync.Once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-waitgroup.html">5.3.11. Go语言并发编程：WaitGroup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">5. </span>编程语言 语法</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5.3. </span>Go 语法</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.3.5. </span>Go语言开发环境安装</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/coding/golang/golang-notes-for-install-guide.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="go">
+<h1><span class="section-number">5.3.5. </span>Go语言开发环境安装<a class="headerlink" href="#go" title="Permalink to this heading"></a></h1>
+<p>Go语言（Golang） 由Google 的 Robert Griesemer，Rob Pike 和 Ken Thompson 推出，Go语言具有并发性，可以快速编译机器码，自动垃圾回收，是一种静态强类型、编译型语言。由于Go语言的并发特性，非常适用于Web 服务器、分布式集群计算、云计算、游戏服务端等的开发。在区块链（如以太坊，Ethereum）、容器（如Kubernetes）领域都有广泛的应用。本文介绍Go语言开发环境安装方法。</p>
+<!--more--><section id="id1">
+<h2><span class="section-number">5.3.5.1. </span>安装<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>Go支持支持windows、linux、mac操作系统，下面介绍Windows系统安装方法：
+下载地址：<a class="reference external" href="https://golang.google.cn/doc/install">https://golang.google.cn/doc/install</a></p>
+<p>go国内镜像下载地址：<a class="reference external" href="https://gomirrors.org/">https://gomirrors.org/</a></p>
+<p>双击msi文件安装，安装成功后会自动加入环境变量，测试是否安装成功：<code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">version</span></code>
+windows打开cmd</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\U</span>sers<span class="se">\1</span><span class="m">0287</span>&gt;go<span class="w"> </span>version
+go<span class="w"> </span>version<span class="w"> </span>go1.15.6<span class="w"> </span>windows/amd64
+</pre></div>
+</div>
+<p>帮助命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>go<span class="w"> </span><span class="nb">help</span>
+</pre></div>
+</div>
+<p>Linux系统安装：</p>
+<p>下载安装包，使用root用户执行：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/usr/local/go<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>tar<span class="w"> </span>-C<span class="w"> </span>/usr/local<span class="w"> </span>-xzf<span class="w"> </span>go1.16.6.linux-amd64.tar.gz
+</pre></div>
+</div>
+<p>将<code class="docutils literal notranslate"><span class="pre">/usr/local/go/bin</span></code>添加到环境变量：<code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">/etc/profile</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/go/bin
+<span class="nv">GOPATH</span><span class="o">=</span>/var/GoProjects
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/etc/profile
+go<span class="w"> </span>env<span class="w"> </span>-w<span class="w"> </span><span class="nv">GOPROXY</span><span class="o">=</span>https://goproxy.cn
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2><span class="section-number">5.3.5.2. </span>Go代码编写运行<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<section id="id3">
+<h3><span class="section-number">5.3.5.2.1. </span>项目目录结构<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>配置一个变量名为<code class="docutils literal notranslate"><span class="pre">GOPATH</span></code>的系统变量 ，值为Go 项目的工作目录，可以是多个路径。
+<img alt="coding/golang/golang-notes-for-install-guide/gopath.png" src="coding/golang/golang-notes-for-install-guide/gopath.png" />
+在工作目录<code class="docutils literal notranslate"><span class="pre">D:\GoProjects</span></code>下创建 bin、pkg、src三个目录</p>
+<ul class="simple">
+<li><p>bin：存放编译后可执行的文件。</p></li>
+<li><p>pkg：存放编译后的应用包。</p></li>
+<li><p>src：存放应用源代码。</p></li>
+</ul>
+<p>还有一个环境变量叫GOROOT，是Go的安装路径，这个可以不用配置，默认添加到了环境变量</p>
+<p>在src目录下新建一个HelloWorld的项目，新建hello.go，项目目录树如下：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>D:\GOPROJECTS
+│
+├─bin
+├─pkg
+└─src
+    └─HelloWorld
+            hello.go
+</pre></div>
+</div>
+<p>编写代码如下：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Hello, World!&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>HelloWorld目录下运行：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>go<span class="w"> </span>run<span class="w"> </span>hello.go
+Hello,<span class="w"> </span>World!
+</pre></div>
+</div>
+</section>
+<section id="go-modules">
+<h3><span class="section-number">5.3.5.2.2. </span>go modules依赖管理<a class="headerlink" href="#go-modules" title="Permalink to this heading"></a></h3>
+<p>Go mod是Go语言依赖库管理器，官方推荐使用这种方法来管理依赖，相比GOPATH方法更加灵活，记录和解析对其他模块的依赖性。</p>
+<p>Go mod是go1.11之后新增的功能，版本至少需要1.11。</p>
+<p>打开Go mod，在windows cmd窗口输入如下命令设置环境变量：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>setx<span class="w"> </span>GO111MODULE<span class="w"> </span>on<span class="w"> </span>
+</pre></div>
+</div>
+<p>GO111MODULE=on 表示开启模块支持，忽略 GOPATH  文件夹，根据 go.mod 下载依赖。由于国内网络问题可能无法下载go依赖包，需配置一下国内代理（七牛云提供）：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>setx<span class="w"> </span>GOPROXY<span class="w"> </span>https://goproxy.cn,direct<span class="w"> </span>
+</pre></div>
+</div>
+<p>或者直接手动添加环境变量
+<img alt="coding/golang/golang-notes-for-install-guide/go-proxy-path.png" src="coding/golang/golang-notes-for-install-guide/go-proxy-path.png" />
+下面使用go mod来管理一个项目：</p>
+<p><strong>初始化项目</strong></p>
+<p>项目src目录下创建的项目目录，执行如下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>go<span class="w"> </span>mod<span class="w"> </span>init
+</pre></div>
+</div>
+<p>目录下会生成一个go.mod文件：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>module HelloWorld
+
+go 1.16
+</pre></div>
+</div>
+<p>还有一个比较常用的命令是<code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">mod</span> <span class="pre">tidy</span></code>，用于安装需要的依赖包，删除多余的包。</p>
+</section>
+<section id="id4">
+<h3><span class="section-number">5.3.5.2.3. </span>运行方式<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>Go是一种编译型语言，代码编写完成后，需要先进行编译后再执行。</p>
+<p><strong>1、go run</strong></p>
+<p>编译+执行，不生成其它任何文件</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>go<span class="w"> </span>run<span class="w"> </span>hello.go
+Hello,<span class="w"> </span>World!
+</pre></div>
+</div>
+<p><strong>2、go build</strong></p>
+<p>先编译，再手动执行</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-a</span></code>：强制编译，目标代码包和依赖的代码包（包括标准库中的代码包）都会被编译</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-x</span></code>：会打印执行日志</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>：只查看具体操作而不执行它们</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code>：可以看到go build命令编译的代码包的名称</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>hello.go
+$<span class="w"> </span>hello.exe
+</pre></div>
+</div>
+<p>执行<code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">build</span> <span class="pre">hello.go</span></code>后，在windows系统上会自动生成一个后缀为exe的可执行文件，可使用<code class="docutils literal notranslate"><span class="pre">-o</span></code>参数指定编译文件名：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>hello<span class="w"> </span>hello.go
+$<span class="w"> </span>hello
+Hello,<span class="w"> </span>World!
+</pre></div>
+</div>
+<p><strong>3、go install</strong></p>
+<p>先编译，将编译好的可执行文件移动到 $GOPATH/bin目录下，将包文件放到pkg目录下。</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>go<span class="w"> </span>install<span class="w"> </span>hello.go
+</pre></div>
+</div>
+<p><strong>4、go clean</strong></p>
+<p>清除执行 go 命令而遗留下来的临时目录和文件</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span></code>参数：清除通过go install命令生成的文件，也就是会把bin和pkg目录下的相关文件清除</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-cache</span></code>参数：清除go build命令生成的文件</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>参数：打印要执行的清除命令，不执行清除</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-x</span></code>参数：打印要执行的清除命令，执行清除</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>go<span class="w"> </span>clean<span class="w"> </span>-i<span class="w"> </span>hello.go
+$<span class="w"> </span>go<span class="w"> </span>clean<span class="w"> </span>-n<span class="w"> </span>hello.go
+<span class="nb">cd</span><span class="w"> </span>D:<span class="se">\G</span>oProjects<span class="se">\s</span>rc<span class="se">\H</span>elloWorld
+rm<span class="w"> </span>-f<span class="w"> </span>HelloWorld<span class="w"> </span>HelloWorld.exe<span class="w"> </span>hello<span class="w"> </span>hello.exe<span class="w"> </span>HelloWorld.test<span class="w"> </span>HelloWorld.test.exe<span class="w"> </span>hello.test<span class="w"> </span>hello.test.exe<span class="w"> </span>hello<span class="w"> </span>hello.exe
+</pre></div>
+</div>
+</section>
+<section id="go-go-get">
+<h3><span class="section-number">5.3.5.2.4. </span>Go 源码安装：go get<a class="headerlink" href="#go-go-get" title="Permalink to this heading"></a></h3>
+<p>go get会自动从代码仓库（比如 GitHub.com、golang.org等）下载目标代码包，安装的路径为设置的环境变量GOPATH中。下面介绍几个常用参数：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-u</span></code>：下载并安装代码包，不论工作区中是否已存在它们。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span></code>：只下载代码包，不安装代码包。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-fix</span></code>：在下载代码包后先运行一个用于根据当前 Go 语言版本修正代码的工具，然后再安装代码包。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t</span></code>：同时下载测试所需的代码包。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-insecure</span></code>：允许通过非安全的网络协议下载和安装代码包。比如HTTP。</p></li>
+</ul>
+<p>更多go get命令使用方法可参考：<a class="reference external" href="https://github.com/hyper0x/go_command_tutorial/blob/master/0.3.md">https://github.com/hyper0x/go_command_tutorial/blob/master/0.3.md</a></p>
+<p>其它go命令详细文档可参考Go 语言官方文档：<a class="reference external" href="https://golang.google.cn/cmd/go/">https://golang.google.cn/cmd/go/</a></p>
+</section>
+</section>
+<section id="id5">
+<h2><span class="section-number">5.3.5.3. </span>开发环境<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<section id="vscode">
+<h3><span class="section-number">5.3.5.3.1. </span>VSCode<a class="headerlink" href="#vscode" title="Permalink to this heading"></a></h3>
+<p>VSCode比较轻量级，是我比较常用的代码开发工具。</p>
+<p><strong>1、配置代理</strong></p>
+<p>按照前面的方法配置</p>
+<p><strong>2、安装go插件</strong></p>
+<p>以管理员身份启动VSCode，然后安装go插件
+<img alt="coding/golang/golang-notes-for-install-guide/go-vscode-plugin.png" src="coding/golang/golang-notes-for-install-guide/go-vscode-plugin.png" />
+<strong>3、安装环境依赖</strong></p>
+<p>VSCode打开前面创建的HelloWorld项目，打开hello.go，右下角会提示安装环境依赖，点击安装就行
+<img alt="coding/golang/golang-notes-for-install-guide/go-vscode-environment.png" src="coding/golang/golang-notes-for-install-guide/go-vscode-environment.png" />
+<strong>4、配置调试功能</strong></p>
+<p>配置launch.json文件：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Launch file&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;go&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;debug&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;program&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${file}&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;GOPATH&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;D:\\GoProjects&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;GOROOT&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;D:\\software\\go&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><img alt="coding/golang/golang-notes-for-install-guide/go-vscode-debug.png" src="coding/golang/golang-notes-for-install-guide/go-vscode-debug.png" />配置完成后在go代码文件内，按F5即可进入调试状态。</p>
+</section>
+<section id="goland">
+<h3><span class="section-number">5.3.5.3.2. </span>GoLand<a class="headerlink" href="#goland" title="Permalink to this heading"></a></h3>
+<p>也可以使用 JetBrains 公司推出的GoLand开发，功能更全面，下载地址：https://www.jetbrains.com/go/</p>
+</section>
+</section>
+<section id="id6">
+<h2><span class="section-number">5.3.5.4. </span>学习资源<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<p>golang国内站点：<a class="reference external" href="https://golang.google.cn/">https://golang.google.cn/</a>
+文档：<a class="reference external" href="https://golang.google.cn/doc/">https://golang.google.cn/doc/</a>
+Go语言规范文档：<a class="reference external" href="https://golang.google.cn/ref/spec">https://golang.google.cn/ref/spec</a>
+go语言中文网：<a class="reference external" href="https://studygolang.com/">https://studygolang.com/</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="golang-notes-for-channel-sync.html" class="btn btn-neutral float-left" title="5.3.4. Go语言中的通道" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="golang-notes-for-string-concatenation.html" class="btn btn-neutral float-right" title="5.3.6. Go语言中的字符串拼接方法介绍" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

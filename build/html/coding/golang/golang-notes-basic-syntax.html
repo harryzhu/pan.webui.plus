@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3.1. Go语言基础语法（一） &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="4.3.2. Go语言基础语法（二）：函数" href="golang-notes-for-basic-syntax-function.html" />
+    <link rel="prev" title="4.3. Go 语法" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../style-guides/index.html">3. 编程语言 规范</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 语法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reStructureText_syntax.html">4.1. reStructureText语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MarkDown_syntax.html">4.2. Markdown: 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. Go 语法</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.1. Go语言基础语法（一）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">4.3.1.1. go简单小例子</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">4.3.1.2. 格式化输出</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">4.3.1.3. 数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">4.3.1.4. 常量声明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">4.3.1.5. 变量声明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">4.3.1.6. 运算符</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">4.3.1.7. 条件语句</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">4.3.1.8. 循环语句</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-basic-syntax-function.html">4.3.2. Go语言基础语法（二）：函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-struct-and-method.html">4.3.3. Go语言基础语法（三）：结构体及方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-string-concatenation.html">4.3.4. Go语言中的字符串拼接方法介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-channel-sync.html">4.3.5. Go语言中的通道</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-atomic-operation.html">4.3.6. Go语言并发编程：原子操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-context.html">4.3.7. Go语言并发编程：上下文Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-mutex.html">4.3.8. Go语言并发编程：互斥锁</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-sync-once.html">4.3.9. Go语言并发编程：sync.Once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-waitgroup.html">4.3.10. Go语言并发编程：WaitGroup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 语法</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>Go 语法</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.1. </span>Go语言基础语法（一）</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/coding/golang/golang-notes-basic-syntax.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="go">
+<h1><span class="section-number">4.3.1. </span>Go语言基础语法（一）<a class="headerlink" href="#go" title="Permalink to this heading"></a></h1>
+<p>本文介绍一些Go语言的基础语法。</p>
+<!--more--><section id="id1">
+<h2><span class="section-number">4.3.1.1. </span>go简单小例子<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>先来看一个简单的go语言代码：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="c1">// 加法运算</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">add</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">	</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;main  init....&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">value1</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">value2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">	</span><span class="nx">sum</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">add</span><span class="p">(</span><span class="nx">value1</span><span class="p">,</span><span class="nx">value2</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d + %d = %d&quot;</span><span class="p">,</span><span class="nx">value1</span><span class="p">,</span><span class="nx">value2</span><span class="p">,</span><span class="nx">sum</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">main</span></code>：定义package 包名称为main，表示当前文件所属的包</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">&quot;fmt&quot;</span></code>：导入Go标准库中的 fmt 模块，主要用于打印输出。go提供了很多标准库，具体可参考<a class="reference external" href="https://studygolang.com/pkgdoc">Golang标准库文档</a>。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">init()</span></code>：init()函数在main()函数之前执行。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">main()</span></code>：main函数，是当前程序的入口，init()以及main()函数都无法被显式的调用。</p></li>
+</ul>
+<p>go语言的注释方法：</p>
+<ul class="simple">
+<li><p>单行注释：<code class="docutils literal notranslate"><span class="pre">//</span></code></p></li>
+<li><p>多行注释：<code class="docutils literal notranslate"><span class="pre">/*</span>&#160;&#160;&#160; <span class="pre">*/</span></code></p></li>
+</ul>
+<p>代码执行结果：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>go<span class="w"> </span>run<span class="w"> </span>demo.go
+main<span class="w">  </span>init....
+<span class="m">2</span><span class="w"> </span>+<span class="w"> </span><span class="nv">3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<p>下面来进一步介绍go的基础语法。</p>
+</section>
+<section id="id2">
+<h2><span class="section-number">4.3.1.2. </span>格式化输出<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>go语言中格式化输出可以使用 fmt 和 log 这两个标准库，</p>
+<section id="fmt">
+<h3><span class="section-number">4.3.1.2.1. </span>fmt<a class="headerlink" href="#fmt" title="Permalink to this heading"></a></h3>
+<p>常用方法：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fmt.Printf</span></code>：格式化输出</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fmt.Println</span></code>：仅打印，不能转义，会在输出结束后添加换行符。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fmt.Print</span></code>：和Println类似，但不添加换行符。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fmt.Sprintf</span></code>：格式化字符串并赋值给新的字符串</p></li>
+</ul>
+<p>示例代码：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">22</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;I&#39;m %d years old\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">age</span><span class="p">)</span>
+
+<span class="w">	</span><span class="nx">str1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;Hello world !&quot;</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%s\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">str1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="nx">str1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">str_hex</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;% 02x&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">str1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;type of str_hex: %T\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">str_hex</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">str_hex</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>I&#39;m 22 years old
+Hello world !
+Hello world !
+type of str_hex: string
+48 65 6c 6c 6f 20 77 6f 72 6c 64 20 21
+</pre></div>
+</div>
+<p>更多格式化方法可以访问<a class="reference external" href="https://studygolang.com/pkgdoc">https://studygolang.com/pkgdoc</a>中的fmt包。</p>
+</section>
+<section id="log">
+<h3><span class="section-number">4.3.1.2.2. </span>log<a class="headerlink" href="#log" title="Permalink to this heading"></a></h3>
+<p>log包实现了简单的日志服务，也提供了一些格式化输出的方法。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">log.Printf</span></code>：格式化输出，和fmt.Printf类似</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">log.Println</span></code>：和fmt.Println类似</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">log.Print</span></code>：和fmt.Print类似</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;log&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">22</span>
+<span class="w">	</span><span class="nx">log</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;I&#39;m %d years old&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">age</span><span class="p">)</span>
+
+<span class="w">	</span><span class="nx">str1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;Hello world !&quot;</span>
+<span class="w">	</span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">str1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">log</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="nx">str1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">log</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">str1</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>2021/08/12 16:52:12 I&#39;m 22 years old
+2021/08/12 16:52:12 Hello world !
+2021/08/12 16:52:12 Hello world !
+2021/08/12 16:52:12 Hello world !
+</pre></div>
+</div>
+<p>下面来介绍一下go的数据类型</p>
+</section>
+</section>
+<section id="id3">
+<h2><span class="section-number">4.3.1.3. </span>数据类型<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>下表列出了go语言的数据类型：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">说明</th>
+<th style="text-align: left;">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">布尔类型 bool</td>
+<td style="text-align: left;">可以是常量 true 或者 false</td>
+<td style="text-align: left;"><code>var flag bool = true</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">数字类型</td>
+<td style="text-align: left;">有符号整型：int8、int16、int32、int64<br />无符号整型：uint8、uint16、uint32、uint64<br />int和uint的具体长度取决于CPU位数<br />浮点型：float32、float64<br /></td>
+<td style="text-align: left;"><code>var num int = 2</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">字符串类型 string</td>
+<td style="text-align: left;">是UTF-8 编码的字符序列，只能使用双引号（""）或反引号（``）定义</td>
+<td style="text-align: left;"><code>var a = “test”</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">数组 array</td>
+<td style="text-align: left;">数组类型是由<strong>固定长度</strong>的特定类型元素组成的序列，长度和容量相同</td>
+<td style="text-align: left;"><code>var myarr [5] int{1,2,3}</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">切片 slice</td>
+<td style="text-align: left;">切片类型是一种动态数组，是可变长的，长度和容量可相同也可以不相同</td>
+<td style="text-align: left;"><code>var myslice = []int{1, 2, 3}</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">结构体 struct</td>
+<td style="text-align: left;">结构体是多个任意类型的变量组合</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">字典 map</td>
+<td style="text-align: left;">存储键值对的集合</td>
+<td style="text-align: left;"><code>var mymap map[int]string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">通道 channel</td>
+<td style="text-align: left;">相当于一个先进先出（FIFO）的队列，可以利用通道在多个 goroutine 之间传递数据</td>
+<td style="text-align: left;"><code>ch := make(chan int, 3)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">接口 interface</td>
+<td style="text-align: left;">接口类型定义方法的集合，它无法实例化</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">函数 func</td>
+<td style="text-align: left;">函数类型是一种对一组输入、输出进行模板化的重要工具</td>
+<td style="text-align: left;"><code>type add func(a int, b int) (n int)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">指针 pointer</td>
+<td style="text-align: left;">go语言的指针类型和C/C++中的指针类型类似，是指向某个确切的内存地址的值</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table><p>int、float、bool、string、数组和struct属于值类型，这些类型的变量直接指向存在内存中的值；slice、map、chan、pointer等是引用类型，存储的是一个地址，这个地址存储最终的值。</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">4.3.1.4. </span>常量声明<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<p>常量是在程序编译时就确定下来的值，程序运行时无法改变。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kd">const</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;zhangsan&quot;</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+
+<span class="w">	</span><span class="kd">const</span><span class="w"> </span><span class="nx">course1</span><span class="p">,</span><span class="w"> </span><span class="nx">course2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;math&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;english&quot;</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">course1</span><span class="p">,</span><span class="w"> </span><span class="nx">course2</span><span class="p">)</span>
+
+<span class="w">	</span><span class="kd">const</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">20</span>
+<span class="w">	</span><span class="nx">age</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="c1">// 不能改变age</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">age</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span># command-line-arguments
+.\test_const.go:15:6: cannot assign to age (declared const)
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2><span class="section-number">4.3.1.5. </span>变量声明<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<p>go的变量声明主要包括三种方法：</p>
+<ul class="simple">
+<li><p>变量声明可指定变量类型，如果没有初始化，则变量默认为零值。</p></li>
+<li><p>也可以不指定数据类型，由go自己判断。</p></li>
+<li><p>var可以省略，使用<code class="docutils literal notranslate"><span class="pre">:=</span></code>进行声明。注意：<code class="docutils literal notranslate"><span class="pre">:=</span></code> 左边的变量必须是没有声明新的变量，否则会编译错误。</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;zhangsan&quot;</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">hight</span><span class="w"> </span><span class="kt">float32</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">hight</span><span class="p">)</span>
+
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">course1</span><span class="p">,</span><span class="w"> </span><span class="nx">course2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;math&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;english&quot;</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">course1</span><span class="p">,</span><span class="w"> </span><span class="nx">course2</span><span class="p">)</span>
+
+<span class="w">	</span><span class="nx">age</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">20</span>
+<span class="w">	</span><span class="nx">age</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">age</span><span class="p">)</span>
+
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="p">(</span>
+<span class="w">		</span><span class="nx">name1</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;zhangsan&quot;</span>
+<span class="w">		</span><span class="nx">name2</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;lishi&quot;</span>
+<span class="w">	</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">name1</span><span class="p">,</span><span class="w"> </span><span class="nx">name2</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">zhangsan</span>
+<span class="mi">0</span>
+<span class="nx">math</span><span class="w"> </span><span class="nx">english</span>
+<span class="mi">21</span>
+<span class="nx">zhangsan</span><span class="w"> </span><span class="nx">lishi</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h2><span class="section-number">4.3.1.6. </span>运算符<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<p>Go 语言的运算符主要包括算术运算符、关系运算符、逻辑运算符、位运算符、赋值运算符以及指针相关运算符。</p>
+<p>算术运算符：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: left;">运算符</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">+</td>
+<td style="text-align: left;">加</td>
+</tr>
+<tr>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">减</td>
+</tr>
+<tr>
+<td style="text-align: left;">*</td>
+<td style="text-align: left;">乘</td>
+</tr>
+<tr>
+<td style="text-align: left;">/</td>
+<td style="text-align: left;">除</td>
+</tr>
+<tr>
+<td style="text-align: left;">%</td>
+<td style="text-align: left;">求余</td>
+</tr>
+<tr>
+<td style="text-align: left;">++</td>
+<td style="text-align: left;">自增</td>
+</tr>
+<tr>
+<td style="text-align: left;">--</td>
+<td style="text-align: left;">自减</td>
+</tr>
+</tbody>
+</table><p>关系运算符：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: left;">运算符</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">==</td>
+<td style="text-align: left;">是否相等</td>
+</tr>
+<tr>
+<td style="text-align: left;">!=</td>
+<td style="text-align: left;">是否不相等</td>
+</tr>
+<tr>
+<td style="text-align: left;">&gt;</td>
+<td style="text-align: left;">大于</td>
+</tr>
+<tr>
+<td style="text-align: left;">&lt;</td>
+<td style="text-align: left;">小于</td>
+</tr>
+<tr>
+<td style="text-align: left;">&gt;=</td>
+<td style="text-align: left;">大于等于</td>
+</tr>
+<tr>
+<td style="text-align: left;">&lt;=</td>
+<td style="text-align: left;">小于等于</td>
+</tr>
+</tbody>
+</table><p>逻辑运算符：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: left;">运算符</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">&amp;&amp;</td>
+<td style="text-align: left;">逻辑 AND</td>
+</tr>
+<tr>
+<td style="text-align: left;">||</td>
+<td style="text-align: left;">逻辑 OR</td>
+</tr>
+<tr>
+<td style="text-align: left;">!</td>
+<td style="text-align: left;">逻辑 NOT</td>
+</tr>
+</tbody>
+</table><p>位运算符：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: left;">运算符</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">&amp;</td>
+<td style="text-align: left;">按位与，两个数对应的二进位相与</td>
+</tr>
+<tr>
+<td style="text-align: left;">|</td>
+<td style="text-align: left;">按位或</td>
+</tr>
+<tr>
+<td style="text-align: left;">^</td>
+<td style="text-align: left;">按位异或</td>
+</tr>
+<tr>
+<td style="text-align: left;">&lt;&lt;</td>
+<td style="text-align: left;">左移，左移n位表示乘以2的n次方</td>
+</tr>
+<tr>
+<td style="text-align: left;">&gt;&gt;</td>
+<td style="text-align: left;">右移，右移n位表示除以2的n次方</td>
+</tr>
+</tbody>
+</table><p>赋值运算符：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: left;">运算符</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">=</td>
+<td style="text-align: left;">简单赋值运算符</td>
+</tr>
+<tr>
+<td style="text-align: left;">+=</td>
+<td style="text-align: left;">相加后再赋值</td>
+</tr>
+<tr>
+<td style="text-align: left;">-=</td>
+<td style="text-align: left;">相减后再赋值</td>
+</tr>
+<tr>
+<td style="text-align: left;">*=</td>
+<td style="text-align: left;">相乘后再赋值</td>
+</tr>
+<tr>
+<td style="text-align: left;">/=</td>
+<td style="text-align: left;">相除后再赋值</td>
+</tr>
+<tr>
+<td style="text-align: left;">%=</td>
+<td style="text-align: left;">求余后再赋值</td>
+</tr>
+<tr>
+<td style="text-align: left;">&lt;&lt;=</td>
+<td style="text-align: left;">左移后赋值</td>
+</tr>
+<tr>
+<td style="text-align: left;">&gt;&gt;=</td>
+<td style="text-align: left;">右移后赋值</td>
+</tr>
+<tr>
+<td style="text-align: left;">&amp;=</td>
+<td style="text-align: left;">按位与后赋值</td>
+</tr>
+<tr>
+<td style="text-align: left;">^=</td>
+<td style="text-align: left;">按位异或后赋值</td>
+</tr>
+<tr>
+<td style="text-align: left;">|=</td>
+<td style="text-align: left;">按位或后赋值</td>
+</tr>
+</tbody>
+</table><p>指针相关运算符：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: left;">运算符</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">&amp;</td>
+<td style="text-align: left;">返回变量在内存中的地址</td>
+</tr>
+<tr>
+<td style="text-align: left;">*</td>
+<td style="text-align: left;">如果<code>*</code>后面是指针，表示取指针指向的值；如果<code>*</code>后面是类型，则表示一个指向该类型的指针。</td>
+</tr>
+</tbody>
+</table></section>
+<section id="id7">
+<h2><span class="section-number">4.3.1.7. </span>条件语句<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<p>下面介绍一下go语言中的if语句和switch语句。另外还有一种控制语句叫select语句，通常与通道联用，这里不做介绍。</p>
+<section id="if">
+<h3><span class="section-number">4.3.1.7.1. </span>if语句<a class="headerlink" href="#if" title="Permalink to this heading"></a></h3>
+<p>if语法格式如下：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">[</span><span class="nx">布尔表达式</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// do something</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>if … else ：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">[</span><span class="nx">布尔表达式</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// do something</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// do something</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>else if：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">[</span><span class="nx">布尔表达式</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// do something</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">[</span><span class="nx">布尔表达式</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// do something</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// do something</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>示例代码：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">	</span>
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">grade</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">70</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">grade</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">90</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nx">grade</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">90</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">grade</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;B&quot;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nx">grade</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">grade</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">60</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;D&quot;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="switch">
+<h3><span class="section-number">4.3.1.7.2. </span>switch 语句<a class="headerlink" href="#switch" title="Permalink to this heading"></a></h3>
+<p>语法格式：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="k">switch</span><span class="w"> </span><span class="nx">var1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nx">cond1</span><span class="p">:</span>
+<span class="w">        </span><span class="c1">// do something</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nx">cond2</span><span class="p">:</span>
+<span class="w">        </span><span class="c1">// do something</span>
+<span class="w">    </span><span class="k">default</span><span class="p">:</span>
+<span class="w">        </span><span class="c1">// do something：条件都不满足时执行</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>另外，添加 fallthrough 会强制执行后面的 case 语句，不管下一条case语句是否为true。</p>
+<p>示例代码：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">grade</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;B&quot;</span>
+<span class="w">	</span><span class="k">switch</span><span class="w"> </span><span class="nx">grade</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">case</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">:</span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;优秀&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="k">case</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">:</span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;良好&quot;</span><span class="p">)</span>
+<span class="w">		</span><span class="k">fallthrough</span>
+<span class="w">	</span><span class="k">case</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">:</span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;中等&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="k">default</span><span class="p">:</span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;不及格&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">良好</span>
+<span class="nx">中等</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id8">
+<h2><span class="section-number">4.3.1.8. </span>循环语句<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<p>下面介绍几种循环语句：</p>
+<section id="for">
+<h3><span class="section-number">4.3.1.8.1. </span>for循环：使用分号<a class="headerlink" href="#for" title="Permalink to this heading"></a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">sum</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">	</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">i</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">sum</span><span class="p">)</span><span class="w"> </span><span class="c1">// 10 (1+2+3+4)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="while">
+<h3><span class="section-number">4.3.1.8.2. </span>实现while效果<a class="headerlink" href="#while" title="Permalink to this heading"></a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">sum</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">	</span><span class="nx">n</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">n</span>
+<span class="w">		</span><span class="nx">n</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">sum</span><span class="p">)</span><span class="w"> </span><span class="c1">// 10 (1+2+3+4)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h3><span class="section-number">4.3.1.8.3. </span>死循环<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">sum</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">sum</span><span class="o">++</span><span class="w">		</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">sum</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="for-range">
+<h3><span class="section-number">4.3.1.8.4. </span>for range 遍历<a class="headerlink" href="#for-range" title="Permalink to this heading"></a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">	</span>
+<span class="w">	</span><span class="nx">strings</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="p">}</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">index</span><span class="p">,</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">strings</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="w"> </span><span class="nx">str</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="w"> </span><span class="nx">hello</span>
+<span class="mi">1</span><span class="w"> </span><span class="nx">world</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h3><span class="section-number">4.3.1.8.5. </span>退出循环<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>continue：结束当前迭代，进入下一次迭代</p></li>
+<li><p>break：结束当前for循环</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">sum</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">sum</span><span class="o">++</span><span class="w">		</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nx">sum</span><span class="o">%</span><span class="mi">2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">sum</span><span class="p">)</span>
+<span class="w">			</span><span class="k">continue</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="k">break</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">sum</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+<span class="mi">3</span>
+<span class="mi">5</span>
+<span class="mi">7</span>
+<span class="mi">9</span>
+<span class="mi">10</span>
+</pre></div>
+</div>
+<p>也可以通过标记退出循环：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">sum</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">	</span><span class="nx">n</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">	</span><span class="nx">LOOP</span><span class="p">:</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="k">break</span><span class="w"> </span><span class="nx">LOOP</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">		</span><span class="nx">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">n</span>
+<span class="w">		</span><span class="nx">n</span><span class="o">++</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">sum</span><span class="p">)</span><span class="w"> </span><span class="c1">// 28 (0+1+2+3+4+5+6+7)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="goto">
+<h3><span class="section-number">4.3.1.8.6. </span>goto语句<a class="headerlink" href="#goto" title="Permalink to this heading"></a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">sum</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">	</span><span class="nx">sum2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">	</span><span class="nx">n</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span>
+<span class="w">	</span><span class="nx">LOOP</span><span class="p">:</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="nx">n</span><span class="o">%</span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="nx">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">n</span>
+<span class="w">			</span><span class="nx">n</span><span class="o">++</span>
+<span class="w">			</span><span class="k">goto</span><span class="w"> </span><span class="nx">LOOP</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">		</span><span class="nx">sum2</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">n</span>
+<span class="w">		</span><span class="nx">n</span><span class="o">++</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">sum</span><span class="p">)</span><span class="w"> </span><span class="c1">// 30 (0+2+4+6+8+10)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">sum2</span><span class="p">)</span><span class="w"> </span><span class="c1">// 25 (1+3+5+7+9)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="index.html" class="btn btn-neutral float-left" title="4.3. Go 语法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="golang-notes-for-basic-syntax-function.html" class="btn btn-neutral float-right" title="4.3.2. Go语言基础语法（二）：函数" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

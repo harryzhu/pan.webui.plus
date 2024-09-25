@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.2. Markdown: 语法 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="4.3. Go 语法" href="golang/index.html" />
+    <link rel="prev" title="4.1. reStructureText语法" href="reStructureText_syntax.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../style-guides/index.html">3. 编程语言 规范</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. 编程语言 语法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="reStructureText_syntax.html">4.1. reStructureText语法</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.2. Markdown: 语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="golang/index.html">4.3. Go 语法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4. </span>编程语言 语法</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.2. </span>Markdown: 语法</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/coding/MarkDown_syntax.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="markdown">
+<h1><span class="section-number">4.2. </span>Markdown: 语法<a class="headerlink" href="#markdown" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="#overview">概述</a></p>
+<ul>
+<li><p><a class="reference external" href="#philosophy">宗旨</a></p></li>
+<li><p><a class="reference external" href="#html">兼容 HTML</a></p></li>
+<li><p><a class="reference external" href="#autoescape">特殊字符自动转换</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#block">区块元素</a></p>
+<ul>
+<li><p><a class="reference external" href="#p">段落和换行</a></p></li>
+<li><p><a class="reference external" href="#header">标题</a></p></li>
+<li><p><a class="reference external" href="#blockquote">区块引用</a></p></li>
+<li><p><a class="reference external" href="#list">列表</a></p></li>
+<li><p><a class="reference external" href="#precode">代码区块</a></p></li>
+<li><p><a class="reference external" href="#hr">分隔线</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#span">区段元素</a></p>
+<ul>
+<li><p><a class="reference external" href="#link">链接</a></p></li>
+<li><p><a class="reference external" href="#em">强调</a></p></li>
+<li><p><a class="reference external" href="#code">代码</a></p></li>
+<li><p><a class="reference external" href="#img">图片</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#misc">其它</a></p>
+<ul>
+<li><p><a class="reference external" href="#autolink">自动链接</a></p></li>
+<li><p><a class="reference external" href="#backslash">反斜杠</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#acknowledgement">感谢</a></p></li>
+</ul>
+<hr class="docutils" />
+<p><h2 id="overview">概述</h2></p>
+<p><h3 id="philosophy">宗旨</h3></p>
+<p>Markdown 的目标是实现「易读易写」。</p>
+<p>可读性，无论如何，都是最重要的。一份使用 Markdown 格式撰写的文件应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响，包括 [Setext] <a class="reference external" href="http://docutils.sourceforge.net/mirror/setext.html">1</a>、[atx] <a class="reference external" href="http://www.aaronsw.com/2002/atx/">2</a>、[Textile] <a class="reference external" href="http://textism.com/tools/textile/">3</a>、[reStructuredText] <a class="reference external" href="http://docutils.sourceforge.net/rst.html">4</a>、[Grutatext] <a class="reference external" href="http://www.triptico.com/software/grutatxt.html">5</a> 和 [EtText] <a class="reference external" href="http://ettext.taint.org/doc/">6</a>，而最大灵感来源其实是纯文本电子邮件的格式。</p>
+<p>总之， Markdown 的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。比如：在文字两旁加上星号，看起来就像<em>强调</em>。Markdown 的列表看起来，嗯，就是列表。Markdown 的区块引用看起来就真的像是引用一段文字，就像你曾在电子邮件中见过的那样。</p>
+<p><h3 id="html">兼容 HTML</h3></p>
+<p>Markdown 的格式语法只涵盖纯文本可以涵盖的范围，不在 Markdown 涵盖范围之内的标签，都可以直接在文件里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。</p>
+<p>只有区块元素──比如 <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;</span></code>、<code class="docutils literal notranslate"><span class="pre">&lt;table&gt;</span></code>、<code class="docutils literal notranslate"><span class="pre">&lt;pre&gt;</span></code>、<code class="docutils literal notranslate"><span class="pre">&lt;p&gt;</span></code> 等标签，必须在前后加上空行与其它内容区隔开，而且这些（元素）的开始与结尾标签，不可以用制表符或空格来缩进。Markdown 的生成器足够智能，不会在 HTML 区块标签外加上不必要的 <code class="docutils literal notranslate"><span class="pre">&lt;p&gt;</span></code> 标签。</p>
+<p>举例来说，在 Markdown 文件里加上一段 HTML 表格：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">regular</span> <span class="n">paragraph</span><span class="o">.</span>
+
+<span class="o">&lt;</span><span class="n">table</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="n">Foo</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">table</span><span class="o">&gt;</span>
+
+<span class="n">This</span> <span class="ow">is</span> <span class="n">another</span> <span class="n">regular</span> <span class="n">paragraph</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Markdown 语法在 HTML 区块标签中将不会被进行处理。比如，你在 HTML 区块内使用 Markdown 样式的<code class="docutils literal notranslate"><span class="pre">*强调*</span></code>会没有效果。</p>
+<p>HTML 的区段（行内）标签如 <code class="docutils literal notranslate"><span class="pre">&lt;span&gt;</span></code>、<code class="docutils literal notranslate"><span class="pre">&lt;cite&gt;</span></code>、<code class="docutils literal notranslate"><span class="pre">&lt;del&gt;</span></code> 则不受限制，可以在 Markdown 的段落、列表或是标题里任意使用。依照个人习惯，甚至可以不用Markdown 格式，而直接采用 HTML 标签来格式化。举例说明：如果比较喜欢 HTML 的  <code class="docutils literal notranslate"><span class="pre">&lt;a&gt;</span></code> 或 <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> 标签，可以直接使用这些标签，而不用 Markdown 提供的链接或是图像标签语法。</p>
+<p>请注意，Markdown 语法在 HTML 区段标签间是有效的。</p>
+<p><h3 id="autoescape">特殊字符自动转换</h3></p>
+<p>在 HTML 文件中，有两个字符需要特殊处理： <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 。 <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> 符号用于起始标签，<code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 符号则用于标记 HTML 实体，如果你只是想要显示这些字符的原型，你必须要使用实体的形式，像是 <code class="docutils literal notranslate"><span class="pre">&amp;lt;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&amp;amp;</span></code>。</p>
+<p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 符号其实很容易让写作网络文件的人感到困扰，如果你要打「AT&amp;T」 ，你必须要写成「<code class="docutils literal notranslate"><span class="pre">AT&amp;amp;T</span></code>」 ，而且网址中的 <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 字符也要转换。如果你要链接到：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://images.google.com/images?num=30&amp;q=larry+bird
+</pre></div>
+</div>
+<p>你必须要把网址写成：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://images.google.com/images?num=30&amp;amp;q=larry+bird
+</pre></div>
+</div>
+<p>才能放到链接标签的 <code class="docutils literal notranslate"><span class="pre">href</span></code> 属性里。不用说也知道这很容易忽略，这也可能是 HTML 标准检查所检查到的错误中，数量最多的。</p>
+<p>Markdown 可以自动处理这些符号，如果你使用的 <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 字符是 HTML 字符实体的一部分，它会保留原状，否则它会被转换成 <code class="docutils literal notranslate"><span class="pre">&amp;amp</span></code>;。<br />所以你如果要在文件中插入一个著作权的符号，你可以这样写：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">copy</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Markdown 将不会对这段文字做修改，但是如果你这样写：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">&amp;</span><span class="n">T</span>
+</pre></div>
+</div>
+<p>Markdown 就会将它转为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AT</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">T</span>
+</pre></div>
+</div>
+<p>类似的状况也会发生在 <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> 符号上，因为 Markdown 支持 <a class="reference external" href="#html">兼容 HTML</a> ，如果你是使用 <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> 符号作为 HTML 标签使用，那 Markdown 也不会对它做任何转换，但是如果你是写：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span> <span class="o">&lt;</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>Markdown 将会把它转换为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<p>不过需要注意的是，code 范围内，不论是行内还是区块， <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 两个符号都<strong>一定</strong>会被转换成 HTML 实体，这项特性让你可以很容易地用 Markdown 写 HTML code （和 HTML 相对而言， HTML 语法中，你要把所有的 <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 都转换为 HTML 实体，才能在 HTML 文件里面写出 HTML code。）</p>
+<hr class="docutils" />
+<p><h2 id="block">区块元素</h2></p>
+<p><h3 id="p">段落和换行</h3></p>
+<p>一个 Markdown 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行（空行的定义是显示上看起来像是空的，便会被视为空行。比方说，若某一行只包含空格和制表符，则该行也会被视为空行）。普通段落不该用空格或制表符来缩进。</p>
+<p>「由一个或多个连续的文本行组成」这句话其实暗示了 Markdown 允许段落内的强迫换行（插入换行符），这个特性和其他大部分的 text-to-HTML 格式不一样（包括 Movable Type 的「Convert Line Breaks」选项），其它的格式会把每个换行符都转成 <code class="docutils literal notranslate"><span class="pre">&lt;br</span> <span class="pre">/&gt;</span></code> 标签。</p>
+<p>如果你<strong>真的</strong>想要插入 <code class="docutils literal notranslate"><span class="pre">&lt;br</span> <span class="pre">/&gt;</span></code> 标签的话，在行尾加上两个以上的格然后回车。</p>
+<p>是的，这确实需要花比较多功夫来插入 <code class="docutils literal notranslate"><span class="pre">&lt;br</span> <span class="pre">/&gt;</span></code> ，但是「每个换行都转换为 <code class="docutils literal notranslate"><span class="pre">&lt;br</span> <span class="pre">/&gt;</span></code>」的方法在 Markdown 中并不适合， Markdown 中 email 式的 <a class="reference external" href="#blockquote">区块引用</a> 和多段落的 <a class="reference external" href="#list">列表</a> 在使用换行来排版的时候，不但更好用，还更好阅读。</p>
+<p><h3 id="header">标题</h3></p>
+<p>Markdown 支持两种标题的语法，类 [Setext] <a class="reference external" href="http://docutils.sourceforge.net/mirror/setext.html">1</a> 和类 [atx] <a class="reference external" href="http://www.aaronsw.com/2002/atx/">2</a> 形式。</p>
+<p>类 Setext 形式是用底线的形式，利用 <code class="docutils literal notranslate"><span class="pre">=</span></code> （最高阶标题）和 <code class="docutils literal notranslate"><span class="pre">-</span></code> （第二阶标题），例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">H1</span>
+<span class="o">=============</span>
+
+<span class="n">This</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">H2</span>
+<span class="o">-------------</span>
+</pre></div>
+</div>
+<p>任何数量的 <code class="docutils literal notranslate"><span class="pre">=</span></code> 和 <code class="docutils literal notranslate"><span class="pre">-</span></code> 都可以有效果。</p>
+<p>类 Atx 形式则是在行首插入 1 到 6 个 <code class="docutils literal notranslate"><span class="pre">#</span></code> ，对应到标题 1 到 6 阶，例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an H1</span>
+
+<span class="c1">## This is an H2</span>
+
+<span class="c1">###### This is an H6</span>
+</pre></div>
+</div>
+<p>你可以选择性地「闭合」类 atx 样式的标题，这纯粹只是美观用的，若是觉得这样看起来比较舒适，你就可以在行尾加上 <code class="docutils literal notranslate"><span class="pre">#</span></code>，而行尾的 <code class="docutils literal notranslate"><span class="pre">#</span></code> 数量也不用和开头一样（行首的井字数量决定标题的阶数）：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an H1 #</span>
+
+<span class="c1">## This is an H2 ##</span>
+
+<span class="c1">### This is an H3 ######</span>
+</pre></div>
+</div>
+<p><h3 id="blockquote">Blockquotes</h3></p>
+<p>Markdown 标记区块引用是使用类似 email 中用 <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 的引用方式。如果你还熟悉在 email 信件中的引言部分，你就知道怎么在 Markdown 文件中建立一个区块引用，那会看起来像是你自己先断好行，然后在每行的最前面加上 <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> ：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">blockquote</span> <span class="k">with</span> <span class="n">two</span> <span class="n">paragraphs</span><span class="o">.</span> <span class="n">Lorem</span> <span class="n">ipsum</span> <span class="n">dolor</span> <span class="n">sit</span> <span class="n">amet</span><span class="p">,</span>
+<span class="o">&gt;</span> <span class="n">consectetuer</span> <span class="n">adipiscing</span> <span class="n">elit</span><span class="o">.</span> <span class="n">Aliquam</span> <span class="n">hendrerit</span> <span class="n">mi</span> <span class="n">posuere</span> <span class="n">lectus</span><span class="o">.</span>
+<span class="o">&gt;</span> <span class="n">Vestibulum</span> <span class="n">enim</span> <span class="n">wisi</span><span class="p">,</span> <span class="n">viverra</span> <span class="n">nec</span><span class="p">,</span> <span class="n">fringilla</span> <span class="ow">in</span><span class="p">,</span> <span class="n">laoreet</span> <span class="n">vitae</span><span class="p">,</span> <span class="n">risus</span><span class="o">.</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span> <span class="n">Donec</span> <span class="n">sit</span> <span class="n">amet</span> <span class="n">nisl</span><span class="o">.</span> <span class="n">Aliquam</span> <span class="n">semper</span> <span class="n">ipsum</span> <span class="n">sit</span> <span class="n">amet</span> <span class="n">velit</span><span class="o">.</span> <span class="n">Suspendisse</span>
+<span class="o">&gt;</span> <span class="nb">id</span> <span class="n">sem</span> <span class="n">consectetuer</span> <span class="n">libero</span> <span class="n">luctus</span> <span class="n">adipiscing</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Markdown 也允许你只在整个段落的第一行最前面加上 <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> ：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">blockquote</span> <span class="k">with</span> <span class="n">two</span> <span class="n">paragraphs</span><span class="o">.</span> <span class="n">Lorem</span> <span class="n">ipsum</span> <span class="n">dolor</span> <span class="n">sit</span> <span class="n">amet</span><span class="p">,</span>
+<span class="n">consectetuer</span> <span class="n">adipiscing</span> <span class="n">elit</span><span class="o">.</span> <span class="n">Aliquam</span> <span class="n">hendrerit</span> <span class="n">mi</span> <span class="n">posuere</span> <span class="n">lectus</span><span class="o">.</span>
+<span class="n">Vestibulum</span> <span class="n">enim</span> <span class="n">wisi</span><span class="p">,</span> <span class="n">viverra</span> <span class="n">nec</span><span class="p">,</span> <span class="n">fringilla</span> <span class="ow">in</span><span class="p">,</span> <span class="n">laoreet</span> <span class="n">vitae</span><span class="p">,</span> <span class="n">risus</span><span class="o">.</span>
+
+<span class="o">&gt;</span> <span class="n">Donec</span> <span class="n">sit</span> <span class="n">amet</span> <span class="n">nisl</span><span class="o">.</span> <span class="n">Aliquam</span> <span class="n">semper</span> <span class="n">ipsum</span> <span class="n">sit</span> <span class="n">amet</span> <span class="n">velit</span><span class="o">.</span> <span class="n">Suspendisse</span>
+<span class="nb">id</span> <span class="n">sem</span> <span class="n">consectetuer</span> <span class="n">libero</span> <span class="n">luctus</span> <span class="n">adipiscing</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>区块引用可以有嵌套（例如：引用内的引用），只要根据层数加上不同数量的 <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> ：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">first</span> <span class="n">level</span> <span class="n">of</span> <span class="n">quoting</span><span class="o">.</span>
+<span class="o">&gt;</span>
+<span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">nested</span> <span class="n">blockquote</span><span class="o">.</span>
+<span class="o">&gt;</span>
+<span class="o">&gt;</span> <span class="n">Back</span> <span class="n">to</span> <span class="n">the</span> <span class="n">first</span> <span class="n">level</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>引用的区块内也可以使用其他的 Markdown 语法，包括标题、列表、代码区块等：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="c1">## This is a header.</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span> <span class="mf">1.</span>   <span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">first</span> <span class="nb">list</span> <span class="n">item</span><span class="o">.</span>
+<span class="o">&gt;</span> <span class="mf">2.</span>   <span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">second</span> <span class="nb">list</span> <span class="n">item</span><span class="o">.</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span> <span class="n">Here</span><span class="s1">&#39;s some example code:</span>
+<span class="o">&gt;</span> 
+<span class="o">&gt;</span>     <span class="k">return</span> <span class="n">shell_exec</span><span class="p">(</span><span class="s2">&quot;echo $input | $markdown_script&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>任何标准的文本编辑器都能简单地建立 email 样式的引用，例如 BBEdit ，你可以选取文字后然后从选单中选择<em>增加引用阶层</em>。</p>
+<p><h3 id="list">列表</h3></p>
+<p>Markdown 支持有序列表和无序列表。</p>
+<p>无序清单使用星号、加号或是减号作为列表标记：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span>   <span class="n">Red</span>
+<span class="o">*</span>   <span class="n">Green</span>
+<span class="o">*</span>   <span class="n">Blue</span>
+</pre></div>
+</div>
+<p>等同于：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span>   <span class="n">Red</span>
+<span class="o">+</span>   <span class="n">Green</span>
+<span class="o">+</span>   <span class="n">Blue</span>
+</pre></div>
+</div>
+<p>也等同于：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span>   <span class="n">Red</span>
+<span class="o">-</span>   <span class="n">Green</span>
+<span class="o">-</span>   <span class="n">Blue</span>
+</pre></div>
+</div>
+<p>有序列表则使用数字接着一个英文句点：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span>  <span class="n">Bird</span>
+<span class="mf">2.</span>  <span class="n">McHale</span>
+<span class="mf">3.</span>  <span class="n">Parish</span>
+</pre></div>
+</div>
+<p>很重要的一点是，你在列表标记上使用的数字并不会影响输出的 HTML 结果，上面的列表所产生的 HTML 标记为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">ol</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">Bird</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">McHale</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">Parish</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">ol</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>如果你的列表标记写成：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span>  <span class="n">Bird</span>
+<span class="mf">1.</span>  <span class="n">McHale</span>
+<span class="mf">1.</span>  <span class="n">Parish</span>
+</pre></div>
+</div>
+<p>或甚至是：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">3.</span> <span class="n">Bird</span>
+<span class="mf">1.</span> <span class="n">McHale</span>
+<span class="mf">8.</span> <span class="n">Parish</span>
+</pre></div>
+</div>
+<p>你都会得到完全相同的 HTML 输出。重点在于，你可以让 Markdown 文件的列表数字和输出的结果相同，或是你懒一点，你可以完全不用在意数字的正确性。</p>
+<p>如果你使用懒惰的写法，建议第一个项目最好还是从 1. 开始，因为 Markdown 未来可能会支持有序列表的 start 属性。</p>
+<p>列表项目标记通常是放在最左边，但是其实也可以缩进，最多 3 个空格，项目标记后面则一定要接着至少一个空格或制表符。</p>
+<p>要让列表看起来更漂亮，你可以把内容用固定的缩进整理好：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span>   <span class="n">Lorem</span> <span class="n">ipsum</span> <span class="n">dolor</span> <span class="n">sit</span> <span class="n">amet</span><span class="p">,</span> <span class="n">consectetuer</span> <span class="n">adipiscing</span> <span class="n">elit</span><span class="o">.</span>
+    <span class="n">Aliquam</span> <span class="n">hendrerit</span> <span class="n">mi</span> <span class="n">posuere</span> <span class="n">lectus</span><span class="o">.</span> <span class="n">Vestibulum</span> <span class="n">enim</span> <span class="n">wisi</span><span class="p">,</span>
+    <span class="n">viverra</span> <span class="n">nec</span><span class="p">,</span> <span class="n">fringilla</span> <span class="ow">in</span><span class="p">,</span> <span class="n">laoreet</span> <span class="n">vitae</span><span class="p">,</span> <span class="n">risus</span><span class="o">.</span>
+<span class="o">*</span>   <span class="n">Donec</span> <span class="n">sit</span> <span class="n">amet</span> <span class="n">nisl</span><span class="o">.</span> <span class="n">Aliquam</span> <span class="n">semper</span> <span class="n">ipsum</span> <span class="n">sit</span> <span class="n">amet</span> <span class="n">velit</span><span class="o">.</span>
+    <span class="n">Suspendisse</span> <span class="nb">id</span> <span class="n">sem</span> <span class="n">consectetuer</span> <span class="n">libero</span> <span class="n">luctus</span> <span class="n">adipiscing</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>但是如果你很懒，那也行：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span>   <span class="n">Lorem</span> <span class="n">ipsum</span> <span class="n">dolor</span> <span class="n">sit</span> <span class="n">amet</span><span class="p">,</span> <span class="n">consectetuer</span> <span class="n">adipiscing</span> <span class="n">elit</span><span class="o">.</span>
+<span class="n">Aliquam</span> <span class="n">hendrerit</span> <span class="n">mi</span> <span class="n">posuere</span> <span class="n">lectus</span><span class="o">.</span> <span class="n">Vestibulum</span> <span class="n">enim</span> <span class="n">wisi</span><span class="p">,</span>
+<span class="n">viverra</span> <span class="n">nec</span><span class="p">,</span> <span class="n">fringilla</span> <span class="ow">in</span><span class="p">,</span> <span class="n">laoreet</span> <span class="n">vitae</span><span class="p">,</span> <span class="n">risus</span><span class="o">.</span>
+<span class="o">*</span>   <span class="n">Donec</span> <span class="n">sit</span> <span class="n">amet</span> <span class="n">nisl</span><span class="o">.</span> <span class="n">Aliquam</span> <span class="n">semper</span> <span class="n">ipsum</span> <span class="n">sit</span> <span class="n">amet</span> <span class="n">velit</span><span class="o">.</span>
+<span class="n">Suspendisse</span> <span class="nb">id</span> <span class="n">sem</span> <span class="n">consectetuer</span> <span class="n">libero</span> <span class="n">luctus</span> <span class="n">adipiscing</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>如果列表项目间用空行分开， 在输出 HTML 时 Markdown 会把项目的内容在输出时用 <code class="docutils literal notranslate"><span class="pre">&lt;p&gt;</span></code>
+标签包起来，举例来说：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span>   <span class="n">Bird</span>
+<span class="o">*</span>   <span class="n">Magic</span>
+</pre></div>
+</div>
+<p>会被转换为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">Bird</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">Magic</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>但是这个：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span>   <span class="n">Bird</span>
+
+<span class="o">*</span>   <span class="n">Magic</span>
+</pre></div>
+</div>
+<p>会被转换为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Bird</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Magic</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>列表项目可以包含多个段落，每个项目下的段落都必须缩进 4 个空格或是 1 个制表符：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span>  <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">item</span> <span class="k">with</span> <span class="n">two</span> <span class="n">paragraphs</span><span class="o">.</span> <span class="n">Lorem</span> <span class="n">ipsum</span> <span class="n">dolor</span>
+    <span class="n">sit</span> <span class="n">amet</span><span class="p">,</span> <span class="n">consectetuer</span> <span class="n">adipiscing</span> <span class="n">elit</span><span class="o">.</span> <span class="n">Aliquam</span> <span class="n">hendrerit</span>
+    <span class="n">mi</span> <span class="n">posuere</span> <span class="n">lectus</span><span class="o">.</span>
+
+    <span class="n">Vestibulum</span> <span class="n">enim</span> <span class="n">wisi</span><span class="p">,</span> <span class="n">viverra</span> <span class="n">nec</span><span class="p">,</span> <span class="n">fringilla</span> <span class="ow">in</span><span class="p">,</span> <span class="n">laoreet</span>
+    <span class="n">vitae</span><span class="p">,</span> <span class="n">risus</span><span class="o">.</span> <span class="n">Donec</span> <span class="n">sit</span> <span class="n">amet</span> <span class="n">nisl</span><span class="o">.</span> <span class="n">Aliquam</span> <span class="n">semper</span> <span class="n">ipsum</span>
+    <span class="n">sit</span> <span class="n">amet</span> <span class="n">velit</span><span class="o">.</span>
+
+<span class="mf">2.</span>  <span class="n">Suspendisse</span> <span class="nb">id</span> <span class="n">sem</span> <span class="n">consectetuer</span> <span class="n">libero</span> <span class="n">luctus</span> <span class="n">adipiscing</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>如果你每行都有缩进，看起来会看好很多，当然，Markdown 也允许：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span>   <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">item</span> <span class="k">with</span> <span class="n">two</span> <span class="n">paragraphs</span><span class="o">.</span>
+
+    <span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">second</span> <span class="n">paragraph</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">item</span><span class="o">.</span> <span class="n">You</span><span class="s1">&#39;re</span>
+<span class="n">only</span> <span class="n">required</span> <span class="n">to</span> <span class="n">indent</span> <span class="n">the</span> <span class="n">first</span> <span class="n">line</span><span class="o">.</span> <span class="n">Lorem</span> <span class="n">ipsum</span> <span class="n">dolor</span>
+<span class="n">sit</span> <span class="n">amet</span><span class="p">,</span> <span class="n">consectetuer</span> <span class="n">adipiscing</span> <span class="n">elit</span><span class="o">.</span>
+
+<span class="o">*</span>   <span class="n">Another</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">same</span> <span class="nb">list</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>如果要在列表项目内放进引用，那 <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 就需要缩进：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span>   <span class="n">A</span> <span class="nb">list</span> <span class="n">item</span> <span class="k">with</span> <span class="n">a</span> <span class="n">blockquote</span><span class="p">:</span>
+
+    <span class="o">&gt;</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">blockquote</span>
+    <span class="o">&gt;</span> <span class="n">inside</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">item</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>如果要放代码区块的话，该区块就需要缩排<strong>两次</strong>，也就是 8 个空格或是 2 个制表符：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span>   <span class="n">A</span> <span class="nb">list</span> <span class="n">item</span> <span class="k">with</span> <span class="n">a</span> <span class="n">code</span> <span class="n">block</span><span class="p">:</span>
+
+        <span class="o">&lt;</span><span class="n">code</span> <span class="n">goes</span> <span class="n">here</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>当然，项目列表很可能会不小心产生，像是下面这样的写法：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1986.</span> <span class="n">What</span> <span class="n">a</span> <span class="n">great</span> <span class="n">season</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>换句话说，也就是在行首出现<strong>数字-句点-空白</strong>，要避免这样的状况，你可以在句点前面加上反斜杠。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1986</span>\<span class="o">.</span> <span class="n">What</span> <span class="n">a</span> <span class="n">great</span> <span class="n">season</span><span class="o">.</span>
+</pre></div>
+</div>
+<p><h3 id="precode">程序代码区块</h3></p>
+<p>和程序相关的写作或是标签语言原始码通常会有已经排版好的代码区块，通常这些区块我们并不希望它以一般段落文件的方式去排版，而是照原来的样子显示，Markdown 会用 <code class="docutils literal notranslate"><span class="pre">&lt;pre&gt;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&lt;code&gt;</span></code> 标签来把代码区块包起来。</p>
+<p>要在 Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符就可以，例如，下面的输入：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">normal</span> <span class="n">paragraph</span><span class="p">:</span>
+
+    <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">code</span> <span class="n">block</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Markdown 会转换成：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">normal</span> <span class="n">paragraph</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">code</span> <span class="n">block</span><span class="o">.</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>这个每行一阶的缩进（4 个空格或是 1 个制表符），都会被移除，例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Here</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">example</span> <span class="n">of</span> <span class="n">AppleScript</span><span class="p">:</span>
+
+    <span class="n">tell</span> <span class="n">application</span> <span class="s2">&quot;Foo&quot;</span>
+        <span class="n">beep</span>
+    <span class="n">end</span> <span class="n">tell</span>
+</pre></div>
+</div>
+<p>会被转换为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Here</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">example</span> <span class="n">of</span> <span class="n">AppleScript</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">tell</span> <span class="n">application</span> <span class="s2">&quot;Foo&quot;</span>
+    <span class="n">beep</span>
+<span class="n">end</span> <span class="n">tell</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>一个代码区块会一直持续到没有缩进的那一行（或是文件结尾）。</p>
+<p>在代码区块里面， <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 、 <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 会自动转成 HTML 实体，这样的方式让你非常容易使用 Markdown 插入范例用的 HTML 原始码，只需要复制贴上，再加上缩进就可以了，剩下的 Markdown 都会帮你处理，例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;footer&quot;</span><span class="o">&gt;</span>
+        <span class="o">&amp;</span><span class="n">copy</span><span class="p">;</span> <span class="mi">2004</span> <span class="n">Foo</span> <span class="n">Corporation</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>会被转换为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;footer&quot;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span>
+    <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">copy</span><span class="p">;</span> <span class="mi">2004</span> <span class="n">Foo</span> <span class="n">Corporation</span>
+<span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">/</span><span class="n">div</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>代码区块中，一般的 Markdown 语法不会被转换，像是星号便只是星号，这表示你可以很容易地以 Markdown 语法撰写 Markdown 语法相关的文件。</p>
+<p><h3 id="hr">分隔线</h3></p>
+<p>你可以在一行中用三个或以上的星号、减号来建立一个分隔线，行内不能有其他东西。你也可以在星号中间插入空格。下面每种写法都可以建立分隔线：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="o">*</span> <span class="o">*</span>
+
+<span class="o">***</span>
+
+<span class="o">*****</span>
+
+<span class="o">-</span> <span class="o">-</span> <span class="o">-</span>
+
+<span class="o">---------------------------------------</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><h2 id="span">区段元素</h2></p>
+<p><h3 id="link">链接</h3></p>
+<p>Markdown 支持两种形式的链接语法： <strong>行内式</strong>和<strong>参考式</strong>两种形式。</p>
+<p>不管是哪一种，链接的文字都是用 [方括号] 来标记。</p>
+<p>要建立一个<strong>行内式</strong>的链接，只要在方括号后面马上接着圆括号并插入网址链接即可，如果你还想要加上链接的 title 文字，只要在网址后面，用双引号把 title 文字包起来即可，例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="p">[</span><span class="n">an</span> <span class="n">example</span><span class="p">](</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span> <span class="s2">&quot;Title&quot;</span><span class="p">)</span> <span class="n">inline</span> <span class="n">link</span><span class="o">.</span>
+
+<span class="p">[</span><span class="n">This</span> <span class="n">link</span><span class="p">](</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="p">)</span> <span class="n">has</span> <span class="n">no</span> <span class="n">title</span> <span class="n">attribute</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>会产生：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">This</span> <span class="ow">is</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://example.com/&quot;</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Title&quot;</span><span class="o">&gt;</span>
+<span class="n">an</span> <span class="n">example</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">inline</span> <span class="n">link</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://example.net/&quot;</span><span class="o">&gt;</span><span class="n">This</span> <span class="n">link</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">has</span> <span class="n">no</span>
+<span class="n">title</span> <span class="n">attribute</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>如果你是要链接到同样主机的资源，你可以使用相对路径：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">See</span> <span class="n">my</span> <span class="p">[</span><span class="n">About</span><span class="p">](</span><span class="o">/</span><span class="n">about</span><span class="o">/</span><span class="p">)</span> <span class="n">page</span> <span class="k">for</span> <span class="n">details</span><span class="o">.</span>   
+</pre></div>
+</div>
+<p><strong>参考式</strong>的链接是在链接文字的括号后面再接上另一个方括号，而在第二个方括号里面要填入用以辨识链接的标记：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="p">[</span><span class="n">an</span> <span class="n">example</span><span class="p">][</span><span class="nb">id</span><span class="p">]</span> <span class="n">reference</span><span class="o">-</span><span class="n">style</span> <span class="n">link</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>你也可以选择性地在两个方括号中间加上空格：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="p">[</span><span class="n">an</span> <span class="n">example</span><span class="p">]</span> <span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="n">reference</span><span class="o">-</span><span class="n">style</span> <span class="n">link</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>接着，在文件的任意处，你可以把这个标签的链接内容定义出来：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nb">id</span><span class="p">]:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>  <span class="s2">&quot;Optional Title Here&quot;</span>
+</pre></div>
+</div>
+<p>链接内容定义的形式为：</p>
+<ul class="simple">
+<li><p>方括号（前面可以选择性地加上至多三个空格来缩进），里面输入链接文字</p></li>
+<li><p>接着一个冒号</p></li>
+<li><p>接着一个以上的空格或制表符</p></li>
+<li><p>接着链接的网址</p></li>
+<li><p>选择性地接着 title 内容，可以用单引号、双引号或是圆括号包着</p></li>
+</ul>
+<p>下面这三种连结的定义都是相同：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">foo</span><span class="p">]:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>  <span class="s2">&quot;Optional Title Here&quot;</span>
+<span class="p">[</span><span class="n">foo</span><span class="p">]:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>  <span class="s1">&#39;Optional Title Here&#39;</span>
+<span class="p">[</span><span class="n">foo</span><span class="p">]:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>  <span class="p">(</span><span class="n">Optional</span> <span class="n">Title</span> <span class="n">Here</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>**请注意：**有一个已知的问题是 Markdown.pl 1.0.1 会忽略单引号包起来的链接 title。</p>
+<p>链接网址也可以用方括号包起来：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nb">id</span><span class="p">]:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/&gt;</span>  <span class="s2">&quot;Optional Title Here&quot;</span>
+</pre></div>
+</div>
+<p>你也可以把 title 属性放到下一行，也可以加一些缩进，网址太长的话，这样会比较好看：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nb">id</span><span class="p">]:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">longish</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">here</span>
+    <span class="s2">&quot;Optional Title Here&quot;</span>
+</pre></div>
+</div>
+<p>网址定义只有在产生链接的时候用到，并不会直接出现在文件之中。</p>
+<p>链接辨识标记可以有字母、数字、空白和标点符号，但是并<strong>不区分</strong>大小写，因此下面两个链接是一样的：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">link</span> <span class="n">text</span><span class="p">][</span><span class="n">a</span><span class="p">]</span>
+<span class="p">[</span><span class="n">link</span> <span class="n">text</span><span class="p">][</span><span class="n">A</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>隐式链接标记</strong>功能让你可以省略指定链接标记，这种情形下，链接标记和链接文字会视为相同，要用隐式链接标记只要在链接文字后面加上一个空的方括号，如果你要让 “Google” 链接到 google.com，你可以简化成：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Google</span><span class="p">][]</span>
+</pre></div>
+</div>
+<p>然后定义链接内容：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Google</span><span class="p">]:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>由于链接文字可能包含空白，所以这种简化的标记内也可以包含多个单词：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Visit</span> <span class="p">[</span><span class="n">Daring</span> <span class="n">Fireball</span><span class="p">][]</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>然后接着定义链接：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Daring</span> <span class="n">Fireball</span><span class="p">]:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">daringfireball</span><span class="o">.</span><span class="n">net</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>链接的定义可以放在文件中的任何一个地方，我比较偏好直接放在链接出现段落的后面，你也可以把它放在文件最后面，就像是注解一样。</p>
+<p>下面是一个参考式链接的范例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="n">get</span> <span class="mi">10</span> <span class="n">times</span> <span class="n">more</span> <span class="n">traffic</span> <span class="kn">from</span> <span class="p">[</span><span class="n">Google</span><span class="p">]</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">than</span> <span class="kn">from</span>
+<span class="p">[</span><span class="n">Yahoo</span><span class="p">]</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">or</span> <span class="p">[</span><span class="n">MSN</span><span class="p">]</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span>
+
+  <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>        <span class="s2">&quot;Google&quot;</span>
+  <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">search</span><span class="o">.</span><span class="n">yahoo</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>  <span class="s2">&quot;Yahoo Search&quot;</span>
+  <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">search</span><span class="o">.</span><span class="n">msn</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>    <span class="s2">&quot;MSN Search&quot;</span>
+</pre></div>
+</div>
+<p>如果改成用链接名称的方式写：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="n">get</span> <span class="mi">10</span> <span class="n">times</span> <span class="n">more</span> <span class="n">traffic</span> <span class="kn">from</span> <span class="p">[</span><span class="n">Google</span><span class="p">][]</span> <span class="n">than</span> <span class="kn">from</span>
+<span class="p">[</span><span class="n">Yahoo</span><span class="p">][]</span> <span class="ow">or</span> <span class="p">[</span><span class="n">MSN</span><span class="p">][]</span><span class="o">.</span>
+
+  <span class="p">[</span><span class="n">google</span><span class="p">]:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>        <span class="s2">&quot;Google&quot;</span>
+  <span class="p">[</span><span class="n">yahoo</span><span class="p">]:</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">search</span><span class="o">.</span><span class="n">yahoo</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>  <span class="s2">&quot;Yahoo Search&quot;</span>
+  <span class="p">[</span><span class="n">msn</span><span class="p">]:</span>    <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">search</span><span class="o">.</span><span class="n">msn</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>    <span class="s2">&quot;MSN Search&quot;</span>
+</pre></div>
+</div>
+<p>上面两种写法都会产生下面的 HTML。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">I</span> <span class="n">get</span> <span class="mi">10</span> <span class="n">times</span> <span class="n">more</span> <span class="n">traffic</span> <span class="kn">from</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://google.com/&quot;</span>
+<span class="n">title</span><span class="o">=</span><span class="s2">&quot;Google&quot;</span><span class="o">&gt;</span><span class="n">Google</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="n">than</span> <span class="kn">from</span>
+<span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://search.yahoo.com/&quot;</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Yahoo Search&quot;</span><span class="o">&gt;</span><span class="n">Yahoo</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+<span class="ow">or</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://search.msn.com/&quot;</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;MSN Search&quot;</span><span class="o">&gt;</span><span class="n">MSN</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>下面是用行内形式写的同样一段内容的 Markdown 文件，提供作为比较之用：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="n">get</span> <span class="mi">10</span> <span class="n">times</span> <span class="n">more</span> <span class="n">traffic</span> <span class="kn">from</span> <span class="p">[</span><span class="n">Google</span><span class="p">](</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span> <span class="s2">&quot;Google&quot;</span><span class="p">)</span>
+<span class="n">than</span> <span class="kn">from</span> <span class="p">[</span><span class="n">Yahoo</span><span class="p">](</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">search</span><span class="o">.</span><span class="n">yahoo</span><span class="o">.</span><span class="n">com</span><span class="o">/</span> <span class="s2">&quot;Yahoo Search&quot;</span><span class="p">)</span> <span class="ow">or</span>
+<span class="p">[</span><span class="n">MSN</span><span class="p">](</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">search</span><span class="o">.</span><span class="n">msn</span><span class="o">.</span><span class="n">com</span><span class="o">/</span> <span class="s2">&quot;MSN Search&quot;</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>参考式的链接其实重点不在于它比较好写，而是它比较好读，比较一下上面的范例，使用参考式的文章本身只有 81 个字符，但是用行内形式的连结却会增加到 176 个字符，如果是用纯 HTML 格式来写，会有 234 个字符，在 HTML 格式中，标签比文字还要多。</p>
+<p>使用 Markdown 的参考式链接，可以让文件更像是浏览器最后产生的结果，让你可以把一些标记相关的信息移到段落文字之外，你就可以增加连结而不让文章的阅读感觉被打断。</p>
+<p><h3 id="em">强调</h3></p>
+<p>Markdown 使用星号（<code class="docutils literal notranslate"><span class="pre">*</span></code>）和底线（<code class="docutils literal notranslate"><span class="pre">_</span></code>）作为标记强调字词的符号，被 <code class="docutils literal notranslate"><span class="pre">*</span></code> 或 <code class="docutils literal notranslate"><span class="pre">_</span></code> 包围的字词会被转成用 <code class="docutils literal notranslate"><span class="pre">&lt;em&gt;</span></code> 标签包围，用两个 <code class="docutils literal notranslate"><span class="pre">*</span></code> 或 <code class="docutils literal notranslate"><span class="pre">_</span></code> 包起来的话，则会被转成 <code class="docutils literal notranslate"><span class="pre">&lt;strong&gt;</span></code>，例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">single</span> <span class="n">asterisks</span><span class="o">*</span>
+
+<span class="n">_single</span> <span class="n">underscores_</span>
+
+<span class="o">**</span><span class="n">double</span> <span class="n">asterisks</span><span class="o">**</span>
+
+<span class="n">__double</span> <span class="n">underscores__</span>
+</pre></div>
+</div>
+<p>会转成：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">single</span> <span class="n">asterisks</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">single</span> <span class="n">underscores</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">double</span> <span class="n">asterisks</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">double</span> <span class="n">underscores</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>你可以随便用你喜欢的样式，唯一的限制是，你用什么符号开启标签，就要用什么符号结束。</p>
+<p>强调也可以直接插在文字中间：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">un</span><span class="o">*</span><span class="n">frigging</span><span class="o">*</span><span class="n">believable</span>
+</pre></div>
+</div>
+<p>但是<strong>如果你的 <code class="docutils literal notranslate"><span class="pre">*</span></code> 和 <code class="docutils literal notranslate"><span class="pre">_</span></code> 两边都有空白的话，它们就只会被当成普通的符号</strong>。</p>
+<p>如果要在文字前后直接插入普通的星号或底线，你可以用反斜杠：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="o">*</span><span class="n">this</span> <span class="n">text</span> <span class="ow">is</span> <span class="n">surrounded</span> <span class="n">by</span> <span class="n">literal</span> <span class="n">asterisks</span>\<span class="o">*</span>
+</pre></div>
+</div>
+<p><h3 id="code">代码</h3></p>
+<p>如果要标记一小段行内代码，你可以用反引号把它包起来（<code class="docutils literal notranslate"><span class="pre">`</span></code>），例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Use the `printf()` function.
+</pre></div>
+</div>
+<p>会产生：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Use</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">printf</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">function</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>如果要在代码区段内插入反引号，你可以用多个反引号来开启和结束代码区段：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>``There is a literal backtick (`) here.``
+</pre></div>
+</div>
+<p>这段语法会产生：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;p&gt;&lt;code&gt;There is a literal backtick (`) here.&lt;/code&gt;&lt;/p&gt;
+</pre></div>
+</div>
+<p>代码区段的起始和结束端都可以放入一个空白，起始端后面一个，结束端前面一个，这样你就可以在区段的一开始就插入反引号：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>A single backtick in a code span: `` ` ``
+
+A backtick-delimited string in a code span: `` `foo` ``
+</pre></div>
+</div>
+<p>会产生：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;p&gt;A single backtick in a code span: &lt;code&gt;`&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;A backtick-delimited string in a code span: &lt;code&gt;`foo`&lt;/code&gt;&lt;/p&gt;
+</pre></div>
+</div>
+<p>在代码区段内，<code class="docutils literal notranslate"><span class="pre">&amp;</span></code> 和方括号都会被转成 HTML 实体，这样会比较容易插入 HTML 原始码，Markdown 会把下面这段：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Please</span> <span class="n">don</span><span class="s1">&#39;t use any `&lt;blink&gt;` tags.</span>
+</pre></div>
+</div>
+<p>转为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Please</span> <span class="n">don</span><span class="s1">&#39;t use any &lt;code&gt;&amp;lt;blink&amp;gt;&lt;/code&gt; tags.&lt;/p&gt;</span>
+</pre></div>
+</div>
+<p>你也可以这样写：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`&amp;#8212;` is the decimal-encoded equivalent of `&amp;mdash;`.
+</pre></div>
+</div>
+<p>以产生：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;&amp;</span><span class="n">amp</span><span class="p">;</span><span class="c1">#8212;&lt;/code&gt; is the decimal-encoded</span>
+<span class="n">equivalent</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">mdash</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><h3 id="img">图片</h3></p>
+<p>很明显地，要在纯文本应用中设计一个 「自然」的语法来插入图片是有一定难度的。</p>
+<p>Markdown 使用一种和链接很相似的语法来标记图片，同样也允许两种样式： <strong>行内式</strong>和<strong>参考式</strong>。</p>
+<p>行内式图片的语法看起来像是：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>![Alt text](/path/to/img.jpg)
+
+![Alt text](/path/to/img.jpg &quot;Optional title&quot;)
+</pre></div>
+</div>
+<p>详细叙述如下：</p>
+<ul class="simple">
+<li><p>一个惊叹号 <code class="docutils literal notranslate"><span class="pre">!</span></code></p></li>
+<li><p>接着一对方括号，里面放上图片的替代文字</p></li>
+<li><p>接着一对普通括号，里面放上图片的网址，最后还可以用引号包住并加上选择性的 ‘title’ 文字。</p></li>
+</ul>
+<p>参考式的图片语法则长得像这样：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>![Alt text][id]
+</pre></div>
+</div>
+<p>「id」是图片参考的名称，图片参考的定义方式则和链接参考一样：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nb">id</span><span class="p">]:</span> <span class="n">url</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">image</span>  <span class="s2">&quot;Optional title attribute&quot;</span>
+</pre></div>
+</div>
+<p>到目前为止， Markdown 还没有办法指定图片的宽高，如果你需要的话，你可以使用普通的 <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> 标签。</p>
+<hr class="docutils" />
+<p><h2 id="misc">其它</h2></p>
+<p><h3 id="autolink">自动链接</h3></p>
+<p>Markdown 支持比较简短的自动连结形式来处理网址和电子邮件信箱，只要是用方括号包起来， Markdown 就会自动把它转成链接，链接的文字就和链接位置一样，例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>Markdown 会转为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;http://example.com/&quot;</span><span class="o">&gt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>邮址的自动链接也很类似，只是 Markdown 会先做一个编码转换的过程，把文字字符转成 16 进位码的 HTML 实体，这样的格式可以糊弄一些不好的邮址收集机器人，例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">address</span><span class="nd">@example</span><span class="o">.</span><span class="n">com</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Markdown 会转成：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;</span>
+<span class="o">&amp;</span><span class="c1">#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;</span>
+<span class="o">&amp;</span><span class="c1">#109;&quot;&gt;&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;</span>
+<span class="o">&amp;</span><span class="c1">#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;&amp;#109;&lt;/a&gt;</span>
+</pre></div>
+</div>
+<p>在浏览器里面，这段字符串（其实是 <code class="docutils literal notranslate"><span class="pre">&lt;a</span> <span class="pre">href=&quot;mailto:address&#64;example.com&quot;&gt;address&#64;example.com&lt;/a&gt;</span></code>）会变成一个可以点击的「address&#64;example.com」链接。</p>
+<p>（这种作法虽然可以糊弄不少的机器人，但并无法全部挡下来，不过这样也比什么都不做好些。无论如何，公开你的信箱终究会引来广告信件的。）</p>
+<p><h3 id="backslash">反斜杠</h3></p>
+<p>Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号，例如：如果你想要用星号加在文字旁边的方式来做出强调效果（但不用 <code class="docutils literal notranslate"><span class="pre">&lt;em&gt;</span></code> 标签），你可以在星号的前面加上反斜杠：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="o">*</span><span class="n">literal</span> <span class="n">asterisks</span>\<span class="o">*</span>
+</pre></div>
+</div>
+<p>Markdown 支持在下面这些符号前面加上反斜杠来帮助插入普通的符号：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\   反斜杠
+`   反引号
+*   星号
+_   底线
+{}  大括号
+[]  方括号
+()  括号
+#   井字号
++    加号
+-    减号
+.   英文句点
+!   惊叹号
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="reStructureText_syntax.html" class="btn btn-neutral float-left" title="4.1. reStructureText语法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="golang/index.html" class="btn btn-neutral float-right" title="4.3. Go 语法" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

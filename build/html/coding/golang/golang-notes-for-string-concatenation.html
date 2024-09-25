@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3.4. Go语言中的字符串拼接方法介绍 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="4.3.5. Go语言中的通道" href="golang-notes-for-channel-sync.html" />
+    <link rel="prev" title="4.3.3. Go语言基础语法（三）：结构体及方法" href="golang-notes-for-struct-and-method.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../style-guides/index.html">3. 编程语言 规范</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 语法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reStructureText_syntax.html">4.1. reStructureText语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MarkDown_syntax.html">4.2. Markdown: 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. Go 语法</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-basic-syntax.html">4.3.1. Go语言基础语法（一）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-basic-syntax-function.html">4.3.2. Go语言基础语法（二）：函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-struct-and-method.html">4.3.3. Go语言基础语法（三）：结构体及方法</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.4. Go语言中的字符串拼接方法介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#string">4.3.4.1. string类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#strings">4.3.4.2. strings包</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bytes-buffer">4.3.4.3. bytes.Buffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">4.3.4.4. 字符串拼接</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">4.3.4.5. 字符串拼接性能测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-channel-sync.html">4.3.5. Go语言中的通道</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-atomic-operation.html">4.3.6. Go语言并发编程：原子操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-context.html">4.3.7. Go语言并发编程：上下文Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-mutex.html">4.3.8. Go语言并发编程：互斥锁</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-sync-once.html">4.3.9. Go语言并发编程：sync.Once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-waitgroup.html">4.3.10. Go语言并发编程：WaitGroup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 语法</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>Go 语法</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.4. </span>Go语言中的字符串拼接方法介绍</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/coding/golang/golang-notes-for-string-concatenation.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="go">
+<h1><span class="section-number">4.3.4. </span>Go语言中的字符串拼接方法介绍<a class="headerlink" href="#go" title="Permalink to this heading"></a></h1>
+<p>本文介绍Go语言中的string类型、strings包和bytes.Buffer类型，介绍几种字符串拼接方法。</p>
+<!--more--><section id="string">
+<h2><span class="section-number">4.3.4.1. </span>string类型<a class="headerlink" href="#string" title="Permalink to this heading"></a></h2>
+<p>string类型的值可以拆分为一个包含多个字符（rune类型）的序列，也可以被拆分为一个包含多个字节 (byte类型) 的序列。其中一个rune类型值代表一个Unicode 字符，一个rune类型值占用四个字节，底层就是一个 UTF-8 编码值，它其实是int32类型的一个别名类型。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">str</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;你好world&quot;</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;The string: %q\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">str</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;runes(char): %q\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="nb">rune</span><span class="p">(</span><span class="nx">str</span><span class="p">))</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;runes(hex): %x\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="nb">rune</span><span class="p">(</span><span class="nx">str</span><span class="p">))</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;bytes(hex): [% x]\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">str</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">The</span><span class="w"> </span><span class="kt">string</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;你好world&quot;</span>
+<span class="nx">runes</span><span class="p">(</span><span class="nx">char</span><span class="p">):</span><span class="w"> </span><span class="p">[</span><span class="sc">&#39;你&#39;</span><span class="w"> </span><span class="sc">&#39;好&#39;</span><span class="w"> </span><span class="sc">&#39;w&#39;</span><span class="w"> </span><span class="sc">&#39;o&#39;</span><span class="w"> </span><span class="sc">&#39;r&#39;</span><span class="w"> </span><span class="sc">&#39;l&#39;</span><span class="w"> </span><span class="sc">&#39;d&#39;</span><span class="p">]</span>
+<span class="nx">runes</span><span class="p">(</span><span class="nx">hex</span><span class="p">):</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="nx">f60</span><span class="w"> </span><span class="mi">597</span><span class="nx">d</span><span class="w"> </span><span class="mi">77</span><span class="w"> </span><span class="mi">6</span><span class="nx">f</span><span class="w"> </span><span class="mi">72</span><span class="w"> </span><span class="mi">6</span><span class="nx">c</span><span class="w"> </span><span class="mi">64</span><span class="p">]</span>
+<span class="nx">bytes</span><span class="p">(</span><span class="nx">hex</span><span class="p">):</span><span class="w"> </span><span class="nx">e4</span><span class="w"> </span><span class="nx">bd</span><span class="w"> </span><span class="nx">a0</span><span class="w"> </span><span class="nx">e5</span><span class="w"> </span><span class="nx">a5</span><span class="w"> </span><span class="nx">bd</span><span class="w"> </span><span class="mi">77</span><span class="w"> </span><span class="mi">6</span><span class="nx">f</span><span class="w"> </span><span class="mi">72</span><span class="w"> </span><span class="mi">6</span><span class="nx">c</span><span class="w"> </span><span class="mi">64</span>
+</pre></div>
+</div>
+<p>可以看到，英文字符使用一个字节，而中文字符需要三个字节。下面使用 <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">range</span></code> 语句对上面的字符串进行遍历：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="nx">index</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d: %q [% x]\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">value</span><span class="p">)))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果如下：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="p">:</span><span class="w"> </span><span class="sc">&#39;你&#39;</span><span class="w"> </span><span class="p">[</span><span class="nx">e4</span><span class="w"> </span><span class="nx">bd</span><span class="w"> </span><span class="nx">a0</span><span class="p">]</span>
+<span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="sc">&#39;好&#39;</span><span class="w"> </span><span class="p">[</span><span class="nx">e5</span><span class="w"> </span><span class="nx">a5</span><span class="w"> </span><span class="nx">bd</span><span class="p">]</span>
+<span class="mi">6</span><span class="p">:</span><span class="w"> </span><span class="sc">&#39;w&#39;</span><span class="w"> </span><span class="p">[</span><span class="mi">77</span><span class="p">]</span>
+<span class="mi">7</span><span class="p">:</span><span class="w"> </span><span class="sc">&#39;o&#39;</span><span class="w"> </span><span class="p">[</span><span class="mi">6</span><span class="nx">f</span><span class="p">]</span>
+<span class="mi">8</span><span class="p">:</span><span class="w"> </span><span class="sc">&#39;r&#39;</span><span class="w"> </span><span class="p">[</span><span class="mi">72</span><span class="p">]</span>
+<span class="mi">9</span><span class="p">:</span><span class="w"> </span><span class="sc">&#39;l&#39;</span><span class="w"> </span><span class="p">[</span><span class="mi">6</span><span class="nx">c</span><span class="p">]</span>
+<span class="mi">10</span><span class="p">:</span><span class="w"> </span><span class="sc">&#39;d&#39;</span><span class="w"> </span><span class="p">[</span><span class="mi">64</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>index索引值不是0-6，相邻Unicode 字符的索引值不一定是连续的，因为中文字符占用了3个字节，宽度为3。</p>
+</section>
+<section id="strings">
+<h2><span class="section-number">4.3.4.2. </span>strings包<a class="headerlink" href="#strings" title="Permalink to this heading"></a></h2>
+<section id="strings-builder">
+<h3><span class="section-number">4.3.4.2.1. </span>strings.Builder类型<a class="headerlink" href="#strings-builder" title="Permalink to this heading"></a></h3>
+<p>strings.Builder的优势主要体现在字符串拼接上，相比使用<code class="docutils literal notranslate"><span class="pre">+</span></code>拼接，效率更高。</p>
+<ul class="simple">
+<li><p>strings.Builder已存在的值不可改变，只能重置（Reset()方法）或者拼接更多的内容。</p></li>
+<li><p>一旦调用了Builder值，就不能再以任何方式对其进行复制，比如函数间值传递、通道传递值、把值赋予变量等。</p></li>
+<li><p>在进行拼接时，Builder值会自动地对自身的内容容器进行扩容，也可以使用Grow方法进行手动扩容。</p></li>
+</ul>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="w">	</span><span class="s">&quot;strings&quot;</span>
+<span class="p">)</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">builder1</span><span class="w"> </span><span class="nx">strings</span><span class="p">.</span><span class="nx">Builder</span>
+<span class="w">	</span><span class="nx">builder1</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">builder1</span><span class="p">.</span><span class="nx">WriteByte</span><span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">builder1</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">builder1</span><span class="p">.</span><span class="nx">Write</span><span class="p">([]</span><span class="kt">byte</span><span class="p">{</span><span class="sc">&#39; &#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;!&#39;</span><span class="p">})</span>
+
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">builder1</span><span class="p">.</span><span class="nx">String</span><span class="p">())</span><span class="w">	</span>
+
+<span class="w">	</span><span class="nx">f1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">b</span><span class="w"> </span><span class="nx">strings</span><span class="p">.</span><span class="nx">Builder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="c1">// b.WriteString(&quot;world !&quot;)  //会报错</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">f1</span><span class="p">(</span><span class="nx">builder1</span><span class="p">)</span>
+
+<span class="w">	</span><span class="nx">builder1</span><span class="p">.</span><span class="nx">Reset</span><span class="p">()</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;The length 0f builder1: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">builder1</span><span class="p">.</span><span class="nx">Len</span><span class="p">())</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">hello</span><span class="w"> </span><span class="nx">world</span><span class="w"> </span><span class="p">!</span>
+<span class="nx">The</span><span class="w"> </span><span class="nx">length</span><span class="w"> </span><span class="mi">0</span><span class="nx">f</span><span class="w"> </span><span class="nx">builder1</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+</pre></div>
+</div>
+</section>
+<section id="strings-reader">
+<h3><span class="section-number">4.3.4.2.2. </span>strings.Reader类型<a class="headerlink" href="#strings-reader" title="Permalink to this heading"></a></h3>
+<p>strings.Reader类型可以用于高效地读取字符串，它通过使用<strong>已读计数</strong>机制来实现了高效读取，已读计数保存了已读取的字节数，也代表了下一次读取的起始索引位置。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="w">	</span><span class="s">&quot;strings&quot;</span>
+<span class="p">)</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">	</span>
+<span class="w">	</span><span class="nx">reader1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="s">&quot;hello world!&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">buf1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;reading index: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">reader1</span><span class="p">.</span><span class="nx">Size</span><span class="p">()</span><span class="o">-</span><span class="nb">int64</span><span class="p">(</span><span class="nx">reader1</span><span class="p">.</span><span class="nx">Len</span><span class="p">()))</span>
+<span class="w">	</span>
+<span class="w">    </span><span class="nx">reader1</span><span class="p">.</span><span class="nx">Read</span><span class="p">(</span><span class="nx">buf1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">buf1</span><span class="p">))</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;reading index: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">reader1</span><span class="p">.</span><span class="nx">Size</span><span class="p">()</span><span class="o">-</span><span class="nb">int64</span><span class="p">(</span><span class="nx">reader1</span><span class="p">.</span><span class="nx">Len</span><span class="p">()))</span>
+<span class="w">    </span>
+<span class="w">	</span><span class="nx">reader1</span><span class="p">.</span><span class="nx">Read</span><span class="p">(</span><span class="nx">buf1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">buf1</span><span class="p">))</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;reading index: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">reader1</span><span class="p">.</span><span class="nx">Size</span><span class="p">()</span><span class="o">-</span><span class="nb">int64</span><span class="p">(</span><span class="nx">reader1</span><span class="p">.</span><span class="nx">Len</span><span class="p">()))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">reading</span><span class="w"> </span><span class="nx">index</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="nx">hello</span>
+<span class="nx">reading</span><span class="w"> </span><span class="nx">index</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span>
+<span class="nx">world</span><span class="p">!</span>
+<span class="nx">reading</span><span class="w"> </span><span class="nx">index</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span>
+</pre></div>
+</div>
+<p>可以看到，每读取一次之后，已读计数就会增加。</p>
+<p>strings包的<strong>ReadAt方法</strong>不会依据已读计数进行读取，也不会更新已读计数。它可以根据偏移量来自由地读取Reader值中的内容。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="w">	</span><span class="s">&quot;strings&quot;</span>
+<span class="p">)</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">reader1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="s">&quot;hello world!&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">buf1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">offset1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">int64</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">n</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">reader1</span><span class="p">.</span><span class="nx">ReadAt</span><span class="p">(</span><span class="nx">buf1</span><span class="p">,</span><span class="w"> </span><span class="nx">offset1</span><span class="p">)</span><span class="w">	</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">buf2</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">world</span><span class="p">!</span>
+</pre></div>
+</div>
+<p>也可以使用<strong>Seek方法</strong>来指定下一次读取的起始索引位置。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="w">	</span><span class="s">&quot;strings&quot;</span>
+<span class="w">    </span><span class="s">&quot;io&quot;</span>
+<span class="p">)</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">reader1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">strings</span><span class="p">.</span><span class="nx">NewReader</span><span class="p">(</span><span class="s">&quot;hello world!&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">buf1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">offset1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">int64</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">readingIndex</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">reader2</span><span class="p">.</span><span class="nx">Seek</span><span class="p">(</span><span class="nx">offset1</span><span class="p">,</span><span class="w"> </span><span class="nx">io</span><span class="p">.</span><span class="nx">SeekCurrent</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;reading index: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">readingIndex</span><span class="p">)</span>
+
+<span class="w">	</span><span class="nx">reader1</span><span class="p">.</span><span class="nx">Read</span><span class="p">(</span><span class="nx">buf1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;reading index: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">reader1</span><span class="p">.</span><span class="nx">Size</span><span class="p">()</span><span class="o">-</span><span class="nb">int64</span><span class="p">(</span><span class="nx">reader1</span><span class="p">.</span><span class="nx">Len</span><span class="p">()))</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">buf1</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">reading</span><span class="w"> </span><span class="nx">index</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span>
+<span class="nx">reading</span><span class="w"> </span><span class="nx">index</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span>
+<span class="nx">world</span><span class="p">!</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="bytes-buffer">
+<h2><span class="section-number">4.3.4.3. </span>bytes.Buffer<a class="headerlink" href="#bytes-buffer" title="Permalink to this heading"></a></h2>
+<p>bytes包和strings包类似，strings包主要面向的是 Unicode 字符和经过 UTF-8 编码的字符串，而bytes包面对的则主要是字节和字节切片，主要作为字节序列的缓冲区。bytes.Buffer数据的读写都使用到了已读计数。</p>
+<p>bytes.Buffer具有读和写功能，下面分别介绍他们的简单使用方法。</p>
+<section id="id1">
+<h3><span class="section-number">4.3.4.3.1. </span>bytes.Buffer：写数据<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>和strings.Builder一样，bytes.Buffer可以用于拼接字符串，strings.Builder也会自动对内容容器进行扩容。请看下面的代码：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;bytes&quot;</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">DemoBytes</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">buffer</span><span class="w"> </span><span class="nx">bytes</span><span class="p">.</span><span class="nx">Buffer</span>
+<span class="w">	</span><span class="nx">buffer</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;hello &quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">buffer</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;world !&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">buffer</span><span class="p">.</span><span class="nx">String</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">hello</span><span class="w"> </span><span class="nx">world</span><span class="w"> </span><span class="p">!</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3><span class="section-number">4.3.4.3.2. </span>bytes.Buffer：读数据<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>bytes.Buffer读数据也使用了已读计数，需要注意的是，进行读取操作后，Len方法返回的是未读内容的长度。下面直接来看代码：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;bytes&quot;</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">DemoBytes</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">buffer</span><span class="w"> </span><span class="nx">bytes</span><span class="p">.</span><span class="nx">Buffer</span>
+<span class="w">	</span><span class="nx">buffer</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;hello &quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">buffer</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;world !&quot;</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="nx">p1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">n</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">buffer</span><span class="p">.</span><span class="nx">Read</span><span class="p">(</span><span class="nx">p1</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">p1</span><span class="p">))</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">buffer</span><span class="p">.</span><span class="nx">String</span><span class="p">())</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;The length of buffer: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">buffer</span><span class="p">.</span><span class="nx">Len</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">hello</span>
+<span class="w"> </span><span class="nx">world</span><span class="w"> </span><span class="p">!</span>
+<span class="nx">The</span><span class="w"> </span><span class="nx">length</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">buffer</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id3">
+<h2><span class="section-number">4.3.4.4. </span>字符串拼接<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>简单了解了string类型、strings包和bytes.Buffer类型后，下面来介绍golang中的字符串拼接方法。</p>
+<p>https://zhuanlan.zhihu.com/p/349672248</p>
+<p>go test -bench=. -run=^BenchmarkDemoBytes$</p>
+<section id="id4">
+<h3><span class="section-number">4.3.4.4.1. </span>直接相加<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>最简单的方法是直接相加，由于string类型的值是不可变的，进行字符串拼接时会生成新的字符串，将拼接的字符串依次拷贝到一个新的连续内存空间中。如果存在大量字符串拼接操作，使用这种方法非常消耗内存。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;bytes&quot;</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="w">	</span><span class="s">&quot;time&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">str1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;hello &quot;</span>
+<span class="w">	</span><span class="nx">str2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;world !&quot;</span>
+<span class="w">    </span><span class="nx">str3</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">str1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">str2</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">str3</span><span class="p">)</span><span class="w">	</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3><span class="section-number">4.3.4.4.2. </span>strings.Builder<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>前面介绍了strings.Builder可以用于拼接字符串：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">builder1</span><span class="w"> </span><span class="nx">strings</span><span class="p">.</span><span class="nx">Builder</span>
+<span class="nx">builder1</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;hello &quot;</span><span class="p">)</span>
+<span class="nx">builder1</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;world !&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="strings-join">
+<h3><span class="section-number">4.3.4.4.3. </span>strings.Join()<a class="headerlink" href="#strings-join" title="Permalink to this heading"></a></h3>
+<p>也可以使用strings.Join方法，其实Join()调用了WriteString方法；</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">str1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;hello &quot;</span>
+<span class="nx">str2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;world !&quot;</span>
+<span class="nx">str3</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+
+<span class="nx">str3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">strings</span><span class="p">.</span><span class="nx">Join</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="nx">str3</span><span class="p">,</span><span class="nx">str1</span><span class="p">},</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="nx">str3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">strings</span><span class="p">.</span><span class="nx">Join</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="nx">str3</span><span class="p">,</span><span class="nx">str2</span><span class="p">},</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3><span class="section-number">4.3.4.4.4. </span>bytes.Buffer<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p>bytes.Buffer也可以用于拼接：</p>
+<div class="highlight-go\ notranslate"><div class="highlight"><pre><span></span>var buffer bytes.Buffer
+
+buffer.WriteString(&quot;hello &quot;)
+buffer.WriteString(&quot;world !&quot;)
+</pre></div>
+</div>
+</section>
+<section id="append">
+<h3><span class="section-number">4.3.4.4.5. </span>append方法<a class="headerlink" href="#append" title="Permalink to this heading"></a></h3>
+<p>也可以使用Go内置函数append方法，用于拼接切片：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">DemoAppend</span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">str1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;hello &quot;</span>
+<span class="w">	</span><span class="nx">str2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;world !&quot;</span>
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">str3</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span>
+
+<span class="w">    </span><span class="nx">str3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">str3</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">str1</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">str3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">str3</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">str2</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">str3</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">hello</span><span class="w"> </span><span class="nx">world</span><span class="w"> </span><span class="p">!</span>
+</pre></div>
+</div>
+</section>
+<section id="fmt-sprintf">
+<h3><span class="section-number">4.3.4.4.6. </span>fmt.Sprintf<a class="headerlink" href="#fmt-sprintf" title="Permalink to this heading"></a></h3>
+<p>fmt包中的Sprintf方法也可以用来拼接字符串：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">str1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;hello &quot;</span>
+<span class="nx">str2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;world !&quot;</span>
+<span class="nx">str3</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;%s%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">str1</span><span class="p">,</span><span class="w"> </span><span class="nx">str2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">4.3.4.5. </span>字符串拼接性能测试<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<p>下面来测试一下这6种方法的性能，编写测试源码文件strcat_test.go：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">benchmark</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;bytes&quot;</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="w">	</span><span class="s">&quot;strings&quot;</span>
+<span class="w">	</span><span class="s">&quot;testing&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">DemoBytesBuffer</span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">buffer</span><span class="w"> </span><span class="nx">bytes</span><span class="p">.</span><span class="nx">Buffer</span>
+
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">n</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">buffer</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;hello &quot;</span><span class="p">)</span>
+<span class="w">		</span><span class="nx">buffer</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;world !&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">DemoWriteString</span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">builder1</span><span class="w"> </span><span class="nx">strings</span><span class="p">.</span><span class="nx">Builder</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">n</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">builder1</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;hello &quot;</span><span class="p">)</span>
+<span class="w">		</span><span class="nx">builder1</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="s">&quot;world !&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">DemoStringsJoin</span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">str1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;hello &quot;</span>
+<span class="w">	</span><span class="nx">str2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;world !&quot;</span>
+<span class="w">	</span><span class="nx">str3</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">n</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">str3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">strings</span><span class="p">.</span><span class="nx">Join</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="nx">str3</span><span class="p">,</span><span class="w"> </span><span class="nx">str1</span><span class="p">},</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="w">		</span><span class="nx">str3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">strings</span><span class="p">.</span><span class="nx">Join</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="nx">str3</span><span class="p">,</span><span class="w"> </span><span class="nx">str2</span><span class="p">},</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">DemoPlus</span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">	</span><span class="nx">str1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;hello &quot;</span>
+<span class="w">	</span><span class="nx">str2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;world !&quot;</span>
+<span class="w">	</span><span class="nx">str3</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">n</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">str3</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">str1</span>
+<span class="w">		</span><span class="nx">str3</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">str2</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">DemoAppend</span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">	</span><span class="nx">str1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;hello &quot;</span>
+<span class="w">	</span><span class="nx">str2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;world !&quot;</span>
+<span class="w">	</span><span class="kd">var</span><span class="w"> </span><span class="nx">str3</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">n</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">str3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">str3</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">str1</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+<span class="w">		</span><span class="nx">str3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">append</span><span class="p">(</span><span class="nx">str3</span><span class="p">,</span><span class="w"> </span><span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">str2</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">DemoSprintf</span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">str1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;hello &quot;</span>
+<span class="w">	</span><span class="nx">str2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;world !&quot;</span>
+<span class="w">	</span><span class="nx">str3</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">n</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">str3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;%s%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">str3</span><span class="p">,</span><span class="w"> </span><span class="nx">str1</span><span class="p">)</span>
+<span class="w">		</span><span class="nx">str3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;%s%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">str3</span><span class="p">,</span><span class="w"> </span><span class="nx">str2</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">BenchmarkBytesBuffer</span><span class="p">(</span><span class="nx">b</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">DemoBytesBuffer</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">BenchmarkWriteString</span><span class="p">(</span><span class="nx">b</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">DemoWriteString</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">BenchmarkStringsJoin</span><span class="p">(</span><span class="nx">b</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">DemoStringsJoin</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">BenchmarkAppend</span><span class="p">(</span><span class="nx">b</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">DemoAppend</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">BenchmarkPlus</span><span class="p">(</span><span class="nx">b</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">DemoPlus</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">BenchmarkSprintf</span><span class="p">(</span><span class="nx">b</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">DemoSprintf</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行性能测试：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>go<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-bench<span class="o">=</span>.<span class="w"> </span>-run<span class="o">=</span>^$
+goos:<span class="w"> </span>windows
+goarch:<span class="w"> </span>amd64
+pkg:<span class="w"> </span>testGo/benchmark
+cpu:<span class="w"> </span>Intel<span class="o">(</span>R<span class="o">)</span><span class="w"> </span>Core<span class="o">(</span>TM<span class="o">)</span><span class="w"> </span>i7-8550U<span class="w"> </span>CPU<span class="w"> </span>@<span class="w"> </span><span class="m">1</span>.80GHz
+BenchmarkBytesBuffer-8<span class="w">              </span><span class="m">3436</span><span class="w">            </span><span class="m">326846</span><span class="w"> </span>ns/op
+BenchmarkWriteString-8<span class="w">              </span><span class="m">4148</span><span class="w">            </span><span class="m">271453</span><span class="w"> </span>ns/op
+BenchmarkStringsJoin-8<span class="w">                 </span><span class="m">3</span><span class="w">         </span><span class="m">402266267</span><span class="w"> </span>ns/op
+BenchmarkAppend-8<span class="w">                   </span><span class="m">1923</span><span class="w">            </span><span class="m">618489</span><span class="w"> </span>ns/op
+BenchmarkPlus-8<span class="w">                        </span><span class="m">3</span><span class="w">         </span><span class="m">345087467</span><span class="w"> </span>ns/op
+BenchmarkSprintf-8<span class="w">                     </span><span class="m">2</span><span class="w">         </span><span class="m">628330850</span><span class="w"> </span>ns/op
+PASS
+ok<span class="w">      </span>testGo/benchmark<span class="w">        </span><span class="m">9</span>.279s
+</pre></div>
+</div>
+<p>通过平均耗时可以看到WriteString方法执行效率最高。Sprintf方法效率最低。</p>
+<ol>
+<li><p>我们看到Strings.Join方法效率也比较低，在上面的场景下它的效率比较低，它在合并已有字符串数组的场合效率是很高的。</p></li>
+<li><p>如果要连续拼接大量字符串推荐使用WriteString方法，如果是少量字符串拼接，也可以直接使用<code class="docutils literal notranslate"><span class="pre">+</span></code>。</p></li>
+<li><p>append方法的效率也是很高的，它主要用于切片的拼接。</p></li>
+<li><p>fmt.Sprintf方法虽然效率低，但在少量数据拼接中，如果你想拼接其它数据类型，使用它可以完美的解决：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">name</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;zhangsan&quot;</span>
+<span class="nx">age</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">20</span>
+<span class="nx">str4</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;%s is %d years old&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">age</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">str4</span><span class="p">)</span><span class="w">  </span><span class="c1">// zhangsan is 20 years old</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="golang-notes-for-struct-and-method.html" class="btn btn-neutral float-left" title="4.3.3. Go语言基础语法（三）：结构体及方法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="golang-notes-for-channel-sync.html" class="btn btn-neutral float-right" title="4.3.5. Go语言中的通道" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

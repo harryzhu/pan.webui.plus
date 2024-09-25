@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3.2. Go语言基础语法（二）：函数 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="4.3.3. Go语言基础语法（三）：结构体及方法" href="golang-notes-for-struct-and-method.html" />
+    <link rel="prev" title="4.3.1. Go语言基础语法（一）" href="golang-notes-basic-syntax.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../style-guides/index.html">3. 编程语言 规范</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 语法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reStructureText_syntax.html">4.1. reStructureText语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MarkDown_syntax.html">4.2. Markdown: 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. Go 语法</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-basic-syntax.html">4.3.1. Go语言基础语法（一）</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.2. Go语言基础语法（二）：函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">4.3.2.1. 普通函数声明与使用</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">4.3.2.2. 函数类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">4.3.2.3. 高阶函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">4.3.2.4. 闭包函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">4.3.2.5. 参数传递</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-struct-and-method.html">4.3.3. Go语言基础语法（三）：结构体及方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-string-concatenation.html">4.3.4. Go语言中的字符串拼接方法介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-channel-sync.html">4.3.5. Go语言中的通道</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-atomic-operation.html">4.3.6. Go语言并发编程：原子操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-context.html">4.3.7. Go语言并发编程：上下文Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-mutex.html">4.3.8. Go语言并发编程：互斥锁</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-sync-once.html">4.3.9. Go语言并发编程：sync.Once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-waitgroup.html">4.3.10. Go语言并发编程：WaitGroup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 语法</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>Go 语法</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.2. </span>Go语言基础语法（二）：函数</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/coding/golang/golang-notes-for-basic-syntax-function.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="go">
+<h1><span class="section-number">4.3.2. </span>Go语言基础语法（二）：函数<a class="headerlink" href="#go" title="Permalink to this heading"></a></h1>
+<p>函数是一等（first-class）公民，可用来封装代码。在<a class="reference external" href="https://blog.csdn.net/u010698107/article/details/119741912">Go语言基础语法（一）</a>中介绍了函数也是一种数据类型，函数的值也可以在其他函数间传递、赋予变量、做类型判断和转换等。下面来介绍Go语言中的函数定义和使用方法。</p>
+<!--more--><section id="id1">
+<h2><span class="section-number">4.3.2.1. </span>普通函数声明与使用<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>下面先来介绍函数的简单使用方法。</p>
+<p>函数定义语法：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">function_name</span><span class="p">(</span><span class="w"> </span><span class="nx">parameter</span><span class="o">-</span><span class="nx">list</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">return</span><span class="o">-</span><span class="nx">types</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// 函数体</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Go函数使用 <code class="docutils literal notranslate"><span class="pre">func</span></code> 关键字进行声明，输入参数和返回值都是可选的，可以没有参数，也可以没有返回值，函数体实现函数的功能逻辑。</p>
+<p>除法运算例子：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="w">	</span><span class="s">&quot;errors&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">add</span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">float64</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">	</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;can&#39;t divide by zero!!&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">res</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">float64</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">float64</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span><span class="w">	</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">value1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">	</span><span class="nx">value2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="nx">value3</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">	</span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">add</span><span class="p">(</span><span class="nx">value1</span><span class="p">,</span><span class="w"> </span><span class="nx">value2</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d / %d = %f (error: %v)\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value1</span><span class="p">,</span><span class="w"> </span><span class="nx">value2</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">add</span><span class="p">(</span><span class="nx">value1</span><span class="p">,</span><span class="w"> </span><span class="nx">value3</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d / %d = %f (error: %v)\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value1</span><span class="p">,</span><span class="w"> </span><span class="nx">value3</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>3 / 2 = 1.500000 (error: &lt;nil&gt;)
+3 / 0 = 0.000000 (error: can&#39;t divide by zero!!)
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2><span class="section-number">4.3.2.2. </span>函数类型<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>前面说了函数也是一种数据类型，函数类型的声明语法如下：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">function_name</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">parameter</span><span class="o">-</span><span class="nx">list</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">return</span><span class="o">-</span><span class="nx">types</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>函数类型的函数签名（参数列表和结果列表）方法与函数声明一致，只要两个函数的函数签名一致（元素顺序和类型相同），它们就是相同的函数类型。</p>
+<p>在前面除法运算例子中声明一个名为calculate的函数类型：</p>
+<div class="highlight-go\ notranslate"><div class="highlight"><pre><span></span>type calculate func(x int, y int) (float64, error)
+</pre></div>
+</div>
+<p>函数签名和add函数一样，所以add和calculate是相同的函数类型。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">cal</span><span class="w"> </span><span class="nx">calculate</span>
+<span class="nx">cal</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">add</span>
+<span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">cal</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;The result: %f (error: %v)\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">The</span><span class="w"> </span><span class="nx">result</span><span class="p">:</span><span class="w"> </span><span class="mf">1.500000</span><span class="w"> </span><span class="p">(</span><span class="kt">error</span><span class="p">:</span><span class="w"> </span><span class="p">&lt;</span><span class="kc">nil</span><span class="p">&gt;)</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2><span class="section-number">4.3.2.3. </span>高阶函数<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>高阶函数和普通函数的区别在于高阶函数的形参或者返回参数列表中存在函数类型，也就是接收函数作为参数输入或者返回一个函数。</p>
+<p>下面使用高阶函数实现加减乘除运算。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;errors&quot;</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">type</span><span class="w"> </span><span class="nx">operate</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">calculate</span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">op</span><span class="w"> </span><span class="nx">operate</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;invalid operation&quot;</span><span class="p">)</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">op</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">),</span><span class="w"> </span><span class="kc">nil</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">add</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">sub</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">y</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">multiply</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">y</span><span class="w">	</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">divide</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">y</span><span class="w">	</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span>
+<span class="w">    </span>
+<span class="w">	</span><span class="nx">result</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">calculate</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">add</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;The result: &quot;</span><span class="p">,</span><span class="nx">result</span><span class="p">)</span>
+
+<span class="w">	</span><span class="nx">result</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">calculate</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">sub</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;The result: &quot;</span><span class="p">,</span><span class="nx">result</span><span class="p">)</span>
+
+<span class="w">	</span><span class="nx">result</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">calculate</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">multiply</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;The result: &quot;</span><span class="p">,</span><span class="nx">result</span><span class="p">)</span>
+
+<span class="w">	</span><span class="nx">result</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">calculate</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">divide</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;The result: &quot;</span><span class="p">,</span><span class="nx">result</span><span class="p">)</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="nx">result</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">calculate</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;The result: &quot;</span><span class="p">,</span><span class="nx">result</span><span class="p">)</span><span class="w">	</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">The</span><span class="w"> </span><span class="nx">result</span><span class="p">:</span><span class="w">  </span><span class="mi">42</span>
+<span class="nx">The</span><span class="w"> </span><span class="nx">result</span><span class="p">:</span><span class="w">  </span><span class="mi">30</span>
+<span class="nx">The</span><span class="w"> </span><span class="nx">result</span><span class="p">:</span><span class="w">  </span><span class="mi">216</span>
+<span class="nx">The</span><span class="w"> </span><span class="nx">result</span><span class="p">:</span><span class="w">  </span><span class="mi">6</span>
+<span class="nx">The</span><span class="w"> </span><span class="nx">result</span><span class="p">:</span><span class="w">  </span><span class="mi">0</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2><span class="section-number">4.3.2.4. </span>闭包函数<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<p>闭包函数是引用了自由变量的代码块，闭包可以作为函数对象或者匿名函数。下面用闭包实现计算一个数的 n 次幂：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">type</span><span class="w"> </span><span class="nx">exponent</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="kt">uint64</span><span class="p">)</span><span class="w"> </span><span class="kt">uint64</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">nth_power</span><span class="p">(</span><span class="nx">exp</span><span class="w"> </span><span class="kt">uint64</span><span class="p">)</span><span class="w"> </span><span class="nx">exponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">base</span><span class="w"> </span><span class="kt">uint64</span><span class="p">)</span><span class="w"> </span><span class="kt">uint64</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nx">result</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">uint64</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">		</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">exp</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="k">if</span><span class="w"> </span><span class="nx">i</span><span class="o">&amp;</span><span class="mi">1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">				</span><span class="nx">result</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="nx">base</span>
+<span class="w">			</span><span class="p">}</span>
+<span class="w">			</span><span class="nx">base</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="nx">base</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">result</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">square</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">nth_power</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="c1">// 平方</span>
+<span class="w">	</span><span class="nx">cube</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">nth_power</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="c1">// 立方	</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">square</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">cube</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="mi">25</span>
+<span class="mi">125</span>
+</pre></div>
+</div>
+<p>从代码中可以看出闭包返回的是一个函数，不是具体的值，使用闭包可以根据需要生成功能不同的函数。</p>
+</section>
+<section id="id5">
+<h2><span class="section-number">4.3.2.5. </span>参数传递<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<p>我在<a class="reference external" href="https://blog.csdn.net/u010698107/article/details/118280135">Python函数的参数类型</a>中介绍过Python函数中的参数传递，Python中的参数传递属于对象的引用传递，而Go语言中均为<strong>值传递</strong>。</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">modifyArray</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">a</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">modifySlice</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="nx">a</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">l1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;value of l1:  &quot;</span><span class="p">,</span><span class="nx">l1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;address of l1: %p\n&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="nx">l1</span><span class="p">)</span>
+
+<span class="w">	</span><span class="nx">l2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">modifyArray</span><span class="p">(</span><span class="nx">l1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;address of l2: %p\n&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="nx">l2</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;value of l1:  &quot;</span><span class="p">,</span><span class="nx">l1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;value of l2:  &quot;</span><span class="p">,</span><span class="nx">l2</span><span class="p">)</span>
+
+<span class="w">	</span><span class="nx">slice1</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;value of slice1:  &quot;</span><span class="p">,</span><span class="nx">slice1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;address of slice1: %p\n&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="nx">slice1</span><span class="p">)</span>
+
+<span class="w">	</span><span class="nx">slice2</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">modifySlice</span><span class="p">(</span><span class="nx">slice1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;address of slice2: %p\n&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="nx">slice2</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;value of slice1:  &quot;</span><span class="p">,</span><span class="nx">slice1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;value of slice2:  &quot;</span><span class="p">,</span><span class="nx">slice2</span><span class="p">)</span>
+
+<span class="w">	</span><span class="nx">slice2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">6</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;value of slice1:  &quot;</span><span class="p">,</span><span class="nx">slice1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;value of slice2:  &quot;</span><span class="p">,</span><span class="nx">slice2</span><span class="p">)</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">l1</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+<span class="nx">address</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">l1</span><span class="p">:</span><span class="w"> </span><span class="mh">0xc000016198</span>
+<span class="nx">address</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">l2</span><span class="p">:</span><span class="w"> </span><span class="mh">0xc0000161c8</span>
+<span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">l1</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+<span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">l2</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+<span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">slice1</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+<span class="nx">address</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">slice1</span><span class="p">:</span><span class="w"> </span><span class="mh">0xc000004078</span>
+<span class="nx">address</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">slice2</span><span class="p">:</span><span class="w"> </span><span class="mh">0xc0000040a8</span>
+<span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">slice1</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+<span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">slice2</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+<span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">slice1</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span>
+<span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">slice2</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>由于数组是值类型，传给函数的参数值都会被复制，所以使用modifyArray对原数组进行修改时原数组不会改变，只是修改了它的副本而已，这和Python中的list不一样。</p>
+<p>而对于引用类型，比如：切片、字典、通道，使用上面代码中的方式修改时，不会拷贝它们引用的底层数据，只是进行了浅表复制。所以上面例子中的原切片slice1也会跟着改变。</p>
+<p>对于引用类型可以使用copy函数进行拷贝：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">slice1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">slice3</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">slice1</span><span class="p">))</span>
+<span class="w">	</span><span class="nb">copy</span><span class="p">(</span><span class="nx">slice3</span><span class="p">,</span><span class="w"> </span><span class="nx">slice1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">slice3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">6</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;address of slice1: %p\n&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="nx">slice1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;address of slice3: %p\n&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="nx">slice3</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;value of slice1:  &quot;</span><span class="p">,</span><span class="nx">slice1</span><span class="p">)</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;value of slice3:  &quot;</span><span class="p">,</span><span class="nx">slice3</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">address</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">slice1</span><span class="p">:</span><span class="w"> </span><span class="mh">0xc000098060</span>
+<span class="nx">address</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">slice3</span><span class="p">:</span><span class="w"> </span><span class="mh">0xc000098108</span>
+<span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">slice1</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+<span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">slice3</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="golang-notes-basic-syntax.html" class="btn btn-neutral float-left" title="4.3.1. Go语言基础语法（一）" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="golang-notes-for-struct-and-method.html" class="btn btn-neutral float-right" title="4.3.3. Go语言基础语法（三）：结构体及方法" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

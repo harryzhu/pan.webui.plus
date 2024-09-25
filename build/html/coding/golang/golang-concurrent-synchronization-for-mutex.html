@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3.8. Go语言并发编程：互斥锁 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="4.3.9. Go语言并发编程：sync.Once" href="golang-concurrent-synchronization-for-sync-once.html" />
+    <link rel="prev" title="4.3.7. Go语言并发编程：上下文Context" href="golang-concurrent-synchronization-for-context.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../style-guides/index.html">3. 编程语言 规范</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 语法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reStructureText_syntax.html">4.1. reStructureText语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MarkDown_syntax.html">4.2. Markdown: 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. Go 语法</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-basic-syntax.html">4.3.1. Go语言基础语法（一）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-basic-syntax-function.html">4.3.2. Go语言基础语法（二）：函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-struct-and-method.html">4.3.3. Go语言基础语法（三）：结构体及方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-string-concatenation.html">4.3.4. Go语言中的字符串拼接方法介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-channel-sync.html">4.3.5. Go语言中的通道</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-atomic-operation.html">4.3.6. Go语言并发编程：原子操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-context.html">4.3.7. Go语言并发编程：上下文Context</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.8. Go语言并发编程：互斥锁</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mutex">4.3.8.1. 互斥锁Mutex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rwmutex">4.3.8.2. 读写锁RWMutex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">4.3.8.3. 小结</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-sync-once.html">4.3.9. Go语言并发编程：sync.Once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-waitgroup.html">4.3.10. Go语言并发编程：WaitGroup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 语法</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>Go 语法</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.3.8. </span>Go语言并发编程：互斥锁</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/coding/golang/golang-concurrent-synchronization-for-mutex.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="go">
+<h1><span class="section-number">4.3.8. </span>Go语言并发编程：互斥锁<a class="headerlink" href="#go" title="Permalink to this heading"></a></h1>
+<p>在并发编程中，多个Goroutine访问同一块内存资源时可能会出现竞态条件，我们需要在临界区中使用适当的同步操作来以避免竞态条件。Go 语言中提供了很多同步工具，本文将介绍互斥锁Mutex和读写锁RWMutex的使用方法。</p>
+<!--more--><section id="mutex">
+<h2><span class="section-number">4.3.8.1. </span>互斥锁Mutex<a class="headerlink" href="#mutex" title="Permalink to this heading"></a></h2>
+<section id="id1">
+<h3><span class="section-number">4.3.8.1.1. </span>Mutex介绍<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>Go 语言的同步工具主要由 sync 包提供，互斥锁 (Mutex) 与读写锁 (RWMutex) 就是sync 包中的方法。</p>
+<p>互斥锁可以用来保护一个临界区，保证同一时刻只有一个 goroutine 处于该临界区内。主要包括锁定（Lock方法）和解锁（Unlock方法）两个操作，首先对进入临界区的goroutine进行锁定，离开时进行解锁。</p>
+<p>使用互斥锁 (Mutex)时要注意以下几点：</p>
+<ol class="simple">
+<li><p>不要重复锁定互斥锁，否则会阻塞，也可能会导致死锁（deadlock）；</p></li>
+<li><p>要对互斥锁进行解锁，这也是为了避免重复锁定；</p></li>
+<li><p>不要对未锁定或者已解锁的互斥锁解锁；</p></li>
+<li><p>不要在多个函数之间直接传递互斥锁，sync.Mutex类型属于值类型，将它传给一个函数时，会产生一个副本，在函数中对锁的操作不会影响原锁</p></li>
+</ol>
+<p>总之，一个互斥锁只用来保护一个临界区，加锁后记得解锁，对于每一个锁定操作，都要有且只有一个对应的解锁操作，也就是加锁和解锁要成对出现，最保险的做法时使用<strong>defer语句</strong>解锁。</p>
+</section>
+<section id="id2">
+<h3><span class="section-number">4.3.8.1.2. </span>Mutex使用实例<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>下面的代码模拟取钱和存钱操作：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;flag&quot;</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="w">	</span><span class="s">&quot;sync&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="nx">mutex</span><span class="w">   </span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+<span class="w">    </span><span class="nx">balance</span><span class="w"> </span><span class="kt">int</span>
+<span class="w">    </span><span class="nx">protecting</span><span class="w"> </span><span class="kt">uint</span><span class="w">  </span><span class="c1">// 是否加锁</span>
+<span class="w">    </span><span class="nx">sign</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kd">struct</span><span class="p">{},</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="c1">//通道，用于等待所有goroutine</span>
+<span class="p">)</span>
+
+<span class="c1">// 存钱</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">deposit</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">sign</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kd">struct</span><span class="p">{}{}</span>
+<span class="w">    </span><span class="p">}()</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">protecting</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">mutex</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+<span class="w">        </span><span class="k">defer</span><span class="w"> </span><span class="nx">mutex</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">balance</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">value</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;存 %d 后的余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">()</span>
+
+<span class="p">}</span>
+
+<span class="c1">// 取钱</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">withdraw</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">sign</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kd">struct</span><span class="p">{}{}</span>
+<span class="w">    </span><span class="p">}()</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">protecting</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">mutex</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+<span class="w">        </span><span class="k">defer</span><span class="w"> </span><span class="nx">mutex</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">balance</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="nx">value</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;取 %d 后的余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">()</span>
+
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">go</span><span class="w"> </span><span class="nx">withdraw</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="w"> </span><span class="c1">// 取500</span>
+<span class="w">        </span><span class="k">go</span><span class="w"> </span><span class="nx">deposit</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="w">  </span><span class="c1">// 存500</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="o">&lt;-</span><span class="nx">sign</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;当前余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">balance</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">balance</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="c1">// 初始账户余额为1000</span>
+<span class="w">    </span><span class="nx">flag</span><span class="p">.</span><span class="nx">UintVar</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">protecting</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;protecting&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;是否加锁，0表示不加锁，1表示加锁&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>上面的代码中，使用了通道来让主 goroutine 等待其他 goroutine 运行结束，每个子goroutine在运行结束之前向通道发送一个元素，主 goroutine 在最后从这个通道接收元素，接收次数与子goroutine个数相同。接收完后就会退出主goroutine。</p>
+</div></blockquote>
+<p>代码使用协程实现多次（5次）对一个账户进行存钱和取钱的操作，先来看不加锁的情况：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="nx">当前余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+</pre></div>
+</div>
+<p>可以看到出现了混乱，比如第二次1000的余额取500后还是1000，这种对同一资源的竞争出现了竞态条件(Race Condition)。</p>
+<p>下面来看加锁的执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="nx">当前余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+</pre></div>
+</div>
+<p>加锁后就正常了。</p>
+<p>下面介绍更细化的互斥锁：读/写互斥锁RWMutex。</p>
+</section>
+</section>
+<section id="rwmutex">
+<h2><span class="section-number">4.3.8.2. </span>读写锁RWMutex<a class="headerlink" href="#rwmutex" title="Permalink to this heading"></a></h2>
+<section id="id3">
+<h3><span class="section-number">4.3.8.2.1. </span>RWMutex介绍<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>读/写互斥锁RWMutex包含了读锁和写锁，分别对共享资源的“读操作”和“写操作”进行保护。sync.RWMutex类型中的Lock方法和Unlock方法分别用于对写锁进行锁定和解锁，而它的RLock方法和RUnlock方法则分别用于对读锁进行锁定和解锁。</p>
+<p>有了互斥锁Mutex，为什么还需要读写锁呢？因为在很多并发操作中，并发读取占比很大，写操作相对较少，读写锁可以并发读取，这样可以提供服务性能。读写锁具有以下特征：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>读写锁</th>
+<th>读锁</th>
+<th>写锁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>读锁</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>写锁</td>
+<td>No</td>
+<td>No</td>
+</tr>
+</tbody>
+</table><p>也就是说，</p>
+<ul class="simple">
+<li><p>如果某个共享资源受到读锁和写锁保护时，其它goroutine不能进行写操作。换句话说就是读写操作和写写操作不能并行执行，也就是读写互斥；</p></li>
+<li><p>受读锁保护时，可以同时进行多个读操作。</p></li>
+</ul>
+<p>在使用读写锁时，还需要注意：</p>
+<ol class="simple">
+<li><p>不要对未锁定的读写锁解锁；</p></li>
+<li><p>对读锁不能使用写锁解锁</p></li>
+<li><p>对写锁不能使用读锁解锁</p></li>
+</ol>
+</section>
+<section id="id4">
+<h3><span class="section-number">4.3.8.2.2. </span>RWMutex使用实例<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>改写前面的取钱和存钱操作，添加查询余额的方法：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
+<span class="w">	</span><span class="s">&quot;sync&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">// account 代表计数器。</span>
+<span class="kd">type</span><span class="w"> </span><span class="nx">account</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">num</span><span class="w"> </span><span class="kt">uint</span><span class="w">         </span><span class="c1">// 操作次数</span>
+<span class="w">	</span><span class="nx">balance</span><span class="w"> </span><span class="kt">int</span><span class="w">		 </span><span class="c1">// 余额</span>
+<span class="w">	</span><span class="nx">rwMu</span><span class="w">  </span><span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">RWMutex</span><span class="w"> </span><span class="c1">// 读写锁</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">sign</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">chan</span><span class="w"> </span><span class="kd">struct</span><span class="p">{},</span><span class="w"> </span><span class="mi">15</span><span class="p">)</span><span class="w"> </span><span class="c1">//通道，用于等待所有goroutine</span>
+
+<span class="c1">// 查看余额：使用读锁</span>
+<span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="o">*</span><span class="nx">account</span><span class="p">)</span><span class="w"> </span><span class="nx">check</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">defer</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">sign</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kd">struct</span><span class="p">{}{}</span>
+<span class="w">    </span><span class="p">}()</span>
+<span class="w">	</span><span class="nx">c</span><span class="p">.</span><span class="nx">rwMu</span><span class="p">.</span><span class="nx">RLock</span><span class="p">()</span>
+<span class="w">	</span><span class="k">defer</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">rwMu</span><span class="p">.</span><span class="nx">RUnlock</span><span class="p">()</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d 次操作后的余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">num</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">balance</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 存钱：写锁</span>
+<span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="o">*</span><span class="nx">account</span><span class="p">)</span><span class="w"> </span><span class="nx">deposit</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="k">defer</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">sign</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kd">struct</span><span class="p">{}{}</span>
+<span class="w">    </span><span class="p">}()</span>
+<span class="w">    </span><span class="nx">c</span><span class="p">.</span><span class="nx">rwMu</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+<span class="w">	</span><span class="k">defer</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">rwMu</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span><span class="w">	</span>
+
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">balance</span><span class="p">)</span><span class="w">   </span>
+<span class="w">	</span><span class="nx">c</span><span class="p">.</span><span class="nx">num</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="nx">c</span><span class="p">.</span><span class="nx">balance</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">value</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;存 %d 后的余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">balance</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">()</span><span class="w"> </span>
+<span class="p">}</span>
+
+<span class="c1">// 取钱：写锁</span>
+<span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="o">*</span><span class="nx">account</span><span class="p">)</span><span class="w"> </span><span class="nx">withdraw</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">sign</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kd">struct</span><span class="p">{}{}</span>
+<span class="w">    </span><span class="p">}()</span>
+<span class="w">	</span><span class="nx">c</span><span class="p">.</span><span class="nx">rwMu</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+<span class="w">	</span><span class="k">defer</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">rwMu</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span><span class="w">	  </span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">balance</span><span class="p">)</span><span class="w">     </span>
+<span class="w">	</span><span class="nx">c</span><span class="p">.</span><span class="nx">num</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="nx">c</span><span class="p">.</span><span class="nx">balance</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="nx">value</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;取 %d 后的余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">balance</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">()</span><span class="w"> 	</span>
+<span class="p">}</span>
+
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="nx">c</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">account</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="nb">new</span><span class="p">(</span><span class="nx">sync</span><span class="p">.</span><span class="nx">RWMutex</span><span class="p">)}</span>
+
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">go</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">withdraw</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="w"> </span><span class="c1">// 取500</span>
+<span class="w">        </span><span class="k">go</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">deposit</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="w">  </span><span class="c1">// 存500</span>
+<span class="w">		</span><span class="k">go</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">check</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mi">15</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="o">&lt;-</span><span class="nx">sign</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%d 次操作后的余额: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">num</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">balance</span><span class="p">)</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>执行结果：</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+
+<span class="mi">1</span><span class="w"> </span><span class="nx">次操作后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="mi">1</span><span class="w"> </span><span class="nx">次操作后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="mi">1</span><span class="w"> </span><span class="nx">次操作后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="mi">1</span><span class="w"> </span><span class="nx">次操作后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="mi">1</span><span class="w"> </span><span class="nx">次操作后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="nx">取</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+
+<span class="nx">余额</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span>
+<span class="nx">存</span><span class="w"> </span><span class="mi">500</span><span class="w"> </span><span class="nx">后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+
+<span class="mi">10</span><span class="w"> </span><span class="nx">次操作后的余额</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+</pre></div>
+</div>
+<p>读写锁和互斥锁的不同之处在于读写锁把对共享资源的读操作和写操作分开了，可以实现更复杂的访问控制。</p>
+</section>
+</section>
+<section id="id5">
+<h2><span class="section-number">4.3.8.3. </span>小结<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<p>读写锁也是一种互斥锁，它是互斥锁的扩展。在使用时需要注意：</p>
+<ol class="simple">
+<li><p>加锁后一定要解锁</p></li>
+<li><p>不要重复加锁或者解锁</p></li>
+<li><p>不解锁未锁定的锁</p></li>
+<li><p>不要传递互斥锁</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="golang-concurrent-synchronization-for-context.html" class="btn btn-neutral float-left" title="4.3.7. Go语言并发编程：上下文Context" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="golang-concurrent-synchronization-for-sync-once.html" class="btn btn-neutral float-right" title="4.3.9. Go语言并发编程：sync.Once" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>
