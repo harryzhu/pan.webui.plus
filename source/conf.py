@@ -6,13 +6,12 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 from datetime import datetime
-import random
 
 language = 'zh_CN'
 currentYear = datetime.now().year
 
 project = 'AI 模型国内加速'
-copyright = '2024'
+copyright = str(currentYear)
 author = 'Harry'
 
 # -- General configuration ---------------------------------------------------
@@ -40,7 +39,7 @@ source_suffix = {
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
-html_css_files = ['style.css?v='+str(random.randint(1000,2000)) ]
+html_css_files = ['style.css']
 
 
 
