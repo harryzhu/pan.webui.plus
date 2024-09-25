@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.5.4. 代码管理 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.5.5. 类型系统" href="type_system.html" />
+    <link rel="prev" title="3.5.3. 语言特性" href="language.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.5. Google: TypeScript 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">3.5.1. 导言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syntax.html">3.5.2. 语法规范</a></li>
+<li class="toctree-l3"><a class="reference internal" href="language.html">3.5.3. 语言特性</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.5.4. 代码管理</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ts-modules">3.5.4.1. 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-exports">3.5.4.2. 导出</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-imports-source-organization">3.5.4.3. 导入</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-organize-by-feature">3.5.4.4. 根据特征组织代码</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="type_system.html">3.5.5. 类型系统</a></li>
+<li class="toctree-l3"><a class="reference internal" href="consistency.html">3.5.6. 一致性</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.5. </span>Google: TypeScript 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.5.4. </span>代码管理</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-typescript-styleguide/source_organization.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3.5.4. </span>代码管理<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="ts-modules">
+<span id="id2"></span><h2><span class="section-number">3.5.4.1. </span>模块<a class="headerlink" href="#ts-modules" title="Permalink to this heading"></a></h2>
+<section id="import-paths">
+<span id="id3"></span><h3><span class="section-number">3.5.4.1.1. </span>导入路径<a class="headerlink" href="#import-paths" title="Permalink to this heading"></a></h3>
+<p>TypeScript 代码必须使用路径进行导入。这里的路径既可以是相对路径，以 <code class="docutils literal notranslate"><span class="pre">.</span></code> 或 <code class="docutils literal notranslate"><span class="pre">..</span></code> 开头，也可以是从项目根目录开始的绝对路径，如 <code class="docutils literal notranslate"><span class="pre">root/path/to/file</span></code> 。</p>
+<p>在引用逻辑上属于同一项目的文件时，应使用相对路径 <code class="docutils literal notranslate"><span class="pre">./foo</span></code> ，不要使用绝对路径 <code class="docutils literal notranslate"><span class="pre">path/to/foo</span></code> 。</p>
+<p>应尽可能地限制父层级的数量（避免出现诸如 <code class="docutils literal notranslate"><span class="pre">../../../</span></code> 的路径），过多的层级会导致模块和路径结构难以理解。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">Symbol1</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;google3/path/from/root&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">Symbol2</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;../parent/file&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">Symbol3</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./sibling&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="namespaces-vs-modules">
+<span id="id4"></span><h3><span class="section-number">3.5.4.1.2. </span>用 命名空间 还是 模块？<a class="headerlink" href="#namespaces-vs-modules" title="Permalink to this heading"></a></h3>
+<p>在 TypeScript 有两种组织代码的方式：命名空间（namespace）和模块（module）。</p>
+<p>不允许使用命名空间，在 TypeScript 中必须使用模块（即 <a class="reference external" href="http://exploringjs.com/es6/ch_modules.html">ES6 模块</a> ）。也就是说，在引用其它文件中的代码时必须以 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">{foo}</span> <span class="pre">from</span> <span class="pre">'bar'</span></code> 的形式进行导入和导出。</p>
+<p>不允许使用 <code class="docutils literal notranslate"><span class="pre">namespace</span> <span class="pre">Foo</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code> 的形式组织代码。命名空间只能在所用的外部第三方库有要求时才能使用。如果需要在语义上对代码划分命名空间，应当通过分成不同文件的方式实现。</p>
+<p>不允许在导入时使用 <code class="docutils literal notranslate"><span class="pre">require</span></code> 关键字（形如 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">require('...');</span></code> ）。应当使用 ES6 的模块语法。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！不要使用命名空间！</span>
+<span class="nx">namespace</span><span class="w"> </span><span class="nx">Rocket</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">launch</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 不要这样做！不要使用 &lt;reference&gt; ！</span>
+<span class="c1">/// &lt;reference path=&quot;...&quot;/&gt;</span>
+
+<span class="c1">// 不要这样做！不要使用 require() ！</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mydep&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>TypeScript 的命名空间早期也被称为内部模块并使用 <code class="docutils literal notranslate"><span class="pre">module</span></code> 关键字，形如 <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">Foo</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code> 。不要使用这种用法。任何时候都应当使用 ES6 的导入语法。</p>
+</div>
+</section>
+</section>
+<section id="ts-exports">
+<span id="id5"></span><h2><span class="section-number">3.5.4.2. </span>导出<a class="headerlink" href="#ts-exports" title="Permalink to this heading"></a></h2>
+<p>代码中必须使用具名的导出声明。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Use named exports:</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>不要使用默认导出，这样能保证所有的导入语句都遵循统一的范式：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！不要使用默认导出！</span>
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>为什么？因为默认导出并不为被导出的符号提供一个标准的名称，这增加了维护的难度和降低可读性的风险，同时并未带来明显的益处。如下面的例子所示：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 默认导出会造成如下的弊端</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./bar&#39;</span><span class="p">;</span><span class="w">  </span><span class="c1">// 这个语句是合法的。</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">Bar</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./bar&#39;</span><span class="p">;</span><span class="w">  </span><span class="c1">// 这个语句也是合法的。</span>
+</pre></div>
+</div>
+<p>具名导出的一个优势是，当代码中试图导入一个并未被导出的符号时，这段代码会报错。例如，假设在 <code class="docutils literal notranslate"><span class="pre">foo.ts</span></code> 中有如下的导出声明：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;blah&#39;</span><span class="p">;</span>
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">foo</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>如果在 <code class="docutils literal notranslate"><span class="pre">bar.ts</span></code> 中有如下的导入语句：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 编译错误！</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">fizz</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./foo&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>会导致编译错误： <code class="docutils literal notranslate"><span class="pre">error</span> <span class="pre">TS2614:</span> <span class="pre">Module</span> <span class="pre">'&quot;./foo&quot;'</span> <span class="pre">has</span> <span class="pre">no</span> <span class="pre">exported</span> <span class="pre">member</span> <span class="pre">'fizz'</span></code> 。反之，如果在 <code class="docutils literal notranslate"><span class="pre">bar.ts</span></code> 中的导入语句为：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！这定义了一个多余的变量 fizz！</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">fizz</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./foo&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>结果是 <code class="docutils literal notranslate"><span class="pre">fizz</span> <span class="pre">===</span> <span class="pre">foo</span></code> ，这往往不符合预期，且难以调试。</p>
+<p>此外，默认导出会鼓励程序员将所有内容全部置于一个巨大的对象当中，这个对象实际上充当了命名空间的角色：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="nx">SOME_CONSTANT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="nx">someHelpfulFunction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>显然，这个文件中具有文件作用域，它可以被用做命名空间。但是，这里创建了第二个作用域——类 <code class="docutils literal notranslate"><span class="pre">Foo</span></code> ，这个类在其它文件中具有歧义：它既可以被视为类型，又可以被视为值。</p>
+<p>因此，应当使用文件作用域作为实质上的命名空间，同时使用具名的导出声明：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">SOME_CONSTANT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">someHelpfulFunction</span><span class="p">()</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 只有类 Foo 中的内容</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="ts-export-visibility">
+<span id="id6"></span><h3><span class="section-number">3.5.4.2.1. </span>导出可见性<a class="headerlink" href="#ts-export-visibility" title="Permalink to this heading"></a></h3>
+<p>TypeScript 不支持限制导出符号的可见性。因此，不要导出不用于模块以外的符号。一般来说，应当尽量减小模块的外部 API 的规模。</p>
+</section>
+<section id="ts-mutable-exports">
+<span id="id7"></span><h3><span class="section-number">3.5.4.2.2. </span>可变导出<a class="headerlink" href="#ts-mutable-exports" title="Permalink to this heading"></a></h3>
+<p>虽然技术上可以实现，但是可变导出会造成难以理解和调试的代码，尤其是对于在多个模块中经过了多次重新导出的符号。这条规则的一个例子是，不允许使用 <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">let</span></code> 。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
+<span class="c1">// 在纯 ES6 环境中，变量 foo 是一个可变值，导入了 foo 的代码会观察到它的值在一秒钟之后发生了改变。</span>
+<span class="c1">// 在 TypeScript 中，如果 foo 被另一个文件重新导出了，导入该文件的代码则不会观察到变化。</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span><span class="p">;</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="w"> </span><span class="cm">/* ms */</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>如果确实需要允许外部代码对可变值进行访问，应当提供一个显式的取值器。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4</span><span class="p">;</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="w"> </span><span class="cm">/* ms */</span><span class="p">);</span>
+<span class="c1">// 使用显式的取值器对可变导出进行访问。</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getFoo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">foo</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+</pre></div>
+</div>
+<p>有一种常见的编程情景是，要根据某种特定的条件从两个值中选取其中一个进行导出：先检查条件，然后导出。这种情况下，应当保证模块中的代码执行完毕后，导出的结果就是确定的。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">pickApi</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">useOtherApi</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">OtherApi</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">RegularApi</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">SomeApi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">pickApi</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-container-classes">
+<span id="id8"></span><h3><span class="section-number">3.5.4.2.3. </span>容器类<a class="headerlink" href="#ts-container-classes" title="Permalink to this heading"></a></h3>
+<p>不要为了实现命名空间创建含有静态方法或属性的容器类。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="nx">FOO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>应当将这些方法和属性设为单独导出的常数和函数。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">FOO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ts-imports-source-organization">
+<span id="id9"></span><h2><span class="section-number">3.5.4.3. </span>导入<a class="headerlink" href="#ts-imports-source-organization" title="Permalink to this heading"></a></h2>
+<p>在 ES6 和 TypeScript 中，导入语句共有四种变体：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>导入类型</p></th>
+<th class="head"><p>示例</p></th>
+<th class="head"><p>用途</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>模块</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">*</span> <span class="pre">as</span> <span class="pre">foo</span> <span class="pre">from</span> <span class="pre">'...';</span></code></p></td>
+<td><p>TypeScript 导入方式</p></td>
+</tr>
+<tr class="row-odd"><td><p>解构</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">{SomeThing}</span> <span class="pre">from</span> <span class="pre">'...';</span></code></p></td>
+<td><p>TypeScript 导入方式</p></td>
+</tr>
+<tr class="row-even"><td><p>默认</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">SomeThing</span> <span class="pre">from</span> <span class="pre">'...';</span></code></p></td>
+<td><p>只用于外部代码的特殊需求</p></td>
+</tr>
+<tr class="row-odd"><td><p>副作用</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">'...';</span></code></p></td>
+<td><p>只用于加载某些库的副作用（例如自定义元素）</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！从这两种变体中选择较合适的一种（见下文）。</span>
+<span class="k">import</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">ng</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">Foo</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./foo&#39;</span><span class="p">;</span>
+
+<span class="c1">// 只在有需要时使用默认导入。</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">Button</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;Button&#39;</span><span class="p">;</span>
+
+<span class="c1">// 有时导入某些库是为了其代码执行时的副作用。</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;jasmine&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;@polymer/paper-button&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<section id="ts-module-versus-destructuring-imports">
+<span id="id10"></span><h3><span class="section-number">3.5.4.3.1. </span>选择模块导入还是解构导入？<a class="headerlink" href="#ts-module-versus-destructuring-imports" title="Permalink to this heading"></a></h3>
+<p>根据使用场景的不同，模块导入和解构导入分别有其各自的优势。</p>
+<p>虽然模块导入语句中出现了通配符 <code class="docutils literal notranslate"><span class="pre">*</span></code> ，但模块导入并不能因此被视为其它语言中的通配符导入。相反地，模块导入语句为整个模块提供了一个名称，模块中的所有符号都通过这个名称进行访问，这为代码提供了更好的可读性，同时令模块中的所有符号可以进行自动补全。模块导入减少了导入语句的数量（模块中的所有符号都可以使用），降低了命名冲突的出现几率，同时还允许为被导入的模块提供一个简洁的名称。在从一个大型 API 中导入多个不同的符号时，模块导入语句尤其有用。</p>
+<p>解构导入语句则为每一个被导入的符号提供一个局部的名称，这样在使用被导入的符号时，代码可以更简洁。对那些十分常用的符号，例如 Jasmine 的 <code class="docutils literal notranslate"><span class="pre">describe</span></code> 和 <code class="docutils literal notranslate"><span class="pre">it</span></code> 来说，这一点尤其有用。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！无意义地使用命名空间中的名称使得导入语句过于冗长。</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">TableViewItem</span><span class="p">,</span><span class="w"> </span><span class="nx">TableViewHeader</span><span class="p">,</span><span class="w"> </span><span class="nx">TableViewRow</span><span class="p">,</span><span class="w"> </span><span class="nx">TableViewModel</span><span class="p">,</span>
+<span class="nx">TableViewRenderer</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./tableview&#39;</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">item</span><span class="o">:</span><span class="w"> </span><span class="kt">TableViewItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！使用模块作为命名空间。</span>
+<span class="k">import</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">tableview</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./tableview&#39;</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">item</span><span class="o">:</span><span class="w"> </span><span class="kt">tableview.Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">testing</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./testing&#39;</span><span class="p">;</span>
+
+<span class="c1">// 所有的测试都只会重复地使用相同的三个函数。</span>
+<span class="c1">// 如果只需要导入少数几个符号，而这些符号的使用频率又非常高的话，</span>
+<span class="c1">// 也可以考虑使用解构导入语句直接导入这几个符号（见下文）。</span>
+<span class="nx">testing</span><span class="p">.</span><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="nx">testing</span><span class="p">.</span><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">testing</span><span class="p">.</span><span class="nx">expect</span><span class="p">(...);</span>
+<span class="w">    </span><span class="nx">testing</span><span class="p">.</span><span class="nx">expect</span><span class="p">(...);</span>
+<span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 这样做更好！为这几个常用的函数提供局部变量名。</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">describe</span><span class="p">,</span><span class="w"> </span><span class="nx">it</span><span class="p">,</span><span class="w"> </span><span class="nx">expect</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./testing&#39;</span><span class="p">;</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="nx">it</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">expect</span><span class="p">(...);</span>
+<span class="w">    </span><span class="nx">expect</span><span class="p">(...);</span>
+<span class="p">});</span>
+<span class="p">});</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-renaming-imports">
+<span id="id11"></span><h3><span class="section-number">3.5.4.3.2. </span>重命名导入<a class="headerlink" href="#ts-renaming-imports" title="Permalink to this heading"></a></h3>
+<p>在代码中，应当通过使用模块导入或重命名导出解决命名冲突。此外，在需要时，也可以使用重命名导入（例如 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">{SomeThing</span> <span class="pre">as</span> <span class="pre">SomeOtherThing}</span></code> ）。</p>
+<p>在以下几种情况下，重命名导入可能较为有用：</p>
+<ol class="arabic simple">
+<li><p>避免与其它导入的符号产生命名冲突。</p></li>
+<li><p>被导入符号的名称是自动生成的。</p></li>
+<li><p>被导入符号的名称不能清晰地描述其自身，需要通过重命名提高代码的可读性，如将 RxJS 的 <code class="docutils literal notranslate"><span class="pre">from</span></code> 函数重命名为 <code class="docutils literal notranslate"><span class="pre">observableFrom</span></code> 。</p></li>
+</ol>
+</section>
+<section id="import-type-export-type">
+<span id="ts-import-export-type"></span><h3><span class="section-number">3.5.4.3.3. </span><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">type</span></code> 和 <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">type</span></code><a class="headerlink" href="#import-type-export-type" title="Permalink to this heading"></a></h3>
+<p>不要使用 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">type</span> <span class="pre">...</span> <span class="pre">from</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">type</span> <span class="pre">...</span> <span class="pre">from</span></code> 。</p>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>这一规则不适用于导出类型定义，如 <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">type</span> <span class="pre">Foo</span> <span class="pre">=</span> <span class="pre">...;</span></code> 。</p>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="k">import</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="nx">Foo</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./foo&#39;</span><span class="p">;</span>
+<span class="k">export</span><span class="w"> </span><span class="kr">type</span><span class="w"> </span><span class="p">{</span><span class="nx">Bar</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./bar&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>应当使用常规的导入语句。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">Foo</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./foo&#39;</span><span class="p">;</span>
+<span class="k">export</span><span class="w"> </span><span class="p">{</span><span class="nx">Bar</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./bar&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>TypeScript 的工具链会自动区分用作类型的符号和用作值的符号。对于类型引用，工具链不会生成运行时加载的代码。这样做的原因是为了提供更好的开发体验，否则在 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">type</span></code> 和 <code class="docutils literal notranslate"><span class="pre">import</span></code> 之间反复切换会非常繁琐。同时， <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">type</span></code> 并不提供任何保证，因为代码仍然可以通过其它的途径导入同一个依赖。</p>
+<p>如果需要在运行时加载代码以执行其副作用，应使用 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">'...'</span></code> ，参见 <a class="reference internal" href="#ts-imports-source-organization"><span class="std std-ref">导入</span></a> 一节。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">type</span></code> 似乎可以避免将某个用作值的符号导出为 API。然而，和 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">type</span></code> 类似， <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">type</span></code> 也不提供任何保证，因为外部代码仍然可以通过其它途径导入。如果需要拆分对 API 作为值的使用和作为类型的使用，并保证二者不被混用的话，应当显式地将其拆分成不同的符号，例如 <code class="docutils literal notranslate"><span class="pre">UserService</span></code> 和 <code class="docutils literal notranslate"><span class="pre">AjaxUserService</span></code> ，这样不容易造成错误，同时能更好地表达设计思路。</p>
+</section>
+</section>
+<section id="ts-organize-by-feature">
+<span id="id12"></span><h2><span class="section-number">3.5.4.4. </span>根据特征组织代码<a class="headerlink" href="#ts-organize-by-feature" title="Permalink to this heading"></a></h2>
+<p>应当根据特征而非类型组织代码。例如，一个在线商城的代码应当按照 <code class="docutils literal notranslate"><span class="pre">products</span></code> ， <code class="docutils literal notranslate"><span class="pre">checkout</span></code> ， <code class="docutils literal notranslate"><span class="pre">backend</span></code> 等分类，而不是 <code class="docutils literal notranslate"><span class="pre">views</span></code> ， <code class="docutils literal notranslate"><span class="pre">models</span></code> ， <code class="docutils literal notranslate"><span class="pre">controllers</span></code> 。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="language.html" class="btn btn-neutral float-left" title="3.5.3. 语言特性" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="type_system.html" class="btn btn-neutral float-right" title="3.5.5. 类型系统" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.4.6. 格式 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.4.7. 特性及错误" href="features_and_bugs.html" />
+    <link rel="prev" title="3.4.5. 注释" href="comments.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.4. Google: Shell 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html">3.4.1. 扉页</a></li>
+<li class="toctree-l3"><a class="reference internal" href="background.html">3.4.2. 背景</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shell_files_and_interpreter_invocation.html">3.4.3. Shell文件和解释器调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="environment.html">3.4.4. 环境</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html">3.4.5. 注释</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.4.6. 格式</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.4.6.1. 缩进</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.4.6.2. 行的长度和长字符串</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.4.6.3. 管道</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.4.6.4. 循环</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#case">3.4.6.5. case语句</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.4.6.6. 变量扩展</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">3.4.6.7. 引用</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="features_and_bugs.html">3.4.7. 特性及错误</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming_conventions.html">3.4.8. 命名约定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calling_commands.html">3.4.9. 调用命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="conclusion.html">3.4.10. 结论</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.4. </span>Google: Shell 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.4.6. </span>格式</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-shell-styleguide/formatting.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3.4.6. </span>格式<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="id2">
+<h2><span class="section-number">3.4.6.1. </span>缩进<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>缩进两个空格，没有制表符。</p>
+</div>
+<p>在代码块之间请使用空行以提升可读性。缩进为两个空格。无论你做什么，请不要使用制表符。对于已有文件，保持已有的缩进格式。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.4.6.2. </span>行的长度和长字符串<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>行的最大长度为80个字符。</p>
+</div>
+<p>如果你必须写长度超过80个字符的字符串，如果可能的话，尽量使用here document或者嵌入的换行符。长度超过80个字符的文字串且不能被合理地分割，这是正常的。但强烈建议找到一个方法使其变短。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># DO use &#39;here document&#39;s</span>
+cat<span class="w"> </span><span class="s">&lt;&lt;END;</span>
+<span class="s">I am an exceptionally long</span>
+<span class="s">string.</span>
+<span class="s">END</span>
+
+<span class="c1"># Embedded newlines are ok too</span>
+<span class="nv">long_string</span><span class="o">=</span><span class="s2">&quot;I am an exceptionally</span>
+<span class="s2">  long string.&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.4.6.3. </span>管道<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>如果一行容不下整个管道操作，那么请将整个管道操作分割成每行一个管段。</p>
+</div>
+<p>如果一行容得下整个管道操作，那么请将整个管道操作写在同一行。</p>
+<p>否则，应该将整个管道操作分割成每行一个管段，管道操作的下一部分应该将管道符放在新行并且缩进2个空格。这适用于使用管道符’|’的合并命令链以及使用’||’和’&amp;&amp;’的逻辑运算链。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># All fits on one line</span>
+command1<span class="w"> </span><span class="p">|</span><span class="w"> </span>command2
+
+<span class="c1"># Long commands</span>
+command1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>command2<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>command3<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>command4
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2><span class="section-number">3.4.6.4. </span>循环<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>请将 <code class="docutils literal notranslate"><span class="pre">;</span> <span class="pre">do</span></code> , <code class="docutils literal notranslate"><span class="pre">;</span> <span class="pre">then</span></code> 和 <code class="docutils literal notranslate"><span class="pre">while</span></code> , <code class="docutils literal notranslate"><span class="pre">for</span></code> , <code class="docutils literal notranslate"><span class="pre">if</span></code> 放在同一行。</p>
+</div>
+<p>shell中的循环略有不同，但是我们遵循跟声明函数时的大括号相同的原则。也就是说， <code class="docutils literal notranslate"><span class="pre">;</span> <span class="pre">do</span></code> , <code class="docutils literal notranslate"><span class="pre">;</span> <span class="pre">then</span></code> 应该和 if/for/while 放在同一行。 <code class="docutils literal notranslate"><span class="pre">else</span></code> 应该单独一行，结束语句应该单独一行并且跟开始语句垂直对齐。</p>
+<p>例如：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>dir<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="si">${</span><span class="nv">dirs_to_cleanup</span><span class="si">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">dir</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">ORACLE_SID</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>log_date<span class="w"> </span><span class="s2">&quot;Cleaning up old files in </span><span class="si">${</span><span class="nv">dir</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">ORACLE_SID</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span>rm<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">dir</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">ORACLE_SID</span><span class="si">}</span><span class="s2">/&quot;</span>*
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$?</span><span class="s2">&quot;</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">      </span>error_message
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">dir</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">ORACLE_SID</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$?</span><span class="s2">&quot;</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">      </span>error_message
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">  </span><span class="k">fi</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</section>
+<section id="case">
+<h2><span class="section-number">3.4.6.5. </span>case语句<a class="headerlink" href="#case" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<ul class="simple">
+<li><p>通过2个空格缩进可选项。</p></li>
+<li><p>在同一行可选项的模式右圆括号之后和结束符 <code class="docutils literal notranslate"><span class="pre">;;</span></code> 之前各需要一个空格。</p></li>
+<li><p>长可选项或者多命令可选项应该被拆分成多行，模式、操作和结束符 <code class="docutils literal notranslate"><span class="pre">;;</span></code> 在不同的行。</p></li>
+</ul>
+</div>
+<p>匹配表达式比 <code class="docutils literal notranslate"><span class="pre">case</span></code> 和 <code class="docutils literal notranslate"><span class="pre">esac</span></code> 缩进一级。多行操作要再缩进一级。一般情况下，不需要引用匹配表达式。模式表达式前面不应该出现左括号。避免使用 <code class="docutils literal notranslate"><span class="pre">;&amp;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">;;&amp;</span></code> 符号。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">expression</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">  </span>a<span class="o">)</span>
+<span class="w">    </span><span class="nv">variable</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
+<span class="w">    </span>some_command<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">variable</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">other_expr</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>...
+<span class="w">    </span><span class="p">;;</span>
+<span class="w">  </span>absolute<span class="o">)</span>
+<span class="w">    </span><span class="nv">actions</span><span class="o">=</span><span class="s2">&quot;relative&quot;</span>
+<span class="w">    </span>another_command<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">actions</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">other_expr</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>...
+<span class="w">    </span><span class="p">;;</span>
+<span class="w">  </span>*<span class="o">)</span>
+<span class="w">    </span>error<span class="w"> </span><span class="s2">&quot;Unexpected expression &#39;</span><span class="si">${</span><span class="nv">expression</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+<span class="w">    </span><span class="p">;;</span>
+<span class="k">esac</span>
+</pre></div>
+</div>
+<p>只要整个表达式可读，简单的命令可以跟模式和 <code class="docutils literal notranslate"><span class="pre">;;</span></code> 写在同一行。这通常适用于单字母选项的处理。当单行容不下操作时，请将模式单独放一行，然后是操作，最后结束符 <code class="docutils literal notranslate"><span class="pre">;;</span></code> 也单独一行。当操作在同一行时，模式的右括号之后和结束符 <code class="docutils literal notranslate"><span class="pre">;;</span></code> 之前请使用一个空格分隔。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">verbose</span><span class="o">=</span><span class="s1">&#39;false&#39;</span>
+<span class="nv">aflag</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="nv">bflag</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="nv">files</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="k">while</span><span class="w"> </span><span class="nb">getopts</span><span class="w"> </span><span class="s1">&#39;abf:v&#39;</span><span class="w"> </span>flag<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">flag</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span>a<span class="o">)</span><span class="w"> </span><span class="nv">aflag</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span>b<span class="o">)</span><span class="w"> </span><span class="nv">bflag</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span>f<span class="o">)</span><span class="w"> </span><span class="nv">files</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">OPTARG</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span>v<span class="o">)</span><span class="w"> </span><span class="nv">verbose</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">    </span>*<span class="o">)</span><span class="w"> </span>error<span class="w"> </span><span class="s2">&quot;Unexpected option </span><span class="si">${</span><span class="nv">flag</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">  </span><span class="k">esac</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h2><span class="section-number">3.4.6.6. </span>变量扩展<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>按优先级顺序：保持跟你所发现的一致；引用你的变量；推荐用 <code class="docutils literal notranslate"><span class="pre">${var}</span></code> 而不是 <code class="docutils literal notranslate"><span class="pre">$var</span></code> ，详细解释如下。</p>
+</div>
+<p>这些仅仅是指南，因为作为强制规定似乎饱受争议。</p>
+<p>以下按照优先顺序列出。</p>
+<ol class="arabic simple">
+<li><p>与现存代码中你所发现的保持一致。</p></li>
+<li><p>引用变量参阅下面一节，引用。</p></li>
+<li><p>除非绝对必要或者为了避免深深的困惑，否则不要用大括号将单个字符的shell特殊变量或定位变量括起来。推荐将其他所有变量用大括号括起来。</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Section of recommended cases.</span>
+
+<span class="c1"># Preferred style for &#39;special&#39; variables:</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Positional: </span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$5</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$3</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Specials: !=</span><span class="nv">$!</span><span class="s2">, -=</span><span class="nv">$-</span><span class="s2">, _=</span><span class="nv">$_</span><span class="s2">. ?=</span><span class="nv">$?</span><span class="s2">, #=</span><span class="nv">$#</span><span class="s2"> *=</span><span class="nv">$*</span><span class="s2"> @=</span><span class="nv">$@</span><span class="s2"> \$=</span><span class="nv">$$</span><span class="s2"> ...&quot;</span>
+
+<span class="c1"># Braces necessary:</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;many parameters: </span><span class="si">${</span><span class="nv">10</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Braces avoiding confusion:</span>
+<span class="c1"># Output is &quot;a0b0c0&quot;</span>
+<span class="nb">set</span><span class="w"> </span>--<span class="w"> </span>a<span class="w"> </span>b<span class="w"> </span>c
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="si">}</span><span class="s2">0</span><span class="si">${</span><span class="nv">2</span><span class="si">}</span><span class="s2">0</span><span class="si">${</span><span class="nv">3</span><span class="si">}</span><span class="s2">0&quot;</span>
+
+<span class="c1"># Preferred style for other variables:</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;PATH=</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span><span class="s2">, PWD=</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">, mine=</span><span class="si">${</span><span class="nv">some_var</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>f<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;file=</span><span class="si">${</span><span class="nv">f</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">done</span><span class="w"> </span>&lt;<span class="w"> </span>&lt;<span class="o">(</span>ls<span class="w"> </span>-l<span class="w"> </span>/tmp<span class="o">)</span>
+
+<span class="c1"># Section of discouraged cases</span>
+
+<span class="c1"># Unquoted vars, unbraced vars, brace-quoted single letter</span>
+<span class="c1"># shell specials.</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">a</span><span class="o">=</span><span class="nv">$avar</span><span class="w"> </span><span class="s2">&quot;b=</span><span class="nv">$bvar</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;PID=</span><span class="si">${</span>$<span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">1</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Confusing use: this is expanded as &quot;${1}0${2}0${3}0&quot;,</span>
+<span class="c1"># not &quot;${10}${20}${30}</span>
+<span class="nb">set</span><span class="w"> </span>--<span class="w"> </span>a<span class="w"> </span>b<span class="w"> </span>c
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$10$20$30</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h2><span class="section-number">3.4.6.7. </span>引用<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<ul class="simple">
+<li><p>除非需要小心不带引用的扩展，否则总是引用包含变量、命令替换符、空格或shell元字符的字符串。</p></li>
+<li><p>推荐引用是单词的字符串（而不是命令选项或者路径名）。</p></li>
+<li><p>千万不要引用整数。</p></li>
+<li><p>注意 <code class="docutils literal notranslate"><span class="pre">[[</span></code> 中模式匹配的引用规则。</p></li>
+<li><p>请使用 <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code> 除非你有特殊原因需要使用 <code class="docutils literal notranslate"><span class="pre">$*</span></code> 。</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># &#39;Single&#39; quotes indicate that no substitution is desired.</span>
+<span class="c1"># &quot;Double&quot; quotes indicate that substitution is required/tolerated.</span>
+
+<span class="c1"># Simple examples</span>
+<span class="c1"># &quot;quote command substitutions&quot;</span>
+<span class="nv">flag</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>some_command<span class="w"> </span>and<span class="w"> </span>its<span class="w"> </span>args<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="w"> </span><span class="s1">&#39;quoted separately&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
+
+<span class="c1"># &quot;quote variables&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">flag</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># &quot;never quote literal integers&quot;</span>
+<span class="nv">value</span><span class="o">=</span><span class="m">32</span>
+<span class="c1"># &quot;quote command substitutions&quot;, even when you expect integers</span>
+<span class="nv">number</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>generate_number<span class="k">)</span><span class="s2">&quot;</span>
+
+<span class="c1"># &quot;prefer quoting words&quot;, not compulsory</span>
+<span class="nb">readonly</span><span class="w"> </span><span class="nv">USE_INTEGER</span><span class="o">=</span><span class="s1">&#39;true&#39;</span>
+
+<span class="c1"># &quot;quote shell meta characters&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;Hello stranger, and well met. Earn lots of $$$&#39;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Process </span><span class="nv">$$</span><span class="s2">: Done making \$\$\$.&quot;</span>
+
+<span class="c1"># &quot;command options or path names&quot;</span>
+<span class="c1"># ($1 is assumed to contain a value here)</span>
+grep<span class="w"> </span>-li<span class="w"> </span>Hugo<span class="w"> </span>/dev/null<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+
+<span class="c1"># Less simple examples</span>
+<span class="c1"># &quot;quote variables, unless proven false&quot;: ccs might be empty</span>
+git<span class="w"> </span>send-email<span class="w"> </span>--to<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">reviewers</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="si">${</span><span class="nv">ccs</span><span class="p">:+</span><span class="s2">&quot;--cc&quot;</span><span class="p"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ccs</span><span class="si">}</span><span class="s2">&quot;</span><span class="si">}</span>
+
+<span class="c1"># Positional parameter precautions: $1 might be unset</span>
+<span class="c1"># Single quotes leave regex as-is.</span>
+grep<span class="w"> </span>-cP<span class="w"> </span><span class="s1">&#39;([Ss]pecial|\|?characters*)$&#39;</span><span class="w"> </span><span class="si">${</span><span class="nv">1</span><span class="p">:+</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="si">}</span>
+
+<span class="c1"># For passing on arguments,</span>
+<span class="c1"># &quot;$@&quot; is right almost everytime, and</span>
+<span class="c1"># $* is wrong almost everytime:</span>
+<span class="c1">#</span>
+<span class="c1"># * $* and $@ will split on spaces, clobbering up arguments</span>
+<span class="c1">#   that contain spaces and dropping empty strings;</span>
+<span class="c1"># * &quot;$@&quot; will retain arguments as-is, so no args</span>
+<span class="c1">#   provided will result in no args being passed on;</span>
+<span class="c1">#   This is in most cases what you want to use for passing</span>
+<span class="c1">#   on arguments.</span>
+<span class="c1"># * &quot;$*&quot; expands to one argument, with all args joined</span>
+<span class="c1">#   by (usually) spaces,</span>
+<span class="c1">#   so no args provided will result in one empty string</span>
+<span class="c1">#   being passed on.</span>
+<span class="c1"># (Consult &#39;man bash&#39; for the nit-grits ;-)</span>
+
+<span class="nb">set</span><span class="w"> </span>--<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="s2">&quot;2 two&quot;</span><span class="w"> </span><span class="s2">&quot;3 three tres&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>--<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$*</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$#</span><span class="s2">, </span><span class="nv">$@</span><span class="s2">&quot;</span><span class="o">)</span>
+<span class="nb">set</span><span class="w"> </span>--<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="s2">&quot;2 two&quot;</span><span class="w"> </span><span class="s2">&quot;3 three tres&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>--<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$#</span><span class="s2">, </span><span class="nv">$@</span><span class="s2">&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="comments.html" class="btn btn-neutral float-left" title="3.4.5. 注释" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="features_and_bugs.html" class="btn btn-neutral float-right" title="3.4.7. 特性及错误" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.8.6. 5. 来自 Google 的奇技 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.8.7. 6. 其他 C++ 特性" href="others.html" />
+    <link rel="prev" title="3.8.5. 4. 函数" href="functions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.8. Google: C++ 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html">3.8.1. 扉页</a></li>
+<li class="toctree-l3"><a class="reference internal" href="headers.html">3.8.2. 1. 头文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scoping.html">3.8.3. 2. 作用域</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classes.html">3.8.4. 3. 类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions.html">3.8.5. 4. 函数</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.8.6. 5. 来自 Google 的奇技</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">3.8.6.1. 5.1. 所有权与智能指针</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpplint">3.8.6.2. 5.2. Cpplint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#acgtyrant">3.8.6.3. 译者（acgtyrant）笔记</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="others.html">3.8.7. 6. 其他 C++ 特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html">3.8.8. 7. 命名约定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html">3.8.9. 8. 注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formatting.html">3.8.10. 9. 格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exceptions.html">3.8.11. 10. 规则特例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="end.html">3.8.12. 11. 结束语</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.8. </span>Google: C++ 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.8.6. </span>5. 来自 Google 的奇技</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-cpp-styleguide/magic.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="google">
+<h1><span class="section-number">3.8.6. </span>5. 来自 Google 的奇技<a class="headerlink" href="#google" title="Permalink to this heading"></a></h1>
+<p>Google 用了很多自己实现的技巧 / 工具使 C++ 代码更加健壮, 我们使用 C++ 的方式可能和你在其它地方见到的有所不同.</p>
+<section id="id1">
+<h2><span class="section-number">3.8.6.1. </span>5.1. 所有权与智能指针<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p><strong>&gt; 总述</strong></p>
+<p>动态分配出的对象最好有单一且固定的所有主, 并通过智能指针传递所有权.</p>
+<p><strong>&gt; 定义</strong></p>
+<p>所有权是一种登记／管理动态内存和其它资源的技术. 动态分配对象的所有主是一个对象或函数, 后者负责确保当前者无用时就自动销毁前者. 所有权有时可以共享, 此时就由最后一个所有主来负责销毁它. 甚至也可以不用共享, 在代码中直接把所有权传递给其它对象.</p>
+<p>智能指针是一个通过重载 <code class="docutils literal notranslate"><span class="pre">*</span></code> 和 <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> 运算符以表现得如指针一样的类. 智能指针类型被用来自动化所有权的登记工作, 来确保执行销毁义务到位. <a class="reference external" href="http://en.cppreference.com/w/cpp/memory/unique_ptr">std::unique_ptr</a> 是 C++11 新推出的一种智能指针类型, 用来表示动态分配出的对象的独一无二的所有权; 当 <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code> 离开作用域时, 对象就会被销毁. <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code> 不能被复制, 但可以把它移动（move）给新所有主. <a class="reference external" href="http://en.cppreference.com/w/cpp/memory/shared_ptr">std::shared_ptr</a> 同样表示动态分配对象的所有权, 但可以被共享, 也可以被复制; 对象的所有权由所有复制者共同拥有, 最后一个复制者被销毁时, 对象也会随着被销毁.</p>
+<p><strong>&gt; 优点</strong></p>
+<ul class="simple">
+<li><p>如果没有清晰、逻辑条理的所有权安排, 不可能管理好动态分配的内存.</p></li>
+<li><p>传递对象的所有权, 开销比复制来得小, 如果可以复制的话.</p></li>
+<li><p>传递所有权也比”借用”指针或引用来得简单, 毕竟它大大省去了两个用户一起协调对象生命周期的工作.</p></li>
+<li><p>如果所有权逻辑条理, 有文档且不紊乱的话, 可读性会有很大提升.</p></li>
+<li><p>可以不用手动完成所有权的登记工作, 大大简化了代码, 也免去了一大波错误之恼.</p></li>
+<li><p>对于 const 对象来说, 智能指针简单易用, 也比深度复制高效.</p></li>
+</ul>
+<p><strong>&gt; 缺点</strong></p>
+<ul class="simple">
+<li><p>不得不用指针（不管是智能的还是原生的）来表示和传递所有权. 指针语义可要比值语义复杂得许多了, 特别是在 API 里：这时不光要操心所有权, 还要顾及别名, 生命周期, 可变性以及其它大大小小的问题.</p></li>
+<li><p>其实值语义的开销经常被高估, 所以所有权传递带来的性能提升不一定能弥补可读性和复杂度的损失.</p></li>
+<li><p>如果 API 依赖所有权的传递, 就会害得客户端不得不用单一的内存管理模型.</p></li>
+<li><p>如果使用智能指针, 那么资源释放发生的位置就会变得不那么明显.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code> 的所有权传递原理是 C++11 的 move 语法, 后者毕竟是刚刚推出的, 容易迷惑程序员.</p></li>
+<li><p>如果原本的所有权设计已经够完善了, 那么若要引入所有权共享机制, 可能不得不重构整个系统.</p></li>
+<li><p>所有权共享机制的登记工作在运行时进行, 开销可能相当大.</p></li>
+<li><p>某些极端情况下 (例如循环引用), 所有权被共享的对象永远不会被销毁.</p></li>
+<li><p>智能指针并不能够完全代替原生指针.</p></li>
+</ul>
+<p><strong>&gt; 结论</strong></p>
+<p>如果必须使用动态分配, 那么更倾向于将所有权保持在分配者手中. 如果其他地方要使用这个对象, 最好传递它的拷贝, 或者传递一个不用改变所有权的指针或引用. 倾向于使用 <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code> 来明确所有权传递, 例如：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FooFactory</span><span class="p">();</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">FooConsumer</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ptr</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>如果没有很好的理由, 则不要使用共享所有权. 这里的理由可以是为了避免开销昂贵的拷贝操作, 但是只有当性能提升非常明显, 并且操作的对象是不可变的（比如说 <code class="docutils literal notranslate"><span class="pre">std::shared_ptr&lt;const</span> <span class="pre">Foo&gt;</span></code> ）时候, 才能这么做. 如果确实要使用共享所有权, 建议于使用 <code class="docutils literal notranslate"><span class="pre">std::shared_ptr</span></code> .</p>
+<p>不要使用 <code class="docutils literal notranslate"><span class="pre">std::auto_ptr</span></code>, 使用 <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code> 代替它.</p>
+</section>
+<section id="cpplint">
+<h2><span class="section-number">3.8.6.2. </span>5.2. Cpplint<a class="headerlink" href="#cpplint" title="Permalink to this heading"></a></h2>
+<p><strong>&gt; 总述</strong></p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">cpplint.py</span></code> 检查风格错误.</p>
+<p><strong>&gt; 说明</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">cpplint.py</span></code> 是一个用来分析源文件, 能检查出多种风格错误的工具. 它不并完美, 甚至还会漏报和误报, 但它仍然是一个非常有用的工具. 在行尾加 <code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">NOLINT</span></code>, 或在上一行加 <code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">NOLINTNEXTLINE</span></code>, 可以忽略报错.</p>
+<p>某些项目会指导你如何使用他们的项目工具运行 <code class="docutils literal notranslate"><span class="pre">cpplint.py</span></code>. 如果你参与的项目没有提供, 你可以单独下载 <a class="reference external" href="http://github.com/google/styleguide/blob/gh-pages/cpplint/cpplint.py">cpplint.py</a>.</p>
+</section>
+<section id="acgtyrant">
+<h2><span class="section-number">3.8.6.3. </span>译者（acgtyrant）笔记<a class="headerlink" href="#acgtyrant" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>把智能指针当成对象来看待的话, 就很好领会它与所指对象之间的关系了.</p></li>
+<li><p>原来 Rust 的 Ownership 思想是受到了 C++ 智能指针的很大启发啊.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scoped_ptr</span></code> 和 <code class="docutils literal notranslate"><span class="pre">auto_ptr</span></code> 已过时.  现在是 <code class="docutils literal notranslate"><span class="pre">shared_ptr</span></code> 和 <code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> 的天下了.</p></li>
+<li><p>按本文来说, 似乎除了智能指针, 还有其它所有权机制, 值得留意.</p></li>
+<li><p>Arch Linux 用户注意了, AUR 有对 cpplint 打包.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="functions.html" class="btn btn-neutral float-left" title="3.8.5. 4. 函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="others.html" class="btn btn-neutral float-right" title="3.8.7. 6. 其他 C++ 特性" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

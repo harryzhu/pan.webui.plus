@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.5.6. 一致性 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.6. Google: Javascript 风格指南" href="../google-javascript-styleguide/contents.html" />
+    <link rel="prev" title="3.5.5. 类型系统" href="type_system.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.5. Google: TypeScript 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">3.5.1. 导言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syntax.html">3.5.2. 语法规范</a></li>
+<li class="toctree-l3"><a class="reference internal" href="language.html">3.5.3. 语言特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source_organization.html">3.5.4. 代码管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="type_system.html">3.5.5. 类型系统</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.5.6. 一致性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ts-goals">3.5.6.1. 目标</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.5. </span>Google: TypeScript 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.5.6. </span>一致性</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-typescript-styleguide/consistency.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3.5.6. </span>一致性<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p>对于本文中并未明确解释的任何与代码风格有关的问题，都应当与同一文件中其它代码的现有写法 <strong>保持一致</strong> 。如果问题仍未得到解决，则应当参考同一文件夹下其它文件的写法。</p>
+<section id="ts-goals">
+<span id="id2"></span><h2><span class="section-number">3.5.6.1. </span>目标<a class="headerlink" href="#ts-goals" title="Permalink to this heading"></a></h2>
+<p>通常情况下，程序员自己是最了解他们的代码需求的人。所以，对于那些答案不唯一、而且最优解取决于实际场景的问题，一般应当由当事人根据情况自行决定解决方案。因此，对于这类问题，默认回答往往都是“不管了”。</p>
+<p>以下几点则是其中的特例，它们解释了为什么要在这篇风格指南中编写全局性的规范。对于程序员自行规定的代码风格，应当根据以下几个原则对其进行评估：</p>
+<ol class="arabic simple">
+<li><p><strong>应当避免使用已知的会导致问题的代码范式，尤其是对于这门语言的新手而言</strong></p></li>
+</ol>
+<p>例如：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">any</span></code> 是一个容易被误用的类型（某个变量 <em>真的</em> 可以既是一个数字，同时还可以作为函数被调用吗？），因此关于它的用法，指南中提出了一些建议。</p></li>
+<li><p>TypeScript 的命名空间会为闭包优化带来问题。</p></li>
+<li><p>在文件名中使用句点 <code class="docutils literal notranslate"><span class="pre">.</span></code> 会让导入语句的样式变得不美观且令人困惑。</p></li>
+<li><p>类中的静态函数对优化十分不友好，同样的功能完全可以由文件级函数实现。</p></li>
+<li><p>不熟悉 <code class="docutils literal notranslate"><span class="pre">private</span></code> 关键字的用户会试图使用下划线将函数名变得混乱难懂。</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p><strong>跨项目的代码应当保持一致的用法</strong></p></li>
+</ol>
+<p>如果有两种语义上等价只是形式上不同的写法，应当只选择其中的一种，以避免代码中发生无意义的发散演化，同时也避免在代码审查的过程中进行无意义的争辩。</p>
+<p>除此之外，还应当尽可能与 JavaScript 的代码风格保持一致，因为大部分程序员都会同时使用两种语言。</p>
+<p>例如：</p>
+<ul class="simple">
+<li><p>变量名的首字母大小写风格。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">as</span> <span class="pre">T</span></code> 语法和等价的 <code class="docutils literal notranslate"><span class="pre">&lt;T&gt;x</span></code> 语法（后者不允许使用）。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Array&lt;[number,</span> <span class="pre">number]&gt;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">[number,</span> <span class="pre">number][]</span></code> 。</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p><strong>代码应当具有长期可维护性</strong></p></li>
+</ol>
+<p>代码的生命周期往往比其原始作者为其工作的时间要长，而 TypeScript 团队必须保证谷歌的所有工作在未来依然能顺利进行。</p>
+<p>例如：</p>
+<ul class="simple">
+<li><p>使用自动化工具修改代码，所有的代码均经过自动格式化以符合空格样式的规范。</p></li>
+<li><p>规定了一组 Clousure 编译器标识，使 TS 代码库在编写过程中无需考虑编译选项的问题，也让用户能够安全地使用共享库。</p></li>
+<li><p>代码在使用其它库时必须进行导入（严格依赖），以便依赖项中的重构不会改变其用户的依赖项。</p></li>
+<li><p>用户必须编写测试。如果没有测试，就无法保证对语言或 google3 库中的改动不会破坏用户现有的代码。</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p><strong>代码审查员应当着力于提高代码质量，而非强制推行各种规则</strong></p></li>
+</ol>
+<p>如果能够将规范实现为自动化检查工具，这通常都是一个好的做法。这对上文中的第三条原则也有所帮助。</p>
+<p>对于确实无关紧要的问题，例如语言中十分罕见的边界情况，或者避免了一个不太可能发生的 Bug ，等等，不妨直接无视之。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="type_system.html" class="btn btn-neutral float-left" title="3.5.5. 类型系统" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../google-javascript-styleguide/contents.html" class="btn btn-neutral float-right" title="3.6. Google: Javascript 风格指南" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

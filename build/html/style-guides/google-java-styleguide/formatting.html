@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.10.5. 4. 格式 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.10.6. 5. 命名" href="naming.html" />
+    <link rel="prev" title="3.10.4. 3. 源文件结构" href="source_file_structure.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.3. C++ 风格指南 - 内容目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.4. Objective-C 风格指南 - 内容目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.5. Python 风格指南 - 内容目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.6. Shell 风格指南 - 内容目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.7. Javascript 风格指南 - 内容目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.8. TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.9. HTML/CSS 风格指南 - 内容目录</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.10. Java 风格指南 - 内容目录</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html">3.10.1. 0. 扉页</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">3.10.2. 1. 介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source_file_basics.html">3.10.3. 2. 源文件基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source_file_structure.html">3.10.4. 3. 源文件结构</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.10.5. 4. 格式</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.10.5.1. 4.1. 花括号</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.10.5.2. 4.2. 代码块缩进：增加2个空格</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">3.10.5.3. 4.3. 一行一个语句</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#column-limit">3.10.5.4. 4.4. 列限制：100</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#line-wrapping">3.10.5.5. 4.5. 换行</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">3.10.5.6. 4.6. 空白字符</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">3.10.5.7. 4.7. 分组括号：推荐使用</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#specific-constructs">3.10.5.8. 4.8. 具体结构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html">3.10.6. 5. 命名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="programming_practices.html">3.10.7. 6. 编程习惯</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javadoc.html">3.10.8. 7. Javadoc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.10. </span>Java 风格指南 - 内容目录</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.10.5. </span>4. 格式</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-java-styleguide/formatting.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3.10.5. </span>4. 格式<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p><strong>术语说明</strong> ：块状结构指的是类、方法或构造器的主体。注意，根据4.8.3.1节关于 <a class="reference internal" href="#array-initializers"><span class="std std-ref">数组初始化器</span></a> 的内容，任何数组初始化器都可以选择性地被视为块状结构。</p>
+<section id="id2">
+<h2><span class="section-number">3.10.5.1. </span>4.1. 花括号<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<section id="id3">
+<h3><span class="section-number">3.10.5.1.1. </span>4.1.1. 选择性的花括号的使用<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>在 <code class="docutils literal notranslate"><span class="pre">if</span></code>、 <code class="docutils literal notranslate"><span class="pre">else</span></code> 、 <code class="docutils literal notranslate"><span class="pre">for</span></code> 、 <code class="docutils literal notranslate"><span class="pre">do</span></code> 和 <code class="docutils literal notranslate"><span class="pre">while</span></code> 语句中，即使主体为空或只包含一个语句，也应该写出花括号。</p>
+<p>其他选择性的花括号，比如lambda表达式中的花括号，依然不是必须写出的。</p>
+</section>
+<section id="k-r">
+<span id="nonempty-blocks"></span><h3><span class="section-number">3.10.5.1.2. </span>4.1.2. 非空块：K &amp; R 风格<a class="headerlink" href="#k-r" title="Permalink to this heading"></a></h3>
+<p>非空块和块状结构中的花括号遵循Kernighan &amp; Ritchie风格（“ <a class="reference external" href="https://www.codinghorror.com/blog/2012/07/new-programming-jargon.html">埃及括号</a> ”）：</p>
+<ul class="simple">
+<li><p>在打开花括号之前不换行，除非下面有详细说明。</p></li>
+<li><p>在打开花括号之后换行。</p></li>
+<li><p>在关闭花括号之前换行。</p></li>
+<li><p>仅在该花括号终止一个语句或终止方法、构造器或命名类的主体时，在关闭花括号之后才需要换行。例如，如果花括号后面跟的是 <code class="docutils literal notranslate"><span class="pre">else</span></code> 或逗号，则不换行。</p></li>
+</ul>
+<p>例外：在某些场景下，尽管规则允许你简单地使用一个以分号（ <code class="docutils literal notranslate"><span class="pre">;</span></code> ）结束的语句，但你仍可以在此选择使用一个语句块。在这种情况下，这个语句块开头的花括号前会有一个换行。这种特殊的语句块通常用于限定局部变量的作用范围，例如在switch语句中。</p>
+<p>例子：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">return</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">method</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyClass</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">method</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">something</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">ProblemException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">recover</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">otherCondition</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">somethingElse</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">lastThing</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">foo</span><span class="p">();</span>
+<span class="w">            </span><span class="n">frob</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>关于枚举类的一些例外情况，请参见第4.8.1节, <a class="reference internal" href="#enum-classes"><span class="std std-ref">枚举类</span></a> 。</p>
+</section>
+<section id="id5">
+<h3><span class="section-number">3.10.5.1.3. </span>4.1.3. 空代码块：应简洁表示<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>一个空的代码块或类似块的结构可以按照K &amp; R风格（如第4.1.2节 <a class="reference internal" href="#nonempty-blocks"><span class="std std-ref">非空块：K &amp; R风格</span></a> 所描述）。或者，你也可以在打开后立即关闭它，中间没有字符也不需要换行（即 <code class="docutils literal notranslate"><span class="pre">{}</span></code> ）， <strong>除非</strong> 它是多块语句的一部分（直接包含多个块的语句，例如 <code class="docutils literal notranslate"><span class="pre">if</span></code> / <code class="docutils literal notranslate"><span class="pre">else</span></code> 或 <code class="docutils literal notranslate"><span class="pre">try</span></code> / <code class="docutils literal notranslate"><span class="pre">catch</span></code> / <code class="docutils literal notranslate"><span class="pre">finally</span></code> ）。</p>
+<p>例如：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// 这是可以的</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">doNothing</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="c1">// 这同样也是可以的</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">doNothingElse</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不可以这样：多块语句中不能出现打开即关闭的简略花括号</span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">doSomething</span><span class="p">();</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id6">
+<h2><span class="section-number">3.10.5.2. </span>4.2. 代码块缩进：增加2个空格<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<p>每次打开一个新的代码块或块状结构时，缩进增加两个空格。当块结束时，缩进返回到之前的缩进级别。这种缩进级别同时适用于块中的代码以及注释。（参见第4.1.2节中的示例， <a class="reference internal" href="#nonempty-blocks"><span class="std std-ref">非空块：K &amp; R风格</span></a> 。）</p>
+</section>
+<section id="id7">
+<h2><span class="section-number">3.10.5.3. </span>4.3. 一行一个语句<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<p>每个语句后都应换行。</p>
+</section>
+<section id="column-limit">
+<span id="id8"></span><h2><span class="section-number">3.10.5.4. </span>4.4. 列限制：100<a class="headerlink" href="#column-limit" title="Permalink to this heading"></a></h2>
+<p>Java代码的列限制为100个字符。这里的“字符”指的是任何Unicode码位。除非以下特别说明，任何超出此限制的行都必须换行，如第4.5节 <a class="reference internal" href="#line-wrapping"><span class="std std-ref">换行</span></a> 中所解释的。</p>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>每个Unicode码位都算作一个字符，即使其显示宽度大于或小于一个字符。例如，如果使用 <a class="reference external" href="https://en.wikipedia.org/wiki/Halfwidth_and_fullwidth_forms">全角字符</a> ，你可能会选择在此规则严格要求的位置之前就换行。</p>
+</div>
+<p>例外：</p>
+<ul class="simple">
+<li><p>在某些情况下，遵循列限制是不可能的（例如，Javadoc中的长URL，或者一个长的JSNI方法引用）。</p></li>
+<li><p>包声明和导入语句（参见第3.2节 <a class="reference internal" href="source_file_structure.html#package-statement"><span class="std std-ref">包声明</span></a> 和第3.3节 <a class="reference internal" href="source_file_structure.html#import-statements"><span class="std std-ref">导入语句</span></a> ）。</p></li>
+<li><p>注释中可能会被复制并粘贴到shell的中命令行。</p></li>
+<li><p>在极少数情况下需要使用的非常长的标识符是允许超过列限制的。在这种情况下，周围代码的换行方式应遵循 <a class="reference external" href="https://github.com/google/google-java-format">google-java-format</a> 。</p></li>
+</ul>
+</section>
+<section id="line-wrapping">
+<span id="id10"></span><h2><span class="section-number">3.10.5.5. </span>4.5. 换行<a class="headerlink" href="#line-wrapping" title="Permalink to this heading"></a></h2>
+<p><strong>术语说明：</strong> 将可以在一行内书写的代码分成多行的操作被称为换行。</p>
+<p>没有全面且确定的公式明确指出在所有情况下如何进换行。很多时候，同一段代码有多种正确的换行方式。</p>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p><strong>注意：</strong> 尽管进换行的典型原因是为了避免超过列限制，但实际上在列限制内的代码也可以根据作者的判断进换行。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p><strong>提示：</strong> 有时重构一个方法或定义一个局部变量可以解决超过列限制的问题，而不需要换行。</p>
+</div>
+<section id="id11">
+<h3><span class="section-number">3.10.5.5.1. </span>4.5.1. 换行的位置<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<p>换行的首要准则是：倾向于在 <strong>更高级的句法层次</strong> 进换行。此外：</p>
+<ul>
+<li><ol class="arabic simple">
+<li><p>当一行在非赋值运算符处断开时，换行的位置位于符号之前。（注意，这与Google为其他语言所采用的风格不同，如C++和JavaScript。）</p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p>这同样适用于以下”类运算符”的符号：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>点分隔符（ <code class="docutils literal notranslate"><span class="pre">.</span></code> ）</p></li>
+<li><p>方法引用的两个冒号（ <code class="docutils literal notranslate"><span class="pre">::</span></code> ）</p></li>
+<li><p>类型约束中的与符号（ <code class="docutils literal notranslate"><span class="pre">&lt;T</span> <span class="pre">extends</span> <span class="pre">Foo</span> <span class="pre">&amp;</span> <span class="pre">Bar&gt;</span></code> ）</p></li>
+<li><p>catch块中的管道符号（ <code class="docutils literal notranslate"><span class="pre">catch</span> <span class="pre">(FooException</span> <span class="pre">|</span> <span class="pre">BarException</span> <span class="pre">e)</span></code> ）</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>当一行在赋值运算符处断开时，换行位置通常位于符号之后，但两种方式都是可以接受的。</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>这也适用于增强的 <code class="docutils literal notranslate"><span class="pre">for</span></code> 循环（”foreach”）语句中的”类赋值运算符”————冒号。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>方法或构造函数的名称应紧挨着其后的左括号（ <code class="docutils literal notranslate"><span class="pre">(</span></code> ）。</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="4">
+<li><p>逗号（ <code class="docutils literal notranslate"><span class="pre">,</span></code> ）应紧挨着它前面的标记。</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="5">
+<li><p>lambda箭头旁绝不换行，但是如果lambda的主体仅由单个未括起来的表达式组成，那么可以紧跟在箭头后面换行。示例：</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">MyLambda</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">obj</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="n">Predicate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">predicate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">    </span><span class="n">longExpressionInvolving</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p><strong>注意：</strong> 换行的主要目的是使代码更清晰，其不一定是行数最少的。</p>
+</div>
+</section>
+<section id="id12">
+<h3><span class="section-number">3.10.5.5.2. </span>4.5.2. 行缩进至少4个空格<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h3>
+<p>换行时，第一行之后的每一行（每一个连续的行）至少从原行缩进4个空格。</p>
+<p>当有多个连续行时，根据需要，缩进可以在4个空格之外变化。通常，只有当两个连续行从语法上开始于平行的元素时，它们才使用相同的缩进级别。</p>
+<p>第4.6.3节关于 <a class="reference internal" href="#horizontal-alignment"><span class="std std-ref">水平对齐</span></a> 讨论了一种不鼓励使用的做法————用数量变化的空格来使某些标记与前面的行对齐。</p>
+</section>
+</section>
+<section id="id13">
+<h2><span class="section-number">3.10.5.6. </span>4.6. 空白字符<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
+<section id="id14">
+<h3><span class="section-number">3.10.5.6.1. </span>4.6.1. 垂直空白<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h3>
+<p>单个空白行始终应出现在：</p>
+<ul>
+<li><ol class="arabic simple">
+<li><p>一个类的连续成员或初始化器之间：字段、构造函数、方法、嵌套类、静态初始化器和实例初始化器。</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>例外：</strong> 两个连续字段之间（它们之间没有其他代码）的空白行是可选的。这样的空行一般根据需要用于创建字段的逻辑分组。</p></li>
+<li><p><strong>例外：</strong> 枚举常量之间的空白行在 <a class="reference internal" href="#enum-classes"><span class="std std-ref">第4.8.1节</span></a> 中有描述。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>此文档的其他部分所要求的（例如第3节， <a class="reference internal" href="source_file_structure.html#source-file-structure"><span class="std std-ref">源文件结构</span></a> ，和第3.3节 <a class="reference internal" href="source_file_structure.html#import-statements"><span class="std std-ref">导入语句</span></a> ）。</p></li>
+</ol>
+</li>
+</ul>
+<p>单个空白行也可以出现在任何使用它可以提高代码可读性的位置，例如在语句之间以将代码组织成逻辑子部分。类的第一个成员或初始化器之前，或者最后一个成员或初始化器之后的空白行既不被鼓励也不被反对。</p>
+<p>多个连续的空白行是允许的，但从不被要求（或鼓励）。</p>
+</section>
+<section id="id15">
+<h3><span class="section-number">3.10.5.6.2. </span>4.6.2. 水平空白<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h3>
+<p>除了语言或其他风格规则所要求的地方，以及字符串文本、注释和Javadoc之外，单个ASCII空格字符也 <strong>仅</strong> 出现在以下位置。</p>
+<ul>
+<li><ol class="arabic simple">
+<li><p>将任何保留字，如 <code class="docutils literal notranslate"><span class="pre">if</span></code> 、 <code class="docutils literal notranslate"><span class="pre">for</span></code> 或 <code class="docutils literal notranslate"><span class="pre">catch</span></code> ，与其后面的左括号（ <code class="docutils literal notranslate"><span class="pre">(</span></code> ）隔开</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>将任何保留字，如 <code class="docutils literal notranslate"><span class="pre">else</span></code> 或 <code class="docutils literal notranslate"><span class="pre">catch</span></code> ，与其前面的右花括号（ <code class="docutils literal notranslate"><span class="pre">}</span></code> ）隔开</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>在任何左花括号（ <code class="docutils literal notranslate"><span class="pre">{</span></code> ）之前，但有两个例外：</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;SomeAnnotation({a,</span> <span class="pre">b})</span></code> （无空格）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">String[][]</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">{{&quot;foo&quot;}};</span></code> （根据下面的第9项， <code class="docutils literal notranslate"><span class="pre">{{</span></code> 之间不需要空格）</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><ol class="arabic simple" start="4">
+<li><p>在任何二元或三元运算符的两侧。这也适用于以下的”类运算符”的符号：</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>并行类型约束中的与符号： <code class="docutils literal notranslate"><span class="pre">&lt;T</span> <span class="pre">extends</span> <span class="pre">Foo</span> <span class="pre">&amp;</span> <span class="pre">Bar&gt;</span></code></p></li>
+<li><p>处理多个异常的catch块中的管道符号： <code class="docutils literal notranslate"><span class="pre">catch</span> <span class="pre">(FooException</span> <span class="pre">|</span> <span class="pre">BarException</span> <span class="pre">e)</span></code></p></li>
+<li><p>增强的 <code class="docutils literal notranslate"><span class="pre">for</span></code> （”foreach”）语句中的冒号（ <code class="docutils literal notranslate"><span class="pre">:</span></code> ）</p></li>
+<li><p>lambda表达式中的箭头： <code class="docutils literal notranslate"><span class="pre">(String</span> <span class="pre">str)</span> <span class="pre">-&gt;</span> <span class="pre">str.length()</span></code></p></li>
+</ul>
+<p>但不包括：</p>
+<ul class="simple">
+<li><p>方法引用中的两个冒号（ <code class="docutils literal notranslate"><span class="pre">::</span></code> ），正确的写法应类似 <code class="docutils literal notranslate"><span class="pre">Object::toString</span></code></p></li>
+<li><p>点分隔符（ <code class="docutils literal notranslate"><span class="pre">.</span></code> ），正确的写法应类似 <code class="docutils literal notranslate"><span class="pre">object.toString()</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><ol class="arabic simple" start="5">
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">,</span></code> 、 <code class="docutils literal notranslate"><span class="pre">:</span></code> 、 <code class="docutils literal notranslate"><span class="pre">;</span></code> 或类型转换的右括号 <code class="docutils literal notranslate"><span class="pre">)</span></code> 之后</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="6">
+<li><p>在代码中任何内容和开始注释的双斜杠 <code class="docutils literal notranslate"><span class="pre">//</span></code> 之间。允许多个空格。</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="7">
+<li><p>在开始注释的双斜杠 <code class="docutils literal notranslate"><span class="pre">//</span></code> 和注释内容之间。允许多个空格。</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="8">
+<li><p>在声明的类型和变量名之间： <code class="docutils literal notranslate"><span class="pre">List&lt;String&gt;</span> <span class="pre">list</span></code></p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="9">
+<li><p>在数组初始化器的两个花括号内部（可选）</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">int[]</span> <span class="pre">{5,</span> <span class="pre">6}</span></code> and <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">int[]</span> <span class="pre">{</span> <span class="pre">5,</span> <span class="pre">6</span> <span class="pre">}</span></code> 都是可行的</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><ol class="arabic simple" start="10">
+<li><p>在类型注解和 <code class="docutils literal notranslate"><span class="pre">[]</span></code> 或 <code class="docutils literal notranslate"><span class="pre">...</span></code> 之间</p></li>
+</ol>
+</li>
+</ul>
+<p>此规则不应被解读为在行的开始或结束时要求或禁止额外的空格；它只涉及内部空格。</p>
+</section>
+<section id="horizontal-alignment">
+<span id="id16"></span><h3><span class="section-number">3.10.5.6.3. </span>4.6.3. 水平对齐：永远不是必要的<a class="headerlink" href="#horizontal-alignment" title="Permalink to this heading"></a></h3>
+<p><strong>术语说明：</strong> 水平对齐是指在代码中添加变化数量的额外空格，目的是使某些标记直接出现在前面几行的某些其他标记的下方</p>
+<p>这种做法是允许的，但Google风格永远不要求它。即使在已经使用了水平对齐的地方，也不要求保持水平对齐。</p>
+<p>以下是一个不使用对齐的例子，然后是一个使用对齐的例子：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">      </span><span class="c1">// 这样很好</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">Color</span><span class="w"> </span><span class="n">color</span><span class="p">;</span><span class="w"> </span><span class="c1">// 这也是</span>
+
+<span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w">   </span><span class="n">x</span><span class="p">;</span><span class="w">      </span><span class="c1">// 这是允许的，但未来的编辑</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">Color</span><span class="w"> </span><span class="n">color</span><span class="p">;</span><span class="w">  </span><span class="c1">// 可能会使它不再对齐</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p><strong>提示：</strong> 对齐确实可以帮助提高可读性，但它为未来的维护带来了问题。考虑一个将来需要触碰某一行的更改，该更改可能会使之前令人满意的格式变得混乱（当然这种混乱是允许的）。更常见的是，它会促使编码者（也许是你）也调整附近行的空白，可能会触发一系列新的格式化。如此一来，那一行的更改现在就有了一个“爆炸半径”。在最坏的情况下，这可能导致毫无意义的繁忙工作，但即使在最好的情况下，它仍然会破坏版本历史信息，减慢审查者的速度，并加剧合并冲突（merge conflicts）。</p>
+</div>
+</section>
+</section>
+<section id="id17">
+<h2><span class="section-number">3.10.5.7. </span>4.7. 分组括号：推荐使用<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
+<p>对于非必须的分组括号，只有当作者和审查者都认为代码在没有它们的情况下不可能被误解，且它们不会使代码更易于阅读时，才能省略它们。假设每个读者都记住了整个Java运算符优先级表是不合理的。</p>
+</section>
+<section id="specific-constructs">
+<span id="id18"></span><h2><span class="section-number">3.10.5.8. </span>4.8. 具体结构<a class="headerlink" href="#specific-constructs" title="Permalink to this heading"></a></h2>
+<section id="enum-classes">
+<span id="id19"></span><h3><span class="section-number">3.10.5.8.1. </span>4.8.1. 枚举类<a class="headerlink" href="#enum-classes" title="Permalink to this heading"></a></h3>
+<p>在枚举常量后面的每个逗号后，换行是可选的。也允许额外的空白行（通常只有一行）。以下是一种可能的写法：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">Answer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">YES</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;yes&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="n">NO</span><span class="p">,</span>
+<span class="w">    </span><span class="n">MAYBE</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>一个没有方法且其常量上没有文档注释的枚举类可以选择按照数组初始化器的格式进行编写（参见4.8.3.1节有关 <a class="reference internal" href="#array-initializers"><span class="std std-ref">数组初始化器</span></a> 的内容）。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">Suit</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">CLUBS</span><span class="p">,</span><span class="w"> </span><span class="n">HEARTS</span><span class="p">,</span><span class="w"> </span><span class="n">SPADES</span><span class="p">,</span><span class="w"> </span><span class="n">DIAMONDS</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>由于枚举类是类，因此编写类的所有其他格式规则都适用于它。</p>
+</section>
+<section id="id20">
+<h3><span class="section-number">3.10.5.8.2. </span>4.8.2. 变量声明<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h3>
+<section id="id21">
+<h4><span class="section-number">3.10.5.8.2.1. </span>4.8.2.1. 一次只声明一个变量<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h4>
+<p>每个变量声明（字段或局部变量）只声明一个变量：不能使用 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">a,</span> <span class="pre">b;</span></code> 这样的声明。</p>
+<p><strong>例外：</strong> <code class="docutils literal notranslate"><span class="pre">for</span></code> 循环的头部中，多个变量的声明是可以接受的。</p>
+</section>
+<section id="id22">
+<h4><span class="section-number">3.10.5.8.2.2. </span>4.8.2.2. 按需声明<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h4>
+<p>局部变量一般不在其所在的块或块状结构的开始处声明。相反，局部变量在首次使用的地方附近（合理范围内）声明，以最小化它们的作用域。局部变量声明时通常会设定其初始值，或在声明后立即进行初始化。</p>
+</section>
+</section>
+<section id="id23">
+<h3><span class="section-number">3.10.5.8.3. </span>4.8.3. 数组<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h3>
+<section id="array-initializers">
+<span id="id24"></span><h4><span class="section-number">3.10.5.8.3.1. </span>4.8.3.1. 数组初始化器：可以是“块状”的<a class="headerlink" href="#array-initializers" title="Permalink to this heading"></a></h4>
+<p>任何数组初始化器都可以选择按照“块状结构”的格式进行编写。例如，以下写法都是可以接受的（这里 <strong>并未</strong> 列出所有可行的写法）：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span>
+<span class="p">}</span>
+
+<span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span>
+<span class="p">}</span>
+
+<span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="mi">3</span>
+<span class="p">}</span>
+
+<span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span>
+<span class="w">    </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="c">
+<h4><span class="section-number">3.10.5.8.3.2. </span>4.8.3.2. 不要使用C语言风格的声明<a class="headerlink" href="#c" title="Permalink to this heading"></a></h4>
+<p>方括号是类型的一部分，而非变量的一部分：正确的写法应该为 <code class="docutils literal notranslate"><span class="pre">String[]</span> <span class="pre">args</span></code> ，而不是 <code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">args[]</span></code> 。</p>
+</section>
+</section>
+<section id="switch">
+<h3><span class="section-number">3.10.5.8.4. </span>4.8.4. switch语句<a class="headerlink" href="#switch" title="Permalink to this heading"></a></h3>
+<p><strong>术语说明：</strong> 在switch语句块的花括号内有一个或多个语句组。每个语句组由一个或多个switch标签（要么是 <code class="docutils literal notranslate"><span class="pre">case</span> <span class="pre">FOO:</span></code> 要么是 <code class="docutils literal notranslate"><span class="pre">default:</span></code> ）组成，后面跟着一个或多个语句（对于最后一个语句组，可能是零个或多个语句）。</p>
+<section id="id25">
+<h4><span class="section-number">3.10.5.8.4.1. </span>4.8.4.1. 缩进<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h4>
+<p>与任何其他块一样，switch块中内容的缩进为2格。</p>
+<p>在switch标签后应有一个换行，且缩进级别增加2格，就好像一个块正在被打开一样。接下来的switch标签回到了之前的缩进级别，就好像一个块已经被关闭了一样。</p>
+</section>
+<section id="id26">
+<h4><span class="section-number">3.10.5.8.4.2. </span>4.8.4.2. 贯穿：需要注释<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h4>
+<p>在switch块内，每个语句组要么突然终止（使用 <code class="docutils literal notranslate"><span class="pre">break</span></code> 、 <code class="docutils literal notranslate"><span class="pre">continue</span></code>、 <code class="docutils literal notranslate"><span class="pre">return</span></code> 或抛出异常），要么用注释标记，以指示执行会或可能继续进入下一个语句组。任何传达贯穿意思的注释都是足够的（通常是 <code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">fall</span> <span class="pre">through</span></code> ）。在switch块的最后一个语句组中，不需要这个特殊注释。示例如下</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span>
+<span class="w">        </span><span class="n">prepareOneOrTwo</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// fall through</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span>
+<span class="w">        </span><span class="n">handleOneTwoOrThree</span><span class="p">();</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">default</span><span class="p">:</span>
+<span class="w">        </span><span class="n">handleLargeNumber</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>注意单个的switch标签 <code class="docutils literal notranslate"><span class="pre">case</span> <span class="pre">1</span></code> 后面贯穿不需要做任何注释，只有在语句组的最后贯穿才需要注释。</p>
+</section>
+<section id="default">
+<h4><span class="section-number">3.10.5.8.4.3. </span>4.8.4.3. 必须要有 <code class="docutils literal notranslate"><span class="pre">default</span></code> 标签<a class="headerlink" href="#default" title="Permalink to this heading"></a></h4>
+<p>每个switch语句都包括一个default语句组，即使其中不包含任何代码。</p>
+<p><strong>例外：</strong> 对于 <code class="docutils literal notranslate"><span class="pre">enum</span></code> 类的switch语句，如果它明确地包括覆盖该类型的所有可能值的情况，则可以省略 <code class="docutils literal notranslate"><span class="pre">default</span></code> 语句组。如果遗漏了任何可能值，这样做可以让IDE或其他静态分析工具能够发出警告。</p>
+</section>
+</section>
+<section id="id27">
+<h3><span class="section-number">3.10.5.8.5. </span>4.8.5. 注解<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h3>
+<section id="id28">
+<h4><span class="section-number">3.10.5.8.5.1. </span>4.8.5.1. 类型注解<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h4>
+<p>应用于类型的注解直接出现在被注解的类型之前。如果注解是用 <code class="docutils literal notranslate"><span class="pre">&#64;Target(ElementType.TYPE_USE)</span></code> 进行元注解的，那么它就是一个类型注解。示例如下：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="nd">@Nullable</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="nd">@Nullable</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="nf">getPersonByName</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="class-annotations">
+<span id="id29"></span><h4><span class="section-number">3.10.5.8.5.2. </span>4.8.5.2. 类注解<a class="headerlink" href="#class-annotations" title="Permalink to this heading"></a></h4>
+<p>应用于类的注解紧跟在文档块之后，并且每个注解都列在自己的行上（也就是每行一个注解）。这些换行并不构成换行（见4.5节， <a class="reference internal" href="#line-wrapping"><span class="std std-ref">换行</span></a>），所以缩进级别不增加。示例如下：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Deprecated</span>
+<span class="nd">@CheckReturnValue</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Frozzler</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id30">
+<h4><span class="section-number">3.10.5.8.5.3. </span>4.8.5.3. 方法/构造函数注解<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h4>
+<p>应用于方法或构造函数的注解的规则和 <a class="reference internal" href="#class-annotations"><span class="std std-ref">上一节</span></a> 一样。实例如下：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Deprecated</span>
+<span class="nd">@Override</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getNameIfPresent</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id31">
+<h4><span class="section-number">3.10.5.8.5.4. </span>4.8.5.4. 字段注解<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h4>
+<p>应用于字段的注解也紧跟在文档块之后，但在这种情况下，多个注解（可能带参数）可以列在同一行上；例如：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Partial</span><span class="w"> </span><span class="nd">@Mock</span><span class="w"> </span><span class="n">DataLoader</span><span class="w"> </span><span class="n">loader</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="id32">
+<h4><span class="section-number">3.10.5.8.5.5. </span>4.8.5.5. 参数/局部变量注解<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h4>
+<p>应用于参数或局部变量的注解没有一个具体的编写规则（当然，当注解是类型注解时除外）。</p>
+</section>
+</section>
+<section id="id33">
+<h3><span class="section-number">3.10.5.8.6. </span>4.8.6. 注释<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h3>
+<p>本节讨论注释的实现。关于Javadoc的内容在第7节 <a class="reference internal" href="javadoc.html#javadoc"><span class="std std-ref">Javadoc</span></a> 中单独讨论。</p>
+<p>尽管一行可能只包含注释和空白字符，但由于有注释的存在，它并不被视为一个完全的空白行。</p>
+<section id="id34">
+<h4><span class="section-number">3.10.5.8.6.1. </span>4.8.6.1. 块状注释<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h4>
+<p>块状注释与周围的代码具有相同的缩进级别。它们可以是 <code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">...</span> <span class="pre">*/</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">...</span></code> 形式的。对于多行的 <code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">...</span> <span class="pre">*/</span></code> 注释，后续的行必须以 <code class="docutils literal notranslate"><span class="pre">*</span></code> 开始，并且这个 <code class="docutils literal notranslate"><span class="pre">*</span></code> 要与上一行的 <code class="docutils literal notranslate"><span class="pre">*</span></code> 对齐。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * This is          // And so           /* Or you can</span>
+<span class="cm"> * okay.            // is this.          * even do this. */</span>
+<span class="w"> </span><span class="o">*/</span>
+</pre></div>
+</div>
+<p>注释不应被星号或其他字符所构成的框框起来。</p>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p><strong>提示：</strong> 当编写多行注释时，如果你希望在必要时,自动的代码格式化工具能重新调整行的格式（段落样式），你应该使用 <code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">...</span> <span class="pre">*/</span></code> 形式。大多数格式化工具不会重新调整 <code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">...</span></code> 形式的注释块中的行。</p>
+</div>
+</section>
+</section>
+<section id="id35">
+<h3><span class="section-number">3.10.5.8.7. </span>4.8.7. 修饰符<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h3>
+<p>当存在类和成员的修饰符时，它们出现的顺序应遵循Java语言规范推荐的顺序：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">protected</span><span class="w"> </span><span class="kd">private</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">transient</span><span class="w"> </span><span class="kd">volatile</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kd">native</span><span class="w"> </span><span class="kd">strictfp</span>
+</pre></div>
+</div>
+</section>
+<section id="id36">
+<h3><span class="section-number">3.10.5.8.8. </span>4.8.8. 数值字面量<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h3>
+<p>长整型（ <code class="docutils literal notranslate"><span class="pre">long</span></code> 类型）字面量使用大写的 <code class="docutils literal notranslate"><span class="pre">L</span></code> 作为后缀，而绝不能使用小写的（以避免与数字 <code class="docutils literal notranslate"><span class="pre">1</span></code> 混淆）。例如，应写为 <code class="docutils literal notranslate"><span class="pre">3000000000L</span></code> 而非 <code class="docutils literal notranslate"><span class="pre">3000000000l</span></code>。</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="source_file_structure.html" class="btn btn-neutral float-left" title="3.10.4. 3. 源文件结构" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="naming.html" class="btn btn-neutral float-right" title="3.10.6. 5. 命名" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

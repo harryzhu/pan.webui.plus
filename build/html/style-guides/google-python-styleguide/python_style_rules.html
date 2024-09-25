@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.3.4. Python风格规范 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.3.5. 临别赠言" href="parting_words.html" />
+    <link rel="prev" title="3.3.3. Python语言规范" href="python_language_rules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.3. Google: Python 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html">3.3.1. 扉页</a></li>
+<li class="toctree-l3"><a class="reference internal" href="background.html">3.3.2. 背景</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python_language_rules.html">3.3.3. Python语言规范</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.3.4. Python风格规范</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">3.3.4.1. 分号</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#line-length">3.3.4.2. 行宽</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.3.4.3. 括号</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indentation">3.3.4.4. 缩进</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.3.4.5. 序列的尾部要添加逗号吗?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shebang">3.3.4.6. Shebang行</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docstring">3.3.4.7. 注释和文档字符串 (docstring)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">3.3.4.8. 标点符号、拼写和语法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">3.3.4.9. 字符串</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#socket">3.3.4.10. 文件、套接字 (socket) 和类似的有状态资源</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#todo">3.3.4.11. TODO (待办) 注释</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#import">3.3.4.12. 导入 (import) 语句的格式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">3.3.4.13. 语句</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#getter-setter">3.3.4.14. 访问器 (getter) 和设置器 (setter)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">3.3.4.15. 命名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">3.3.4.16. 主程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">3.3.4.17. 函数长度</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#type-annotation">3.3.4.18. 类型注解 (type annotation)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="parting_words.html">3.3.5. 临别赠言</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.3. </span>Google: Python 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.3.4. </span>Python风格规范</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-python-styleguide/python_style_rules.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python">
+<h1><span class="section-number">3.3.4. </span>Python风格规范<a class="headerlink" href="#python" title="Permalink to this heading"></a></h1>
+<section id="id1">
+<h2><span class="section-number">3.3.4.1. </span>分号<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>不要在行尾加分号, 也不要用分号将两条语句合并到一行.</p>
+</div>
+</section>
+<section id="line-length">
+<span id="id2"></span><h2><span class="section-number">3.3.4.2. </span>行宽<a class="headerlink" href="#line-length" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>最大行宽是 80 个字符.</p>
+</div>
+<p>例外:</p>
+<ol class="arabic simple">
+<li><p>长的导入 (import) 语句.</p></li>
+<li><p>注释里的 URL、路径名以及长的标志 (flag).</p></li>
+<li><p>不便于换行、不包含空格、模块级的长字符串常量, 比如 URL 或路径名.</p></li>
+<li><p>Pylint 禁用注释. (例如: <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">pylint:</span> <span class="pre">disable=invalid-name</span></code>)</p></li>
+</ol>
+<p>不要用反斜杠表示 <a class="reference external" href="https://docs.python.org/3/reference/lexical_analysis.html#explicit-line-joining">显式续行 (explicit line continuation)</a>.</p>
+<p>应该利用 Python 的 <a class="reference external" href="http://docs.python.org/2/reference/lexical_analysis.html#implicit-line-joining">圆括号, 中括号和花括号的隐式续行 (implicit line joining)</a> . 如有需要, 你可以在表达式外围添加一对括号.</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">foo_bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;黑&#39;</span><span class="p">,</span> <span class="n">design</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span>
+        <span class="n">emphasis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">highlight</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">width</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">height</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span>
+    <span class="n">color</span> <span class="o">==</span> <span class="s1">&#39;红&#39;</span> <span class="ow">and</span> <span class="n">emphasis</span> <span class="o">==</span> <span class="s1">&#39;加粗&#39;</span><span class="p">):</span>
+
+<span class="p">(</span><span class="n">bridge_questions</span><span class="o">.</span><span class="n">clarification_on</span>
+ <span class="o">.</span><span class="n">average_airspeed_of</span><span class="o">.</span><span class="n">unladen_swallow</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;美国的还是欧洲的?&#39;</span>
+
+<span class="k">with</span> <span class="p">(</span>
+    <span class="n">very_long_first_expression_function</span><span class="p">()</span> <span class="k">as</span> <span class="n">spam</span><span class="p">,</span>
+    <span class="n">very_long_second_expression_function</span><span class="p">()</span> <span class="k">as</span> <span class="n">beans</span><span class="p">,</span>
+    <span class="n">third_thing</span><span class="p">()</span> <span class="k">as</span> <span class="n">eggs</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">place_order</span><span class="p">(</span><span class="n">eggs</span><span class="p">,</span> <span class="n">beans</span><span class="p">,</span> <span class="n">spam</span><span class="p">,</span> <span class="n">beans</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">width</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">height</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> \
+    <span class="n">color</span> <span class="o">==</span> <span class="s1">&#39;红&#39;</span> <span class="ow">and</span> <span class="n">emphasis</span> <span class="o">==</span> <span class="s1">&#39;加粗&#39;</span><span class="p">:</span>
+
+<span class="n">bridge_questions</span><span class="o">.</span><span class="n">clarification_on</span> \
+    <span class="o">.</span><span class="n">average_airspeed_of</span><span class="o">.</span><span class="n">unladen_swallow</span> <span class="o">=</span> <span class="s1">&#39;美国的还是欧洲的?&#39;</span>
+
+<span class="k">with</span> <span class="n">very_long_first_expression_function</span><span class="p">()</span> <span class="k">as</span> <span class="n">spam</span><span class="p">,</span> \
+        <span class="n">very_long_second_expression_function</span><span class="p">()</span> <span class="k">as</span> <span class="n">beans</span><span class="p">,</span> \
+        <span class="n">third_thing</span><span class="p">()</span> <span class="k">as</span> <span class="n">eggs</span><span class="p">:</span>
+    <span class="n">place_order</span><span class="p">(</span><span class="n">eggs</span><span class="p">,</span> <span class="n">beans</span><span class="p">,</span> <span class="n">spam</span><span class="p">,</span> <span class="n">beans</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>如果字符串的字面量 (literal) 超过一行, 应该用圆括号实现隐式续行:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;这是一个很长很长很长很长很长很长&#39;</span>
+     <span class="s1">&#39;很长很长很长很长很长的字符串&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>最好在最外层的语法结构上分行. 如果你需要多次换行, 应该在同一层语法结构上换行.</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bridgekeeper</span><span class="o">.</span><span class="n">answer</span><span class="p">(</span>
+     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;亚瑟&quot;</span><span class="p">,</span> <span class="n">quest</span><span class="o">=</span><span class="n">questlib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="s2">&quot;亚瑟&quot;</span><span class="p">,</span> <span class="n">perilous</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+ <span class="n">answer</span> <span class="o">=</span> <span class="p">(</span><span class="n">a_long_line</span><span class="p">()</span><span class="o">.</span><span class="n">of_chained_methods</span><span class="p">()</span>
+           <span class="o">.</span><span class="n">that_eventually_provides</span><span class="p">()</span><span class="o">.</span><span class="n">an_answer</span><span class="p">())</span>
+
+ <span class="k">if</span> <span class="p">(</span>
+     <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span>
+     <span class="ow">or</span> <span class="s1">&#39;editor.language&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span>
+     <span class="ow">or</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;editor.language&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">use_spaces</span> <span class="ow">is</span> <span class="kc">False</span>
+ <span class="p">):</span>
+   <span class="n">use_tabs</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bridgekeeper</span><span class="o">.</span><span class="n">answer</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;亚瑟&quot;</span><span class="p">,</span> <span class="n">quest</span><span class="o">=</span><span class="n">questlib</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
+    <span class="n">owner</span><span class="o">=</span><span class="s2">&quot;亚瑟&quot;</span><span class="p">,</span> <span class="n">perilous</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="n">answer</span> <span class="o">=</span> <span class="n">a_long_line</span><span class="p">()</span><span class="o">.</span><span class="n">of_chained_methods</span><span class="p">()</span><span class="o">.</span><span class="n">that_eventually_provides</span><span class="p">(</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">an_answer</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="s1">&#39;editor.language&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">or</span> <span class="n">config</span><span class="p">[</span>
+    <span class="s1">&#39;editor.language&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">use_spaces</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">):</span>
+  <span class="n">use_tabs</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>必要时, 注释中的长 URL 可以独立成行.</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 详情参见</span>
+<span class="c1"># http://www.example.com/us/developer/documentation/api/content/v2.0/csv_file_name_extension_full_specification.html</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 详情参见</span>
+<span class="c1"># http://www.example.com/us/developer/documentation/api/content/\</span>
+<span class="c1"># v2.0/csv_file_name_extension_full_specification.html</span>
+</pre></div>
+</div>
+<p>注意上面各个例子中的缩进; 详情参见 <a class="reference internal" href="#indentation"><span class="std std-ref">缩进</span></a> 章节的解释.</p>
+<p>如果一行超过 80 个字符, 且 <a class="reference external" href="https://github.com/psf/black">Black</a> 或 <a class="reference external" href="https://github.com/google/pyink">Pyink</a> 自动格式化工具无法继续缩减行宽, 则允许该行超过 80 个字符. 我们也鼓励作者根据上面的规则手动拆分.</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.3.4.3. </span>括号<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>使用括号时宁缺毋滥.</p>
+</div>
+<p>可以把元组 (tuple) 括起来, 但不强制. 不要在返回语句或条件语句中使用括号, 除非用于隐式续行或表示元组.</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">foo</span><span class="p">:</span>
+    <span class="n">bar</span><span class="p">()</span>
+<span class="k">while</span> <span class="n">x</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">bar</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">y</span><span class="p">:</span>
+    <span class="n">bar</span><span class="p">()</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">x</span><span class="p">:</span>
+    <span class="n">bar</span><span class="p">()</span>
+<span class="c1"># 对于包含单个元素的元组, 括号比逗号更直观.</span>
+<span class="n">onesie</span> <span class="o">=</span> <span class="p">(</span><span class="n">foo</span><span class="p">,)</span>
+<span class="k">return</span> <span class="n">foo</span>
+<span class="k">return</span> <span class="n">spam</span><span class="p">,</span> <span class="n">beans</span>
+<span class="k">return</span> <span class="p">(</span><span class="n">spam</span><span class="p">,</span> <span class="n">beans</span><span class="p">)</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">bar</span><span class="p">()</span>
+<span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">bar</span><span class="p">()</span>
+<span class="k">return</span> <span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="indentation">
+<span id="id4"></span><h2><span class="section-number">3.3.4.4. </span>缩进<a class="headerlink" href="#indentation" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>用4个空格作为缩进.</p>
+</div>
+<p>不要使用制表符. 使用隐式续行时, 应该把括起来的元素垂直对齐(参见 <a class="reference internal" href="#line-length"><span class="std std-ref">行宽</span></a> 章节的示例), 或者添加4个空格的悬挂缩进. 右括号 (圆括号, 方括号或花括号) 可以置于表达式结尾或者另起一行. 另起一行时右括号应该和左括号所在的那一行缩进相同.</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 与左括号对齐.</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span><span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span>
+                         <span class="n">var_three</span><span class="p">,</span> <span class="n">var_four</span><span class="p">)</span>
+<span class="n">meal</span> <span class="o">=</span> <span class="p">(</span><span class="n">spam</span><span class="p">,</span>
+        <span class="n">beans</span><span class="p">)</span>
+
+<span class="c1"># 与字典的左括号对齐.</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;long_dictionary_key&#39;</span><span class="p">:</span> <span class="n">value1</span> <span class="o">+</span>
+                           <span class="n">value2</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+
+<span class="c1"># 4个空格的悬挂缩进; 首行没有元素</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span>
+    <span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span> <span class="n">var_three</span><span class="p">,</span>
+    <span class="n">var_four</span><span class="p">)</span>
+<span class="n">meal</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">spam</span><span class="p">,</span>
+    <span class="n">beans</span><span class="p">)</span>
+
+<span class="c1"># 4个空格的悬挂缩进; 首行没有元素</span>
+<span class="c1"># 右括号另起一行.</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span>
+    <span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span> <span class="n">var_three</span><span class="p">,</span>
+    <span class="n">var_four</span>
+<span class="p">)</span>
+<span class="n">meal</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">spam</span><span class="p">,</span>
+    <span class="n">beans</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># 字典中的4空格悬挂缩进.</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;long_dictionary_key&#39;</span><span class="p">:</span>
+        <span class="n">long_dictionary_value</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 首行不能有元素.</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span><span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span>
+    <span class="n">var_three</span><span class="p">,</span> <span class="n">var_four</span><span class="p">)</span>
+
+<span class="c1"># 禁止2个空格的悬挂缩进.</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span>
+  <span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span> <span class="n">var_three</span><span class="p">,</span>
+  <span class="n">var_four</span><span class="p">)</span>
+
+<span class="c1"># 字典没有悬挂缩进.</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;long_dictionary_key&#39;</span><span class="p">:</span>
+    <span class="n">long_dictionary_value</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2><span class="section-number">3.3.4.5. </span>序列的尾部要添加逗号吗?<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>仅当 <code class="docutils literal notranslate"><span class="pre">]</span></code>, <code class="docutils literal notranslate"><span class="pre">)</span></code>, <code class="docutils literal notranslate"><span class="pre">}</span></code> 和最后一个元素不在同一行时, 推荐在序列尾部添加逗号. 我们的 Python 自动格式化工具会把尾部的逗号视为一种格式提示.</p>
+</div>
+</section>
+<section id="shebang">
+<h2><span class="section-number">3.3.4.6. </span>Shebang行<a class="headerlink" href="#shebang" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>大部分 <code class="docutils literal notranslate"><span class="pre">.py</span></code> 文件不必以 <code class="docutils literal notranslate"><span class="pre">#!</span></code> 开始. 可以根据 <a class="reference external" href="http://www.python.org/dev/peps/pep-0394/">PEP-394</a> , 在程序的主文件开头添加 <code class="docutils literal notranslate"><span class="pre">#!/usr/bin/env</span> <span class="pre">python3</span></code> (以支持 virtualenv) 或者 <code class="docutils literal notranslate"><span class="pre">#!/usr/bin/python3</span></code>.</p>
+</div>
+<p>(译者注: 在计算机科学中, <a class="reference external" href="http://en.wikipedia.org/wiki/Shebang_(Unix)">Shebang</a> (也称为Hashbang)是一个由井号和叹号构成的字符串行(#!), 其出现在文本文件的第一行的前两个字符. 在文件中存在Shebang的情况下, 类Unix操作系统的程序载入器会分析Shebang后的内容, 将这些内容作为解释器指令, 并调用该指令, 并将载有Shebang的文件路径作为该解释器的参数. 例如, 以指令#!/bin/sh开头的文件在执行时会实际调用/bin/sh程序.)</p>
+<p>内核会通过这行内容找到Python解释器, 但是Python解释器在导入模块时会忽略这行内容. 这行内容仅对需要直接运行的文件有效.</p>
+</section>
+<section id="docstring">
+<span id="comments"></span><h2><span class="section-number">3.3.4.7. </span>注释和文档字符串 (docstring)<a class="headerlink" href="#docstring" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>模块、函数、方法的文档字符串和内部注释一定要采用正确的风格.</p>
+</div>
+<p><strong>文档字符串</strong></p>
+<blockquote>
+<div><p>Python 的文档字符串用于注释代码. 文档字符串是包、模块、类或函数里作为第一个语句的字符串. 可以用对象的 <code class="docutils literal notranslate"><span class="pre">__doc__</span></code> 成员自动提取这些字符串, 并为 <code class="docutils literal notranslate"><span class="pre">pydoc</span></code> 所用. (可以试试在你的模块上运行 <code class="docutils literal notranslate"><span class="pre">pydoc</span></code> 并观察结果). 文档字符串一定要用三重双引号 <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code> 的格式 (依据 <a class="reference external" href="http://www.python.org/dev/peps/pep-0257/">PEP-257</a> ). 文档字符串应该是一行概述 (整行不超过 80 个字符), 以句号、问号或感叹号结尾. 如果要写更多注释 (推荐), 那么概述后面必须紧接着一个空行, 然后是剩下的内容, 缩进与文档字符串的第一行第一个引号对齐. 下面是更多有关文档字符串的格式规范.</p>
+</div></blockquote>
+<p><strong>模块</strong></p>
+<blockquote>
+<div><p>每个文件应该包含一个许可协议模版. 应根据项目使用的许可协议 (例如, Apache 2.0, BSD, LGPL, GPL) 选择合适的模版.</p>
+<p>文件的开头应该是文档字符串, 其中应该描述该模块内容和用法.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;模块或程序的一行概述, 以句号结尾.</span>
+
+<span class="sd">留一个空行. 接下来应该写模块或程序的总体描述. 也可以选择简要描述导出的类和函数,</span>
+<span class="sd">和/或描述使用示例.</span>
+
+<span class="sd">经典的使用示例:</span>
+
+<span class="sd">foo = ClassFoo()</span>
+<span class="sd">bar = foo.FunctionBar()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>测试模块</strong></p>
+<blockquote>
+<div><p>测试文件不必包含模块级文档字符串. 只有在文档字符串可以提供额外信息时才需要写入文件.</p>
+<p>例如, 你可以描述运行测试时所需的特殊要求, 解释不常见的初始化模式, 描述外部环境的依赖等等.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;这个blaze测试会使用样板文件（golden files）.</span>
+
+<span class="sd">若要更新这些文件, 你可以在 `google3` 文件夹中运行</span>
+<span class="sd">`blaze run //foo/bar:foo_test -- --update_golden_files`</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>不要使用不能提供额外信息的文档字符串.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;foo.bar 的测试.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>函数和方法</strong></p>
+<blockquote>
+<div><p>本节中的函数是指函数、方法、生成器 (generator) 和特性 (property).</p>
+<p>满足下列任意特征的任何函数都必须有文档字符串:</p>
+<ol class="arabic simple">
+<li><p>公开 API 的一部分</p></li>
+<li><p>长度过长</p></li>
+<li><p>逻辑不能一目了然</p></li>
+</ol>
+<p>文档字符串应该提供充分的信息, 让调用者无需阅读函数的代码就能调用函数. 文档字符串应该描述函数的调用语法和语义信息, 而不应该描述具体的实现细节, 除非这些细节会影响函数的用法. 比如, 如果函数的副作用是会修改某个传入的对象, 那就需要在文档字符串中说明. 对于微妙、重要但是与调用者无关的实现细节, 相较于在文档字符串里说明, 还是在代码中间加注释更好.</p>
+<p>文档字符串可以是陈述句 (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;Fetches</span> <span class="pre">rows</span> <span class="pre">from</span> <span class="pre">a</span> <span class="pre">Bigtable.&quot;&quot;&quot;</span></code>) 或者祈使句 (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;Fetch</span> <span class="pre">rows</span> <span class="pre">from</span> <span class="pre">a</span> <span class="pre">Bigtable.&quot;&quot;&quot;</span></code>), 不过一个文件内的风格应当一致. 对于 <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> 修饰的数据描述符 (data descriptor), 文档字符串应采用和属性 (attribute) 或 <a class="reference internal" href="#doc-function-args"><span class="std std-ref">函数参数</span></a> 一样的风格 (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;Bigtable</span> <span class="pre">路径.&quot;&quot;&quot;</span></code> 而非 <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;返回</span> <span class="pre">Bigtable</span> <span class="pre">路径.&quot;&quot;&quot;</span></code>).</p>
+<p>对于覆写 (override) 基类 (base class) 方法的子类方法, 可以用简单的文档字符串引导读者阅读基类方法的文档字符串, 比如 <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;参见基类.&quot;&quot;&quot;&quot;</span></code>. 这样是为了避免到处复制基类方法中已有的文档字符串. 然而, 如果覆写的子类方法与基类方法截然不同, 或者有更多细节需要记录 (例如有额外的的副作用), 那么子类方法的文档字符串中至少要描述这些区别.</p>
+<p>函数的部分特征应该在以下列出特殊小节中记录. 每小节有一行标题, 标题以冒号结尾. 除标题行外, 小节的其他部分应有2个或4个空格 (同一文件内应保持一致) 的悬挂缩进. 如果函数名和函数签名 (signature) 可以见名知意, 以至于一行文档字符串就能恰当地描述该函数, 那么可以省略这些小节.</p>
+</div></blockquote>
+<blockquote id="doc-function-args">
+<div><dl>
+<dt>Args: (参数:)</dt><dd><p>列出所有参数名. 参数名后面是一个冒号, 然后是一个空格或者换行符, 最后是描述. 如果描述过长以至于一行超出了 80 字符, 则描述部分应该比参数名所在的行多2个或者4个空格 (文件内应当一致) 的悬挂缩进. 如果代码没有类型注解, 则描述中应该说明所需的类型. 如果一个函数有形如 <code class="docutils literal notranslate"><span class="pre">*foo</span></code> (可变长参数列表) 或者 <code class="docutils literal notranslate"><span class="pre">**bar</span></code> (任意关键字参数) 的参数, 那么列举参数名时应该写成 <code class="docutils literal notranslate"><span class="pre">*foo</span></code> 和 <code class="docutils literal notranslate"><span class="pre">**bar</span></code> 的这样的格式.</p>
+</dd>
+<dt>Returns: (“返回:”)</dt><dd><p>生成器应该用 “Yields:” (“生成:” )</p>
+<p>描述返回值的类型和意义. 如果函数仅仅返回 <code class="docutils literal notranslate"><span class="pre">None</span></code>, 这一小节可以省略. 如果文档字符串以 Returns (返回) 或者 Yields (生成) 开头 (例如 <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;返回</span> <span class="pre">Bigtable</span> <span class="pre">的行,</span> <span class="pre">类型是字符串构成的元组.&quot;&quot;&quot;</span></code>) 且这句话已经足以描述返回值, 也可以省略这一小节. 不要模仿 Numpy 风格的文档 (<a class="reference external" href="http://numpy.org/doc/stable/reference/generated/numpy.linalg.qr.html">例子</a>). 他们在文档中记录作为返回值的元组时, 写得就像返回值是多个值且每个值都有名字 (没有提到返回的是元组). 应该这样描述此类情况: “返回: 一个元组 (mat_a, mat_b), 其中 mat_a 是…, 且 …”. 文档字符串中使用的辅助名称不需要和函数体的内部变量名一致 (因为这些名称不是 API 的一部分).</p>
+</dd>
+<dt>Raises: (抛出:)</dt><dd><p>列出与接口相关的所有异常和异常描述. 用类似 Args (参数) 小节的格式，写成异常名+冒号+空格/换行, 并添加悬挂缩进. 不要在文档中记录违反 API 的使用条件时会抛出的异常 (因为这会让违背 API 时出现的效果成为 API 的一部分, 这是矛盾的).</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fetch_smalltable_rows</span><span class="p">(</span>
+    <span class="n">table_handle</span><span class="p">:</span> <span class="n">smalltable</span><span class="o">.</span><span class="n">Table</span><span class="p">,</span>
+    <span class="n">keys</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">bytes</span> <span class="o">|</span> <span class="nb">str</span><span class="p">],</span>
+    <span class="n">require_all_keys</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;从 Smalltable 获取数据行.</span>
+
+<span class="sd">    从 table_handle 代表的 Table 实例中检索指定键值对应的行. 如果键值是字符串,</span>
+<span class="sd">    字符串将用 UTF-8 编码.</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">        table_handle: 处于打开状态的 smalltable.Table 实例.</span>
+<span class="sd">        keys: 一个字符串序列, 代表要获取的行的键值. 字符串将用 UTF-8 编码.</span>
+<span class="sd">        require_all_keys: 如果为 True, 只返回那些所有键值都有对应数据的</span>
+<span class="sd">            行.</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">        一个字典, 把键值映射到行数据上. 行数据是字符串构成的元组. 例如:</span>
+
+<span class="sd">        {b&#39;Serak&#39;: (&#39;Rigel VII&#39;, &#39;Preparer&#39;),</span>
+<span class="sd">         b&#39;Zim&#39;: (&#39;Irk&#39;, &#39;Invader&#39;),</span>
+<span class="sd">         b&#39;Lrrr&#39;: (&#39;Omicron Persei 8&#39;, &#39;Emperor&#39;)}</span>
+
+<span class="sd">        返回的键值一定是字节串. 如果字典中没有 keys 参数中的某个键值, 说明</span>
+<span class="sd">        表格中没有找到这一行 (且 require_all_keys 一定是 false).</span>
+
+<span class="sd">    抛出:</span>
+<span class="sd">        IOError: 访问 smalltable 时出现错误.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>以下这种在 Args (参数) 小节中换行的写法也是可以的:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fetch_smalltable_rows</span><span class="p">(</span>
+    <span class="n">table_handle</span><span class="p">:</span> <span class="n">smalltable</span><span class="o">.</span><span class="n">Table</span><span class="p">,</span>
+    <span class="n">keys</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">bytes</span> <span class="o">|</span> <span class="nb">str</span><span class="p">],</span>
+    <span class="n">require_all_keys</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;从 Smalltable 获取数据行.</span>
+
+<span class="sd">    从 table_handle 代表的 Table 实例中检索指定键值对应的行. 如果键值是字符串,</span>
+<span class="sd">    字符串将用 UTF-8 编码.</span>
+
+<span class="sd">    参数:</span>
+<span class="sd">        table_handle:</span>
+<span class="sd">          处于打开状态的 smalltable.Table 实例.</span>
+<span class="sd">        keys:</span>
+<span class="sd">          一个字符串序列, 代表要获取的行的键值. 字符串将用 UTF-8 编码.</span>
+<span class="sd">        require_all_keys:</span>
+<span class="sd">          如果为 True, 只返回那些所有键值都有对应数据的行.</span>
+
+<span class="sd">    返回:</span>
+<span class="sd">        一个字典, 把键值映射到行数据上. 行数据是字符串构成的元组. 例如:</span>
+
+<span class="sd">        {b&#39;Serak&#39;: (&#39;Rigel VII&#39;, &#39;Preparer&#39;),</span>
+<span class="sd">         b&#39;Zim&#39;: (&#39;Irk&#39;, &#39;Invader&#39;),</span>
+<span class="sd">         b&#39;Lrrr&#39;: (&#39;Omicron Persei 8&#39;, &#39;Emperor&#39;)}</span>
+
+<span class="sd">        返回的键值一定是字节串. 如果字典中没有 keys 参数中的某个键值, 说明</span>
+<span class="sd">        表格中没有找到这一行 (且 require_all_keys 一定是 false).</span>
+
+<span class="sd">    抛出:</span>
+<span class="sd">        IOError: 访问 smalltable 时出现错误.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>类 (class)</strong></p>
+<blockquote>
+<div><p>类的定义下方应该有一个描述该类的文档字符串. 如果你的类包含公有属性 (attributes), 应该在 <code class="docutils literal notranslate"><span class="pre">Attributes</span></code> (属性) 小节中记录这些属性, 格式与函数的 <code class="docutils literal notranslate"><span class="pre">Args</span></code> (参数) 小节类似.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SampleClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;这里是类的概述.</span>
+
+<span class="sd">    这里是更多信息....</span>
+<span class="sd">    这里是更多信息....</span>
+
+<span class="sd">    属性:</span>
+<span class="sd">        likes_spam: 布尔值, 表示我们是否喜欢午餐肉.</span>
+<span class="sd">        eggs: 用整数记录的下蛋的数量.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">likes_spam</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;用某某某初始化 SampleClass.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">likes_spam</span> <span class="o">=</span> <span class="n">likes_spam</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eggs</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">public_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;执行某某操作.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>类的文档字符串开头应该是一行概述, 描述类的实例所代表的事物. 这意味着 <code class="docutils literal notranslate"><span class="pre">Exception</span></code> 的子类 (subclass) 应该描述这个异常代表什么, 而不是描述抛出异常时的环境. 类的文档字符串不应该有无意义的重复, 例如说这个类是一种类.</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CheeseShopAddress</span><span class="p">:</span>
+<span class="sd">&quot;&quot;&quot;奶酪店的地址.</span>
+
+<span class="sd">...</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">OutOfCheeseError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;没有可用的奶酪.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CheeseShopAddress</span><span class="p">:</span>
+<span class="sd">&quot;&quot;&quot;一个描述奶酪店地址的类.</span>
+
+<span class="sd">...</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">OutOfCheeseError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;在没有可用的奶酪时抛出.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>块注释和行注释</strong></p>
+<blockquote>
+<div><p>最后一种需要写注释的地方是代码中复杂的部分. 如果你可能在以后 <a class="reference external" href="http://en.wikipedia.org/wiki/Code_review">代码评审 (code review)</a> 时要解释某段代码, 那么现在就应该给这段代码加上注释. 应该在复杂的操作开始前写上若干行注释. 对于不是一目了然的代码, 应该在行尾添加注释.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 我们用加权的字典搜索, 寻找 i 在数组中的位置. 我们基于数组中的最大值和数组</span>
+<span class="c1"># 长度, 推断一个位置, 然后用二分搜索获得最终准确的结果.</span>
+
+<span class="k">if</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># 如果 i 是 0 或者 2 的整数次幂, 则为真.</span>
+</pre></div>
+</div>
+<p>为了提高可读性, 注释的井号和代码之间应有至少2个空格, 井号和注释之间应该至少有一个空格.</p>
+<p>除此之外, 绝不要仅仅描述代码. 应该假设读代码的人比你更懂Python, 只是不知道你的代码要做什么.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 不好的注释: 现在遍历数组 b, 确保每次 i 出现时, 下一个元素是 i+1</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="id8">
+<h2><span class="section-number">3.3.4.8. </span>标点符号、拼写和语法<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>注意标点符号、拼写和语法. 文笔好的注释比差的注释更容易理解.</p>
+</div>
+<p>注释应该和记叙文一样可读, 使用恰当的大小写和标点. 一般而言, 完整的句子比残缺句更可读. 较短的注释 (比如行尾注释) 可以更随意, 但是你要保持风格一致.</p>
+<p>尽管你可能会因为代码审稿人指出你误把冒号写作逗号而灰心, 但是保持源代码清晰可读也是非常重要的. 正确的标点、拼写和语法有助于实现这一目标.</p>
+</section>
+<section id="id9">
+<h2><span class="section-number">3.3.4.9. </span>字符串<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>应该用 <a class="reference external" href="https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#f-strings">f-string</a>、 <code class="docutils literal notranslate"><span class="pre">%</span></code> 运算符或 <code class="docutils literal notranslate"><span class="pre">format</span></code> 方法来格式化字符串. 即使所有参数都是字符串, 也如此. 你可以自行评判合适的选项. 可以用 <code class="docutils literal notranslate"><span class="pre">+</span></code> 实现单次拼接, 但是不要用 <code class="docutils literal notranslate"><span class="pre">+</span></code> 实现格式化.</p>
+</div>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;名称: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">; 分数: </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">, </span><span class="si">%s</span><span class="s1">!&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">imperative</span><span class="p">,</span> <span class="n">expletive</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">, </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;名称: </span><span class="si">%s</span><span class="s1">; 分数: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;名称: </span><span class="si">%(name)s</span><span class="s1">; 分数: </span><span class="si">%(score)d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">:</span><span class="n">n</span><span class="p">}</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;名称: </span><span class="si">{}</span><span class="s1">; 分数: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">first</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="n">second</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;名称: &#39;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;; 分数: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>不要在循环中用 <code class="docutils literal notranslate"><span class="pre">+</span></code> 和 <code class="docutils literal notranslate"><span class="pre">+=</span></code> 操作符来堆积字符串. 这有时会产生平方而不是线性的时间复杂度. 有时 CPython 会优化这种情况, 但这是一种实现细节. 我们无法轻易预测这种优化是否生效, 而且未来情况可能出现变化. 作为替代方案, 你可以将每个子串加入列表, 然后在循环结束后用 <code class="docutils literal notranslate"><span class="pre">''.join</span></code> 拼接列表. 也可以将每个子串写入一个 <code class="docutils literal notranslate"><span class="pre">io.StringIO</span></code> 缓冲区中. 这些技巧保证始终有线性的平摊 (amortized) 时间复杂度.</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;table&gt;&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">last_name</span><span class="p">,</span> <span class="n">first_name</span> <span class="ow">in</span> <span class="n">employee_list</span><span class="p">:</span>
+    <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&lt;tr&gt;&lt;td&gt;</span><span class="si">%s</span><span class="s1">, </span><span class="si">%s</span><span class="s1">&lt;/td&gt;&lt;/tr&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">last_name</span><span class="p">,</span> <span class="n">first_name</span><span class="p">))</span>
+<span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&lt;/table&gt;&#39;</span><span class="p">)</span>
+<span class="n">employee_table</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">employee_table</span> <span class="o">=</span> <span class="s1">&#39;&lt;table&gt;&#39;</span>
+<span class="k">for</span> <span class="n">last_name</span><span class="p">,</span> <span class="n">first_name</span> <span class="ow">in</span> <span class="n">employee_list</span><span class="p">:</span>
+    <span class="n">employee_table</span> <span class="o">+=</span> <span class="s1">&#39;&lt;tr&gt;&lt;td&gt;</span><span class="si">%s</span><span class="s1">, </span><span class="si">%s</span><span class="s1">&lt;/td&gt;&lt;/tr&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">last_name</span><span class="p">,</span> <span class="n">first_name</span><span class="p">)</span>
+<span class="n">employee_table</span> <span class="o">+=</span> <span class="s1">&#39;&lt;/table&gt;&#39;</span>
+</pre></div>
+</div>
+<p>应该保持同一文件中字符串引号的一致性. 选择 <code class="docutils literal notranslate"><span class="pre">'</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> 以后不要改变主意. 如果需要避免用反斜杠来转义引号, 则可以使用另一种引号.</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span><span class="p">(</span><span class="s1">&#39;为什么你要捂眼睛?&#39;</span><span class="p">)</span>
+<span class="n">Gollum</span><span class="p">(</span><span class="s2">&quot;I&#39;m scared of lint errors. (我害怕格式错误.)&quot;</span><span class="p">)</span>
+<span class="n">Narrator</span><span class="p">(</span><span class="s1">&#39;&quot;很好!&quot; 一个开心的 Python 审稿人心想.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>(译者注: 注意 “I’m” 中间有一个单引号，所以这一行的外层引号可以用不同的引号.)</p>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span><span class="p">(</span><span class="s2">&quot;为什么你要捂眼睛?&quot;</span><span class="p">)</span>
+<span class="n">Gollum</span><span class="p">(</span><span class="s1">&#39;格式检查器. 它在闪耀. 它要亮瞎我们.&#39;</span><span class="p">)</span>
+<span class="n">Gollum</span><span class="p">(</span><span class="s2">&quot;伟大的格式检查器永在. 它在看. 它在看.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>多行字符串推荐使用 <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code> 而非 <code class="docutils literal notranslate"><span class="pre">'''</span></code>. 当且仅当项目中用 <code class="docutils literal notranslate"><span class="pre">'</span></code> 给常规字符串打引号时, 才能在文档字符串以外的多行字符串上使用 <code class="docutils literal notranslate"><span class="pre">'''</span></code>. 无论如何, 文档字符串必须使用 <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code>.</p>
+<p>多行字符串不会跟进代码其他部分的缩进. 如果需要避免字符串中的额外空格, 可以用多个单行字符串拼接, 或者用 <a class="reference external" href="https://docs.python.org/zh-cn/3/library/textwrap.html#textwrap.dedent">textwrap.dedent()</a> 删除每行开头的空格.</p>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">long_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;这样很难看.</span>
+<span class="s2">不要这样做.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">long_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;如果你可以接受多余的空格,</span>
+<span class="s2">    就可以这样.&quot;&quot;&quot;</span>
+
+<span class="n">long_string</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;如果你不能接受多余的空格,</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>
+               <span class="s2">&quot;可以这样.&quot;</span><span class="p">)</span>
+
+<span class="n">long_string</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;如果你不能接受多余的空格,</span><span class="se">\n</span><span class="s2">&quot;</span>
+               <span class="s2">&quot;也可以这样.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">textwrap</span>
+
+<span class="n">long_string</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">  这样也行, 因为 textwrap.dedent()</span>
+<span class="s2">  会删除每一行开头共有的空格.&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>注意, 这里的反斜杠没有违反 <a class="reference internal" href="#line-length"><span class="std std-ref">显式续行的禁令</span></a>. 此时, 反斜杠用于在字符串字面量 (literal) 中 <a class="reference external" href="https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#string-and-bytes-literals">对换行符转义</a>.</p>
+<p><strong>日志</strong></p>
+<blockquote>
+<div><p>对于那些第一个参数是格式字符串 (包含 <code class="docutils literal notranslate"><span class="pre">%</span></code> 占位符) 的日志函数: 一定要用字符串字面量 (而非 f-string!) 作为第一个参数, 并用占位符的参数作为其他参数. 有些日志的实现会收集未展开的格式字符串, 作为可搜索的项目. 这样也可以免于渲染那些被设置为不用输出的消息.</p>
+<p>正确；</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;TensorFlow 的版本是: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">absl</span> <span class="kn">import</span> <span class="n">logging</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;当前的 $PAGER 是: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;PAGER&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+
+<span class="n">homedir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;HOME&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">homedir</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">homedir</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">W_OK</span><span class="p">):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;无法写入主目录, $HOME=</span><span class="si">%r</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">homedir</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">absl</span> <span class="kn">import</span> <span class="n">logging</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;当前的 $PAGER 是:&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;PAGER&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+
+<span class="n">homedir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;HOME&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">homedir</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">homedir</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">W_OK</span><span class="p">):</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;无法写入主目录, $HOME=</span><span class="si">{</span><span class="n">homedir</span><span class="si">!r}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>错误信息</strong></p>
+<blockquote>
+<div><p>错误信息 (例如: 诸如 <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> 等异常的信息字符串和展示给用户的信息) 应该遵守以下三条规范:</p>
+<ol class="arabic simple">
+<li><p>信息需要精确地匹配真正的错误条件.</p></li>
+<li><p>插入的片段一定要能清晰地分辨出来.</p></li>
+<li><p>要便于简单的自动化处理 (例如正则搜索, 也就是 grepping).</p></li>
+</ol>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;这不是概率值: </span><span class="si">{</span><span class="n">p</span><span class="si">!r}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">workdir</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;无法删除这个文件夹 (原因: </span><span class="si">%r</span><span class="s1">): </span><span class="si">%r</span><span class="s1">&#39;</span><span class="p">,</span>
+                    <span class="n">error</span><span class="p">,</span> <span class="n">workdir</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># 问题: 遇到 float(&#39;nan&#39;) 时也为假!</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;这不是概率值: </span><span class="si">{</span><span class="n">p</span><span class="si">!r}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">workdir</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+    <span class="c1"># 问题: 信息中存在错误的揣测，</span>
+    <span class="c1"># 删除操作可能因为其他原因而失败, 此时会误导调试人员.</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;文件夹已被删除: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">workdir</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">workdir</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+    <span class="c1"># 问题: 这个信息难以搜索, 而且某些 `workdir` 的值会让人困惑.</span>
+    <span class="c1"># 假如有人调用这段代码时让 workdir = &#39;已删除&#39;. 这个警告会变成:</span>
+    <span class="c1"># &quot;无法删除已删除文件夹.&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;无法删除</span><span class="si">%s</span><span class="s1">文件夹.&#39;</span><span class="p">,</span> <span class="n">workdir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="socket">
+<h2><span class="section-number">3.3.4.10. </span>文件、套接字 (socket) 和类似的有状态资源<a class="headerlink" href="#socket" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>使用完文件和套接字以后, 显式地关闭它们. 自然地, 这条规则也应该扩展到其他在内部使用套接字的可关闭资源 (比如数据库连接) 和其他需要用类似方法关停的资源. 其他例子还有 <a class="reference external" href="https://docs.python.org/zh-cn/3/library/mmap.html">mmap</a> 映射、 <a class="reference external" href="https://docs.h5py.org/en/stable/high/file.html">h5py 的文件对象</a> 和 <a class="reference external" href="https://matplotlib.org/2.1.0/api/_as_gen/matplotlib.pyplot.close.html">matplotlib.pyplot 的图像窗口</a> .</p>
+</div>
+<p>如果保持不必要的文件、套接字或其他有状态对象开启, 会产生很多缺点:</p>
+<ol class="arabic simple">
+<li><p>它们可能消耗有限的系统资源, 例如文件描述符. 如果代码需要使用大量类似的资源而没有及时返还给系统, 就有可能出现原本可以避免的资源枯竭情况.</p></li>
+<li><p>保持文件的开启状态会阻碍其他操作, 例如移动、删除文件, 卸载 (unmont) 文件系统等等.</p></li>
+<li><p>如果程序的多个部分共享文件和套接字, 即使逻辑上文件已经关闭了, 仍然有可能出现意外的读写操作. 如果这些资源真正关闭了, 读写操作会抛出异常, 让问题早日浮出水面.</p></li>
+</ol>
+<p>此外, 即使文件和套接字 (以及其他行为类似的资源) 会在析构 (destruct) 时自动关闭, 把对象的生命周期和资源状态绑定的行为依然不妥:</p>
+<ol class="arabic simple">
+<li><p>无法保证运行时 (runtime) 调用 <code class="docutils literal notranslate"><span class="pre">__del__</span></code> 方法的真正时机. 不同的 Python 实现采用了不同的内存管理技巧 (比如延迟垃圾处理机制, delayed garbage collection), 可能会随意、无限期地延长对象的生命周期.</p></li>
+<li><p>意想不到的文件引用 (例如全局对象和异常的堆栈跟踪, exception tracebacks) 可能让文件的存续时间比想象的更长.</p></li>
+</ol>
+<p>依赖于终结器 (finalizer) 实现自动清理的方法有显著的副作用. 这在几十年的时间里、在多种语言中 (参见 <a class="reference external" href="https://wiki.sei.cmu.edu/confluence/display/java/MET12-J.+Do+not+use+finalizers">这篇</a> Java 的文章) 多次引发严重问题.</p>
+<p>推荐使用 <a class="reference external" href="https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-with-statement">“with”语句</a> 管理文件和类似的资源:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;hello.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hello_file</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">hello_file</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="n">line</span>
+</pre></div>
+</div>
+<p>对于不支持 <code class="docutils literal notranslate"><span class="pre">with</span></code> 语句且类似文件的对象, 应该使用 <code class="docutils literal notranslate"><span class="pre">contextlib.closing()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">contextlib</span>
+
+<span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">closing</span><span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;http://www.python.org/&quot;</span><span class="p">))</span> <span class="k">as</span> <span class="n">front_page</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">front_page</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="n">line</span>
+</pre></div>
+</div>
+<p>少数情况下无法使用基于上下文 (context) 的资源管理, 此时文档应该清楚地解释代码会如何管理资源的生命周期.</p>
+</section>
+<section id="todo">
+<h2><span class="section-number">3.3.4.11. </span>TODO (待办) 注释<a class="headerlink" href="#todo" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>在临时、短期和不够完美的代码上添加 TODO (待办) 注释.</p>
+</div>
+<p>待办注释以 <code class="docutils literal notranslate"><span class="pre">TODO</span></code> (待办) 这个全部大写的词开头, 紧跟着是用括号括起来的上下文标识符 (最好是 bug 链接, 有时是你的用户名). 最好是诸如 <code class="docutils literal notranslate"><span class="pre">TODO(https://crbug.com/&lt;bug编号&gt;):</span></code> 这样的 bug 链接, 因为 bug 有历史追踪和评论, 而程序员可能发生变动并忘记上下文. TODO 后面应该解释待办的事情.</p>
+<p>统一 TODO 的格式是为了方便搜索并查看详情. TODO 不代表注释中提到的人要做出修复问题的保证. 所以, 当你创建带有用户名的 TODO 时, 大部分情况下应该用你自己的用户名.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO(crbug.com/192795): 研究 cpufreq 的优化.</span>
+<span class="c1"># TODO(你的用户名): 提交一个议题 (issue), 用 &#39;*&#39; 代表重复.</span>
+</pre></div>
+</div>
+<p>如果你的 TODO 形式类似于”将来做某事”, 请确保其中包含特别具体的日期 (“2009年11月前解决”) 或者特别具体的事件 (“当所有客户端都能处理 XML 响应时, 删除这些代码”), 以便于未来的代码维护者理解.</p>
+</section>
+<section id="import">
+<h2><span class="section-number">3.3.4.12. </span>导入 (import) 语句的格式<a class="headerlink" href="#import" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>导入语句应该各自独占一行. <a class="reference internal" href="#typing-imports"><span class="std std-ref">typing 和 collections.abc 的导入除外</span></a>. 例如:</p>
+</div>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">NewType</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+</pre></div>
+</div>
+<p>导入语句必须在文件顶部, 位于模块的注释和文档字符串之后、全局变量和全局常量之前. 导入语句应该按照如下顺序分组, 从通用到特殊:</p>
+<ol class="arabic">
+<li><p>导入 Python 的 <code class="docutils literal notranslate"><span class="pre">__future__</span></code>. 例如:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+</pre></div>
+</div>
+<p>参见前文有关 <code class="docutils literal notranslate"><span class="pre">__future__</span></code> 语句的描述.</p>
+</div></blockquote>
+</li>
+<li><p>导入 Python 的标准库. 例如:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>导入 <a class="reference external" href="https://pypi.org/">第三方</a> 模块和包. 例如:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>导入代码仓库中的子包. 例如:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">otherproject.ai</span> <span class="kn">import</span> <span class="n">mind</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>已废弃的规则</strong>: 导入应用专属的、与该文件属于同一个子包的模块. 例如:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">myproject.backend.hgwells</span> <span class="kn">import</span> <span class="n">time_machine</span>
+</pre></div>
+</div>
+<p>你可能会在较老的谷歌风格 Python 代码中遇到这样的模式, 但现在不再执行这条规则. <strong>我们建议新代码忽略这条规则.</strong> 同等对待应用专属的子包和其他子包即可.</p>
+</div></blockquote>
+</li>
+</ol>
+<p>在每个分组内部, 应该按照模块完整包路径 (例如 <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">path</span> <span class="pre">import</span> <span class="pre">...</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">path</span></code>) 的字典序排序, 忽略大小写. 可以选择在分组之间插入空行.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">queue</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">absl</span> <span class="kn">import</span> <span class="n">app</span>
+<span class="kn">from</span> <span class="nn">absl</span> <span class="kn">import</span> <span class="n">flags</span>
+<span class="kn">import</span> <span class="nn">bs4</span>
+<span class="kn">import</span> <span class="nn">cryptography</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<span class="kn">from</span> <span class="nn">book.genres</span> <span class="kn">import</span> <span class="n">scifi</span>
+<span class="kn">from</span> <span class="nn">myproject.backend</span> <span class="kn">import</span> <span class="n">huxley</span>
+<span class="kn">from</span> <span class="nn">myproject.backend.hgwells</span> <span class="kn">import</span> <span class="n">time_machine</span>
+<span class="kn">from</span> <span class="nn">myproject.backend.state_machine</span> <span class="kn">import</span> <span class="n">main_loop</span>
+<span class="kn">from</span> <span class="nn">otherproject.ai</span> <span class="kn">import</span> <span class="n">body</span>
+<span class="kn">from</span> <span class="nn">otherproject.ai</span> <span class="kn">import</span> <span class="n">mind</span>
+<span class="kn">from</span> <span class="nn">otherproject.ai</span> <span class="kn">import</span> <span class="n">soul</span>
+
+<span class="c1"># 旧的代码可能会把这些导入语句放在下面这里:</span>
+<span class="c1">#from myproject.backend.hgwells import time_machine</span>
+<span class="c1">#from myproject.backend.state_machine import main_loop</span>
+</pre></div>
+</div>
+</section>
+<section id="id13">
+<h2><span class="section-number">3.3.4.13. </span>语句<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>通常每个语句应该独占一行.</p>
+</div>
+<p>不过, 如果判断语句的主体与判断条件可以挤进一行, 你可以将它们放在同一行. 特别注意这不适用于 <code class="docutils literal notranslate"><span class="pre">try</span></code> / <code class="docutils literal notranslate"><span class="pre">except</span></code>, 因为 <code class="docutils literal notranslate"><span class="pre">try</span></code> 和 <code class="docutils literal notranslate"><span class="pre">except</span></code> 不能放在同一行. 只有在 <code class="docutils literal notranslate"><span class="pre">if</span></code> 语句没有对应的 <code class="docutils literal notranslate"><span class="pre">else</span></code> 时才适用.</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">foo</span><span class="p">:</span> <span class="n">bar</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">foo</span><span class="p">:</span> <span class="n">bar</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>   <span class="n">baz</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>               <span class="n">bar</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span> <span class="n">baz</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">bar</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span> <span class="n">baz</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="getter-setter">
+<span id="id14"></span><h2><span class="section-number">3.3.4.14. </span>访问器 (getter) 和设置器 (setter)<a class="headerlink" href="#getter-setter" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>在访问和设置变量值时, 如果访问器和设置器 (又名为访问子 accessor 和变异子 mutator) 可以产生有意义的作用或效果, 则可以使用.</p>
+</div>
+<p>特别来说, 如果在当下或者可以预见的未来, 读写某个变量的过程很复杂或者成本高昂, 则应该使用这种函数.</p>
+<p>如果一对访问器和设置器仅仅用于读写一个内部属性 (attribute), 你应该直接用公有属性取代它们. 相较而言, 如果设置操作会让部分状态无效化或引发重建, 则需要使用设置器. 显式的函数调用表示可能出现特殊的操作. 如果只有简单的逻辑, 或者在重构代码后不再需要访问器和设置器, 你可以用属性 (property) 替代.</p>
+<p>(译者注: 重视封装的面向对象程序员看到这个可能会很反感, 因为他们一直被教育: 所有成员变量都必须是私有的! 其实, 那真的是有点麻烦啊. 试着去接受Pythonic哲学吧)</p>
+<p>访问器和设置器应该遵守命名规范, 例如 <code class="docutils literal notranslate"><span class="pre">get_foo()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">set_foo()</span></code>.</p>
+<p>如果之前的代码通过属性获取数据, 则不能把重新编写的访问器/设置器与这一属性绑定. 应该让任何用老办法访问变量的代码出现显眼的错误, 让使用者意识到代码复杂度有变化.</p>
+</section>
+<section id="id15">
+<h2><span class="section-number">3.3.4.15. </span>命名<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>模块名: <code class="docutils literal notranslate"><span class="pre">module_name</span></code>; 包名: <code class="docutils literal notranslate"><span class="pre">package_name</span></code>; 类名: <code class="docutils literal notranslate"><span class="pre">ClassName</span></code>; 方法名: <code class="docutils literal notranslate"><span class="pre">method_name</span></code>; 异常名: <code class="docutils literal notranslate"><span class="pre">ExceptionName</span></code>; 函数名: <code class="docutils literal notranslate"><span class="pre">function_name</span></code>, <code class="docutils literal notranslate"><span class="pre">query_proper_noun_for_thing</span></code>, <code class="docutils literal notranslate"><span class="pre">send_acronym_via_https</span></code>; 全局常量名: <code class="docutils literal notranslate"><span class="pre">GLOBAL_CONSTANT_NAME</span></code> ; 全局变量名: <code class="docutils literal notranslate"><span class="pre">global_var_name</span></code>; 实例名: <code class="docutils literal notranslate"><span class="pre">instance_var_name</span></code>; 函数参数名: <code class="docutils literal notranslate"><span class="pre">function_parameter_name</span></code>; 局部变量名: <code class="docutils literal notranslate"><span class="pre">local_var_name</span></code>.</p>
+</div>
+<p>函数名、变量名和文件名应该是描述性的, 避免缩写. 特别要避免那些对于项目之外的人有歧义或不熟悉的缩写, 也不要通过省略单词中的字母来进行缩写.</p>
+<p>必须用 <code class="docutils literal notranslate"><span class="pre">.py</span></code> 作为文件后缀名. 不要用连字符.</p>
+<p><strong>需要避免的名称</strong></p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>只有单个字符的名称, 除了以下特别批准的情况:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>计数器和迭代器 (例如, <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">j</span></code>, <code class="docutils literal notranslate"><span class="pre">k</span></code>, <code class="docutils literal notranslate"><span class="pre">v</span></code> 等等).</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">try/except</span></code> 语句中代表异常的 <code class="docutils literal notranslate"><span class="pre">e</span></code>.</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">with</span></code> 语句中代表文件句柄的 <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p></li>
+<li><p>私有的、没有约束 (constrain) 的类型变量 (type variable, 例如 <code class="docutils literal notranslate"><span class="pre">_T</span> <span class="pre">=</span> <span class="pre">TypeVar(&quot;_T&quot;)</span></code>, <code class="docutils literal notranslate"><span class="pre">_P</span> <span class="pre">=</span> <span class="pre">ParamSpec(&quot;_P&quot;)</span></code>).</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>包含连字符(<code class="docutils literal notranslate"><span class="pre">-</span></code>) 的包名/模块名.</p></li>
+<li><p>首尾均为双下划线的名称, 例如 <code class="docutils literal notranslate"><span class="pre">__double_leading_and_trailing_underscore__</span></code> (此类名称是 Python 的保留名称).</p></li>
+<li><p>包含冒犯性词语的名称.</p></li>
+<li><p>在不必要的情况下包含变量类型的名称 (例如 <code class="docutils literal notranslate"><span class="pre">id_to_name_dict</span></code>).</p></li>
+</ol>
+</div></blockquote>
+<p><strong>命名规范</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>“内部(Internal)”一词表示仅在模块内可用, 或者在类内是受保护/私有的.</p></li>
+<li><p>在一定程度上, 在名称前加单下划线 (<code class="docutils literal notranslate"><span class="pre">_</span></code>) 可以保护模块变量和函数 (格式检查器会对受保护的成员访问操作发出警告).</p></li>
+<li><p>在实例的变量或方法名称前加双下划线 (<code class="docutils literal notranslate"><span class="pre">__</span></code>, 又名为 dunder) 可以有效地把变量或方法变成类的私有成员 (基于名称修饰 name mangling 机制). 我们不鼓励这种用法, 因为这会严重影响可读性和可测试性, 而且没有 <strong>真正</strong> 实现私有. 建议使用单下划线.</p></li>
+<li><p>应该把相关的类和顶级函数放在同一个模块里. 与Java不同, 不必限制一个模块只有一个类.</p></li>
+<li><p>类名应该使用首字母大写的形式 (如 CapWords), 但是模块名应该用小写加下划线的形式 (如 lower_with_under.py). 尽管有些旧的模块使用类似于 CapWords.py 这样的形式, 现在我们不再鼓励这种命名方式, 因为模块名和类名相同时会让人困惑 (“等等, 我刚刚写的是 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">StringIO</span></code> 还是 <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">StringIO</span> <span class="pre">import</span> <span class="pre">StringIO</span></code>?”).</p></li>
+<li><p>新的 <strong>单元测试</strong> 文件应该遵守 PEP 8, 用小写加下划线格式的方法名, 例如 <code class="docutils literal notranslate"><span class="pre">test_&lt;被测试的方法名&gt;_&lt;状态&gt;</span></code>. 有些老旧的模块有形如 <code class="docutils literal notranslate"><span class="pre">CapWords</span></code> 这样大写的方法名, 为了保持风格一致, 可以在 test 这个词和方法名之后, 用下划线分割名称中不同的逻辑成分. 比如一种可行的格式之一是 <code class="docutils literal notranslate"><span class="pre">test&lt;被测试的方法&gt;_&lt;状态&gt;</span></code>.</p></li>
+</ol>
+</div></blockquote>
+<p><strong>文件名</strong></p>
+<blockquote>
+<div><p>所有 Python 文件名都应该以 <code class="docutils literal notranslate"><span class="pre">.py</span></code> 为文件后缀且不能包含连字符 (<code class="docutils literal notranslate"><span class="pre">-</span></code>). 这样便于导入这些文件并编写单元测试. 如果想通过不含后缀的命令运行程序, 可以使用软链接文件 (symbolic link) 或者 <code class="docutils literal notranslate"><span class="pre">exec</span> <span class="pre">&quot;$0.py&quot;</span> <span class="pre">&quot;$&#64;&quot;</span></code> 这样简单的 bash 脚本.</p>
+</div></blockquote>
+<p><strong>根据Python之父Guido的建议所制定的规范</strong></p>
+<table class="docutils align-default" id="id18">
+<caption><span class="caption-text">描述</span><a class="headerlink" href="#id18" title="永久链接至表格"></a></caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>类型</p></th>
+<th class="head"><p>公有</p></th>
+<th class="head"><p>内部</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>包</p></td>
+<td><p>小写下划线</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>模块</p></td>
+<td><p>小写下划线</p></td>
+<td><p>下划线+小写下划线</p></td>
+</tr>
+<tr class="row-even"><td><p>类</p></td>
+<td><p>大驼峰</p></td>
+<td><p>下划线+大驼峰</p></td>
+</tr>
+<tr class="row-odd"><td><p>异常</p></td>
+<td><p>大驼峰</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>函数</p></td>
+<td><p>小写下划线</p></td>
+<td><p>下划线+小写下划线</p></td>
+</tr>
+<tr class="row-odd"><td><p>全局常量/类常量</p></td>
+<td><p>大写下划线</p></td>
+<td><p>下划线+大写下划线</p></td>
+</tr>
+<tr class="row-even"><td><p>全局变量/类变量</p></td>
+<td><p>小写下划线</p></td>
+<td><p>下划线+小写下划线</p></td>
+</tr>
+<tr class="row-odd"><td><p>实例变量</p></td>
+<td><p>小写下划线</p></td>
+<td><p>下划线+小写下划线 (受保护)</p></td>
+</tr>
+<tr class="row-even"><td><p>方法名</p></td>
+<td><p>小写下划线</p></td>
+<td><p>下划线+小写下划线 (受保护)</p></td>
+</tr>
+<tr class="row-odd"><td><p>函数参数/方法参数</p></td>
+<td><p>小写下划线</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>局部变量</p></td>
+<td><p>小写下划线</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id19">
+<caption><span class="caption-text">例子</span><a class="headerlink" href="#id19" title="永久链接至表格"></a></caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 35%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>类型</p></th>
+<th class="head"><p>公有</p></th>
+<th class="head"><p>内部</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>包</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lower_with_under</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>模块</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lower_with_under</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_lower_with_under</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>类</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CapWords</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_CapWords</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>异常</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CapWords</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>函数</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lower_with_under()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_lower_with_under()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>全局常量/类常量</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CAPS_WITH_UNDER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_CAPS_WITH_UNDER</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>全局变量/类变量</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lower_with_under</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_lower_with_under</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>实例变量</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lower_with_under</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_lower_with_under</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>方法名</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lower_with_under()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_lower_with_under()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>函数参数/方法参数</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lower_with_under</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>局部变量</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lower_with_under</span></code></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>数学符号</strong></p>
+<p>对于涉及大量数学内容的代码, 如果相关论文或算法中有对应的符号, 则可以忽略以上命名规范并使用较短的变量名. 若要采用这种方法, 应该在注释或者文档字符串中注明你所使用的命名规范的来源. 如果原文无法访问, 则应该在文档中清楚地记录命名规范. 建议公开的 API 使用符合 PEP8 的、描述性的名称, 因为使用 API 的代码很可能缺少相关的上下文信息.</p>
+</section>
+<section id="id16">
+<h2><span class="section-number">3.3.4.16. </span>主程序<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>使用 Python 时, 提供给 <code class="docutils literal notranslate"><span class="pre">pydoc</span></code> 和单元测试的模块必须是可导入的. 如果一个文件是可执行文件, 该文件的主要功能应该位于 <code class="docutils literal notranslate"><span class="pre">main()</span></code> 函数中. 你的代码必须在执行主程序前检查 <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code> , 这样导入模块时不会执行主程序.</p>
+</div>
+<p>使用 <a class="reference external" href="https://github.com/abseil/abseil-py">absl</a> 时, 请调用 <code class="docutils literal notranslate"><span class="pre">app.run</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">absl</span> <span class="kn">import</span> <span class="n">app</span>
+<span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="c1"># 处理非标志 (non-flag) 参数</span>
+    <span class="o">...</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>否则, 使用:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="o">...</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>导入模块时会执行该模块的所有顶级代码. 注意顶级代码中不能有 <code class="docutils literal notranslate"><span class="pre">pydoc</span></code> 不该执行的操作, 比如调用函数, 创建对象等.</p>
+</section>
+<section id="id17">
+<h2><span class="section-number">3.3.4.17. </span>函数长度<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>函数应该小巧且专一.</p>
+</div>
+<p>我们承认有时长函数也是合理的, 所以不硬性限制函数长度. 若一个函数超过 40 行, 应该考虑在不破坏程序结构的前提下拆分这个函数.</p>
+<p>即使一个长函数现在没有问题, 几个月后可能会有别人添加新的效果. 此时容易出现隐蔽的错误. 保持函数简练, 这样便于别人阅读并修改你的代码.</p>
+<p>当你使用某些代码时, 可能发现一些冗长且复杂的函数. 要勇于修改现有的代码: 如果该函数难以使用或者存在难以调试的错误, 亦或是你想在不同场景下使用该函数的片段, 不妨考虑把函数拆分成更小、更容易管理的片段.</p>
+</section>
+<section id="type-annotation">
+<h2><span class="section-number">3.3.4.18. </span>类型注解 (type annotation)<a class="headerlink" href="#type-annotation" title="Permalink to this heading"></a></h2>
+<p><strong>通用规则</strong></p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>熟读 <a class="reference external" href="https://www.python.org/dev/peps/pep-0484/">PEP-484</a> .</p></li>
+<li><p>仅在有额外类型信息时才需要注解方法中 <code class="docutils literal notranslate"><span class="pre">self</span></code> 或 <code class="docutils literal notranslate"><span class="pre">cls</span></code> 的类型. 例如:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">_T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">_T</span><span class="p">:</span>
+    <span class="k">return</span> <span class="bp">cls</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>类似地, 不需要注解 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> 的返回值 (只能返回 <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p></li>
+<li><p>对于其他不需要限制变量类型或返回类型的情况, 应该使用 <code class="docutils literal notranslate"><span class="pre">Any</span></code>.</p></li>
+<li><p>无需注解模块中的所有函数.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>至少需要注解你的公开 API.</p></li>
+<li><p>你可以自行权衡, 一方面要保证代码的安全性和清晰性, 另一方面要兼顾灵活性.</p></li>
+<li><p>应该注解那些容易出现类型错误的代码 (比如曾经出现过错误或疑难杂症).</p></li>
+<li><p>应该注解晦涩难懂的代码.</p></li>
+<li><p>应该注解那些类型已经确定的代码. 多数情况下，即使注解了成熟的代码中所有的函数，也不会丧失太多灵活性.</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+<p><strong>换行</strong></p>
+<blockquote>
+<div><p>尽量遵守前文所述的缩进规则.</p>
+<p>添加类型注解后, 很多函数签名 (signature) 会变成每行一个参数的形式. 若要让返回值单独成行, 可以在最后一个参数尾部添加逗号.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_method</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">first_var</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">second_var</span><span class="p">:</span> <span class="n">Foo</span><span class="p">,</span>
+    <span class="n">third_var</span><span class="p">:</span> <span class="n">Bar</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>尽量在变量之间换行, 避免在变量和类型注解之间换行. 当然, 若所有东西可以挤进一行, 也可以接受.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first_var</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>若最后一个参数加上返回值的类型注解太长, 也可以换行并添加4格缩进. 添加换行符时, 建议每个参数和返回值都在单独的一行里, 并且右括号和 <code class="docutils literal notranslate"><span class="pre">def</span></code> 对齐.</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_method</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">other_arg</span><span class="p">:</span> <span class="n">MyLongType</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">MyLongType1</span><span class="p">,</span> <span class="n">MyLongType1</span><span class="p">]:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>返回值类型和最后一个参数也可以放在同一行.</p>
+<p>可以接受:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_method</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">first_var</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">second_var</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">OtherLongType</span><span class="p">,</span> <span class="n">MyLongType</span><span class="p">]:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> 也允许你把右括号放在新行上, 与左括号对齐, 但相较而言可读性更差.</p>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+              <span class="n">other_arg</span><span class="p">:</span> <span class="n">MyLongType</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+             <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">OtherLongType</span><span class="p">,</span> <span class="n">MyLongType</span><span class="p">]:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>正如上面所有的例子, 尽量不要在类型注解中间换行. 但是有时注解过长以至于一行放不下. 此时尽量保持子类型中间不换行.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_method</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">first_var</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">MyLongType1</span><span class="p">],</span>
+                     <span class="nb">list</span><span class="p">[</span><span class="n">MyLongType2</span><span class="p">]],</span>
+    <span class="n">second_var</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span>
+        <span class="n">MyLongType3</span><span class="p">,</span> <span class="n">MyLongType4</span><span class="p">]],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>若某个名称和对应的类型注解过长, 可以考虑用 <a class="reference internal" href="#type-alias"><span class="std std-ref">别名 (alias)</span></a> 代表类型. 下策是在冒号后换行并添加4格缩进.</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span>
+    <span class="n">long_variable_name</span><span class="p">:</span>
+        <span class="n">long_module_name</span><span class="o">.</span><span class="n">LongTypeName</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span>
+    <span class="n">long_variable_name</span><span class="p">:</span> <span class="n">long_module_name</span><span class="o">.</span>
+        <span class="n">LongTypeName</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>前向声明 (foward declaration)</strong></p>
+<blockquote>
+<div><p>若需要使用一个尚未定义的类名 (比如想在声明一个类时使用自身的类名), 可以使用 <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">__future__</span> <span class="pre">import</span> <span class="pre">annotations</span></code> 或者字符串来代表类名.</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">MyClass</span><span class="p">],</span> <span class="n">item</span><span class="p">:</span> <span class="n">OtherClass</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="k">class</span> <span class="nc">OtherClass</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyClass</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="s1">&#39;MyClass&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">:</span> <span class="s1">&#39;OtherClass&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="k">class</span> <span class="nc">OtherClass</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>默认值</strong></p>
+<blockquote>
+<div><p>根据 <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/#other-recommendations">PEP-008</a> , <strong>只有</strong> 对于同时拥有类型注解和默认值的参数, <code class="docutils literal notranslate"><span class="pre">=</span></code> 的周围应该加空格.</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>NoneType</strong></p>
+<blockquote>
+<div><p>在 Python 的类型系统中, <code class="docutils literal notranslate"><span class="pre">NoneType</span></code> 是 “一等” 类型. 在类型注解中, <code class="docutils literal notranslate"><span class="pre">None</span></code> 是 <code class="docutils literal notranslate"><span class="pre">NoneType</span></code> 的别名. 如果一个变量可能为 <code class="docutils literal notranslate"><span class="pre">None</span></code>, 则必须声明这种情况! 你可以使用 <code class="docutils literal notranslate"><span class="pre">|</span></code> 这样的并集 (union) 类型表达式 (推荐在新的 Python 3.10+ 代码中使用) 或者老的 <code class="docutils literal notranslate"><span class="pre">Optional</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Union</span></code> 语法.</p>
+<p>应该用显式的 <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">|</span> <span class="pre">None</span></code> 替代隐式声明. 早期的 PEP 484 允许将 <code class="docutils literal notranslate"><span class="pre">a:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">None</span></code> 解释为 <code class="docutils literal notranslate"><span class="pre">a:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></code>, 但这不再是推荐的行为.</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 现代的并集写法.</span>
+<span class="k">def</span> <span class="nf">modern_or_union</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="o">...</span>
+<span class="c1"># 采用 Union / Optional.</span>
+<span class="k">def</span> <span class="nf">union_optional</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">b</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 用 Union 代替 Optional.</span>
+<span class="k">def</span> <span class="nf">nullable_union</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="o">...</span>
+<span class="c1"># 隐式 Optional.</span>
+<span class="k">def</span> <span class="nf">implicit_optional</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p id="type-alias"><strong>类型别名 (alias)</strong></p>
+<blockquote>
+<div><p>你可以为复杂的类型声明一个别名. 别名的命名应该采用大驼峰 (例如 <code class="docutils literal notranslate"><span class="pre">CapWorded</span></code>). 若别名仅在当前模块使用, 应在名称前加 <code class="docutils literal notranslate"><span class="pre">_</span></code> 代表私有 (例如 <code class="docutils literal notranslate"><span class="pre">_Private</span></code>).</p>
+<p>注意下面的 <code class="docutils literal notranslate"><span class="pre">:</span> <span class="pre">TypeAlias</span></code> 类型注解只能在 3.10 以后的版本使用.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeAlias</span>
+
+<span class="n">_LossAndGradient</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]</span>
+<span class="n">ComplexTFMap</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">_LossAndGradient</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>忽略类型</strong></p>
+<blockquote>
+<div><p>你可以使用特殊的注释 <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">type:</span> <span class="pre">ignore</span></code> 禁用某一行的类型检查.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pytype</span></code> 有针对特定错误的禁用选项 (类似格式检查器):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># pytype: disable=attribute-error</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>标注变量的类型</strong></p>
+<blockquote>
+<div><p><strong>带类型注解的赋值</strong></p>
+<p>如果难以自动推理某个内部变量的类型, 可以用带类型注解的赋值操作来指定类型: 在变量名和值的中间添加冒号和类型, 类似于有默认值的函数参数.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">:</span> <span class="n">Foo</span> <span class="o">=</span> <span class="n">SomeUndecoratedFunction</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>类型注释</strong></p>
+<p>你可能在代码仓库中看到这种残留的注释 (在 Python 3.6 之前必须这样写注释), 但是不要再添加 <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">type:</span> <span class="pre">&lt;类型&gt;</span></code> 这样的行尾注释了:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">SomeUndecoratedFunction</span><span class="p">()</span>  <span class="c1"># type: Foo</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div></blockquote>
+<p><strong>元组还是列表</strong></p>
+<blockquote>
+<div><p>有类型的列表中只能有一种类型的元素. 有类型的元组可以有相同类型的元素或者若干个不同类型的元素. 后面这种情况多用于注解返回值的类型.</p>
+<p>(译者注: 注意这里是指的类型注解中的写法,实际python中,list和tuple都是可以在一个序列中包含不同类型元素的,当然,本质其实list和tuple中放的是元素的引用)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">c</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>类型变量 (type variable)</strong></p>
+<blockquote>
+<div><p>Python 的类型系统支持 <a class="reference external" href="https://peps.python.org/pep-0484/#generics">泛型 (generics)</a> . 使用泛型的常见方式是利用类型变量, 例如 <code class="docutils literal notranslate"><span class="pre">TypeVar</span></code> 和 <code class="docutils literal notranslate"><span class="pre">ParamSpec</span></code>.</p>
+<p>例如:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">ParamSpec</span><span class="p">,</span> <span class="n">TypeVar</span>
+<span class="n">_P</span> <span class="o">=</span> <span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;_P&quot;</span><span class="p">)</span>
+<span class="n">_T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T&quot;</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="n">l</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">_T</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">l</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">print_when_called</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">_T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">_T</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;函数被调用&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">inner</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">TypeVar</span></code> 可以有约束条件.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AddableType</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;AddableType&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">AddableType</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">AddableType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AddableType</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">AnyStr</span></code> 是 <code class="docutils literal notranslate"><span class="pre">typing</span></code> 模块中常用的预定义类型变量. 可以用它注解那些接受 <code class="docutils literal notranslate"><span class="pre">bytes</span></code> 或 <code class="docutils literal notranslate"><span class="pre">str</span></code> 但是必须保持一致的类型.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">AnyStr</span>
+<span class="k">def</span> <span class="nf">check_length</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">AnyStr</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnyStr</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">42</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(译者注: 这个例子中, x 和返回值必须同时是 <code class="docutils literal notranslate"><span class="pre">bytes</span></code> 或者同时是 <code class="docutils literal notranslate"><span class="pre">str</span></code>.)</p>
+<p>类型变量必须有描述性的名称, 除非满足以下所有标准:</p>
+<ol class="arabic simple">
+<li><p>外部不可见</p></li>
+<li><p>没有约束条件</p></li>
+</ol>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">_T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T&quot;</span><span class="p">)</span>
+<span class="n">_P</span> <span class="o">=</span> <span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;_P&quot;</span><span class="p">)</span>
+<span class="n">AddableType</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;AddableType&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+<span class="n">AnyFunction</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;AnyFunction&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Callable</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">)</span>
+<span class="n">_T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+<span class="n">_F</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_F&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Callable</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>字符串类型</strong></p>
+<blockquote>
+<div><p>不要在新代码中使用 <code class="docutils literal notranslate"><span class="pre">typing.Text</span></code>. 这种写法只能用于处理 Python 2/3 的兼容问题.</p>
+<p>用 <code class="docutils literal notranslate"><span class="pre">str</span></code> 表示字符串/文本数据. 用 <code class="docutils literal notranslate"><span class="pre">bytes</span></code> 处理二进制数据.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 处理文本数据</span>
+<span class="k">def</span> <span class="nf">deals_with_text_data</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="o">...</span>
+<span class="c1"># 处理二进制数据</span>
+<span class="k">def</span> <span class="nf">deals_with_binary_data</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>若一个函数中的字串类型始终一致, 比如上述代码中返回值类型和参数类型相同, 应该使用 <a class="reference external" href="https://google.github.io/styleguide/pyguide.html#typing-type-var">AnyStr</a>.</p>
+</div></blockquote>
+<p id="typing-imports"><strong>导入类型</strong></p>
+<blockquote>
+<div><p>为了静态分析和类型检查而导入 <code class="docutils literal notranslate"><span class="pre">typing</span></code> 和 <code class="docutils literal notranslate"><span class="pre">collections.abc</span></code> 模块中的符号时, 一定要导入符号本身. 这样常用的类型注解更简洁, 也符合全世界的习惯. 特别地, 你可以在一行内从 <code class="docutils literal notranslate"><span class="pre">typing</span></code> 和 <code class="docutils literal notranslate"><span class="pre">collections.abc</span></code> 模块中导入多个特定的类, 例如:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Generic</span>
+</pre></div>
+</div>
+<p>采用这种方法时, 导入的类会进入本地命名空间, 因此所有 <code class="docutils literal notranslate"><span class="pre">typing</span></code> 和 <code class="docutils literal notranslate"><span class="pre">collections.abc</span></code> 模块中的名称都应该和关键词 (keyword) 同等对待. 你不能在自己的代码中定义相同的名字, 无论你是否采用类型注解. 若类型名和某模块中已有的名称出现冲突, 可以用 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">x</span> <span class="pre">as</span> <span class="pre">y</span></code> 的导入形式:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span> <span class="k">as</span> <span class="n">AnyType</span>
+</pre></div>
+</div>
+<p>只要可行, 就使用内置类型. 利用 Python 3.9 引入的 <a class="reference external" href="https://peps.python.org/pep-0585/">PEP-585</a>, 可以在类型注解中使用参数化的容器类型.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_foo_scores</span><span class="p">(</span><span class="n">foo</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>注意: <a class="reference external" href="https://github.com/apache/beam/issues/23366">Apache Beam</a> 的用户应该继续导入 <code class="docutils literal notranslate"><span class="pre">typing</span></code> 模块提供的参数化容器类型.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Set</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="c1"># 只有在你使用了 Apache Beam 这样没有为 PEP 585 更新的代码, 或者你的</span>
+<span class="c1"># 代码需要在 Python 3.9 以下版本中运行时, 才能使用这种旧风格.</span>
+<span class="k">def</span> <span class="nf">generate_foo_scores</span><span class="p">(</span><span class="n">foo</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>有条件的导入</strong></p>
+<blockquote>
+<div><p>仅在一些特殊情况下, 比如在运行时必须避免导入类型检查所需的模块, 才能有条件地导入. 不推荐这种写法. 替代方案是重构代码, 使类型检查所需的模块可以在顶层导入.</p>
+<p>可以把仅用于类型注解的导入放在 <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">TYPE_CHECKING:</span></code> 语句块内.</p>
+<ol class="arabic simple">
+<li><p>在类型注解中, 有条件地导入的类型必须用字符串表示, 这样才能和 Python 3.6 之前的代码兼容. 因为 Python 3.6 之前真的会对类型注解求值.</p></li>
+<li><p>只有那些仅仅用于类型注解的实例才能有条件地导入, 别名也是如此. 否则会引发运行时错误, 因为运行时不会导入这些模块.</p></li>
+<li><p>有条件的导入语句应紧随所有常规导入语句之后.</p></li>
+<li><p>有条件的导入语句之间不能有空行.</p></li>
+<li><p>和常规导入一样, 请对有条件的导入语句排序.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">typing</span>
+<span class="k">if</span> <span class="n">typing</span><span class="o">.</span><span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">sketch</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="s2">&quot;sketch.Sketch&quot;</span><span class="p">):</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>循环依赖</strong></p>
+<blockquote>
+<div><p>若类型注解引发了循环依赖, 说明代码可能存在问题. 这样的代码适合重构. 虽然技术上我们可以支持循环依赖, 但是很多构建系统 (build system) 不支持.</p>
+<p>可以用 <code class="docutils literal notranslate"><span class="pre">Any</span></code> 替换引起循环依赖的模块. 起一个有意义的别名, 然后使用模块中的真实类型名 (Any 的任何属性依然是 Any). 定义别名的语句应该和最后一行导入语句之间间隔一行.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+
+<span class="n">some_mod</span> <span class="o">=</span> <span class="n">Any</span>  <span class="c1"># 因为 some_mod.py 导入了我们的模块.</span>
+<span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">my_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var</span><span class="p">:</span> <span class="s2">&quot;some_mod.SomeType&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>泛型 (generics)</strong></p>
+<blockquote>
+<div><p>在注解类型时, 尽量为泛型类型填入类型参数. 否则, <a class="reference external" href="https://www.python.org/dev/peps/pep-0484/#the-any-type">泛型参数默认为 Any</a> .</p>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_names</span><span class="p">(</span><span class="n">employee_ids</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 这表示 get_names(employee_ids: Sequence[Any]) -&gt; Mapping[Any, Any]</span>
+<span class="k">def</span> <span class="nf">get_names</span><span class="p">(</span><span class="n">employee_ids</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>如果泛型类型的参数的确应该是 <code class="docutils literal notranslate"><span class="pre">Any</span></code>, 请显式地标注, 不过注意 <code class="docutils literal notranslate"><span class="pre">TypeVar</span></code> 很可能更合适.</p>
+<p>错误:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_names</span><span class="p">(</span><span class="n">employee_ids</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;返回员工ID到员工名的映射.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>正确:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">_T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;_T&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_names</span><span class="p">(</span><span class="n">employee_ids</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">_T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">_T</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;返回员工ID到员工名的映射.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="python_language_rules.html" class="btn btn-neutral float-left" title="3.3.3. Python语言规范" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="parting_words.html" class="btn btn-neutral float-right" title="3.3.5. 临别赠言" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

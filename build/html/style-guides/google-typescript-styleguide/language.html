@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.5.3. 语言特性 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.5.4. 代码管理" href="source_organization.html" />
+    <link rel="prev" title="3.5.2. 语法规范" href="syntax.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.5. Google: TypeScript 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">3.5.1. 导言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syntax.html">3.5.2. 语法规范</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.5.3. 语言特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ts-visibility">3.5.3.1. 可见性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-constructors">3.5.3.2. 构造函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-class-members">3.5.3.3. 类成员</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-primitive-types-wrapper-classes">3.5.3.4. 原始类型与封装类</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-array-constructor">3.5.3.5. 数组构造函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-type-coercion">3.5.3.6. 强制类型转换</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-variables">3.5.3.7. 变量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-exceptions">3.5.3.8. 异常</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-iterating-objects">3.5.3.9. 对象迭代</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-iterating-containers">3.5.3.10. 容器迭代</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-using-the-spread-operator">3.5.3.11. 展开运算符</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-control-flow-statements-blocks">3.5.3.12. 控制流语句 / 语句块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#switch">3.5.3.13. <code class="docutils literal notranslate"><span class="pre">switch</span></code> 语句</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-equality-checks">3.5.3.14. 相等性判断</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-function-declarations">3.5.3.15. 函数声明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-function-expressions">3.5.3.16. 函数表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-automatic-semicolon-insertion">3.5.3.17. 自动分号插入</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-ignore">3.5.3.18. <code class="docutils literal notranslate"><span class="pre">&#64;ts-ignore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-type-and-non-nullability-assertions">3.5.3.19. 类型断言与非空断言</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-member-property-declarations">3.5.3.20. 成员属性声明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-enums">3.5.3.21. 枚举</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debugger">3.5.3.22. <code class="docutils literal notranslate"><span class="pre">debugger</span></code> 语句</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-decorators">3.5.3.23. 装饰器</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="source_organization.html">3.5.4. 代码管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="type_system.html">3.5.5. 类型系统</a></li>
+<li class="toctree-l3"><a class="reference internal" href="consistency.html">3.5.6. 一致性</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.5. </span>Google: TypeScript 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.5.3. </span>语言特性</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-typescript-styleguide/language.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3.5.3. </span>语言特性<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="ts-visibility">
+<span id="id2"></span><h2><span class="section-number">3.5.3.1. </span>可见性<a class="headerlink" href="#ts-visibility" title="Permalink to this heading"></a></h2>
+<p>限制属性、方法以及类型的可见性有助于代码解耦合。因此：</p>
+<ul class="simple">
+<li><p>应当尽可能限制符号的可见性。</p></li>
+<li><p>可以将私有方法在同一文件中改写为独立于所有类以外的内部函数，并将私有属性移至单独的内部类中。</p></li>
+<li><p>在 TypeScript 中，符号默认的可见性即为 <code class="docutils literal notranslate"><span class="pre">public</span></code> ，因此，除了在构造函数中声明公开（ <code class="docutils literal notranslate"><span class="pre">public</span></code> ）且非只读（ <code class="docutils literal notranslate"><span class="pre">readonly</span></code> ）的参数属性之外，不要使用 <code class="docutils literal notranslate"><span class="pre">public</span></code> 修饰符。</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="nx">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Bar</span><span class="p">();</span><span class="w">  </span><span class="c1">// 不要这样做！不需要 public 修饰符！</span>
+
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="k">public</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">baz</span><span class="o">:</span><span class="w"> </span><span class="kt">Baz</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">  </span><span class="c1">// 不要这样做！readonly 修饰符已经表明了 baz 是默认 public 的属性，因此不需要 public 修饰符！</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Bar</span><span class="p">();</span><span class="w">  </span><span class="c1">// 应当这样做！将不需要的 public 修饰符省略！</span>
+
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="k">public</span><span class="w"> </span><span class="nx">baz</span><span class="o">:</span><span class="w"> </span><span class="kt">Baz</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">  </span><span class="c1">// 可以这样做！公开且非只读的参数属性允许使用 public 修饰符！</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>关于可见性，还可参见 <a class="reference internal" href="source_organization.html#ts-export-visibility"><span class="std std-ref">导出可见性</span></a> 一节。</p>
+</section>
+<section id="ts-constructors">
+<span id="id3"></span><h2><span class="section-number">3.5.3.2. </span>构造函数<a class="headerlink" href="#ts-constructors" title="Permalink to this heading"></a></h2>
+<p>调用构造函数时必须使用括号，即使不传递任何参数。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Foo</span><span class="p">;</span>
+
+<span class="c1">// 应当这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Foo</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>没有必要提供一个空的或者仅仅调用父类构造函数的构造函数。在 ES2015 标准中，如果没有为类显式地提供构造函数，编译器会提供一个默认的构造函数。但是，含有参数属性、访问修饰符或参数装饰器的构造函数即使函数体为空也不能省略。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！没有必要声明一个空的构造函数！</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">UnnecessaryConstructor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！没有必要声明一个仅仅调用基类构造函数的构造函数！</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">UnnecessaryConstructorOverride</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Base</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">super</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！默认构造函数由编译器提供即可！</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">DefaultConstructor</span><span class="w"> </span><span class="p">{</span>
+<span class="p">}</span>
+
+<span class="c1">// 应当这样做！含有参数属性的构造函数不能省略！</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">ParameterProperties</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">myService</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="c1">// 应当这样做！含有参数装饰器的构造函数不能省略！</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">ParameterDecorators</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="kd">@SideEffectDecorator</span><span class="w"> </span><span class="nx">myService</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="c1">// 应当这样做！私有的构造函数不能省略！</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">NoInstantiation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-class-members">
+<span id="id4"></span><h2><span class="section-number">3.5.3.3. </span>类成员<a class="headerlink" href="#ts-class-members" title="Permalink to this heading"></a></h2>
+<section id="private">
+<span id="ts-no-private-fields"></span><h3><span class="section-number">3.5.3.3.1. </span><code class="docutils literal notranslate"><span class="pre">#private</span></code> 语法<a class="headerlink" href="#private" title="Permalink to this heading"></a></h3>
+<p>不要使用 <code class="docutils literal notranslate"><span class="pre">#private</span></code> 私有字段（又称私有标识符）语法声明私有成员。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span>// 不要这样做！
+class Clazz {
+    #ident = 1;
+}
+</pre></div>
+</div>
+<p>而应当使用 TypeScript 的访问修饰符。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Clazz</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">ident</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>为什么？因为私有字段语法会导致 TypeScipt 在编译为 JavaScript 时出现体积和性能问题。同时，ES2015 之前的标准都不支持私有字段语法，因此它限制了 TypeScript 最低只能被编译至 ES2015。另外，在进行静态类型和可见性检查时，私有字段语法相比访问修饰符并无明显优势。</p>
+</section>
+<section id="readonly">
+<span id="ts-use-readonly"></span><h3><span class="section-number">3.5.3.3.2. </span>使用 <code class="docutils literal notranslate"><span class="pre">readonly</span></code><a class="headerlink" href="#readonly" title="Permalink to this heading"></a></h3>
+<p>对于不会在构造函数以外进行赋值的属性，应使用 <code class="docutils literal notranslate"><span class="pre">readonly</span></code> 修饰符标记。这些属性并不需要具有深层不可变性。</p>
+</section>
+<section id="id5">
+<h3><span class="section-number">3.5.3.3.3. </span>参数属性<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>不要在构造函数中显式地对类成员进行初始化。应当使用 TypeScript 的 <a class="reference external" href="https://www.typescriptlang.org/docs/handbook/classes.html#parameter-properties">参数属性</a> 语法。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！重复的代码太多了！</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">barService</span><span class="o">:</span><span class="w"> </span><span class="kt">BarService</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">barService</span><span class="o">:</span><span class="w"> </span><span class="kt">BarService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">barService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">barService</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！简洁明了！</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">barService</span><span class="o">:</span><span class="w"> </span><span class="kt">BarService</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>如果需要为参数属性添加文档，应使用 JSDoc 的 <code class="docutils literal notranslate"><span class="pre">&#64;param</span></code> 标签，参见 <a class="reference internal" href="syntax.html#ts-parameter-property-comments"><span class="std std-ref">参数属性注释</span></a> 一节。</p>
+</section>
+<section id="id7">
+<h3><span class="section-number">3.5.3.3.4. </span>字段初始化<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<p>如果某个成员并非参数属性，应当在声明时就对其进行初始化，这样有时可以完全省略掉构造函数。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！没有必要单独把初始化语句放在构造函数里！</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">userList</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">userList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！省略了构造函数！</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">userList</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-properties-used-outside-of-class-lexical-scope">
+<span id="id8"></span><h3><span class="section-number">3.5.3.3.5. </span>用于类的词法范围之外的属性<a class="headerlink" href="#ts-properties-used-outside-of-class-lexical-scope" title="Permalink to this heading"></a></h3>
+<p>如果一个属性被用于它们所在类的词法范围之外，例如用于模板（template）的 AngularJS 控制器（controller）属性，则禁止将其设为 <code class="docutils literal notranslate"><span class="pre">private</span></code> ，因为显然这些属性是用于外部的。</p>
+<p>对于这类属性，应当将其设为 <code class="docutils literal notranslate"><span class="pre">public</span></code> ，如果有需要的话也可以使用 <code class="docutils literal notranslate"><span class="pre">protected</span></code> 。例如，Angular 和 Polymer 的模板属性应使用 <code class="docutils literal notranslate"><span class="pre">public</span></code> ，而 AngularJS 应使用 <code class="docutils literal notranslate"><span class="pre">protected</span></code> 。</p>
+<p>此外，禁止在 TypeScript 代码中使用 <code class="docutils literal notranslate"><span class="pre">obj['foo']</span></code> 语法绕过可见性限制进行访问。</p>
+<p>为什么？</p>
+<p>如果一个属性被设为 <code class="docutils literal notranslate"><span class="pre">private</span></code>，就相当于向自动化工具和读者声明对这个属性的访问局限于类的内部。例如，用于查找未被使用的代码的工具可能会将一个私有属性标记为未使用，即使在其它文件中有代码设法绕过了可见性限制对其进行访问。</p>
+<p>虽然 <code class="docutils literal notranslate"><span class="pre">obj['foo']</span></code> 可以绕过 TypeScript 编译器对可见性的检查，但是这种访问方法可能会由于调整了构建规则而失效。此外，它也违反了后文中所提到的 <a class="reference internal" href="#ts-optimization-compatibility-for-property-access"><span class="std std-ref">优化属性访问的兼容性</span></a> 规则。</p>
+</section>
+<section id="ts-getters-and-setters-accessors">
+<span id="id9"></span><h3><span class="section-number">3.5.3.3.6. </span>取值器与设值器（存取器）<a class="headerlink" href="#ts-getters-and-setters-accessors" title="Permalink to this heading"></a></h3>
+<p>可以在类中使用存取器，其中取值器方法必须是纯函数（即结果必须是一致稳定的，且不能有副作用）。存取器还可以用于隐藏内部复杂的实现细节。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">someService</span><span class="o">:</span><span class="w"> </span><span class="kt">SomeService</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">    </span><span class="nx">get</span><span class="w"> </span><span class="nx">someMember</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">someService</span><span class="p">.</span><span class="nx">someVariable</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">set</span><span class="w"> </span><span class="nx">someMember</span><span class="p">(</span><span class="nx">newValue</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">someService</span><span class="p">.</span><span class="nx">someVariable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">newValue</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>如果存取器被用于隐藏类内部的某个属性，则被隐藏的属性应当以诸如 <code class="docutils literal notranslate"><span class="pre">internal</span></code> 或 <code class="docutils literal notranslate"><span class="pre">wrapped</span></code> 此类的完整单词作为前缀或后缀。在使用这些私有属性时，应当尽可能地通过存取器进行访问。取值器和设值器二者至少要有一个是非平凡的，也就是说，存取器不能只用于传递属性值，更不能依赖这种存取器对属性进行隐藏。这种情况下，应当直接将属性设为 <code class="docutils literal notranslate"><span class="pre">public</span></code>。对于只有取值器没有设值器的属性，则应当考虑直接将其设为 <code class="docutils literal notranslate"><span class="pre">readonly</span></code>。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">wrappedBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">get</span><span class="w"> </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">wrappedBar</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">set</span><span class="w"> </span><span class="nx">bar</span><span class="p">(</span><span class="nx">wrapped</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">wrappedBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">wrapped</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Bar</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">barInternal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// 不要这样做！取值器和设值器都没有任何逻辑，这种情况下应当直接将属性 bar 设为 public。</span>
+<span class="w">    </span><span class="nx">get</span><span class="w"> </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">barInternal</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">set</span><span class="w"> </span><span class="nx">bar</span><span class="p">(</span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">barInternal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ts-primitive-types-wrapper-classes">
+<span id="id10"></span><h2><span class="section-number">3.5.3.4. </span>原始类型与封装类<a class="headerlink" href="#ts-primitive-types-wrapper-classes" title="Permalink to this heading"></a></h2>
+<p>在 TypeScript 中，不要实例化原始类型的封装类，例如 <code class="docutils literal notranslate"><span class="pre">String</span></code> 、 <code class="docutils literal notranslate"><span class="pre">Boolean</span></code> 、 <code class="docutils literal notranslate"><span class="pre">Number</span></code> 等。封装类有许多不合直觉的行为，例如 <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Boolean(false)</span></code> 在布尔表达式中会被求值为 <code class="docutils literal notranslate"><span class="pre">true</span></code>。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Boolean</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="mf">5</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-array-constructor">
+<span id="id11"></span><h2><span class="section-number">3.5.3.5. </span>数组构造函数<a class="headerlink" href="#ts-array-constructor" title="Permalink to this heading"></a></h2>
+<p>在 TypeScript 中，禁止使用 <code class="docutils literal notranslate"><span class="pre">Array()</span></code> 构造函数（无论是否使用 <code class="docutils literal notranslate"><span class="pre">new</span></code> 关键字）。它有许多不合直觉又彼此矛盾的行为，例如：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！同样的构造函数，其构造方式却却完全不同！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// 参数 2 被视作数组的长度，因此返回的结果是 [undefined, undefined]</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span><span class="w"> </span><span class="c1">// 参数 2, 3 被视为数组中的元素，返回的结果此时变成了 [2, 3]</span>
+</pre></div>
+</div>
+<p>应当使用方括号对数组进行初始化，或者使用 <code class="docutils literal notranslate"><span class="pre">from</span></code> 构造一个具有确定长度的数组：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">2</span><span class="p">];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">];</span>
+
+<span class="c1">// 等价于 Array(2)：</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="nx">c</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+
+<span class="c1">// 生成 [0, 0, 0, 0, 0]</span>
+<span class="nb">Array</span><span class="p">.</span><span class="kr">from</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="p">({</span><span class="nx">length</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span><span class="p">}).</span><span class="nx">fill</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-type-coercion">
+<span id="id12"></span><h2><span class="section-number">3.5.3.6. </span>强制类型转换<a class="headerlink" href="#ts-type-coercion" title="Permalink to this heading"></a></h2>
+<p>在 TypeScript 中，可以使用 <code class="docutils literal notranslate"><span class="pre">String()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Boolean()</span></code> 函数（注意不能和 <code class="docutils literal notranslate"><span class="pre">new</span></code> 一起使用！）、模板字符串和 <code class="docutils literal notranslate"><span class="pre">!!</span></code> 运算符进行强制类型转换。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Boolean</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">aNumber</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">bool2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!!</span><span class="nx">str</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">str2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`result: </span><span class="si">${</span><span class="nx">bool2</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>不建议通过字符串连接操作将类型强制转换为 <code class="docutils literal notranslate"><span class="pre">string</span></code> ，这会导致加法运算符两侧的运算对象具有不同的类型。</p>
+<p>在将其它类型转换为数字时，必须使用 <code class="docutils literal notranslate"><span class="pre">Number()</span></code> 函数，并且，在类型转换有可能失败的场合，必须显式地检查其返回值是否为 <code class="docutils literal notranslate"><span class="pre">NaN</span></code> 。</p>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p><code class="docutils literal notranslate"><span class="pre">Number('')</span></code> 、 <code class="docutils literal notranslate"><span class="pre">Number('</span> <span class="pre">')</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Number('\t')</span></code> 返回 <code class="docutils literal notranslate"><span class="pre">0</span></code> 而不是 <code class="docutils literal notranslate"><span class="pre">NaN</span></code> 。 <code class="docutils literal notranslate"><span class="pre">Number('Infinity')</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Number('-Infinity')</span></code> 分别返回 <code class="docutils literal notranslate"><span class="pre">Infinity</span></code> 和 <code class="docutils literal notranslate"><span class="pre">-Infinity</span></code> 。这些情况可能需要特殊处理。</p>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">aNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="s1">&#39;123&#39;</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">aNumber</span><span class="p">))</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(...);</span><span class="w">  </span><span class="c1">// 如果输入字符串有可能无法被解析为数字，就需要处理返回 NaN 的情况。</span>
+<span class="nx">assertFinite</span><span class="p">(</span><span class="nx">aNumber</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span><span class="w">                </span><span class="c1">// 如果输入字符串已经保证合法，可以在这里添加断言。</span>
+</pre></div>
+</div>
+<p>禁止使用一元加法运算符 <code class="docutils literal notranslate"><span class="pre">+</span></code> 将字符串强制转换为数字。用这种方法进行解析有失败的可能，还有可能出现奇怪的边界情况。而且，这样的写法往往成为代码中的坏味道， <code class="docutils literal notranslate"><span class="pre">+</span></code> 在代码审核中非常容易被忽略掉。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">+</span><span class="nx">y</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>同样地，代码中也禁止使用 <code class="docutils literal notranslate"><span class="pre">parseInt</span></code> 或 <code class="docutils literal notranslate"><span class="pre">parseFloat</span></code> 进行转换，除非用于解析表示非十进制数字的字符串。因为这两个函数都会忽略字符串中的后缀，这有可能在无意间掩盖了一部分原本会发生错误的情形（例如将 <code class="docutils literal notranslate"><span class="pre">12</span> <span class="pre">dwarves</span></code> 解析成 <code class="docutils literal notranslate"><span class="pre">12</span></code>）。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">someString</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span><span class="w">  </span><span class="c1">// 无论传不传基数，</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">someString</span><span class="p">);</span><span class="w">    </span><span class="c1">// 都很容易造成错误。</span>
+</pre></div>
+</div>
+<p>对于需要解析非十进制数字的情况，在调用 <code class="docutils literal notranslate"><span class="pre">parseInt</span></code> 进行解析之前必须检查输入是否合法。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="sr">/^[a-fA-F0-9]+$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">someString</span><span class="p">))</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(...);</span>
+<span class="c1">// 需要解析 16 进制数。</span>
+<span class="c1">// tslint:disable-next-line:ban</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">someString</span><span class="p">,</span><span class="w"> </span><span class="mf">16</span><span class="p">);</span><span class="w">  </span><span class="c1">// 只允许在非十进制的情况下使用 parseInt。</span>
+</pre></div>
+</div>
+<p>应当使用 <code class="docutils literal notranslate"><span class="pre">Number()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Math.floor</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">Math.trunc</span></code> （如果支持的话）解析整数。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="nx">someString</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">f</span><span class="p">))</span><span class="w"> </span><span class="nx">handleError</span><span class="p">();</span>
+<span class="nx">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>不要在 <code class="docutils literal notranslate"><span class="pre">if</span></code> 、 <code class="docutils literal notranslate"><span class="pre">for</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">while</span></code> 的条件语句中显式地将类型转换为 <code class="docutils literal notranslate"><span class="pre">boolean</span></code> ，因为这里原本就会执行隐式的类型转换。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">foo</span><span class="o">:</span><span class="w"> </span><span class="kt">MyInterface</span><span class="o">|</span><span class="kc">null</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!!</span><span class="nx">foo</span><span class="p">)</span><span class="w"> </span><span class="p">{...}</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!!</span><span class="nx">foo</span><span class="p">)</span><span class="w"> </span><span class="p">{...}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">foo</span><span class="o">:</span><span class="w"> </span><span class="kt">MyInterface</span><span class="o">|</span><span class="kc">null</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span><span class="w"> </span><span class="p">{...}</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span><span class="w"> </span><span class="p">{...}</span>
+</pre></div>
+</div>
+<p>最后，在代码中使用显式和隐式的比较均可。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 显式地和 0 进行比较，没问题！</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{...}</span>
+
+<span class="c1">// 依赖隐式类型转换，也没问题！</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w"> </span><span class="p">{...}</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-variables">
+<span id="id13"></span><h2><span class="section-number">3.5.3.7. </span>变量<a class="headerlink" href="#ts-variables" title="Permalink to this heading"></a></h2>
+<p>必须使用 <code class="docutils literal notranslate"><span class="pre">const</span></code> 或 <code class="docutils literal notranslate"><span class="pre">let</span></code> 声明变量。尽可能地使用 <code class="docutils literal notranslate"><span class="pre">const</span></code> ，除非这个变量需要被重新赋值。禁止使用 <code class="docutils literal notranslate"><span class="pre">var</span></code> 。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">otherValue</span><span class="p">;</span><span class="w">  </span><span class="c1">// 如果 foo 不可变，就使用 const。</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">someValue</span><span class="p">;</span><span class="w">     </span><span class="c1">// 如果 bar 在之后会被重新赋值，就使用 let。</span>
+</pre></div>
+</div>
+<p>与大多数其它编程语言类似，使用 <code class="docutils literal notranslate"><span class="pre">const</span></code> 和 <code class="docutils literal notranslate"><span class="pre">let</span></code> 声明的变量都具有块级作用域。与之相反的是，使用 <code class="docutils literal notranslate"><span class="pre">var</span></code> 声明的变量在 JavaScript 中具有函数作用域，这会造成许多难以理解的 bug，因此禁止在 TypeScript 中使用 <code class="docutils literal notranslate"><span class="pre">var</span></code> 。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这么做！</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">someValue</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>最后，变量必须在使用前进行声明。</p>
+</section>
+<section id="ts-exceptions">
+<span id="id14"></span><h2><span class="section-number">3.5.3.8. </span>异常<a class="headerlink" href="#ts-exceptions" title="Permalink to this heading"></a></h2>
+<p>在实例化异常对象时，必须使用 <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Error()</span></code> 语法而非调用 <code class="docutils literal notranslate"><span class="pre">Error()</span></code> 函数。虽然这两种方法都能够创建一个异常实例，但是使用 <code class="docutils literal notranslate"><span class="pre">new</span></code> 能够与代码中其它的对象实例化在形式上保持更好的一致性。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Foo is not a valid bar.&#39;</span><span class="p">);</span>
+
+<span class="c1">// 不要这样做！</span>
+<span class="k">throw</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Foo is not a valid bar.&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-iterating-objects">
+<span id="id15"></span><h2><span class="section-number">3.5.3.9. </span>对象迭代<a class="headerlink" href="#ts-iterating-objects" title="Permalink to this heading"></a></h2>
+<p>对对象使用 <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">(...</span> <span class="pre">in</span> <span class="pre">...)</span></code> 语法进行迭代很容易出错，因为它同时包括了对象从原型链中继承得来的属性。因此，禁止使用裸的 <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">(...</span> <span class="pre">in</span> <span class="pre">...)</span></code> 语句。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">someObj</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// x 可能包括 someObj 从原型中继承得到的属性。</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>在对对象进行迭代时，必须使用 <code class="docutils literal notranslate"><span class="pre">if</span></code> 语句对对象的属性进行过滤，或者使用 <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">(...</span> <span class="pre">of</span> <span class="pre">Object.keys(...))</span></code> 。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">someObj</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">someObj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">x</span><span class="p">))</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// 此时 x 必然是定义在 someObj 上的属性。</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">someObj</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 注意：这里使用的是 for _of_ 语法！</span>
+<span class="w">    </span><span class="c1">// 此时 x 必然是定义在 someObj 上的属性。</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">]</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">someObj</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 注意：这里使用的是 for _of_ 语法！</span>
+<span class="w">    </span><span class="c1">// 此时 key 必然是定义在 someObj 上的属性。</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-iterating-containers">
+<span id="id16"></span><h2><span class="section-number">3.5.3.10. </span>容器迭代<a class="headerlink" href="#ts-iterating-containers" title="Permalink to this heading"></a></h2>
+<p>不要在数组上使用 <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">(...</span> <span class="pre">in</span> <span class="pre">...)</span></code> 进行迭代。这是一个违反直觉的操作，因为它是对数组的下标而非元素进行迭代（还会将其强制转换为 <code class="docutils literal notranslate"><span class="pre">string</span></code> 类型）！</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">someArray</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 这里的 x 是数组的下标！(还是 string 类型的！)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>如果要在数组上进行迭代，应当使用 <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">(...</span> <span class="pre">of</span> <span class="pre">someArr)</span></code> 语句或者传统的 <code class="docutils literal notranslate"><span class="pre">for</span></code> 循环语句。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">someArr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 这里的x 是数组的元素。</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">someArr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 如果需要使用下标，就对下标进行迭代，否则就使用 for/of 循环。</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">someArr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">]</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">someArr</span><span class="p">.</span><span class="nx">entries</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 上面例子的另一种形式。</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>不要使用 <code class="docutils literal notranslate"><span class="pre">Array.prototype.forEach</span></code> 、 <code class="docutils literal notranslate"><span class="pre">Set.prototype.forEach</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Map.prototype.forEach</span></code> 。这些方法会使代码难以调试，还会令编译器的某些检查（例如可见性检查）失效。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="nx">someArr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">item</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">someFn</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>为什么？考虑下面这段代码：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="o">|</span><span class="kc">null</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;abc&#39;</span><span class="p">;</span>
+<span class="nx">myArray</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span><span class="w"> </span><span class="p">});</span>
+</pre></div>
+</div>
+<p>从读者的角度看，这段代码并没有什么问题： <code class="docutils literal notranslate"><span class="pre">x</span></code> 没有被初始化为 <code class="docutils literal notranslate"><span class="pre">null</span></code> ，并且在被访问之前也没有发生过任何变化。但是对编译器而言，它并不知道传给 <code class="docutils literal notranslate"><span class="pre">.forEach()</span></code> 的闭包 <code class="docutils literal notranslate"><span class="pre">()</span> <span class="pre">=&gt;</span> <span class="pre">{</span> <span class="pre">x.charAt(0);</span> <span class="pre">}</span></code> 会被立即执行。因此，编译器有理由认为闭包有可能在之后的某处代码中被调用，而到那时 <code class="docutils literal notranslate"><span class="pre">x</span></code> 已经被设为 <code class="docutils literal notranslate"><span class="pre">null</span></code> 。于是，这里出现了一个编译错误。与之等价的 <code class="docutils literal notranslate"><span class="pre">for-of</span></code> 形式的迭代就不会有任何问题。</p>
+<p>读者可以在 <a class="reference external" href="https://www.typescriptlang.org/play?#code/DYUwLgBAHgXBDOYBOBLAdgcwD5oK7GAgF4IByAQwCMBjUgbgCgBtAXQDoAzAeyQFFzqACwAUwgJTEAfBADeDCNDZDySAIJhhABjGMAvjoYNQkAJ5xEqTDnyESFGvQbckEYdS5pEEAPoQuHCFYJOQUTJUEVdS0DXQYgA">这里</a> 对比这两个版本的代码。</p>
+<p>在工程实践中，代码路径越复杂、越违背直觉，越容易在进行控制流分析时出现这类问题。</p>
+</section>
+<section id="ts-using-the-spread-operator">
+<span id="id18"></span><h2><span class="section-number">3.5.3.11. </span>展开运算符<a class="headerlink" href="#ts-using-the-spread-operator" title="Permalink to this heading"></a></h2>
+<p>在复制数组或对象时，展开运算符 <code class="docutils literal notranslate"><span class="pre">[...foo]</span></code>、<code class="docutils literal notranslate"><span class="pre">{...bar}</span></code> 是一个非常方便的语法。使用展开运算符时，对于同一个键，后出现的值会取代先出现的值。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">num</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">foo2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span><span class="nx">foo</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">num</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">foo3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">num</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span><span class="p">,</span>
+<span class="w">    </span><span class="p">...</span><span class="nx">foo</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1">// 对于 foo2 而言，1 先出现，5 后出现。</span>
+<span class="nx">foo2</span><span class="p">.</span><span class="nx">num</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+
+<span class="c1">// 对于 foo3 而言，5 先出现，1 后出现。</span>
+<span class="nx">foo3</span><span class="p">.</span><span class="nx">num</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>在使用展开运算符时，被展开的值必须与被创建的值相匹配。也就是说，在创建对象时只能展开对象，在创建数组时只能展开可迭代类型。</p>
+<p>禁止展开原始类型，包括 <code class="docutils literal notranslate"><span class="pre">null</span></code> 和 <code class="docutils literal notranslate"><span class="pre">undefined</span></code> 。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nx">num</span><span class="o">:</span><span class="w"> </span><span class="kt">7</span><span class="p">};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nx">num</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span><span class="p">,</span><span class="w"> </span><span class="p">...(</span><span class="nx">shouldUseFoo</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">foo</span><span class="p">)};</span><span class="w"> </span><span class="c1">// 展开运算符有可能作用于 undefined。</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！这会创建出一个没有 length 属性的对象 {0: &#39;a&#39;, 1: &#39;b&#39;, 2: &#39;c&#39;}。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">fooStrings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="p">];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{...</span><span class="nx">fooStrings</span><span class="p">};</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！在创建对象时展开对象。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">shouldUseFoo</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">{</span><span class="nx">num</span><span class="o">:</span><span class="w"> </span><span class="kt">7</span><span class="p">}</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nx">num</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">foo</span><span class="p">};</span>
+
+<span class="c1">// 应当这样做！在创建数组时展开数组。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">fooStrings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="p">];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">fooStrings</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;e&#39;</span><span class="p">];</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-control-flow-statements-blocks">
+<span id="id19"></span><h2><span class="section-number">3.5.3.12. </span>控制流语句 / 语句块<a class="headerlink" href="#ts-control-flow-statements-blocks" title="Permalink to this heading"></a></h2>
+<p>多行控制流语句必须使用大括号。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">doSomethingWith</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">andSomeMore</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">doSomethingWithALongMethodName</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">x</span><span class="p">.</span><span class="nx">doFoo</span><span class="p">();</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">doSomethingWithALongMethodName</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>这条规则的例外时，能够写在同一行的 <code class="docutils literal notranslate"><span class="pre">if</span></code> 语句可以省略大括号。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 可以这样做！</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="nx">x</span><span class="p">.</span><span class="nx">doFoo</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="switch">
+<span id="ts-switch-statements"></span><h2><span class="section-number">3.5.3.13. </span><code class="docutils literal notranslate"><span class="pre">switch</span></code> 语句<a class="headerlink" href="#switch" title="Permalink to this heading"></a></h2>
+<p>所有的 <code class="docutils literal notranslate"><span class="pre">switch</span></code> 语句都必须包含一个 <code class="docutils literal notranslate"><span class="pre">default</span></code> 分支，即使这个分支里没有任何代码。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nx">Y</span><span class="o">:</span>
+<span class="w">        </span><span class="kt">doSomethingElse</span><span class="p">();</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span>
+<span class="w">        </span><span class="c1">// 什么也不做。</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>非空语句组（ <code class="docutils literal notranslate"><span class="pre">case</span> <span class="pre">...</span></code> ）不允许越过分支向下执行（编译器会进行检查）：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不能这样做！</span>
+<span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nx">X</span><span class="o">:</span>
+<span class="w">        </span><span class="kt">doSomething</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// 不允许向下执行！</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nx">Y</span><span class="o">:</span>
+<span class="w">        </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>空语句组可以这样做：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 可以这样做！</span>
+<span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nx">X</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">case</span><span class="w"> </span><span class="nx">Y</span><span class="o">:</span>
+<span class="w">        </span><span class="kt">doSomething</span><span class="p">();</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="c1">// 什么也不做。</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-equality-checks">
+<span id="id20"></span><h2><span class="section-number">3.5.3.14. </span>相等性判断<a class="headerlink" href="#ts-equality-checks" title="Permalink to this heading"></a></h2>
+<p>必须使用三等号（ <code class="docutils literal notranslate"><span class="pre">===</span></code> ）和对应的不等号（ <code class="docutils literal notranslate"><span class="pre">!==</span></code> ）。两等号会在比较的过程中进行类型转换，这非常容易导致难以理解的错误。并且在 JavaScript 虚拟机上，两等号的运行速度比三等号慢。参见 <a class="reference external" href="https://dorey.github.io/JavaScript-Equality-Table/">JavaScript 相等表</a> 。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">foo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">baz</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nx">bam</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 由于发生了类型转换，会导致难以理解的行为。</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">foo</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">baz</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="nx">bam</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 一切都很好！</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>例外</strong>：和 <code class="docutils literal notranslate"><span class="pre">null</span></code> 字面量的比较可以使用 <code class="docutils literal notranslate"><span class="pre">==</span></code> 和 <code class="docutils literal notranslate"><span class="pre">!=</span></code> 运算符，这样能够同时覆盖 <code class="docutils literal notranslate"><span class="pre">null</span></code> 和 <code class="docutils literal notranslate"><span class="pre">undefined</span></code> 两种情况。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 可以这样做！</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">foo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 不管 foo 是 null 还是 undefined 都会执行到这里。</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-function-declarations">
+<span id="id21"></span><h2><span class="section-number">3.5.3.15. </span>函数声明<a class="headerlink" href="#ts-function-declarations" title="Permalink to this heading"></a></h2>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">foo()</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code> 的形式声明具名函数，包括嵌套在其它作用域中，例如其它函数内部的函数。</p>
+<p>不要使用将函数表达式赋值给局部变量的写法（例如 <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">function()</span> <span class="pre">{...};</span></code> ）。TypeScript 本身已不允许重新绑定函数，所以在函数声明中使用 <code class="docutils literal notranslate"><span class="pre">const</span></code> 来阻止重写函数是没有必要的。</p>
+<p><strong>例外</strong>：如果函数需要访问外层作用域的 <code class="docutils literal notranslate"><span class="pre">this</span></code> ，则应当使用将箭头函数赋值给变量的形式代替函数声明的形式。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="c1">// 在有上一段代码中的函数声明的情况下，下面这段代码无法通过编译：</span>
+<span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span><span class="w">  </span><span class="c1">// 错误：赋值表达式的左侧不合法。</span>
+
+<span class="c1">// 因此像这样进行函数声明是没有必要的。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>请注意这里所说的函数声明（ <code class="docutils literal notranslate"><span class="pre">function</span> <span class="pre">foo()</span> <span class="pre">{}</span></code> ）和下面要讨论的函数表达式（ <code class="docutils literal notranslate"><span class="pre">doSomethingWith(function()</span> <span class="pre">{});</span></code> ）之间的区别。</p>
+<p>顶层箭头函数可以用于显式地声明这一函数实现了一个接口。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nx">SearchFunction</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">(</span><span class="nx">source</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">subString</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">fooSearch</span><span class="o">:</span><span class="w"> </span><span class="kt">SearchFunction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">source</span><span class="p">,</span><span class="w"> </span><span class="nx">subString</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-function-expressions">
+<span id="id22"></span><h2><span class="section-number">3.5.3.16. </span>函数表达式<a class="headerlink" href="#ts-function-expressions" title="Permalink to this heading"></a></h2>
+<section id="ts-use-arrow-functions-in-expressions">
+<span id="id23"></span><h3><span class="section-number">3.5.3.16.1. </span>在表达式中使用箭头函数<a class="headerlink" href="#ts-use-arrow-functions-in-expressions" title="Permalink to this heading"></a></h3>
+<p>不要使用 ES6 之前使用 <code class="docutils literal notranslate"><span class="pre">function</span></code> 关键字定义函数表达式的版本。应当使用箭头函数。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="nx">bar</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">doSomething</span><span class="p">();</span><span class="w"> </span><span class="p">})</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="nx">bar</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">})</span>
+</pre></div>
+</div>
+<p>只有当函数需要动态地重新绑定 <code class="docutils literal notranslate"><span class="pre">this</span></code> 时，才能使用 <code class="docutils literal notranslate"><span class="pre">function</span></code> 关键字声明函数表达式，但是通常情况下代码中不应当重新绑定 <code class="docutils literal notranslate"><span class="pre">this</span></code> 。常规函数（相对于箭头函数和方法而言）不应当访问 <code class="docutils literal notranslate"><span class="pre">this</span></code> 。</p>
+</section>
+<section id="ts-expression-bodies-vs-block-bodies">
+<span id="id24"></span><h3><span class="section-number">3.5.3.16.2. </span>表达式函数体 和 代码块函数体<a class="headerlink" href="#ts-expression-bodies-vs-block-bodies" title="Permalink to this heading"></a></h3>
+<p>使用箭头函数时，应当根据具体情况选择表达式或者代码块作为函数体。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 使用函数声明的顶层函数。</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">someFunction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 使用代码块函数体的箭头函数，也就是使用 =&gt; { } 的函数，没问题：</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">books</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="kt">Book</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">receipt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">payMoney</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">price</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">recordTransaction</span><span class="p">(</span><span class="nx">receipt</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">receipt</span><span class="p">;</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// 如果用到了函数的返回值的话，使用表达式函数体也没问题：</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">longThings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">myValues</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">1000</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">v</span><span class="p">));</span>
+
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">payMoney</span><span class="p">(</span><span class="nx">amount</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 函数声明也没问题，但是不要在函数中访问 this。</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>只有在确实需要用到函数返回值的情况下才能使用表达式函数体。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！如果不需要函数返回值的话，应当使用代码块函数体（{ ... }）。</span>
+<span class="nx">myPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">v</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！使用代码块函数体。</span>
+<span class="nx">myPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// 应当这样做！即使需要函数返回值，也可以为了可读性使用代码块函数体。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">transformed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">intermediate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">someComplicatedExpr</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">more</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">acrossManyLines</span><span class="p">(</span><span class="nx">intermediate</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">worthWrapping</span><span class="p">(</span><span class="nx">more</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="this">
+<span id="ts-rebinding-this"></span><h3><span class="section-number">3.5.3.16.3. </span>重新绑定 <code class="docutils literal notranslate"><span class="pre">this</span></code><a class="headerlink" href="#this" title="Permalink to this heading"></a></h3>
+<p>不要在函数表达式中使用 <code class="docutils literal notranslate"><span class="pre">this</span></code> ，除非它们明确地被用于重新绑定 <code class="docutils literal notranslate"><span class="pre">this</span></code> 指针。大多数情况下，使用箭头函数或者显式指定函数参数都能够避免重新绑定 <code class="docutils literal notranslate"><span class="pre">this</span></code> 的需求。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">clickHandler</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 这里的 this 到底指向什么？</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 不要这样做！this 指针被隐式地设为 document.body。</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">onclick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">clickHandler</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！在箭头函数中显式地对对象进行引用。</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">onclick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;hello&#39;</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+
+<span class="c1">// 可以这样做！函数显式地接收一个参数。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">setTextFn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="o">:</span><span class="w"> </span><span class="kt">HTMLElement</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;hello&#39;</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">onclick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">setTextFn</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-arrow-functions-as-properties">
+<span id="id25"></span><h3><span class="section-number">3.5.3.16.4. </span>使用箭头函数作为属性<a class="headerlink" href="#ts-arrow-functions-as-properties" title="Permalink to this heading"></a></h3>
+<p>通常情况下，类不应该将任何属性初始化为箭头函数。箭头函数属性需要调用函数意识到被调用函数的 <code class="docutils literal notranslate"><span class="pre">this</span></code> 已经被绑定了，这让 <code class="docutils literal notranslate"><span class="pre">this</span></code> 的指向变得令人费解，也让对应的调用和引用在形式上看着似乎是不正确的，也就是说，需要额外的信息才能确认这样的使用方式是正确的。在调用实例方法时，必须使用箭头函数的形式（例如 <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">handler</span> <span class="pre">=</span> <span class="pre">(x)</span> <span class="pre">=&gt;</span> <span class="pre">{</span> <span class="pre">this.listener(x);</span> <span class="pre">};</span></code> ）。此外，不允许持有或传递实例方法的引用（例如不要使用 <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">handler</span> <span class="pre">=</span> <span class="pre">this.listener;</span> <span class="pre">handler(x);</span></code> 的写法）。</p>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>在一些特殊的情况下，例如需要将函数绑定到模板时，使用箭头函数作为属性是很有用的做法，同时还能令代码的可读性提高。因此，在这些情况下对于这条规则可视具体情况加以变通。此外， <a class="reference internal" href="#ts-event-handlers"><span class="std std-ref">事件句柄</span></a> 一节中有相关讨论。</p>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">DelayHandler</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 这里有个问题，回调函数里的 this 指针不会被保存。</span>
+<span class="w">        </span><span class="c1">// 因此回调函数里的 this 不再是 DelayHandler 的实例了。</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">patienceTracker</span><span class="p">,</span><span class="w"> </span><span class="mf">5000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">patienceTracker</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">waitedPatiently</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！一般而言不应当使用箭头函数作为属性。</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">DelayHandler</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 不要这样做！这里看起来就是像是忘记了绑定 this 指针。</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">patienceTracker</span><span class="p">,</span><span class="w"> </span><span class="mf">5000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">patienceTracker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">waitedPatiently</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！在调用时显式地处理 this 指针的指向问题。</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">DelayHandler</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 在这种情况下，应尽可能使用匿名函数。</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">patienceTracker</span><span class="p">();</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="mf">5000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">patienceTracker</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">waitedPatiently</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-event-handlers">
+<span id="id26"></span><h3><span class="section-number">3.5.3.16.5. </span>事件句柄<a class="headerlink" href="#ts-event-handlers" title="Permalink to this heading"></a></h3>
+<p>对于事件句柄，如果它不需要被卸载的话，可以使用箭头函数的形式，例如事件是由类自身发送的情况。如果句柄必须被卸载，则应当使用箭头函数属性，因为箭头函数属性能够自动正确地捕获 <code class="docutils literal notranslate"><span class="pre">this</span></code> 指针，并且能够提供一个用于卸载的稳定引用。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！事件句柄可以使用匿名函数或者箭头函数属性的形式。</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">onAttached</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 事件是由类本身发送的，因此这个句柄不需要卸载。</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">listener</span><span class="p">();</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">        </span><span class="c1">// 这里的 this.listener 是一个稳定引用，因此可以在之后被卸载。</span>
+<span class="w">        </span><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onbeforeunload&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">listener</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">onDetached</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 这个事件是由 window 发送的。如果不卸载这个句柄，this.listener</span>
+<span class="w">        </span><span class="c1">// 会因为绑定了 this 而保存对 this 的引用，从而导致内存泄漏。</span>
+<span class="w">        </span><span class="nb">window</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;onbeforeunload&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">listener</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// 使用箭头函数作为属性能够自动地正确绑定 this 指针。</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">listener</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">confirm</span><span class="p">(</span><span class="s1">&#39;Do you want to exit the page?&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>不要在注册事件句柄的表达式中使用 <code class="docutils literal notranslate"><span class="pre">bind</span></code> ，这会创建一个无法卸载的临时引用。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！对句柄使用 bind 会创建一个无法卸载的临时引用。</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">onAttached</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 这里创建了一个无法卸载的临时引用。</span>
+<span class="w">        </span><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onbeforeunload&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">listener</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">onDetached</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 这里的 bind 创建了另一个引用，所以这一行代码实际上没有实现任何功能。</span>
+<span class="w">        </span><span class="nb">window</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;onbeforeunload&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">listener</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">listener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">confirm</span><span class="p">(</span><span class="s1">&#39;Do you want to exit the page?&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ts-automatic-semicolon-insertion">
+<span id="id27"></span><h2><span class="section-number">3.5.3.17. </span>自动分号插入<a class="headerlink" href="#ts-automatic-semicolon-insertion" title="Permalink to this heading"></a></h2>
+<p>不要依赖自动分号插入（ASI），必须显式地使用分号结束每一个语句。这能够避免由于不正确的分号插入所导致的 Bug，也能够更好地兼容对 ASI 支持有限的工具（例如 clang-format）。</p>
+</section>
+<section id="ts-ignore">
+<span id="ts-ts-ignore"></span><h2><span class="section-number">3.5.3.18. </span><code class="docutils literal notranslate"><span class="pre">&#64;ts-ignore</span></code><a class="headerlink" href="#ts-ignore" title="Permalink to this heading"></a></h2>
+<p>不要使用 <code class="docutils literal notranslate"><span class="pre">&#64;ts-ignore</span></code> 。表面上看，这是一个“解决”编译错误的简单方法，但实际上，编译错误往往是由其它更大的问题导致的，因此正确的做法是直接解决这些问题本身。</p>
+<p>举例来说，如果使用 <code class="docutils literal notranslate"><span class="pre">&#64;ts-ignore</span></code> 关闭了一个类型错误，那么便很难推断其它相关代码最终会接收到何种类型。对于许多与类型相关的错误， <a class="reference internal" href="type_system.html#ts-any-type"><span class="std std-ref">any 类型</span></a> 一节有一些关于如何正确使用 <code class="docutils literal notranslate"><span class="pre">any</span></code> 的有用的建议。</p>
+</section>
+<section id="ts-type-and-non-nullability-assertions">
+<span id="id28"></span><h2><span class="section-number">3.5.3.19. </span>类型断言与非空断言<a class="headerlink" href="#ts-type-and-non-nullability-assertions" title="Permalink to this heading"></a></h2>
+<p>类型断言（ <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">as</span> <span class="pre">SomeType</span></code> ）和非空断言（ <code class="docutils literal notranslate"><span class="pre">y!</span></code> ）是不安全的。这两种语法只能够绕过编译器，而并不添加任何运行时断言检查，因此有可能导致程序在运行时崩溃。</p>
+<p>因此，除非有明显或确切的理由，否则 <em>不应</em> 使用类型断言和非空断言。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">Foo</span><span class="p">).</span><span class="nx">foo</span><span class="p">();</span>
+
+<span class="nx">y</span><span class="o">!</span><span class="p">.</span><span class="nx">bar</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>如果希望对类型和非空条件进行断言，最好的做法是显式地编写运行时检查。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+
+<span class="c1">// 这里假定 Foo 是一个类。</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="nx">Foo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">x</span><span class="p">.</span><span class="nx">foo</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">y</span><span class="p">.</span><span class="nx">bar</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>有时根据代码中的上下文可以确定某个断言必然是安全的。在这种情况下， <em>应当</em> 添加注释详细地解释为什么这一不安全的行为可以被接受：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 可以这样做！</span>
+
+<span class="c1">// x 是一个 Foo 类型的示例，因为……</span>
+<span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">Foo</span><span class="p">).</span><span class="nx">foo</span><span class="p">();</span>
+
+<span class="c1">// y 不可能是 null，因为……</span>
+<span class="nx">y</span><span class="o">!</span><span class="p">.</span><span class="nx">bar</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>如果使用断言的理由很明显，注释就不是必需的。例如，生成的协议代码总是可空的，但有时根据上下文可以确认其中某些特定的由后端提供的字段必然不为空。在这些情况下应当根据具体场景加以判断和变通。</p>
+<section id="ts-type-assertions-syntax">
+<span id="id29"></span><h3><span class="section-number">3.5.3.19.1. </span>类型断言语法<a class="headerlink" href="#ts-type-assertions-syntax" title="Permalink to this heading"></a></h3>
+<p>类型断言必须使用 <code class="docutils literal notranslate"><span class="pre">as</span></code> 语法，不要使用尖括号语法，这样能强制保证在断言外必须使用括号。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Foo</span><span class="o">&gt;</span><span class="nx">z</span><span class="p">).</span><span class="nx">length</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">Foo</span><span class="o">&gt;</span><span class="nx">z</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">z</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">Foo</span><span class="p">).</span><span class="nx">length</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-type-assertions-and-object-literals">
+<span id="id30"></span><h3><span class="section-number">3.5.3.19.2. </span>类型断言和对象字面量<a class="headerlink" href="#ts-type-assertions-and-object-literals" title="Permalink to this heading"></a></h3>
+<p>使用类型标记（ <code class="docutils literal notranslate"><span class="pre">:</span> <span class="pre">Foo</span></code> ）而非类型断言（ <code class="docutils literal notranslate"><span class="pre">as</span> <span class="pre">Foo</span></code> ）标明对象字面量的类型。在日后对接口的字段类型进行修改时，前者能够帮助程序员发现 Bug。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">bar</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">baz?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">  </span><span class="c1">// 这个字段曾经的名称是“bam”，后来改名为“baz”。</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">bar</span><span class="o">:</span><span class="w"> </span><span class="kt">123</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">bam</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;abc&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1">// 如果使用类型断言，改名之后这里并不会报错！</span>
+<span class="p">}</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">Foo</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">bar</span><span class="o">:</span><span class="w"> </span><span class="kt">123</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">bam</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;abc&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1">// 如果使用类型断言，改名之后这里也不会报错！</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">Foo</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ts-member-property-declarations">
+<span id="id31"></span><h2><span class="section-number">3.5.3.20. </span>成员属性声明<a class="headerlink" href="#ts-member-property-declarations" title="Permalink to this heading"></a></h2>
+<p>接口和类的声明必须使用 <code class="docutils literal notranslate"><span class="pre">;</span></code> 分隔每个成员声明。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">memberA</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">memberB</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>为了与类的写法保持一致，不要在接口中使用 <code class="docutils literal notranslate"><span class="pre">,</span></code> 分隔字段。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">memberA</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">memberB</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>然而，内联对象类型声明必须使用 <code class="docutils literal notranslate"><span class="pre">,</span></code> 作为分隔符。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="kr">type</span><span class="w"> </span><span class="nx">SomeTypeAlias</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">memberA</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">memberB</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">someProperty</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">memberC</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">memberD</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">};</span>
+</pre></div>
+</div>
+<section id="ts-optimization-compatibility-for-property-access">
+<span id="id32"></span><h3><span class="section-number">3.5.3.20.1. </span>优化属性访问的兼容性<a class="headerlink" href="#ts-optimization-compatibility-for-property-access" title="Permalink to this heading"></a></h3>
+<p>不要混用方括号属性访问和句点属性访问两种形式。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="c1">// 必须从两种形式中选择其中一种，以保证整个程序的一致性。</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">[</span><span class="s1">&#39;someField&#39;</span><span class="p">]);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">.</span><span class="nx">someField</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>代码应当尽可能为日后的属性重命名需求进行优化，并且为所有程序外部的对象属性声明对应的字段。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！声明一个对应的接口。</span>
+<span class="kr">declare</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nx">ServerInfoJson</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">appVersion</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="kt">UserJson</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">serverResponse</span><span class="p">)</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">ServerInfoJson</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">appVersion</span><span class="p">);</span><span class="w"> </span><span class="c1">// 这里是类型安全的，如果需要重命名也是安全的！</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-optimization-compatibility-for-module-object-imports">
+<span id="id33"></span><h3><span class="section-number">3.5.3.20.2. </span>优化模块对象导入的兼容性<a class="headerlink" href="#ts-optimization-compatibility-for-module-object-imports" title="Permalink to this heading"></a></h3>
+<p>导入模块对象时应当直接访问对象上的属性，而不要传递对象本身的引用，以保证模块能够被分析和优化。也可以将导入的模块视作命名空间，参见 <a class="reference internal" href="source_organization.html#ts-module-versus-destructuring-imports"><span class="std std-ref">选择模块导入还是解构导入？</span></a> 一节。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">method1</span><span class="p">,</span><span class="w"> </span><span class="nx">method2</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;utils&#39;</span><span class="p">;</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">A</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">readonly</span><span class="w"> </span><span class="nx">utils</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nx">method1</span><span class="p">,</span><span class="w"> </span><span class="nx">method2</span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="k">import</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">utils</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;utils&#39;</span><span class="p">;</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">A</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">readonly</span><span class="w"> </span><span class="nx">utils</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">utils</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-optimization-exception">
+<span id="id34"></span><h3><span class="section-number">3.5.3.20.3. </span>例外情况<a class="headerlink" href="#ts-optimization-exception" title="Permalink to this heading"></a></h3>
+<p>这里所提到的优化规则适用于所有的 Web 应用，但不需要强制应用于只运行在服务端的程序。不过，出于代码整洁性的考虑，这里仍然强烈建议声明所有的类型，并且避免混用两种属性访问的形式。</p>
+</section>
+</section>
+<section id="ts-enums">
+<span id="id35"></span><h2><span class="section-number">3.5.3.21. </span>枚举<a class="headerlink" href="#ts-enums" title="Permalink to this heading"></a></h2>
+<p>对于枚举类型，必须使用 <code class="docutils literal notranslate"><span class="pre">enum</span></code> 关键字，但不要使用 <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">enum</span></code> 。TypeScript 的枚举类型本身就是不可变的， <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">enum</span></code> 的写法是另一种独立的语言特性，其目的是让枚举对 JavaScript 程序员透明。</p>
+</section>
+<section id="debugger">
+<span id="ts-debugger-statements"></span><h2><span class="section-number">3.5.3.22. </span><code class="docutils literal notranslate"><span class="pre">debugger</span></code> 语句<a class="headerlink" href="#debugger" title="Permalink to this heading"></a></h2>
+<p>不允许在生产环境代码中添加 <code class="docutils literal notranslate"><span class="pre">debugger</span></code> 语句。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">debugMe</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">debugger</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-decorators">
+<span id="id36"></span><h2><span class="section-number">3.5.3.23. </span>装饰器<a class="headerlink" href="#ts-decorators" title="Permalink to this heading"></a></h2>
+<p>装饰器以 <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> 为前缀，例如 <code class="docutils literal notranslate"><span class="pre">&#64;MyDecorator</span></code> 。</p>
+<p>不要定义新的装饰器，只使用框架中已定义的装饰器，例如：</p>
+<ul class="simple">
+<li><p>Angular（例如 <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code> 、 <code class="docutils literal notranslate"><span class="pre">&#64;NgModule</span></code> 等等）</p></li>
+<li><p>Polymer（例如 <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> 等等）</p></li>
+</ul>
+<p>为什么？</p>
+<p>通常情况下，应当避免使用装饰器。这是由于装饰器是一个实验性功能，仍然处于 TC39 委员会的提案阶段，且目前存在已知的无法被修复的 Bug。</p>
+<p>使用装饰器时，装饰器必须紧接被装饰的符号，中间不允许有空行。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="cm">/** JSDoc 注释应当位于装饰器之前 */</span>
+<span class="kd">@Component</span><span class="p">({...})</span><span class="w">  </span><span class="c1">// 装饰器之后不能有空行。</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">MyComp</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">myField</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">  </span><span class="c1">// 字段的装饰器和和字段位于同一行……</span>
+
+<span class="w">    </span><span class="kd">@Input</span><span class="p">()</span>
+<span class="w">    </span><span class="nx">myOtherField</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">  </span><span class="c1">// ……或位于字段之前。</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="syntax.html" class="btn btn-neutral float-left" title="3.5.2. 语法规范" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="source_organization.html" class="btn btn-neutral float-right" title="3.5.4. 代码管理" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

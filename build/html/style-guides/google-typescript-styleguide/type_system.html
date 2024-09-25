@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.5.5. 类型系统 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.5.6. 一致性" href="consistency.html" />
+    <link rel="prev" title="3.5.4. 代码管理" href="source_organization.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.5. Google: TypeScript 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">3.5.1. 导言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syntax.html">3.5.2. 语法规范</a></li>
+<li class="toctree-l3"><a class="reference internal" href="language.html">3.5.3. 语言特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source_organization.html">3.5.4. 代码管理</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.5.5. 类型系统</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ts-type-inference">3.5.5.1. 类型推导</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#null-undefined">3.5.5.2. Null 还是 Undefined ？</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-structural-types-vs-nominal-types">3.5.5.3. 结构类型 与 指名类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-interface-vs-type-aliases">3.5.5.4. 接口 还是 类型别名？</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#array-t">3.5.5.5. <code class="docutils literal notranslate"><span class="pre">Array&lt;T&gt;</span></code> 类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-string-number">3.5.5.6. 索引类型 <code class="docutils literal notranslate"><span class="pre">{[key:</span> <span class="pre">string]:</span> <span class="pre">number}</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-mapped-conditional-types">3.5.5.7. 映射类型与条件类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#any">3.5.5.8. <code class="docutils literal notranslate"><span class="pre">any</span></code> 类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-tuple-types">3.5.5.9. 元组类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-wrapper-types">3.5.5.10. 包装类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-return-type-only-generics">3.5.5.11. 只有泛型的返回类型</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="consistency.html">3.5.6. 一致性</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.5. </span>Google: TypeScript 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.5.5. </span>类型系统</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-typescript-styleguide/type_system.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3.5.5. </span>类型系统<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="ts-type-inference">
+<span id="id2"></span><h2><span class="section-number">3.5.5.1. </span>类型推导<a class="headerlink" href="#ts-type-inference" title="Permalink to this heading"></a></h2>
+<p>对于所有类型的表达式（包括变量、字段、返回值，等等），都可以依赖 TypeScript 编译器所实现的类型推导。 google3 编译器会拒绝所有缺少类型记号又无法推导出其类型的代码，以保证所有的代码都具有类型（即使其中可能包括显式的 <code class="docutils literal notranslate"><span class="pre">any</span></code> 类型）。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">15</span><span class="p">;</span><span class="w">  </span><span class="c1">// x 的类型可以推导得出.</span>
+</pre></div>
+</div>
+<p>当变量或参数被初始化为 <code class="docutils literal notranslate"><span class="pre">string</span></code> ， <code class="docutils literal notranslate"><span class="pre">number</span></code> ， <code class="docutils literal notranslate"><span class="pre">boolean</span></code> ， <code class="docutils literal notranslate"><span class="pre">RegExp</span></code> 正则表达式字面量或 <code class="docutils literal notranslate"><span class="pre">new</span></code> 表达式时，由于明显能够推导出类型，因此应当省略类型记号。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！添加 boolean 记号对提高可读性没有任何帮助！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！Set 类型显然可以从初始化语句中推导得出。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="kt">Set</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！依赖 TypeScript 的类型推导。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>对于更为复杂的表达式，类型记号有助于提高代码的可读性。此时是否使用类型记号应当由代码审查员决定。</p>
+<section id="ts-return-types">
+<span id="id3"></span><h3><span class="section-number">3.5.5.1.1. </span>返回类型<a class="headerlink" href="#ts-return-types" title="Permalink to this heading"></a></h3>
+<p>代码的作者可以自由决定是否在函数和方法中使用类型记号标明返回类型。代码审查员 <em>可以</em> 要求对难以理解的复杂返回类型使用类型记号进行阐明。项目内部 <em>可以</em> 自行规定必须标明返回值，本文作为一个通用的 TypeScript 风格指南，不做硬性要求。</p>
+<p>显式地标明函数和方法的返回值有两个优点：</p>
+<ul class="simple">
+<li><p>能够生成更精确的文档，有助于读者理解代码。</p></li>
+<li><p>如果未来改变了函数的返回类型的话，可以让因此导致的潜在的错误更快地暴露出来。</p></li>
+</ul>
+</section>
+</section>
+<section id="null-undefined">
+<span id="ts-null-vs-undefined"></span><h2><span class="section-number">3.5.5.2. </span>Null 还是 Undefined ？<a class="headerlink" href="#null-undefined" title="Permalink to this heading"></a></h2>
+<p>TypeScript 支持 <code class="docutils literal notranslate"><span class="pre">null</span></code> 和 <code class="docutils literal notranslate"><span class="pre">undefined</span></code> 类型。可空类型可以通过联合类型实现，例如 <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">|</span> <span class="pre">null</span></code> 。对于 <code class="docutils literal notranslate"><span class="pre">undefined</span></code> 也是类似的。对于 <code class="docutils literal notranslate"><span class="pre">null</span></code> 和 <code class="docutils literal notranslate"><span class="pre">undefined</span></code> 的联合类型，并无特殊的语法。</p>
+<p>TypeScript 代码中可以使用 <code class="docutils literal notranslate"><span class="pre">undefined</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">null</span></code> 标记缺少的值，这里并无通用的规则约定应当使用其中的某一种。许多 JavaScript API 使用 <code class="docutils literal notranslate"><span class="pre">undefined</span></code> （例如 <code class="docutils literal notranslate"><span class="pre">Map.get</span></code> ），然而 DOM 和 Google API 中则更多地使用 <code class="docutils literal notranslate"><span class="pre">null</span></code> （例如 <code class="docutils literal notranslate"><span class="pre">Element.getAttribute</span></code> ），因此，对于 <code class="docutils literal notranslate"><span class="pre">null</span></code> 和 <code class="docutils literal notranslate"><span class="pre">undefined</span></code> 的选择取决于当前的上下文。</p>
+<section id="ts-nullable-undefined-type-aliases">
+<span id="id4"></span><h3><span class="section-number">3.5.5.2.1. </span>可空/未定义类型别名<a class="headerlink" href="#ts-nullable-undefined-type-aliases" title="Permalink to this heading"></a></h3>
+<p><em>不允许</em> 为包括 <code class="docutils literal notranslate"><span class="pre">|null</span></code> 或 <code class="docutils literal notranslate"><span class="pre">|undefined</span></code> 的联合类型创建类型别名。这种可空的别名通常意味着空值在应用中会被层层传递，并且它掩盖了导致空值出现的源头。另外，这种别名也让类或接口中的某个值何时有可能为空变得不确定。</p>
+<p>因此，代码 <em>必须</em> 在使用别名时才允许添加 <code class="docutils literal notranslate"><span class="pre">|null</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">|undefined</span></code> 。同时，代码 <em>应当</em> 在空值出现位置的附近对其进行处理。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！不要在创建别名的时候包含 undefined ！</span>
+<span class="kr">type</span><span class="w"> </span><span class="nx">CoffeeResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Latte</span><span class="o">|</span><span class="nx">Americano</span><span class="o">|</span><span class="kc">undefined</span><span class="p">;</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nx">CoffeeService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">getLatte</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">CoffeeResponse</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！在使用别名的时候联合 undefined ！</span>
+<span class="kr">type</span><span class="w"> </span><span class="nx">CoffeeResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Latte</span><span class="o">|</span><span class="nx">Americano</span><span class="p">;</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nx">CoffeeService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">getLatte</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">CoffeeResponse</span><span class="o">|</span><span class="kc">undefined</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 这样做更好！使用断言对可能的空值进行处理！</span>
+<span class="kr">type</span><span class="w"> </span><span class="nx">CoffeeResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Latte</span><span class="o">|</span><span class="nx">Americano</span><span class="p">;</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nx">CoffeeService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">getLatte</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="nx">CoffeeResponse</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">assert</span><span class="p">(</span><span class="nx">fetchResponse</span><span class="p">(),</span><span class="w"> </span><span class="s1">&#39;Coffee maker is broken, file a ticket&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="undefined">
+<span id="ts-optionals-vs-undefined-type"></span><h3><span class="section-number">3.5.5.2.2. </span>可选参数 还是 <code class="docutils literal notranslate"><span class="pre">undefined</span></code> 类型？<a class="headerlink" href="#undefined" title="Permalink to this heading"></a></h3>
+<p>TypeScript 支持使用 <code class="docutils literal notranslate"><span class="pre">?</span></code> 创建可选参数和可选字段，例如：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nx">CoffeeOrder</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">sugarCubes</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">milk?</span><span class="o">:</span><span class="w"> </span><span class="kt">Whole</span><span class="o">|</span><span class="nx">LowFat</span><span class="o">|</span><span class="nx">HalfHalf</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">pourCoffee</span><span class="p">(</span><span class="nx">volume?</span><span class="o">:</span><span class="w"> </span><span class="kt">Milliliter</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>可选参数实际上隐式地向类型中联合了 <code class="docutils literal notranslate"><span class="pre">|undefined</span></code> 。不同之处在于，在构造类实例或调用方法时，可选参数可以被直接省略。例如， <code class="docutils literal notranslate"><span class="pre">{sugarCubes:</span> <span class="pre">1}</span></code> 是一个合法的 <code class="docutils literal notranslate"><span class="pre">CoffeeOrder</span></code> ，因为 <code class="docutils literal notranslate"><span class="pre">milk</span></code> 字段是可选的。</p>
+<p>应当使用可选字段（对于类或者接口）和可选参数而非联合 <code class="docutils literal notranslate"><span class="pre">|undefined</span></code> 类型。</p>
+<p>对于类，应当尽可能避免使用可选字段，尽可能初始化每一个字段。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">MyClass</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">field</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ts-structural-types-vs-nominal-types">
+<span id="id5"></span><h2><span class="section-number">3.5.5.3. </span>结构类型 与 指名类型<a class="headerlink" href="#ts-structural-types-vs-nominal-types" title="Permalink to this heading"></a></h2>
+<p>TypeScript 的类型系统使用的是结构类型而非指名类型。具体地说，一个值，如果它拥有某个类型的所有属性，且所有属性的类型能够递归地一一匹配，则这个值与这个类型也是匹配的。</p>
+<p>在代码中，可以在适当的场景使用结构类型。具体地说，在测试代码之外，应当使用接口而非类对结构类型进行定义。在测试代码中，由于经常要创建 Mock 对象用于测试，此时不引入额外的接口往往较为方便。</p>
+<p>在提供基于结构类型的实现时，应当在符号的声明位置显式地包含其类型，使类型检查和错误检测能够更准确地工作。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">foo</span><span class="o">:</span><span class="w"> </span><span class="kt">Foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="kt">123</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;abc&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">badFoo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="kt">123</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;abc&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>为什么要这样做？</p>
+<p>这是因为在上文中， <code class="docutils literal notranslate"><span class="pre">badFoo</span></code> 对象的类型依赖于类型推导。 <code class="docutils literal notranslate"><span class="pre">badFoo</span></code> 对象中可能添加额外的字段，此时类型推导的结果就有可能发生变化。</p>
+<p>如果将 <code class="docutils literal notranslate"><span class="pre">badFoo</span></code> 传给接收 <code class="docutils literal notranslate"><span class="pre">Foo</span></code> 类型参数的函数，错误提示会出现在函数调用的位置，而非对象声明的位置。在大规模的代码仓库中修改接口时，这一点区别会很重要。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nx">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">sound</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">makeSound</span><span class="p">(</span><span class="nx">animal</span><span class="o">:</span><span class="w"> </span><span class="kt">Animal</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * &#39;cat&#39; 的类型会被推导为 &#39;{sound: string}&#39;</span>
+<span class="cm"> */</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">cat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">sound</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;meow&#39;</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * &#39;cat&#39; 的类型并不满足函数参数的要求，</span>
+<span class="cm"> * 因此 TypeScript 编译器会在这里报错，</span>
+<span class="cm"> * 而这里有可能离 &#39;cat&#39; 的定义相当远。</span>
+<span class="cm"> */</span>
+<span class="nx">makeSound</span><span class="p">(</span><span class="nx">cat</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Horse 具有结构类型，因此这里会提示类型错误，而函数调用点不会报错。</span>
+<span class="cm"> * 这是因为 &#39;horse&#39; 不满足接口 &#39;Animal&#39; 的类型约定。</span>
+<span class="cm"> */</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">horse</span><span class="o">:</span><span class="w"> </span><span class="kt">Animal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">sound</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;niegh&#39;</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">dog</span><span class="o">:</span><span class="w"> </span><span class="kt">Animal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">sound</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bark&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;MrPickles&#39;</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="nx">makeSound</span><span class="p">(</span><span class="nx">dog</span><span class="p">);</span>
+<span class="nx">makeSound</span><span class="p">(</span><span class="nx">horse</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-interface-vs-type-aliases">
+<span id="id6"></span><h2><span class="section-number">3.5.5.4. </span>接口 还是 类型别名？<a class="headerlink" href="#ts-interface-vs-type-aliases" title="Permalink to this heading"></a></h2>
+<p>TypeScript 支持使用 <a class="reference external" href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases">类型别名</a> 为类型命名。这一功能可以用于基本类型、联合类型、元组以及其它类型。</p>
+<p>然而，当需要声明用于对象的类型时，应当使用接口，而非对象字面量表达式的类型别名。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">User</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kr">type</span><span class="w"> </span><span class="nx">User</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">firstName</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">lastName</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>为什么？</p>
+<p>这两种形式是几乎等价的，因此，基于从两个形式中只选择其中一种以避免项目中出现变种的原则，这里选择了更常见的接口形式。另外，这里选择接口还有一个 <a class="reference external" href="https://ncjamieson.com/prefer-interfaces/">有趣的技术原因</a> 。这篇博文引用了 TypeScript 团队负责人的话：“老实说，我个人的意见是对于任何可以建模的对象都应当使用接口。相比之下，使用类型别名没有任何优势，尤其是类型别名有许多的显示和性能问题”。</p>
+</section>
+<section id="array-t">
+<span id="ts-array-type"></span><h2><span class="section-number">3.5.5.5. </span><code class="docutils literal notranslate"><span class="pre">Array&lt;T&gt;</span></code> 类型<a class="headerlink" href="#array-t" title="Permalink to this heading"></a></h2>
+<p>对于简单类型（名称中只包含字母、数字和点 <code class="docutils literal notranslate"><span class="pre">.</span></code> 的类型），应当使用数组的语法糖 <code class="docutils literal notranslate"><span class="pre">T[]</span></code> ，而非更长的 <code class="docutils literal notranslate"><span class="pre">Array&lt;T&gt;</span></code> 形式。</p>
+<p>对于其它复杂的类型，则应当使用较长的 <code class="docutils literal notranslate"><span class="pre">Array&lt;T&gt;</span></code> 。</p>
+<p>这条规则也适用于 <code class="docutils literal notranslate"><span class="pre">readonly</span> <span class="pre">T[]</span></code> 和 <code class="docutils literal notranslate"><span class="pre">ReadonlyArray&lt;T&gt;</span></code> 。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="kt">readonly</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">c</span><span class="o">:</span><span class="w"> </span><span class="kt">ns.MyObj</span><span class="p">[];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">d</span><span class="o">:</span><span class="w"> </span><span class="kt">Array</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">|</span><span class="kt">number</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">e</span><span class="o">:</span><span class="w"> </span><span class="kt">ReadonlyArray</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">|</span><span class="kt">number</span><span class="o">&gt;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">f</span><span class="o">:</span><span class="w"> </span><span class="kt">Array</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">;</span><span class="w">            </span><span class="c1">// 语法糖写法更短。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">g</span><span class="o">:</span><span class="w"> </span><span class="kt">ReadonlyArray</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">h</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">n</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="nx">s</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">}[];</span><span class="w"> </span><span class="c1">// 大括号和中括号让这行代码难以阅读。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">i</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="o">|</span><span class="kt">number</span><span class="p">)[];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">j</span><span class="o">:</span><span class="w"> </span><span class="kt">readonly</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="o">|</span><span class="kt">number</span><span class="p">)[];</span>
+</pre></div>
+</div>
+</section>
+<section id="key-string-number">
+<span id="ts-indexable-type"></span><h2><span class="section-number">3.5.5.6. </span>索引类型 <code class="docutils literal notranslate"><span class="pre">{[key:</span> <span class="pre">string]:</span> <span class="pre">number}</span></code><a class="headerlink" href="#key-string-number" title="Permalink to this heading"></a></h2>
+<p>在 JavaScript 中，使用对象作为关联数组（又称“映射表”、“哈希表”或者“字典”）是一种常见的做法：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">fileSizes</span><span class="o">:</span><span class="w"> </span><span class="p">{[</span><span class="nx">fileName</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="nx">fileSizes</span><span class="p">[</span><span class="s1">&#39;readme.txt&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">541</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>在 TypeScript 中，应当为键提供一个有意义的标签名。（当然，这个标签只有在文档中有实际意义，在其它场合是无用的。）</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="o">:</span><span class="w"> </span><span class="p">{[</span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="o">:</span><span class="w"> </span><span class="p">{[</span><span class="nx">userName</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+</pre></div>
+</div>
+<p>然而，相比使用上面的这种形式，在 TypeScript 中应当考虑使用 ES6 新增的 <code class="docutils literal notranslate"><span class="pre">Map</span></code> 与 <code class="docutils literal notranslate"><span class="pre">Set</span></code> 类型。因为 JavaScript 对象有一些 <a class="reference external" href="http://2ality.com/2012/01/objects-as-maps.html">令人困惑又不符合预期的行为</a> ，而 ES6 的新增类型能够更明确地表达程序员的设计思路。此外， <code class="docutils literal notranslate"><span class="pre">Map</span></code> 类型的键和 <code class="docutils literal notranslate"><span class="pre">Set</span></code> 类型的元素都允许使用 <code class="docutils literal notranslate"><span class="pre">string</span></code> 以外的其他类型。</p>
+<p>TypeScript 内建的 <code class="docutils literal notranslate"><span class="pre">Record&lt;Keys,</span> <span class="pre">ValueType&gt;</span></code> 允许使用已定义的一组键创建类型。它与关联数组的不同之处在于键是静态确定的。关于它的使用建议，参见 <a class="reference internal" href="#ts-mapped-conditional-types"><span class="std std-ref">映射类型与条件类型</span></a> 一节。</p>
+</section>
+<section id="ts-mapped-conditional-types">
+<span id="id10"></span><h2><span class="section-number">3.5.5.7. </span>映射类型与条件类型<a class="headerlink" href="#ts-mapped-conditional-types" title="Permalink to this heading"></a></h2>
+<p>TypeScript 中的 <a class="reference external" href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#mapped-types">映射类型</a> 与 <a class="reference external" href="https://www.typescriptlang.org/docs/handbook/advanced-types.html#conditional-types">条件类型</a> 让程序员能够在已有类型的基础上构建出新的类型。在 TypeScript 的标准库中有许多类型运算符都是基于这一机制（例如 <code class="docutils literal notranslate"><span class="pre">Record</span></code> 、 <code class="docutils literal notranslate"><span class="pre">Partial</span></code> 、 <code class="docutils literal notranslate"><span class="pre">Readonly</span></code> 等等）。</p>
+<p>TypeScript 类型系统的这一特性让创建新类型变得简洁，还程序员在设计代码抽象时，既能实现强大的功能，同时海能保证类型安全。然而，它们也有一些缺点：</p>
+<ul class="simple">
+<li><p>相较于显式地指定属性与类型间关系（例如使用接口和继承，参见下文中的例子），类型运算符需要读者在头脑中自行对后方的类型表达式进行求值。本质上说，这增加了程序的理解难度，尤其是在类型推导和类型表达式有可能横跨数个文件的情况下。</p></li>
+<li><p>映射类型与条件类型的求值模型并没有明确的规范，且经常随着 TypeScript 编译器的版本更新而发生变化，因此并不总是易于理解，尤其是与类型推导一同使用时。因此，代码有可能只是碰巧能够通过编译或者给出正确的结果。在这种情况下，使用类型运算符增加了代码未来的维护成本。</p></li>
+<li><p>映射类型与条件类型最为强大之处在于，它们能够从复杂且/或推导的类型中派生出新的类型。然而从另一方面看，这样做也很容易导致程序难于理解与维护。</p></li>
+<li><p>有些语法工具并不能够很好地支持类型系统的这一特性。例如，一些 IDE 的“查找引用”功能（以及依赖于它的“重命名重构”）无法发现位于 <code class="docutils literal notranslate"><span class="pre">Pick&lt;T,</span> <span class="pre">Keys&gt;</span></code> 类型中的属性，因而在查找结果中不会将其设为高亮。</p></li>
+</ul>
+<p>因此，推荐的代码规范如下：</p>
+<ul class="simple">
+<li><p>任何使用都应当使用最简单的类型构造方式进行表达。</p></li>
+<li><p>一定程度的重复或冗余，往往好过复杂的类型表达式带来的长远维护成本。</p></li>
+<li><p>映射类型和条件类型必须在符合上述理念的情况下使用。</p></li>
+</ul>
+<p>例如，TypeScript 内建的 <code class="docutils literal notranslate"><span class="pre">Pick&lt;T,</span> <span class="pre">Keys&gt;</span></code> 类型允许以类型 <code class="docutils literal notranslate"><span class="pre">T</span></code> 的子集创建新的类型。然而，使用接口和继承的方式实现往往更易于理解。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nx">User</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">shoeSize</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">favoriteIcecream</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">favoriteChocolate</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// FoodPreferences 类型拥有 favoriteIcecream 和 favoriteChocolate，但不包括 shoeSize。</span>
+<span class="kr">type</span><span class="w"> </span><span class="nx">FoodPreferences</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Pick</span><span class="o">&lt;</span><span class="nx">User</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;favoriteIcecream&#39;</span><span class="o">|</span><span class="s1">&#39;favoriteChocolate&#39;</span><span class="o">&gt;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>这种写法等价于显式地写出 <code class="docutils literal notranslate"><span class="pre">FoodPreferences</span></code> 的属性：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nx">FoodPreferences</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">favoriteIcecream</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">favoriteChocolate</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>为了减少重复，可以让 <code class="docutils literal notranslate"><span class="pre">User</span></code> 继承 <code class="docutils literal notranslate"><span class="pre">FoodPreferences</span></code> ，或者在 <code class="docutils literal notranslate"><span class="pre">User</span></code> 中嵌套一个类型为 <code class="docutils literal notranslate"><span class="pre">FoodPrefences</span></code> 的字段（这样做可能更好）：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nx">FoodPreferences</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* 同上 */</span><span class="w"> </span><span class="p">}</span>
+
+<span class="kd">interface</span><span class="w"> </span><span class="nx">User</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">FoodPreferences</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">shoeSize</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// 这样 User 也包括了 FoodPreferences 的字段。</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>使用接口让属性的分类变得清晰，IDE 的支持更完善，方便进一步优化，同时使得代码更易于理解。</p>
+</section>
+<section id="any">
+<span id="ts-any-type"></span><h2><span class="section-number">3.5.5.8. </span><code class="docutils literal notranslate"><span class="pre">any</span></code> 类型<a class="headerlink" href="#any" title="Permalink to this heading"></a></h2>
+<p>TypeScript 的 <code class="docutils literal notranslate"><span class="pre">any</span></code> 类型是所有其它类型的超类，又是所有其它类型的子类，同时还允许解引用一切属性。因此，使用 <code class="docutils literal notranslate"><span class="pre">any</span></code> 十分危险——它会掩盖严重的程序错误，并且它从根本上破坏了对应的值“具有静态属性”的原则。</p>
+<p>尽可能 <em>不要</em> 使用 <code class="docutils literal notranslate"><span class="pre">any</span></code> 。如果出现了需要使用 <code class="docutils literal notranslate"><span class="pre">any</span></code> 的场景，可以考虑下列的解决方案：</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#ts-provide-a-more-specific-type"><span class="std std-ref">提供一个更具体的类型</span></a></p></li>
+<li><p><a class="reference internal" href="#ts-using-unknown-over-any"><span class="std std-ref">使用 unknown 而非 any</span></a></p></li>
+<li><p><a class="reference internal" href="#ts-suppress-the-lint-warning"><span class="std std-ref">关闭 Lint 工具对 any 的警告</span></a></p></li>
+</ul>
+<section id="ts-provide-a-more-specific-type">
+<span id="id13"></span><h3><span class="section-number">3.5.5.8.1. </span>提供一个更具体的类型<a class="headerlink" href="#ts-provide-a-more-specific-type" title="Permalink to this heading"></a></h3>
+<p>使用接口、内联对象类型、或者类型别名：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 声明接口类型以表示服务端发送的 JSON。</span>
+<span class="kr">declare</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nx">MyUserJson</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 对重复出现的类型使用类型别名。</span>
+<span class="kr">type</span><span class="w"> </span><span class="nx">MyType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">number</span><span class="o">|</span><span class="kt">string</span><span class="p">;</span>
+
+<span class="c1">// 或者对复杂的返回类型使用内联对象类型。</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">getTwoThings</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">something</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="nx">other</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">}</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="nx">something</span><span class="p">,</span><span class="w"> </span><span class="nx">other</span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// 使用泛型，有些库在这种情况下可能会使用 any 表示</span>
+<span class="c1">// 这里并不考虑函数所作用于的参数类型。</span>
+<span class="c1">// 注意，对于这种写法，“只有泛型的返回类型”一节有更详细的规范。</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">nicestElement</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">items</span><span class="o">:</span><span class="w"> </span><span class="kt">T</span><span class="p">[])</span><span class="o">:</span><span class="w"> </span><span class="nx">T</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 在 items 中查找最棒的元素。</span>
+<span class="w">    </span><span class="c1">// 这里还可以进一步为泛型参数 T 添加限制，例如 &lt;T extends HTMLElement&gt;。</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="unknown-any">
+<span id="ts-using-unknown-over-any"></span><h3><span class="section-number">3.5.5.8.2. </span>使用 <code class="docutils literal notranslate"><span class="pre">unknown</span></code> 而非 <code class="docutils literal notranslate"><span class="pre">any</span></code><a class="headerlink" href="#unknown-any" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">any</span></code> 类型的值可以赋给其它任何类型，还可以对其解引用任意属性。一般来说，这个行为不是必需的，也不符合期望，此时代码试图表达的内容其实是“该类型是未知的”。在这种情况下，应当使用内建的 <code class="docutils literal notranslate"><span class="pre">unknown</span></code> 类型。它能够表达相同的语义，并且，因为 <code class="docutils literal notranslate"><span class="pre">unknown</span></code> 不能解引用任意属性，它较 <code class="docutils literal notranslate"><span class="pre">any</span></code> 而言更为安全。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="c1">// 可以将任何值（包括 null 和 undefined）赋给 val，</span>
+<span class="c1">// 但在缩窄类型或者类型转换之前并不能使用它。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">val</span><span class="o">:</span><span class="w"> </span><span class="kt">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">danger</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="cm">/* 这是任意一个表达式的结果 */</span><span class="p">;</span>
+<span class="nx">danger</span><span class="p">.</span><span class="nx">whoops</span><span class="p">();</span><span class="w">  </span><span class="c1">// 完全未经检查的访问！</span>
+</pre></div>
+</div>
+</section>
+<section id="lint-any">
+<span id="ts-suppress-the-lint-warning"></span><h3><span class="section-number">3.5.5.8.3. </span>关闭 Lint 工具对 <code class="docutils literal notranslate"><span class="pre">any</span></code> 的警告<a class="headerlink" href="#lint-any" title="Permalink to this heading"></a></h3>
+<p>有时使用 <code class="docutils literal notranslate"><span class="pre">any</span></code> 是合理的，例如用于在测试中构造 Mock 对象。在这种情况下，应当添加注释关闭 Lint 工具对此的警告，并添加文档对使用 any 的合理性进行说明。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 这个测试只需要部分地实现 BookService，否则测试会失败。</span>
+<span class="c1">// 所以，这里有意地使用了一个不安全的部分实现 Mock 对象。</span>
+<span class="c1">// tslint:disable-next-line:no-any</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">mockBookService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">({</span><span class="nx">get</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">mockBook</span><span class="p">;</span><span class="w"> </span><span class="p">}}</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">)</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">BookService</span><span class="p">;</span>
+<span class="c1">// 购物车在这个测试里并未使用。</span>
+<span class="c1">// tslint:disable-next-line:no-any</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MyComponent</span><span class="p">(</span><span class="nx">mockBookService</span><span class="p">,</span><span class="w"> </span><span class="cm">/* unused ShoppingCart */</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ts-tuple-types">
+<span id="id14"></span><h2><span class="section-number">3.5.5.9. </span>元组类型<a class="headerlink" href="#ts-tuple-types" title="Permalink to this heading"></a></h2>
+<p>应当使用元组类型代替常见的 <code class="docutils literal notranslate"><span class="pre">Pair</span></code> 类型的写法：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">Pair</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">first</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">second</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">splitInHalf</span><span class="p">(</span><span class="nx">input</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nx">Pair</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="nx">first</span><span class="o">:</span><span class="w"> </span><span class="kt">x</span><span class="p">,</span><span class="w"> </span><span class="nx">second</span><span class="o">:</span><span class="w"> </span><span class="kt">y</span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">splitInHalf</span><span class="p">(</span><span class="nx">input</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="c1">// 这样使用:</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">leftHalf</span><span class="p">,</span><span class="w"> </span><span class="nx">rightHalf</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">splitInHalf</span><span class="p">(</span><span class="s1">&#39;my string&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>然而通常情况下，为属性提供一个有意义的名称往往能让代码更加清晰。</p>
+<p>如果为此声明一个接口过于繁重的话，可以使用内联对象字面量类型：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">splitHostPort</span><span class="p">(</span><span class="nx">address</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">host</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">port</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">}</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// 这样使用:</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">splitHostPort</span><span class="p">(</span><span class="nx">userAddress</span><span class="p">);</span>
+<span class="nx">use</span><span class="p">(</span><span class="nx">address</span><span class="p">.</span><span class="nx">port</span><span class="p">);</span>
+
+<span class="c1">// 也可以使用解构进行形如元组的操作：</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="nx">host</span><span class="p">,</span><span class="w"> </span><span class="nx">port</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">splitHostPort</span><span class="p">(</span><span class="nx">userAddress</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-wrapper-types">
+<span id="id15"></span><h2><span class="section-number">3.5.5.10. </span>包装类型<a class="headerlink" href="#ts-wrapper-types" title="Permalink to this heading"></a></h2>
+<p>不要使用如下几种类型，它们是 JavaScript 中基本类型的包装类型：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">String</span></code> 、 <code class="docutils literal notranslate"><span class="pre">Boolean</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Number</span></code> 。它们的含义和对应的基本类型 <code class="docutils literal notranslate"><span class="pre">string</span></code> 、 <code class="docutils literal notranslate"><span class="pre">boolean</span></code> 和 <code class="docutils literal notranslate"><span class="pre">number</span></code> 略有不同。任何时候，都应当使用后者。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Object</span></code> 。它和 <code class="docutils literal notranslate"><span class="pre">{}</span></code> 与 <code class="docutils literal notranslate"><span class="pre">object</span></code> 类似，但包含的范围略微更大。应当使用 <code class="docutils literal notranslate"><span class="pre">{}</span></code> 表示“包括除 <code class="docutils literal notranslate"><span class="pre">null</span></code> 和 <code class="docutils literal notranslate"><span class="pre">undefined</span></code> 之外所有类型”的类型，使用 <code class="docutils literal notranslate"><span class="pre">object</span></code> 表示“所有基本类型以外”的类型（这里的“所有基本类型”包括上文中提到的基本类型， <code class="docutils literal notranslate"><span class="pre">symbol</span></code> 和 <code class="docutils literal notranslate"><span class="pre">bigint</span></code> ）。</p></li>
+</ul>
+<p>此外，不要将包装类型用作构造函数。</p>
+</section>
+<section id="ts-return-type-only-generics">
+<span id="id16"></span><h2><span class="section-number">3.5.5.11. </span>只有泛型的返回类型<a class="headerlink" href="#ts-return-type-only-generics" title="Permalink to this heading"></a></h2>
+<p>不要创建返回类型只有泛型的 API。如果现有的 API 中存在这种情况，使用时应当显式地标明泛型参数类型。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="source_organization.html" class="btn btn-neutral float-left" title="3.5.4. 代码管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="consistency.html" class="btn btn-neutral float-right" title="3.5.6. 一致性" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

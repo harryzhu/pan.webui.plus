@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.4.8. 命名约定 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.4.9. 调用命令" href="calling_commands.html" />
+    <link rel="prev" title="3.4.7. 特性及错误" href="features_and_bugs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.4. Google: Shell 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html">3.4.1. 扉页</a></li>
+<li class="toctree-l3"><a class="reference internal" href="background.html">3.4.2. 背景</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shell_files_and_interpreter_invocation.html">3.4.3. Shell文件和解释器调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="environment.html">3.4.4. 环境</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html">3.4.5. 注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formatting.html">3.4.6. 格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="features_and_bugs.html">3.4.7. 特性及错误</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.4.8. 命名约定</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.4.8.1. 函数名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.4.8.2. 变量名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.4.8.3. 常量和环境变量名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.4.8.4. 源文件名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.4.8.5. 只读变量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">3.4.8.6. 使用本地变量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">3.4.8.7. 函数位置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#main">3.4.8.8. 主函数main</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="calling_commands.html">3.4.9. 调用命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="conclusion.html">3.4.10. 结论</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.4. </span>Google: Shell 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.4.8. </span>命名约定</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-shell-styleguide/naming_conventions.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3.4.8. </span>命名约定<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="id2">
+<h2><span class="section-number">3.4.8.1. </span>函数名<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>使用小写字母，并用下划线分隔单词。使用双冒号 <code class="docutils literal notranslate"><span class="pre">::</span></code> 分隔库。函数名之后必须有圆括号。关键词 <code class="docutils literal notranslate"><span class="pre">function</span></code> 是可选的，但必须在一个项目中保持一致。</p>
+</div>
+<p>如果你正在写单个函数，请用小写字母来命名，并用下划线分隔单词。如果你正在写一个包，使用双冒号 <code class="docutils literal notranslate"><span class="pre">::</span></code> 来分隔包名。大括号必须和函数名位于同一行（就像在Google的其他语言一样），并且函数名和圆括号之间没有空格。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Single function</span>
+my_func<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span>...
+<span class="o">}</span>
+
+<span class="c1"># Part of a package</span>
+mypackage::my_func<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span>...
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>当函数名后存在 <code class="docutils literal notranslate"><span class="pre">()</span></code> 时，关键词 <code class="docutils literal notranslate"><span class="pre">function</span></code> 是多余的。但是其促进了函数的快速辨识。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.4.8.2. </span>变量名<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>如函数名。</p>
+</div>
+<p>循环的变量名应该和循环的任何变量同样命名。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>zone<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="si">${</span><span class="nv">zones</span><span class="si">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span>something_with<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">zone</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.4.8.3. </span>常量和环境变量名<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>全部大写，用下划线分隔，声明在文件的顶部。</p>
+</div>
+<p>常量和任何导出到环境中的都应该大写。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constant</span>
+<span class="nb">readonly</span><span class="w"> </span><span class="nv">PATH_TO_FILES</span><span class="o">=</span><span class="s1">&#39;/some/path&#39;</span>
+
+<span class="c1"># Both constant and environment</span>
+<span class="nb">declare</span><span class="w"> </span>-xr<span class="w"> </span><span class="nv">ORACLE_SID</span><span class="o">=</span><span class="s1">&#39;PROD&#39;</span>
+</pre></div>
+</div>
+<p>第一次设置时有一些就变成了常量（例如，通过getopts）。因此，可以在getopts中或基于条件来设定常量，但之后应该立即设置其为只读。值得注意的是，在函数中 <code class="docutils literal notranslate"><span class="pre">declare</span></code> 不会对全局变量进行操作。所以推荐使用 <code class="docutils literal notranslate"><span class="pre">readonly</span></code> 和 <code class="docutils literal notranslate"><span class="pre">export</span></code> 来代替。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">VERBOSE</span><span class="o">=</span><span class="s1">&#39;false&#39;</span>
+<span class="k">while</span><span class="w"> </span><span class="nb">getopts</span><span class="w"> </span><span class="s1">&#39;v&#39;</span><span class="w"> </span>flag<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">flag</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">    </span>v<span class="o">)</span><span class="w"> </span><span class="nv">VERBOSE</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="w"> </span><span class="p">;;</span>
+<span class="w">  </span><span class="k">esac</span>
+<span class="k">done</span>
+<span class="nb">readonly</span><span class="w"> </span>VERBOSE
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2><span class="section-number">3.4.8.4. </span>源文件名<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>小写，如果需要的话使用下划线分隔单词。</p>
+</div>
+<p>这是为了和在Google中的其他代码风格保持一致： <code class="docutils literal notranslate"><span class="pre">maketemplate</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">make_template</span></code> ，而不是 <code class="docutils literal notranslate"><span class="pre">make-template</span></code> 。</p>
+</section>
+<section id="id6">
+<h2><span class="section-number">3.4.8.5. </span>只读变量<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">readonly</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">declare</span> <span class="pre">-r</span></code> 来确保变量只读。</p>
+</div>
+<p>因为全局变量在shell中广泛使用，所以在使用它们的过程中捕获错误是很重要的。当你声明了一个变量，希望其只读，那么请明确指出。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">zip_version</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>dpkg<span class="w"> </span>--status<span class="w"> </span>zip<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Version:<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">2</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">zip_version</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>error_message
+<span class="k">else</span>
+<span class="w">  </span><span class="nb">readonly</span><span class="w"> </span>zip_version
+<span class="k">fi</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h2><span class="section-number">3.4.8.6. </span>使用本地变量<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">local</span></code> 声明特定功能的变量。声明和赋值应该在不同行。</p>
+</div>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">local</span></code> 来声明局部变量以确保其只在函数内部和子函数中可见。这避免了污染全局命名空间和不经意间设置可能具有函数之外重要性的变量。</p>
+<p>当赋值的值由命令替换提供时，声明和赋值必须分开。因为内建的 <code class="docutils literal notranslate"><span class="pre">local</span></code> 不会从命令替换中传递退出码。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>my_func2<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="nb">local</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+
+<span class="w">  </span><span class="c1"># Separate lines for declaration and assignment:</span>
+<span class="w">  </span><span class="nb">local</span><span class="w"> </span>my_var
+<span class="w">  </span><span class="nv">my_var</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>my_func<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">return</span>
+
+<span class="w">  </span><span class="c1"># DO NOT do this: $? contains the exit code of &#39;local&#39;, not my_func</span>
+<span class="w">  </span><span class="nb">local</span><span class="w"> </span><span class="nv">my_var</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>my_func<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="o">[[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">return</span>
+
+<span class="w">  </span>...
+<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h2><span class="section-number">3.4.8.7. </span>函数位置<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>将文件中所有的函数一起放在常量下面。不要在函数之间隐藏可执行代码。</p>
+</div>
+<p>如果你有函数，请将他们一起放在文件头部。只有includes， <code class="docutils literal notranslate"><span class="pre">set</span></code> 声明和常量设置可能在函数声明之前完成。不要在函数之间隐藏可执行代码。如果那样做，会使得代码在调试时难以跟踪并出现意想不到的讨厌结果。</p>
+</section>
+<section id="main">
+<h2><span class="section-number">3.4.8.8. </span>主函数main<a class="headerlink" href="#main" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>对于包含至少一个其他函数的足够长的脚本，需要称为 <code class="docutils literal notranslate"><span class="pre">main</span></code> 的函数。</p>
+</div>
+<p>为了方便查找程序的开始，将主程序放入一个称为 <code class="docutils literal notranslate"><span class="pre">main</span></code> 的函数，作为最下面的函数。这使其和代码库的其余部分保持一致性，同时允许你定义更多变量为局部变量（如果主代码不是一个函数就不能这么做）。文件中最后的非注释行应该是对 <code class="docutils literal notranslate"><span class="pre">main</span></code> 函数的调用。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>main<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>显然，对于仅仅是线性流的短脚本， <code class="docutils literal notranslate"><span class="pre">main</span></code> 是矫枉过正，因此是不需要的。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="features_and_bugs.html" class="btn btn-neutral float-left" title="3.4.7. 特性及错误" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="calling_commands.html" class="btn btn-neutral float-right" title="3.4.9. 调用命令" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

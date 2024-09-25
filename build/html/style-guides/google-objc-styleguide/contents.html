@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.9. Google: Objective-C 风格指南 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.9.1. Google Objective-C Style Guide 中文版" href="index.html" />
+    <link rel="prev" title="3.8.12. 11. 结束语" href="../google-cpp-styleguide/end.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.9. Google: Objective-C 风格指南</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html">3.9.1. Google Objective-C Style Guide 中文版</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spacing.html">3.9.2. 留白和格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html">3.9.3. 命名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html">3.9.4. 注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="features.html">3.9.5. Cocoa 和 Objective-C 特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="patterns.html">3.9.6. Cocoa 模式</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.9. </span>Google: Objective-C 风格指南</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-objc-styleguide/contents.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="google-objective-c">
+<span id="objc-contents"></span><h1><span class="section-number">3.9. </span>Google: Objective-C 风格指南<a class="headerlink" href="#google-objective-c" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">3.9.1. Google Objective-C Style Guide 中文版</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id1">3.9.1.1. 译者的话</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#ewanke">3.9.1.1.1. ewanke</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#id2">3.9.1.1.2. Yang.Y</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">3.9.1.2. 背景介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">3.9.1.3. 例子</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spacing.html">3.9.2. 留白和格式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html#vs">3.9.2.1. 空格 vs. 制表符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html#id2">3.9.2.2. 行宽</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html#id3">3.9.2.3. 方法声明和定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html#id4">3.9.2.4. 方法调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html#public-private">3.9.2.5. <code class="docutils literal notranslate"><span class="pre">&#64;public</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html#id5">3.9.2.6. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html#id6">3.9.2.7. 协议名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spacing.html#id7">3.9.2.8. 块（闭包）</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="naming.html">3.9.3. 命名</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#id3">3.9.3.1. 文件名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#objective-c">3.9.3.2. Objective-C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#id4">3.9.3.3. 类名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#id5">3.9.3.4. 类别名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#id6">3.9.3.5. Objective-C 方法名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#id7">3.9.3.6. 变量名</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="naming.html#id8">3.9.3.6.1. 普通变量名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html#id9">3.9.3.6.2. 实例变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html#id10">3.9.3.6.3. 常量</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comments.html">3.9.4. 注释</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comments.html#id2">3.9.4.1. 文件注释</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comments.html#id3">3.9.4.1.1. 版权信息及作者</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html#id4">3.9.4.2. 声明部分的注释</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html#id5">3.9.4.3. 实现部分的注释</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html#id6">3.9.4.4. 对象所有权</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">3.9.5. Cocoa 和 Objective-C 特性</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="features.html#private">3.9.5.1. 成员变量应该是 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#id1">3.9.5.2. 明确指定构造函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#id2">3.9.5.3. 重载指定构造函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#nsobject">3.9.5.4. 重载 <code class="docutils literal notranslate"><span class="pre">NSObject</span></code> 的方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#id3">3.9.5.5. 初始化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#new">3.9.5.6. 避免 <code class="docutils literal notranslate"><span class="pre">+new</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#api">3.9.5.7. 保持公共 API 简单</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#import-and-include">3.9.5.8. <code class="docutils literal notranslate"><span class="pre">#import</span></code> and <code class="docutils literal notranslate"><span class="pre">#include</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#id5">3.9.5.9. 使用根框架</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#autorelease">3.9.5.10. 构建时即设定 <code class="docutils literal notranslate"><span class="pre">autorelease</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#autorelease-retain">3.9.5.11. <code class="docutils literal notranslate"><span class="pre">autorelease</span></code> 优先 <code class="docutils literal notranslate"><span class="pre">retain</span></code> 其次</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#init-dealloc">3.9.5.12. <code class="docutils literal notranslate"><span class="pre">init</span></code> 和 <code class="docutils literal notranslate"><span class="pre">dealloc</span></code> 内避免使用访问器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#id6">3.9.5.13. 按声明顺序销毁实例变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#setter-nsstrings">3.9.5.14. <code class="docutils literal notranslate"><span class="pre">setter</span></code> 应复制 NSStrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#avoid-throwing-exceptions">3.9.5.15. 避免抛异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#nil">3.9.5.16. nil 检查</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#bool">3.9.5.17. BOOL 若干陷阱</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#property">3.9.5.18. 属性（Property）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="features.html#id8">3.9.5.18.1. 命名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="features.html#id9">3.9.5.18.2. 位置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="features.html#copy-attribute">3.9.5.18.3. 字符串应使用 <code class="docutils literal notranslate"><span class="pre">copy</span></code> 属性（Attribute）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="features.html#id10">3.9.5.18.4. 原子性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="features.html#id11">3.9.5.18.5. 点引用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#id12">3.9.5.19. 没有实例变量的接口</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#synthesize">3.9.5.20. 自动 <code class="docutils literal notranslate"><span class="pre">synthesize</span></code> 实例变量</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">3.9.6. Cocoa 模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="patterns.html#id1">3.9.6.1. 委托模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="patterns.html#mvc">3.9.6.2. 模型/视图/控制器（MVC）</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../google-cpp-styleguide/end.html" class="btn btn-neutral float-left" title="3.8.12. 11. 结束语" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="index.html" class="btn btn-neutral float-right" title="3.9.1. Google Objective-C Style Guide 中文版" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

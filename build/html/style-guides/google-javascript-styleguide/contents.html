@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.6. Google: Javascript 风格指南 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.6.1. 背景" href="background.html" />
+    <link rel="prev" title="3.5.6. 一致性" href="../google-typescript-styleguide/consistency.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.6. Google: Javascript 风格指南</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="background.html">3.6.1. 背景</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_language_rules.html">3.6.2. Javascript语言规范</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html">3.6.3. Javascript风格规范</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.6. </span>Google: Javascript 风格指南</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-javascript-styleguide/contents.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="google-javascript">
+<span id="javascript-contents"></span><h1><span class="section-number">3.6. </span>Google: Javascript 风格指南<a class="headerlink" href="#google-javascript" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="background.html">3.6.1. 背景</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript_language_rules.html">3.6.2. Javascript语言规范</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#var">3.6.2.1. var关键字</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="javascript_language_rules.html#id1">3.6.2.1.1. 描述</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id2">3.6.2.2. 常量</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="javascript_language_rules.html#id3">3.6.2.2.1. 描述</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="javascript_language_rules.html#id4">3.6.2.2.1.1. 常量值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="javascript_language_rules.html#id5">3.6.2.2.1.2. 常量指针（变量和属性）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="javascript_language_rules.html#id7">3.6.2.2.1.3. 例子</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id8">3.6.2.3. 分号</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="javascript_language_rules.html#id9">3.6.2.3.1. 发生了什么？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_language_rules.html#id10">3.6.2.3.2. 为什么？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_language_rules.html#id11">3.6.2.3.3. 澄清：分号和函数</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id12">3.6.2.4. 嵌套函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id13">3.6.2.5. 块内函数声明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id14">3.6.2.6. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id15">3.6.2.7. 自定义异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id16">3.6.2.8. 标准功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id17">3.6.2.9. 原始类型的包装对象</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id18">3.6.2.10. 多重的原型继承</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id19">3.6.2.11. 方法和属性定义</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="javascript_language_rules.html#id20">3.6.2.11.1. 为什么？</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id22">3.6.2.12. 删除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id23">3.6.2.13. 闭包</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#eval">3.6.2.14. eval()函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#with">3.6.2.15. with() {}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#this">3.6.2.16. this</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#for-in">3.6.2.17. for-in 循环</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id25">3.6.2.18. 关联数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id26">3.6.2.19. 多行的字符串字面量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id27">3.6.2.20. 数组和对象字面量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#id28">3.6.2.21. 修改内置对象原型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_language_rules.html#internet-explorer">3.6.2.22. Internet Explorer中的条件注释</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="javascript_style_rules.html">3.6.3. Javascript风格规范</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="javascript_style_rules.html#id1">3.6.3.1. 命名</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id2">3.6.3.1.1. 属性和方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id4">3.6.3.1.2. 方法和函数参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#gettersetter">3.6.3.1.3. getter和setter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id5">3.6.3.1.4. 存取函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id6">3.6.3.1.5. 命名空间</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="javascript_style_rules.html#id7">3.6.3.1.5.1. 为全局代码使用命名空间</a></li>
+<li class="toctree-l4"><a class="reference internal" href="javascript_style_rules.html#id8">3.6.3.1.5.2. 尊重命名空间所有权</a></li>
+<li class="toctree-l4"><a class="reference internal" href="javascript_style_rules.html#id9">3.6.3.1.5.3. 外部代码和内部代码使用不同的命名空间</a></li>
+<li class="toctree-l4"><a class="reference internal" href="javascript_style_rules.html#id10">3.6.3.1.5.4. 为长类型的名称提供别名提高可读性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id11">3.6.3.1.6. 文件名</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_style_rules.html#tostring">3.6.3.2. 自定义 toString() 方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_style_rules.html#id12">3.6.3.3. 延时初始化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_style_rules.html#id13">3.6.3.4. 明确作用域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_style_rules.html#id14">3.6.3.5. 代码格式</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id15">3.6.3.5.1. 大括号</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id16">3.6.3.5.2. 数组和对象初始化表达式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id17">3.6.3.5.3. 函数参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id18">3.6.3.5.4. 匿名函数传递</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id19">3.6.3.5.5. 使用goog.scope命名别名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id22">3.6.3.5.6. 更多的缩进</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id24">3.6.3.5.7. 空行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id25">3.6.3.5.8. 二元和三元操作符</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_style_rules.html#id26">3.6.3.6. 括号</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_style_rules.html#id27">3.6.3.7. 字符串</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_style_rules.html#id28">3.6.3.8. 可见性（私有和保护类型字段）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_style_rules.html#id30">3.6.3.9. JavaScript类型</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id31">3.6.3.9.1. JavaScript类型语言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id35">3.6.3.9.2. JavaScript中的类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id36">3.6.3.9.3. 类型转换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id37">3.6.3.9.4. 可为空与可选的参数和属性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id38">3.6.3.9.5. 类型定义</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id39">3.6.3.9.6. 模板类型</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_style_rules.html#js-comments">3.6.3.10. 注释</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id44">3.6.3.10.1. 注释语法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id45">3.6.3.10.2. JSDoc 缩进</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#jsdochtml">3.6.3.10.3. JSDoc中的HTML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id47">3.6.3.10.4. 顶层/文件层注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#class">3.6.3.10.5. Class评论</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id50">3.6.3.10.6. 方法和功能注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id51">3.6.3.10.7. 属性评论</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id52">3.6.3.10.8. JSDoc标签参考</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_style_rules.html#goog-provide">3.6.3.11. 为goog.provide提供依赖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_style_rules.html#id76">3.6.3.12. 编译</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript_style_rules.html#id77">3.6.3.13. 技巧和诀窍</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#truefalse">3.6.3.13.1. True和False布尔表达式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id78">3.6.3.13.2. 条件（三元）操作符（？：）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id79">3.6.3.13.3. &amp;&amp; 和 ||</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_style_rules.html#id80">3.6.3.13.4. 遍历节点列表</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../google-typescript-styleguide/consistency.html" class="btn btn-neutral float-left" title="3.5.6. 一致性" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="background.html" class="btn btn-neutral float-right" title="3.6.1. 背景" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

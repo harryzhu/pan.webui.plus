@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.8.1. 扉页 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.8.2. 1. 头文件" href="headers.html" />
+    <link rel="prev" title="3.8. Google: C++ 风格指南" href="contents.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.8. Google: C++ 风格指南</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.8.1. 扉页</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.8.1.1. 译者前言</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.8.1.2. 背景</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.8.1.3. 本指南的目标</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c">3.8.1.4. C++ 版本</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="headers.html">3.8.2. 1. 头文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scoping.html">3.8.3. 2. 作用域</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classes.html">3.8.4. 3. 类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions.html">3.8.5. 4. 函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="magic.html">3.8.6. 5. 来自 Google 的奇技</a></li>
+<li class="toctree-l3"><a class="reference internal" href="others.html">3.8.7. 6. 其他 C++ 特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html">3.8.8. 7. 命名约定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html">3.8.9. 8. 注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formatting.html">3.8.10. 9. 格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exceptions.html">3.8.11. 10. 规则特例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="end.html">3.8.12. 11. 结束语</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.8. </span>Google: C++ 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.8.1. </span>扉页</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-cpp-styleguide/index.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3.8.1. </span>扉页<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<dl class="field-list">
+<dt class="field-odd">更新时间<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2024/04/12</p>
+</dd>
+<dt class="field-even">原作者<span class="colon">:</span></dt>
+<dd class="field-even"><div class="line-block">
+<div class="line">Benjy Weinberger</div>
+<div class="line">Craig Silverstein</div>
+<div class="line">Gregory Eitzmann</div>
+<div class="line">Mark Mentovai</div>
+<div class="line">Tashana Landray</div>
+</div>
+</dd>
+<dt class="field-odd">翻译<span class="colon">:</span></dt>
+<dd class="field-odd"><div class="line-block">
+<div class="line"><a class="reference external" href="http://www.yulefox.com">YuleFox</a></div>
+<div class="line"><a class="reference external" href="https://github.com/yangyubo">Yang.Y</a></div>
+<div class="line"><a class="reference external" href="http://acgtyrant.com">acgtyrant</a></div>
+<div class="line"><a class="reference external" href="http://github.com/lilinsanity">lilinsanity</a></div>
+<div class="line"><a class="reference external" href="https://github.com/LouYu2015">楼宇</a></div>
+</div>
+</dd>
+<dt class="field-even">项目主页<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://google-styleguide.googlecode.com">Google Style Guide</a></p></li>
+<li><p><a class="reference external" href="http://github.com/zh-google-styleguide/zh-google-styleguide">Google 开源项目风格指南 - 中文版</a></p></li>
+</ul>
+</dd>
+</dl>
+<section id="id3">
+<h2><span class="section-number">3.8.1.1. </span>译者前言<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>Google 经常会发布一些开源项目, 意味着会接受来自其他代码贡献者的代码. 但是如果代码贡献者的编程风格与 Google 的不一致, 会给代码阅读者和其他代码提交者造成不小的困扰. Google 因此发布了这份自己的编程风格指南, 使所有提交代码的人都能获知 Google 的编程风格.</p>
+<p>翻译初衷:</p>
+<blockquote>
+<div><p>规则的作用就是避免混乱. 但规则本身一定要权威, 有说服力, 并且是理性的. 我们所见过的大部分编程规范, 其内容或不够严谨, 或阐述过于简单, 或带有一定的武断性.</p>
+<p>Google 保持其一贯的严谨精神, 5 万汉字的指南涉及广泛, 论证严密. 我们翻译该系列指南的主因也正是其严谨性. 严谨意味着指南的价值不仅仅局限于它罗列出的规范, 更具参考意义的是它为了列出规范而做的谨慎权衡过程.</p>
+<p>指南不仅列出你要怎么做, 还告诉你为什么要这么做, 哪些情况下可以不这么做, 以及如何权衡其利弊. 其他团队未必要完全遵照指南亦步亦趋, 如前面所说, 这份指南是 Google 根据自身实际情况打造的, 适用于其主导的开源项目. 其他团队可以参照该指南, 或从中汲取灵感, 建立适合自身实际情况的规范.</p>
+<p>我们在翻译的过程中, 收获颇多. 希望本系列指南中文版对你同样能有所帮助.</p>
+</div></blockquote>
+<p>我们翻译时也是尽力保持严谨, 但水平所限, bug 在所难免. 有任何意见或建议, 可与我们取得联系.</p>
+<p>中文版和英文版一样, 使用 <code class="docutils literal notranslate"><span class="pre">Artistic</span> <span class="pre">License/GPL</span></code> 开源许可.</p>
+<p>中文版修订历史:</p>
+<blockquote>
+<div><ul>
+<li><p>2015-08 : 热心的清华大学同学 &#64;lilinsanity 完善了「类」章节以及其它一些小章节。至此，对 Google CPP Style Guide 4.45 的翻译正式竣工。</p></li>
+<li><p>2015-07 4.45 : acgtyrant 为了学习 C++ 的规范，顺便重新翻译了本 C++ 风格指南，特别是 C++11 的全新内容。排版大幅度优化，翻译措辞更地道，添加了新译者笔记。Google 总部 C++ 工程师 innocentim, 清华大学不愿意透露姓名的唐马儒先生，大阪大学大学院情报科学研究科计算机科学专攻博士 farseerfc 和其它 Arch Linux 中文社区众帮了译者不少忙，谢谢他们。因为 C++ Primer 尚未完全入门，暂时没有翻译「类」章节和其它一些小章节。</p></li>
+<li><p>2009-06 3.133 : YuleFox 的 1.0 版已经相当完善, 但原版在近一年的时间里, 其规范也发生了一些变化.</p>
+<blockquote>
+<div><p>Yang.Y 与 YuleFox 一拍即合, 以项目的形式来延续中文版 : <a class="reference external" href="http://github.com/yangyubo/zh-google-styleguide">Google 开源项目风格指南 - 中文版项目</a>.</p>
+<p>主要变化是同步到 3.133 最新英文版本, 做部分勘误和改善可读性方面的修改, 并改进排版效果. Yang.Y 重新翻修, YuleFox 做后续评审.</p>
+</div></blockquote>
+</li>
+<li><p>2008-07 1.0 : 出自 <a class="reference external" href="http://www.yulefox.com/?p=207">YuleFox 的 Blog</a>, 很多地方摘录的也是该版本.</p></li>
+</ul>
+</div></blockquote>
+<p>以下是正文.</p>
+</section>
+<section id="id5">
+<h2><span class="section-number">3.8.1.2. </span>背景<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<p>C++ 是谷歌的开源项目所采用的主要编程语言之一. C++ 程序员都知道, 该语言有很多强大的特性 (feature), 但强大之处也伴随着复杂性, 让代码容易出错, 难以阅读、维护.</p>
+<p>本指南的目标是详述 C++ 的注意事项来控制复杂性. 这些规则会在保持代码易于管理的同时, 不影响程序员高效地使用 C++ 的语言特性.</p>
+<p>风格 (style, 亦称作可读性 (readability)) 是用于管理 C++ 代码的惯例. “风格” 这一术语略有不准确, 因为这些惯例并非仅仅囊括代码格式.</p>
+<p>谷歌主导的大部分开源项目遵守本指南的要求.</p>
+<p>注意: 本指南并非 C++ 教程, 我们假定读者已经非常熟悉 C++.</p>
+</section>
+<section id="id6">
+<h2><span class="section-number">3.8.1.3. </span>本指南的目标<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<p>为什么编写这份文档？</p>
+<p>我们认为该指南应该实现以下核心目标. 这些目标是每条规则背后的基本 <strong>依据</strong> . 我们希望公开这些想法, 作为讨论的基础, 让广大社区了解每条规则和特定决策背后的来由. 在理解规则所服务的目标以后, 所有人都应该清楚某条规则在哪些情况下可以忽略 (有些规则可以忽略), 以及改变规则时需要提供怎样的论据和替代品.</p>
+<p>我们认为风格指南当前的目标如下:</p>
+<p>风格规则应该有影响力</p>
+<blockquote>
+<div><p>一条风格规则应该具备足够大的好处, 以至于值得所有工程师铭记. 所谓好处是相对于当前代码库的状态而言的, 所以即使某一习惯十分恶劣, 如果人们很少使用, 那么禁止这一习惯的好处依然很小. 这样可以解释为什么我们没有写下某些规则. 例如, <code class="docutils literal notranslate"><span class="pre">goto</span></code> 语句违背了许多原则, 但是现在已经很少出现, 所以风格指南不会讨论它.</p>
+</div></blockquote>
+<p>为读者优化, 而非为作者优化</p>
+<blockquote>
+<div><p>我们的代码库 (以及其中的每个组件) 应该会存在很长时间. 因此, 我们读代码的时间比写代码的时间更长. 我们明确地选择优化平均水平的软件工程师阅读、维护和调试代码的体验, 而非编写代码的舒适度. “为读者留下线索” 是这一理念的一个方面. 如果代码中有特殊的情况 (例如指针所有权转移), 在此处给读者留下的文字提示很有价值 (在代码中使用 <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code> 就明确地表达了所有权转移).</p>
+</div></blockquote>
+<p>和现有代码保持一致</p>
+<blockquote>
+<div><p>我们让代码库的风格保持整体一致, 就能聚焦在其他 (更有价值的) 问题上. 一致性也会帮助自动化: 那些格式化代码或者调整 <code class="docutils literal notranslate"><span class="pre">#include</span></code> 顺序的工具, 只能在你的代码符合预期时才能正常工作. 很多时候, 那些用于 “保持一致” 的规则本质上就是 “任选其一并停止内耗”; 在这些问题上, 争论的成本超过了提供自由度的价值. 不过, 一致性原则也有局限性. 在没有清晰的技术性论据和长远方向时, 这才是很好的打破平局的方式. 这一原则适合局部使用 (一个文件内, 或者一组关联性强的接口). 不应该为了一致性而采用旧风格, 忽视新风格的好处. 应该考虑到代码库会随时间推移而过渡到新风格.</p>
+</div></blockquote>
+<p>恰当时与广大 C++ 社区保持一致</p>
+<blockquote>
+<div><p>与其他组织保持一致性是有价值的, 这和我们保持内部一致性的原因一样. 如果 C++ 标准中的特性解决了某个问题, 或者某一范式被广泛采用, 这就是采纳它们的依据. 不过, 有时标准的特性和范式有缺陷, 或者在设计上没有考虑我们代码库的需求. 此时 (正如下文所描述的) 应该限制或者禁止这些标准特性. 有时, 相较于 C++ 标准库, 我们偏向于自研库或某些第三方库. 一般这是因为我们所选择的库具有优越性, 或者迁移到标准库的价值不值得那些工作量.</p>
+</div></blockquote>
+<p>避免使用奇特或危险的语法结构</p>
+<blockquote>
+<div><p>有些 C++ 的特性比表面上更加奇特或危险. 风格指南中的一些限制就是为了防止掉入这些陷阱. 你需要达到很高的标准才能豁免这些限制, 因为忽略这些规则就很可能直接引起程序错误.</p>
+</div></blockquote>
+<p>避免使用那些正常水平的 C++ 程序员认为棘手或难以维护的语法结构</p>
+<blockquote>
+<div><p>有些 C++ 特性会给代码带来复杂性, 因此通常不适合使用. 在用途广泛的代码中, 我们可以接受更巧妙的语法结构. 这是因为复杂的实现方式所带来的收益会被众多使用者放大, 而且在编写新代码时, 也不需要重新解读这些复杂的语法. 如有疑问, 可以请求项目主管豁免这些规则. 这对我们的代码库至关重要, 因为代码负责人和团队成员会变化: 即使所有现在修改这段代码的人都理解代码, 几年后人们就不一定还能理解了.</p>
+</div></blockquote>
+<p>需要注意我们的规模</p>
+<blockquote>
+<div><p>我们有上亿行代码和成千上万的工程师, 因此一位工程师的失误或者投机取巧的行为会成为很多人的负担. 举例来说, 一定要避免污染全局命名空间 (global namespace): 如果所有人都往全局命名空间里塞东西, 就很难避免上亿行代码之间的符号冲突 (name collision), 也难以修复冲突.</p>
+</div></blockquote>
+<p>在必要时为优化让路</p>
+<blockquote>
+<div><p>即使性能优化的手段会和此文档的其他理念冲突, 有时这些手段也是必要且恰当的.</p>
+</div></blockquote>
+<p>此文档的目的是提供最大程度的指导和合理限制. 和往常一样, 你应该追随常理和正常审美. 这里我们特指整个谷歌 C++ 社区所建立的规范, 而不是你个人或者所在团队的偏好. 应该对巧妙或奇特的语法结构保持怀疑和犹豫的态度: 并不是 “法无禁止即可为”. 运用你的判断力. 如有疑惑, 请不要犹豫, 随时向项目主管咨询意见.</p>
+</section>
+<section id="c">
+<h2><span class="section-number">3.8.1.4. </span>C++ 版本<a class="headerlink" href="#c" title="Permalink to this heading"></a></h2>
+<p>目前代码的目标版本是 C++20, 所以不应该使用 C++23 的特性. 本指南的 C++ 目标版本会随时间 (激进地) 升级.</p>
+<p>禁止使用非标准扩展.</p>
+<p>在使用 C++17 和 C++20 的特性之前, 需要权衡其他环境的可移植性.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="contents.html" class="btn btn-neutral float-left" title="3.8. Google: C++ 风格指南" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="headers.html" class="btn btn-neutral float-right" title="3.8.2. 1. 头文件" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

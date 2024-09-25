@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.8.5. 4. 函数 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.8.6. 5. 来自 Google 的奇技" href="magic.html" />
+    <link rel="prev" title="3.8.4. 3. 类" href="classes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.8. Google: C++ 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html">3.8.1. 扉页</a></li>
+<li class="toctree-l3"><a class="reference internal" href="headers.html">3.8.2. 1. 头文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scoping.html">3.8.3. 2. 作用域</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classes.html">3.8.4. 3. 类</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.8.5. 4. 函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.8.5.1. 4.1. 输入和输出</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.8.5.2. 4.2. 编写简短函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.8.5.3. 4.3. 函数重载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.8.5.4. 4.4. 缺省参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.8.5.5. 4.5. 函数返回类型后置语法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="magic.html">3.8.6. 5. 来自 Google 的奇技</a></li>
+<li class="toctree-l3"><a class="reference internal" href="others.html">3.8.7. 6. 其他 C++ 特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html">3.8.8. 7. 命名约定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html">3.8.9. 8. 注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formatting.html">3.8.10. 9. 格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exceptions.html">3.8.11. 10. 规则特例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="end.html">3.8.12. 11. 结束语</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.8. </span>Google: C++ 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.8.5. </span>4. 函数</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-cpp-styleguide/functions.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3.8.5. </span>4. 函数<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="id2">
+<h2><span class="section-number">3.8.5.1. </span>4.1. 输入和输出<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p><strong>总述</strong></p>
+<p>我们倾向于按值返回， 否则按引用返回。 避免返回指针， 除非它可以为空.</p>
+<p><strong>说明</strong></p>
+<p>C++ 函数由返回值提供天然的输出， 有时也通过输出参数（或输入/输出参数）提供. 我们倾向于使用返回值而不是输出参数： 它们提高了可读性， 并且通常提供相同或更好的性能.</p>
+<p>C/C++ 中的函数参数或者是函数的输入, 或者是函数的输出, 或兼而有之. 非可选输入参数通常是值参或 <code class="docutils literal notranslate"><span class="pre">const</span></code> 引用, 非可选输出参数或输入/输出参数通常应该是引用 （不能为空）. 对于可选的参数， 通常使用 <code class="docutils literal notranslate"><span class="pre">std::optional</span></code> 来表示可选的按值输入， 使用 <code class="docutils literal notranslate"><span class="pre">const</span></code> 指针来表示可选的其他输入． 使用非常量指针来表示可选输出和可选输入/输出参数．</p>
+<p>避免定义需要 <code class="docutils literal notranslate"><span class="pre">const</span></code> 引用参数去超出生命周期的函数， 因为 <code class="docutils literal notranslate"><span class="pre">const</span></code> 引用参数与临时变量绑定． 相反， 要找到某种方法来消除生命周期要求 （例如， 通过复制参数）， 或者通过 <code class="docutils literal notranslate"><span class="pre">const</span></code> 指针传递它并记录生命周期和非空要求.</p>
+<p>在排序函数参数时， 将所有输入参数放在所有输出参数之前. 特别要注意, 在加入新参数时不要因为它们是新参数就置于参数列表最后, 而是仍然要按照前述的规则, 即将新的输入参数也置于输出参数之前.</p>
+<p>这并非一个硬性规定. 输入/输出参数 (通常是类或结构体) 让这个问题变得复杂. 并且, 有时候为了其他函数保持一致, 你可能不得不有所变通.</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.8.5.2. </span>4.2. 编写简短函数<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p><strong>总述</strong></p>
+<p>我们倾向于编写简短, 凝练的函数.</p>
+<p><strong>说明</strong></p>
+<p>我们承认长函数有时是合理的, 因此并不硬性限制函数的长度. 如果函数超过 40 行, 可以思索一下能不能在不影响程序结构的前提下对其进行分割.</p>
+<p>即使一个长函数现在工作的非常好, 一旦有人对其修改, 有可能出现新的问题, 甚至导致难以发现的 bug. 使函数尽量简短, 以便于他人阅读和修改代码.</p>
+<p>在处理代码时, 你可能会发现复杂的长函数. 不要害怕修改现有代码: 如果证实这些代码使用 / 调试起来很困难, 或者你只需要使用其中的一小段代码, 考虑将其分割为更加简短并易于管理的若干函数.</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.8.5.3. </span>4.3. 函数重载<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<p><strong>总述</strong></p>
+<p>若要使用函数重载, 则必须能让读者一看调用点就胸有成竹, 而不用花心思猜测调用的重载函数到底是哪一种. 这一规则也适用于构造函数.</p>
+<p><strong>定义</strong></p>
+<p>你可以编写一个参数类型为 <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">string&amp;</span></code> 的函数, 然后用另一个参数类型为 <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char*</span></code> 的函数对其进行重载:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">Analyze</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">text</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">Analyze</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">textlen</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>优点</strong></p>
+<p>通过重载参数不同的同名函数, 可以令代码更加直观. 模板化代码需要重载, 这同时也能为使用者带来便利.</p>
+<p><strong>缺点</strong></p>
+<p>如果函数单靠不同的参数类型而重载 (acgtyrant 注：这意味着参数数量不变), 读者就得十分熟悉 C++ 五花八门的匹配规则, 以了解匹配过程具体到底如何. 另外, 如果派生类只重载了某个函数的部分变体, 继承语义就容易令人困惑.</p>
+<p><strong>结论</strong></p>
+<p>如果打算重载一个函数, 可以试试改在函数名里加上参数信息. 例如, 用 <code class="docutils literal notranslate"><span class="pre">AppendString()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">AppendInt()</span></code> 等, 而不是一口气重载多个 <code class="docutils literal notranslate"><span class="pre">Append()</span></code>. 如果重载函数的目的是为了支持不同数量的同一类型参数, 则优先考虑使用 <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> 以便使用者可以用 <a class="reference internal" href="others.html#braced-initializer-list"><span class="std std-ref">列表初始化</span></a> 指定参数.</p>
+</section>
+<section id="id5">
+<h2><span class="section-number">3.8.5.4. </span>4.4. 缺省参数<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<p><strong>总述</strong></p>
+<p>只允许在非虚函数中使用缺省参数, 且必须保证缺省参数的值始终一致. 缺省参数与 <a class="reference internal" href="others.html#function-overloading"><span class="std std-ref">函数重载</span></a> 遵循同样的规则. 一般情况下建议使用函数重载, 尤其是在缺省函数带来的可读性提升不能弥补下文中所提到的缺点的情况下.</p>
+<p><strong>优点</strong></p>
+<p>有些函数一般情况下使用默认参数, 但有时需要又使用非默认的参数. 缺省参数为这样的情形提供了便利, 使程序员不需要为了极少的例外情况编写大量的函数. 和函数重载相比, 缺省参数的语法更简洁明了, 减少了大量的样板代码, 也更好地区别了 “必要参数” 和 “可选参数”.</p>
+<p><strong>缺点</strong></p>
+<p>缺省参数实际上是函数重载语义的另一种实现方式, 因此所有 <a class="reference internal" href="others.html#function-overloading"><span class="std std-ref">不应当使用函数重载的理由</span></a> 也都适用于缺省参数.</p>
+<p>虚函数调用的缺省参数取决于目标对象的静态类型, 此时无法保证给定函数的所有重载声明的都是同样的缺省参数.</p>
+<p>缺省参数是在每个调用点都要进行重新求值的, 这会造成生成的代码迅速膨胀. 作为读者, 一般来说也更希望缺省的参数在声明时就已经被固定了, 而不是在每次调用时都可能会有不同的取值.</p>
+<p>缺省参数会干扰函数指针, 导致函数签名与调用点的签名不一致. 而函数重载不会导致这样的问题.</p>
+<p><strong>结论</strong></p>
+<p>对于虚函数, 不允许使用缺省参数, 因为在虚函数中缺省参数不一定能正常工作. 如果在每个调用点缺省参数的值都有可能不同, 在这种情况下缺省函数也不允许使用. (例如, 不要写像 <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">f(int</span> <span class="pre">n</span> <span class="pre">=</span> <span class="pre">counter++);</span></code> 这样的代码.)</p>
+<p>在其他情况下, 如果缺省参数对可读性的提升远远超过了以上提及的缺点的话, 可以使用缺省参数. 如果仍有疑惑, 就使用函数重载.</p>
+</section>
+<section id="id6">
+<h2><span class="section-number">3.8.5.5. </span>4.5. 函数返回类型后置语法<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<p><strong>总述</strong></p>
+<p>只有在常规写法 (返回类型前置) 不便于书写或不便于阅读时使用返回类型后置语法.</p>
+<p><strong>定义</strong></p>
+<p>C++ 现在允许两种不同的函数声明方式. 以往的写法是将返回类型置于函数名之前. 例如:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>C++11 引入了这一新的形式. 现在可以在函数名前使用 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 关键字, 在参数列表之后后置返回类型. 例如:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">foo</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">int</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>后置返回类型为函数作用域. 对于像 <code class="docutils literal notranslate"><span class="pre">int</span></code> 这样简单的类型, 两种写法没有区别. 但对于复杂的情况, 例如类域中的类型声明或者以函数参数的形式书写的类型, 写法的不同会造成区别.</p>
+<p><strong>优点</strong></p>
+<p>后置返回类型是显式地指定 <a class="reference internal" href="others.html#lambda-expressions"><span class="std std-ref">Lambda 表达式</span></a> 的返回值的唯一方式. 某些情况下, 编译器可以自动推导出 Lambda 表达式的返回类型, 但并不是在所有的情况下都能实现. 即使编译器能够自动推导, 显式地指定返回类型也能让读者更明了.</p>
+<p>有时在已经出现了的函数参数列表之后指定返回类型, 能够让书写更简单, 也更易读, 尤其是在返回类型依赖于模板参数时. 例如:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">u</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>对比下面的例子:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span><span class="n">declval</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&amp;&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">declval</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&amp;&gt;</span><span class="p">())</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="n">u</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>缺点</strong></p>
+<p>后置返回类型相对来说是非常新的语法, 而且在 C 和 Java 中都没有相似的写法, 因此可能对读者来说比较陌生.</p>
+<p>在已有的代码中有大量的函数声明, 你不可能把它们都用新的语法重写一遍. 因此实际的做法只能是使用旧的语法或者新旧混用. 在这种情况下, 只使用一种版本是相对来说更规整的形式.</p>
+<p><strong>结论</strong></p>
+<p>在大部分情况下, 应当继续使用以往的函数声明写法, 即将返回类型置于函数名前. 只有在必需的时候 (如 Lambda 表达式) 或者使用后置语法能够简化书写并且提高易读性的时候才使用新的返回类型后置语法. 但是后一种情况一般来说是很少见的, 大部分时候都出现在相当复杂的模板代码中, 而多数情况下不鼓励写这样 <a class="reference internal" href="others.html#template-metaprogramming"><span class="std std-ref">复杂的模板代码</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="classes.html" class="btn btn-neutral float-left" title="3.8.4. 3. 类" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="magic.html" class="btn btn-neutral float-right" title="3.8.6. 5. 来自 Google 的奇技" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

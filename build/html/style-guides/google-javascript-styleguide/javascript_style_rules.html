@@ -1,0 +1,2136 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.6.3. Javascript风格规范 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.7. Google: HTML/CSS 风格指南" href="../google-html-css-styleguide/contents.html" />
+    <link rel="prev" title="3.6.2. Javascript语言规范" href="javascript_language_rules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.6. Google: Javascript 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="background.html">3.6.1. 背景</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript_language_rules.html">3.6.2. Javascript语言规范</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.6.3. Javascript风格规范</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">3.6.3.1. 命名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tostring">3.6.3.2. 自定义 toString() 方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">3.6.3.3. 延时初始化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">3.6.3.4. 明确作用域</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">3.6.3.5. 代码格式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id26">3.6.3.6. 括号</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id27">3.6.3.7. 字符串</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">3.6.3.8. 可见性（私有和保护类型字段）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id30">3.6.3.9. JavaScript类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#js-comments">3.6.3.10. 注释</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#goog-provide">3.6.3.11. 为goog.provide提供依赖</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id76">3.6.3.12. 编译</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id77">3.6.3.13. 技巧和诀窍</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.6. </span>Google: Javascript 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.6.3. </span>Javascript风格规范</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-javascript-styleguide/javascript_style_rules.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="javascript">
+<h1><span class="section-number">3.6.3. </span>Javascript风格规范<a class="headerlink" href="#javascript" title="Permalink to this heading"></a></h1>
+<section id="id1">
+<h2><span class="section-number">3.6.3.1. </span>命名<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>通常来说，使用 <code class="docutils literal notranslate"><span class="pre">functionNamesLikeThis</span></code> ， <code class="docutils literal notranslate"><span class="pre">variableNamesLikeThis</span></code> ， <code class="docutils literal notranslate"><span class="pre">ClassNamesLikeThis</span></code> ， <code class="docutils literal notranslate"><span class="pre">EnumNamesLikeThis</span></code> ， <code class="docutils literal notranslate"><span class="pre">methodNamesLikeThis</span></code> ， <code class="docutils literal notranslate"><span class="pre">CONSTANT_VALUES_LIKE_THIS</span></code> ， <code class="docutils literal notranslate"><span class="pre">foo.namespaceNamesLikeThis.bar</span></code> 和 <code class="docutils literal notranslate"><span class="pre">filenameslikethis.js</span></code> 这种格式的命名方式。</p>
+<section id="id2">
+<h3><span class="section-number">3.6.3.1.1. </span>属性和方法<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><em>私有</em> 属性和方法应该以下划线开头命名。</p></li>
+<li><p><em>保护</em> 属性和方法应该以无下划线开头命名（像公共属性和方法一样）。</p></li>
+</ul>
+<p>了解更多关于私有成员和保护成员的信息，请阅读 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Visibility__private_and_protected_fields_">可见性</a> 部分。</p>
+</section>
+<section id="id4">
+<h3><span class="section-number">3.6.3.1.2. </span>方法和函数参数<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>可选函数参数以 <code class="docutils literal notranslate"><span class="pre">opt_</span></code> 开头。</p>
+<p>参数数目可变的函数应该具有以 <code class="docutils literal notranslate"><span class="pre">var_args</span></code> 命名的最后一个参数。你可能不会在代码里引用 <code class="docutils literal notranslate"><span class="pre">var_args</span></code> ；使用 <code class="docutils literal notranslate"><span class="pre">arguments</span></code> 对象。</p>
+<p>可选参数和数目可变的参数也可以在注释 <code class="docutils literal notranslate"><span class="pre">&#64;param</span></code> 中指定。尽管这两种惯例都被编译器接受，但更加推荐两者一起使用。</p>
+</section>
+<section id="gettersetter">
+<h3><span class="section-number">3.6.3.1.3. </span>getter和setter<a class="headerlink" href="#gettersetter" title="Permalink to this heading"></a></h3>
+<p>EcmaScript 5 不鼓励使用属性的getter和setter。然而，如果使用它们，那么getter就不要改变属性的可见状态。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span><span class="n">错误</span><span class="o">--</span><span class="n">不要这样做</span><span class="o">.</span>
+<span class="o">*/</span>
+<span class="n">var</span> <span class="n">foo</span> <span class="o">=</span> <span class="p">{</span> <span class="n">get</span> <span class="nb">next</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">nextId</span><span class="o">++</span><span class="p">;</span> <span class="p">}</span> <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3><span class="section-number">3.6.3.1.4. </span>存取函数<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>属性的getter和setter方法不是必需的。然而，如果使用它们，那么读取方法必须以 <code class="docutils literal notranslate"><span class="pre">getFoo()</span></code> 命名，并且写入方法必须以 <code class="docutils literal notranslate"><span class="pre">setFoo(value)</span></code> 命名。（对于布尔型的读取方法，也可以使用 <code class="docutils literal notranslate"><span class="pre">isFoo()</span></code> ，并且这样往往听起来更自然。）</p>
+</section>
+<section id="id6">
+<h3><span class="section-number">3.6.3.1.5. </span>命名空间<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p>JavaScript没有原生的对封装和命名空间的支持。</p>
+<p>全局命名冲突难以调试，并且当两个项目尝试整合的时候可能引起棘手的问题。为了能共享共用的JavaScript代码，我们采用一些约定来避免冲突。</p>
+<section id="id7">
+<h4><span class="section-number">3.6.3.1.5.1. </span>为全局代码使用命名空间<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h4>
+<p>在全局范围内 <em>总是</em> 使用唯一的项目或库相关的伪命名空间进行前缀标识。如果你正在进行“Project Sloth”项目，一个合理的伪命名空间为 <code class="docutils literal notranslate"><span class="pre">sloth.*</span></code> 。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">sloth</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="n">sloth</span><span class="o">.</span><span class="n">sleep</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>很多JavaScript库，包括 <a class="reference external" href="https://developers.google.com/closure/library/?csw=1">the Closure Library</a> 和 <a class="reference external" href="http://dojotoolkit.org/">Dojo toolkit</a> 给你高级功能来声明命名空间。保持你的命名空间声明一致。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">goog</span><span class="o">.</span><span class="n">provide</span><span class="p">(</span><span class="s1">&#39;sloth&#39;</span><span class="p">);</span>
+
+<span class="n">sloth</span><span class="o">.</span><span class="n">sleep</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h4><span class="section-number">3.6.3.1.5.2. </span>尊重命名空间所有权<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h4>
+<p>当选择一个子命名空间的时候，确保父命名空间知道你在做什么。如果你开始了一个为sloths创建hats的项目，确保Sloth这一组命名空间知道你在使用 <code class="docutils literal notranslate"><span class="pre">sloth.hats</span></code> 。</p>
+</section>
+<section id="id9">
+<h4><span class="section-number">3.6.3.1.5.3. </span>外部代码和内部代码使用不同的命名空间<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h4>
+<p>“外部代码”指的是来自你的代码库外并独立编译的代码。内部名称和外部名称应该严格区分开。如果你正在使用一个能调用 <code class="docutils literal notranslate"><span class="pre">foo.hats.*</span></code> 中的东西的外部库，你的内部代码不应该定义 <code class="docutils literal notranslate"><span class="pre">foo.hats.*</span></code> 中的所有符号，因为如果其他团队定义新符号就会把它打破。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>foo.require(&#39;foo.hats&#39;);
+/**
+*错误--不要这样做。
+* @constructor
+* @extends {foo.hats.RoundHat}
+*/
+foo.hats.BowlerHat = function() {
+};
+</pre></div>
+</div>
+<p>如果你在外部命名空间中需要定义新的API，那么你应该明确地导出且仅导出公共的API函数。为了一致性和编译器更好的优化你的内部代码，你的内部代码应该使用内部API的内部名称调用它们。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span><span class="o">.</span><span class="n">provide</span><span class="p">(</span><span class="s1">&#39;googleyhats.BowlerHat&#39;</span><span class="p">);</span>
+
+<span class="n">foo</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="s1">&#39;foo.hats&#39;</span><span class="p">);</span>
+<span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@constructor</span>
+<span class="o">*</span> <span class="nd">@extends</span> <span class="p">{</span><span class="n">foo</span><span class="o">.</span><span class="n">hats</span><span class="o">.</span><span class="n">RoundHat</span><span class="p">}</span>
+<span class="o">*/</span>
+<span class="n">googleyhats</span><span class="o">.</span><span class="n">BowlerHat</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">...</span>
+<span class="p">};</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">exportSymbol</span><span class="p">(</span><span class="s1">&#39;foo.hats.BowlerHat&#39;</span><span class="p">,</span> <span class="n">googleyhats</span><span class="o">.</span><span class="n">BowlerHat</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h4><span class="section-number">3.6.3.1.5.4. </span>为长类型的名称提供别名提高可读性<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h4>
+<p>如果对完全合格的类型使用本地别名可以提高可读性，那么就这样做。本地别名的名称应该符合类型的最后一部分。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@constructor</span>
+<span class="o">*/</span>
+<span class="n">some</span><span class="o">.</span><span class="n">long</span><span class="o">.</span><span class="n">namespace</span><span class="o">.</span><span class="n">MyClass</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">};</span>
+
+<span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">some</span><span class="o">.</span><span class="n">long</span><span class="o">.</span><span class="n">namespace</span><span class="o">.</span><span class="n">MyClass</span><span class="p">}</span> <span class="n">a</span>
+<span class="o">*/</span>
+<span class="n">some</span><span class="o">.</span><span class="n">long</span><span class="o">.</span><span class="n">namespace</span><span class="o">.</span><span class="n">MyClass</span><span class="o">.</span><span class="n">staticHelper</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">...</span>
+<span class="p">};</span>
+
+<span class="n">myapp</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">var</span> <span class="n">MyClass</span> <span class="o">=</span> <span class="n">some</span><span class="o">.</span><span class="n">long</span><span class="o">.</span><span class="n">namespace</span><span class="o">.</span><span class="n">MyClass</span><span class="p">;</span>
+  <span class="n">var</span> <span class="n">staticHelper</span> <span class="o">=</span> <span class="n">some</span><span class="o">.</span><span class="n">long</span><span class="o">.</span><span class="n">namespace</span><span class="o">.</span><span class="n">MyClass</span><span class="o">.</span><span class="n">staticHelper</span><span class="p">;</span>
+  <span class="n">staticHelper</span><span class="p">(</span><span class="n">new</span> <span class="n">MyClass</span><span class="p">());</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>不要为命名空间起本地别名。命名空间应该只能使用 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#goog-scope">goog.scope</a> 命名别名。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myapp</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">var</span> <span class="n">namespace</span> <span class="o">=</span> <span class="n">some</span><span class="o">.</span><span class="n">long</span><span class="o">.</span><span class="n">namespace</span><span class="p">;</span>
+  <span class="n">namespace</span><span class="o">.</span><span class="n">MyClass</span><span class="o">.</span><span class="n">staticHelper</span><span class="p">(</span><span class="n">new</span> <span class="n">namespace</span><span class="o">.</span><span class="n">MyClass</span><span class="p">());</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>避免访问一个别名类型的属性，除非它是一个枚举。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@enum</span> <span class="p">{</span><span class="n">string</span><span class="p">}</span> <span class="o">*/</span>
+<span class="n">some</span><span class="o">.</span><span class="n">long</span><span class="o">.</span><span class="n">namespace</span><span class="o">.</span><span class="n">Fruit</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">APPLE</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span>
+  <span class="n">BANANA</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span>
+<span class="p">};</span>
+
+<span class="n">myapp</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">var</span> <span class="n">Fruit</span> <span class="o">=</span> <span class="n">some</span><span class="o">.</span><span class="n">long</span><span class="o">.</span><span class="n">namespace</span><span class="o">.</span><span class="n">Fruit</span><span class="p">;</span>
+  <span class="n">switch</span> <span class="p">(</span><span class="n">fruit</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">Fruit</span><span class="o">.</span><span class="n">APPLE</span><span class="p">:</span>
+      <span class="o">...</span>
+    <span class="k">case</span> <span class="n">Fruit</span><span class="o">.</span><span class="n">BANANA</span><span class="p">:</span>
+      <span class="o">...</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myapp</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">var</span> <span class="n">MyClass</span> <span class="o">=</span> <span class="n">some</span><span class="o">.</span><span class="n">long</span><span class="o">.</span><span class="n">namespace</span><span class="o">.</span><span class="n">MyClass</span><span class="p">;</span>
+  <span class="n">MyClass</span><span class="o">.</span><span class="n">staticHelper</span><span class="p">(</span><span class="n">null</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>永远不要在全局环境中创建别名。只在函数体内使用它们。</p>
+</section>
+</section>
+<section id="id11">
+<h3><span class="section-number">3.6.3.1.6. </span>文件名<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<p>为了避免在大小写敏感的平台上引起混淆，文件名应该小写。文件名应该以 <code class="docutils literal notranslate"><span class="pre">.js</span></code> 结尾，并且应该不包含除了 <code class="docutils literal notranslate"><span class="pre">-</span></code> 或 <code class="docutils literal notranslate"><span class="pre">_</span></code> （相比较 <code class="docutils literal notranslate"><span class="pre">_</span></code> 更推荐 <code class="docutils literal notranslate"><span class="pre">-</span></code> ）以外的其它标点。</p>
+</section>
+</section>
+<section id="tostring">
+<h2><span class="section-number">3.6.3.2. </span>自定义 toString() 方法<a class="headerlink" href="#tostring" title="Permalink to this heading"></a></h2>
+<p>必须确保无误，并且无其他副作用。</p>
+<p>你可以通过自定义 <code class="docutils literal notranslate"><span class="pre">toString()</span></code> 方法来控制对象如何字符串化他们自己。这没问题，但是你必须确保你的方法执行无误，并且无其他副作用。如果你的方法没有达到这个要求，就会很容易产生严重的问题。比如，如果 <code class="docutils literal notranslate"><span class="pre">toString()</span></code> 方法调用一个方法产生一个断言，断言可能要输出对象的名称，就又需要调用 <code class="docutils literal notranslate"><span class="pre">toString()</span></code> 方法。</p>
+</section>
+<section id="id12">
+<h2><span class="section-number">3.6.3.3. </span>延时初始化<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
+<p>可以使用。</p>
+<p>并不总在变量声明的地方就进行变量初始化，所以延时初始化是可行的。</p>
+</section>
+<section id="id13">
+<h2><span class="section-number">3.6.3.4. </span>明确作用域<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
+<p>时常。</p>
+<p>经常使用明确的作用域加强可移植性和清晰度。例如，在作用域链中不要依赖 <code class="docutils literal notranslate"><span class="pre">window</span></code> 。你可能想在其他应用中使用你的函数，这时此 <code class="docutils literal notranslate"><span class="pre">window</span></code> 就非彼 <code class="docutils literal notranslate"><span class="pre">window</span></code> 了。</p>
+</section>
+<section id="id14">
+<h2><span class="section-number">3.6.3.5. </span>代码格式<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
+<p>我们原则上遵循 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Formatting">C++格式规范</a> ，并且进行以下额外的说明。</p>
+<section id="id15">
+<h3><span class="section-number">3.6.3.5.1. </span>大括号<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h3>
+<p>由于隐含分号的插入，无论大括号括起来的是什么，总是在同一行上开始你的大括号。例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if (something) {
+  // ...
+} else {
+  // …
+}
+</pre></div>
+</div>
+</section>
+<section id="id16">
+<h3><span class="section-number">3.6.3.5.2. </span>数组和对象初始化表达式<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h3>
+<p>当单行数组和对象初始化表达式可以在一行写开时，写成单行是允许的。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>  <span class="o">//</span><span class="n">之后无空格</span><span class="p">[</span><span class="n">或之前</span><span class="p">]</span>
+<span class="n">var</span> <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="n">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="mi">3</span><span class="p">};</span>  <span class="o">//</span><span class="n">之后无空格</span><span class="p">[</span><span class="n">或之前</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>多行数组和对象初始化表达式缩进两个空格，括号的处理就像块一样单独成行。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">对象初始化表达式</span>
+<span class="n">var</span> <span class="n">inset</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">top</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="n">right</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="n">bottom</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+  <span class="n">left</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">};</span>
+
+<span class="o">//</span><span class="n">数组初始化表达式</span>
+<span class="n">this</span><span class="o">.</span><span class="n">rows_</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;&quot;Slartibartfast&quot; &lt;fjordmaster@magrathea.com&gt;&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;&quot;Zaphod Beeblebrox&quot; &lt;theprez@universe.gov&gt;&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;&quot;Ford Prefect&quot; &lt;ford@theguide.com&gt;&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;&quot;Arthur Dent&quot; &lt;has.no.tea@gmail.com&gt;&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;&quot;Marvin the Paranoid Android&quot; &lt;marv@googlemail.com&gt;&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;the.mice@magrathea.com&#39;</span>
+<span class="p">];</span>
+
+<span class="o">//</span><span class="n">在方法调用中使用</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">createDom</span><span class="p">(</span><span class="n">goog</span><span class="o">.</span><span class="n">dom</span><span class="o">.</span><span class="n">TagName</span><span class="o">.</span><span class="n">DIV</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nb">id</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span>
+  <span class="n">className</span><span class="p">:</span> <span class="s1">&#39;some-css-class&#39;</span><span class="p">,</span>
+  <span class="n">style</span><span class="p">:</span> <span class="s1">&#39;display:none&#39;</span>
+<span class="p">},</span> <span class="s1">&#39;Hello, world!&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>长标识符或值在对齐的初始化列表中存在问题，所以初始化值不必对齐。例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CORRECT_Object</span><span class="o">.</span><span class="n">prototype</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">a</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="n">b</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="n">lengthyName</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>不要像这样：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WRONG_Object</span><span class="o">.</span><span class="n">prototype</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">a</span>          <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="n">b</span>          <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="n">lengthyName</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="id17">
+<h3><span class="section-number">3.6.3.5.3. </span>函数参数<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h3>
+<p>如果可能，应该在同一行上列出所有函数参数。如果这样做将超出每行80个字符的限制，参数必须以一种可读性较好的方式进行换行。为了节省空间，在每一行你可以尽可能的接近80个字符，或者把每一个参数单独放在一行以提高可读性。缩进可能是四个空格，或者和括号对齐。下面是最常见的参数换行形式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// 四个空格，每行包括80个字符。适用于非常长的函数名，
+// 重命名不需要重新缩进，占用空间小。
+goog.foo.bar.doThingThatIsVeryDifficultToExplain = function(
+    veryDescriptiveArgumentNumberOne, veryDescriptiveArgumentTwo,
+    tableModelEventHandlerProxy, artichokeDescriptorAdapterIterator) {
+    // ...
+};
+
+//四个空格，每行一个参数。适用于长函数名，
+// 允许重命名，并且强调每一个参数。
+goog.foo.bar.doThingThatIsVeryDifficultToExplain = function(
+    veryDescriptiveArgumentNumberOne,
+    veryDescriptiveArgumentTwo,
+    tableModelEventHandlerProxy,
+    artichokeDescriptorAdapterIterator) {
+    // ...
+};
+
+// 缩进和括号对齐，每行80字符。 看上去是分组的参数，
+// 占用空间小。
+function foo(veryDescriptiveArgumentNumberOne, veryDescriptiveArgumentTwo,
+            tableModelEventHandlerProxy, artichokeDescriptorAdapterIterator) {
+    // ...
+}
+
+// 和括号对齐，每行一个参数。看上去是分组的并且
+// 强调每个单独的参数。
+function bar(veryDescriptiveArgumentNumberOne,
+            veryDescriptiveArgumentTwo,
+            tableModelEventHandlerProxy,
+            artichokeDescriptorAdapterIterator) {
+    // ...
+}
+</pre></div>
+</div>
+<p>当函数调用本身缩进，你可以自由地开始相对于原始声明的开头或者相对于当前函数调用的开头，进行4个空格的缩进。以下都是可接受的缩进风格。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">veryLongFunctionNameA</span><span class="p">(</span>
+        <span class="n">veryLongArgumentName</span><span class="p">)</span> <span class="o">||</span>
+    <span class="n">veryLongFunctionNameB</span><span class="p">(</span>
+    <span class="n">veryLongArgumentName</span><span class="p">))</span> <span class="p">{</span>
+  <span class="n">veryLongFunctionNameC</span><span class="p">(</span><span class="n">veryLongFunctionNameD</span><span class="p">(</span>
+      <span class="n">veryLongFunctioNameE</span><span class="p">(</span>
+          <span class="n">veryLongFunctionNameF</span><span class="p">)));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h3><span class="section-number">3.6.3.5.4. </span>匿名函数传递<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h3>
+<p>当在一个函数的参数列表中声明一个匿名函数时，函数体应该与声明的左边缘缩进两个空格，或者与function关键字的左边缘缩进两个空格。这是为了匿名函数体更加可读（即不被挤在屏幕的右侧）。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prefix</span><span class="o">.</span><span class="n">something</span><span class="o">.</span><span class="n">reallyLongFunctionName</span><span class="p">(</span><span class="s1">&#39;whatever&#39;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">a1</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">a2</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">someOtherLongFunctionName</span><span class="p">(</span><span class="n">a1</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">andNowForSomethingCompletelyDifferent</span><span class="p">(</span><span class="n">a2</span><span class="o">.</span><span class="n">parrot</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="n">var</span> <span class="n">names</span> <span class="o">=</span> <span class="n">prefix</span><span class="o">.</span><span class="n">something</span><span class="o">.</span><span class="n">myExcellentMapFunction</span><span class="p">(</span>
+    <span class="n">verboselyNamedCollectionOfItems</span><span class="p">,</span>
+    <span class="n">function</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">;</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="id19">
+<h3><span class="section-number">3.6.3.5.5. </span>使用goog.scope命名别名<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h3>
+<p><a class="reference external" href="https://docs.google.com/document/d/1ETFAuh2kaXMVL-vafUYhaWlhl6b5D9TOvboVg7Zl68Y/pub">goog.scope</a> 可用于在使用 <a class="reference external" href="https://developers.google.com/closure/library/?csw=1">the Closure Library</a> 的工程中缩短命名空间的符号引用。</p>
+<p>每个文件只能添加一个 <code class="docutils literal notranslate"><span class="pre">goog.scope</span></code> 调用。始终将它放在全局范围内。</p>
+<p>开放的 <code class="docutils literal notranslate"><span class="pre">goog.scope(function()</span> <span class="pre">{</span></code> 调用必须在之前有一个空行，并且紧跟 <code class="docutils literal notranslate"><span class="pre">goog.provide</span></code> 声明、 <code class="docutils literal notranslate"><span class="pre">goog.require</span></code> 声明或者顶层的注释。调用必须在文件的最后一行闭合。在scope声明闭合处追加 <code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">goog.scope</span></code> 。注释与分号间隔两个空格。</p>
+<p>和C++命名空间相似，不要在 <code class="docutils literal notranslate"><span class="pre">goog.scope</span></code> 声明下面缩进。相反，从第0列开始。</p>
+<p>只取不会重新分配给另一个对象（例如大多数的构造函数、枚举和命名空间）的别名。不要这样做：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">goog</span><span class="o">.</span><span class="n">scope</span><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="n">var</span> <span class="n">Button</span> <span class="o">=</span> <span class="n">goog</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">Button</span><span class="p">;</span>
+
+<span class="n">Button</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span> <span class="o">...</span> <span class="p">};</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>别名必须和全局中的命名的最后一个属性相同。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">goog</span><span class="o">.</span><span class="n">provide</span><span class="p">(</span><span class="s1">&#39;my.module&#39;</span><span class="p">);</span>
+
+<span class="n">goog</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="s1">&#39;goog.dom&#39;</span><span class="p">);</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="s1">&#39;goog.ui.Button&#39;</span><span class="p">);</span>
+
+<span class="n">goog</span><span class="o">.</span><span class="n">scope</span><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="n">var</span> <span class="n">Button</span> <span class="o">=</span> <span class="n">goog</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">Button</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">dom</span> <span class="o">=</span> <span class="n">goog</span><span class="o">.</span><span class="n">dom</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">Alias</span> <span class="n">new</span> <span class="n">types</span> <span class="n">after</span> <span class="n">the</span> <span class="n">constructor</span> <span class="n">declaration</span><span class="o">.</span>
+<span class="n">my</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">SomeType</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span> <span class="o">...</span> <span class="p">};</span>
+<span class="n">var</span> <span class="n">SomeType</span> <span class="o">=</span> <span class="n">my</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">SomeType</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">Declare</span> <span class="n">methods</span> <span class="n">on</span> <span class="n">the</span> <span class="n">prototype</span> <span class="k">as</span> <span class="n">usual</span><span class="p">:</span>
+<span class="n">SomeType</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">findButton</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">Button</span> <span class="k">as</span> <span class="n">aliased</span> <span class="n">above</span><span class="o">.</span>
+  <span class="n">this</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Button</span><span class="p">(</span><span class="n">dom</span><span class="o">.</span><span class="n">getElement</span><span class="p">(</span><span class="s1">&#39;my-button&#39;</span><span class="p">));</span>
+<span class="p">};</span>
+<span class="o">...</span>
+<span class="p">});</span>  <span class="o">//</span> <span class="n">goog</span><span class="o">.</span><span class="n">scope</span>
+</pre></div>
+</div>
+</section>
+<section id="id22">
+<h3><span class="section-number">3.6.3.5.6. </span>更多的缩进<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h3>
+<p>事实上，除了 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Array_and_Object_literals">初始化数组和对象</a> 和传递匿名函数外，所有被拆开的多行文本应与之前的表达式左对齐，或者以4个（而不是2个）空格作为一缩进层次。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>someWonderfulHtml = &#39;&#39; +
+                    getEvenMoreHtml(someReallyInterestingValues, moreValues,
+                                    evenMoreParams, &#39;a duck&#39;, true, 72,
+                                    slightlyMoreMonkeys(0xfff)) +
+                    &#39;&#39;;
+
+thisIsAVeryLongVariableName =
+    hereIsAnEvenLongerOtherFunctionNameThatWillNotFitOnPrevLine();
+
+thisIsAVeryLongVariableName = &#39;expressionPartOne&#39; + someMethodThatIsLong() +
+    thisIsAnEvenLongerOtherFunctionNameThatCannotBeIndentedMore();
+
+someValue = this.foo(
+    shortArg,
+    &#39;Some really long string arg - this is a pretty common case, actually.&#39;,
+    shorty2,
+    this.bar());
+
+if (searchableCollection(allYourStuff).contains(theStuffYouWant) &amp;&amp;
+    !ambientNotification.isActive() &amp;&amp; (client.isAmbientSupported() ||
+                                        client.alwaysTryAmbientAnyways())) {
+  ambientNotification.activate();
+}
+</pre></div>
+</div>
+</section>
+<section id="id24">
+<h3><span class="section-number">3.6.3.5.7. </span>空行<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h3>
+<p>使用新的空行来划分一组逻辑上相关联的代码片段。例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">doSomethingTo</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">doSomethingElseTo</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">andThen</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="n">nowDoSomethingWith</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+<span class="n">andNowWith</span><span class="p">(</span><span class="n">z</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id25">
+<h3><span class="section-number">3.6.3.5.8. </span>二元和三元操作符<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h3>
+<p>操作符始终跟随着前行, 这样你就不用顾虑分号的隐式插入问题。否则换行符和缩进还是遵循其他谷歌规范指南。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>var x = a ? b : c;  // All on one line if it will fit.
+
+// Indentation +4 is OK.
+var y = a ?
+    longButSimpleOperandB : longButSimpleOperandC;
+
+// Indenting to the line position of the first operand is also OK.
+var z = a ?
+        moreComplicatedB :
+        moreComplicatedC;
+</pre></div>
+</div>
+<p>点号也应如此处理。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">x</span> <span class="o">=</span> <span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span><span class="o">.</span>
+    <span class="n">doSomething</span><span class="p">()</span><span class="o">.</span>
+    <span class="n">doSomethingElse</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id26">
+<h2><span class="section-number">3.6.3.6. </span>括号<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h2>
+<p>只用在有需要的地方。</p>
+<p>通常只在语法或者语义需要的地方有节制地使用。</p>
+<p>绝对不要对一元运算符如 <code class="docutils literal notranslate"><span class="pre">delete</span></code> 、 <code class="docutils literal notranslate"><span class="pre">typeof</span></code> 和 <code class="docutils literal notranslate"><span class="pre">void</span></code> 使用括号或者在关键词如 <code class="docutils literal notranslate"><span class="pre">return</span></code> 、 <code class="docutils literal notranslate"><span class="pre">throw</span></code> 和其他的（ <code class="docutils literal notranslate"><span class="pre">case</span></code> 、 <code class="docutils literal notranslate"><span class="pre">in</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">new</span></code> ）之后使用括号。</p>
+</section>
+<section id="id27">
+<h2><span class="section-number">3.6.3.7. </span>字符串<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h2>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">'</span></code> 代替 <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> 。</p>
+<p>使用单引号（ <code class="docutils literal notranslate"><span class="pre">'</span></code> ）代替双引号（ <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> ）来保证一致性。当我们创建包含有HTML的字符串时这样做很有帮助。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;This is some HTML&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="id28">
+<h2><span class="section-number">3.6.3.8. </span>可见性（私有和保护类型字段）<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h2>
+<p>鼓励使用 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&#64;protected</span></code> JSDoc注释。</p>
+<p>我们建议使用JSDoc注释 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&#64;protected</span></code> 来标识出类、函数和属性的可见程度。</p>
+<p>设置 <code class="docutils literal notranslate"><span class="pre">--jscomp_warning=visibility</span></code> 可令编译器对可见性的违规进行编译器警告。可见 <a class="reference external" href="https://code.google.com/p/closure-compiler/wiki/Warnings">封闭的编译器警告</a> 。</p>
+<p>加了 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code> 标记的全局变量和函数只能被同一文件中的代码所访问。</p>
+<p>被标记为 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code> 的构造函数只能被同一文件中的代码或者它们的静态和实例成员实例化。 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code> 标记的构造函数可以被相同文件内它们的公共静态属性和 <code class="docutils literal notranslate"><span class="pre">instanceof</span></code> 运算符访问。</p>
+<p>全局变量、函数和构造函数不能注释 <code class="docutils literal notranslate"><span class="pre">&#64;protected</span></code> 。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">文件1</span>
+<span class="o">//</span> <span class="n">AA_PrivateClass_</span> <span class="n">和</span> <span class="n">AA_init_</span> <span class="n">是全局的并且在同一个文件中所以能被访问</span>
+
+<span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@private</span>
+<span class="o">*</span> <span class="nd">@constructor</span>
+<span class="o">*/</span>
+<span class="n">AA_PrivateClass_</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">};</span>
+
+<span class="o">/**</span> <span class="nd">@private</span> <span class="o">*/</span>
+<span class="n">function</span> <span class="n">AA_init_</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">new</span> <span class="n">AA_PrivateClass_</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">AA_init_</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>标记 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code> 的属性可以被同一文件中的所有的代码访问，如果属性属于一个类，那么所有自身含有属性的类的静态方法和实例方法也可访问。它们不能被不同文件下的子类访问或者重写。</p>
+<p>标记 <code class="docutils literal notranslate"><span class="pre">&#64;protected</span></code> 的属性可以被同一文件中的所有的代码访问，任何含有属性的子类的静态方法和实例方法也可访问。</p>
+<p>注意这些语义和C++、JAVA中private 和 protected的不同，其许可同一文件中的所有代码访问的权限，而不是仅仅局限于同一类或者同一类层次。此外，不像C++中，子类不可重写私有属性。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">File</span> <span class="mf">1.</span>
+
+<span class="o">/**</span> <span class="nd">@constructor</span> <span class="o">*/</span>
+<span class="n">AA_PublicClass</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">/**</span> <span class="nd">@private</span> <span class="o">*/</span>
+  <span class="n">this</span><span class="o">.</span><span class="n">privateProp_</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+  <span class="o">/**</span> <span class="nd">@protected</span> <span class="o">*/</span>
+  <span class="n">this</span><span class="o">.</span><span class="n">protectedProp</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="o">/**</span> <span class="nd">@private</span> <span class="o">*/</span>
+<span class="n">AA_PublicClass</span><span class="o">.</span><span class="n">staticPrivateProp_</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="o">/**</span> <span class="nd">@protected</span> <span class="o">*/</span>
+<span class="n">AA_PublicClass</span><span class="o">.</span><span class="n">staticProtectedProp</span> <span class="o">=</span> <span class="mi">31</span><span class="p">;</span>
+
+<span class="o">/**</span> <span class="nd">@private</span> <span class="o">*/</span>
+<span class="n">AA_PublicClass</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">privateMethod_</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{};</span>
+
+<span class="o">/**</span> <span class="nd">@protected</span> <span class="o">*/</span>
+<span class="n">AA_PublicClass</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">protectedMethod</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{};</span>
+
+<span class="o">//</span> <span class="n">File</span> <span class="mf">2.</span>
+
+<span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@return</span> <span class="p">{</span><span class="n">number</span><span class="p">}</span> <span class="n">The</span> <span class="n">number</span> <span class="n">of</span> <span class="n">ducks</span> <span class="n">we</span><span class="s1">&#39;ve arranged in a row.</span>
+<span class="o">*/</span>
+<span class="n">AA_PublicClass</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">Legal</span> <span class="n">accesses</span> <span class="n">of</span> <span class="n">these</span> <span class="n">two</span> <span class="n">properties</span><span class="o">.</span>
+  <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">privateProp_</span> <span class="o">+</span> <span class="n">AA_PublicClass</span><span class="o">.</span><span class="n">staticPrivateProp_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="o">//</span> <span class="n">File</span> <span class="mf">3.</span>
+
+<span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@constructor</span>
+<span class="o">*</span> <span class="nd">@extends</span> <span class="p">{</span><span class="n">AA_PublicClass</span><span class="p">}</span>
+<span class="o">*/</span>
+<span class="n">AA_SubClass</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">Legal</span> <span class="n">access</span> <span class="n">of</span> <span class="n">a</span> <span class="n">protected</span> <span class="n">static</span> <span class="nb">property</span><span class="o">.</span>
+  <span class="n">AA_PublicClass</span><span class="o">.</span><span class="n">staticProtectedProp</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">method</span><span class="p">();</span>
+<span class="p">};</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">inherits</span><span class="p">(</span><span class="n">AA_SubClass</span><span class="p">,</span> <span class="n">AA_PublicClass</span><span class="p">);</span>
+
+<span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@return</span> <span class="p">{</span><span class="n">number</span><span class="p">}</span> <span class="n">The</span> <span class="n">number</span> <span class="n">of</span> <span class="n">ducks</span> <span class="n">we</span><span class="s1">&#39;ve arranged in a row.</span>
+<span class="o">*/</span>
+<span class="n">AA_SubClass</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">Legal</span> <span class="n">access</span> <span class="n">of</span> <span class="n">a</span> <span class="n">protected</span> <span class="n">instance</span> <span class="nb">property</span><span class="o">.</span>
+  <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">protectedProp</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>注意在Javascript中，一个类（如 <code class="docutils literal notranslate"><span class="pre">AA_PrivateClass_</span></code> ）和其构造函数类型是没有区别的。没办法确定一种类型是public而它的构造函数是private。（因为构造函数很容易重命名从而躲避隐私检查）。</p>
+</section>
+<section id="id30">
+<h2><span class="section-number">3.6.3.9. </span>JavaScript类型<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h2>
+<p>鼓励和强制执行的编译器。</p>
+<p>JSDoc记录类型时，要尽可能具体和准确。我们支持的类型是基于 <a class="reference external" href="http://wiki.ecmascript.org/doku.php?id=spec:spec">EcmaScript 4规范</a> 。</p>
+<section id="id31">
+<h3><span class="section-number">3.6.3.9.1. </span>JavaScript类型语言<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h3>
+<p>ES4提案包含指定JavaScript类型的语言。我们使用JsDoc这种语言表达函数参数和返回值的类型。</p>
+<p>随着ES4提议的发展，这种语言已经改变了。编译器仍然支持旧的语法类型，但这些语法已经被弃用了。</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 31%" />
+<col style="width: 52%" />
+<col style="width: 8%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>语法名称</p></th>
+<th class="head"><p>语法</p></th>
+<th class="head"><p>描述</p></th>
+<th class="head"><p>弃用语法</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>原始类型</p></td>
+<td><p>在JavaScript中有5种原始类型： <code class="docutils literal notranslate"><span class="pre">{null}</span></code> ， <code class="docutils literal notranslate"><span class="pre">{undefined}</span></code> ， <code class="docutils literal notranslate"><span class="pre">{boolean}</span></code> ， <code class="docutils literal notranslate"><span class="pre">{number}</span></code> ，和 <code class="docutils literal notranslate"><span class="pre">{string}</span></code></p></td>
+<td><p>类型的名称。</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>实例类型</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{Object}</span></code>
+实例对象或空。</p>
+<p><code class="docutils literal notranslate"><span class="pre">{Function}</span></code>
+一个实例函数或空。</p>
+<p><code class="docutils literal notranslate"><span class="pre">{EventTarget}</span></code>
+构造函数实现的EventTarget接口，或者为null的一个实例。</p>
+</td>
+<td><p>一个实例构造函数或接口函数。构造函数是 <code class="docutils literal notranslate"><span class="pre">&#64;constructor</span></code> JSDoc标记定义的函数 。接口函数是 <code class="docutils literal notranslate"><span class="pre">&#64;interface</span></code> JSDoc标记定义的函数。</p>
+<p>默认情况下，实例类型将接受空。这是唯一的类型语法，使得类型为空。此表中的其他类型的语法不会接受空。</p>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>枚举类型</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{goog.events.EventType}</span></code> 字面量初始化对象的属性之一 <code class="docutils literal notranslate"><span class="pre">goog.events.EventType</span></code> 。</p></td>
+<td><p>一个枚举必须被初始化为一个字面量对象，或作为另一个枚举的别名,加注 <code class="docutils literal notranslate"><span class="pre">&#64;enum</span></code> JSDoc标记。这个属性是枚举实例。 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#enums">下面</a> 是枚举语法的定义。</p>
+<p>请注意，这是我们的类型系统中为数不多的ES4规范以外的事情之一。</p>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>应用类型</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{Array.&lt;string&gt;}</span></code> 字符串数组。</p>
+<p><code class="docutils literal notranslate"><span class="pre">{Object.&lt;string,</span> <span class="pre">number&gt;}</span></code> 一个对象，其中键是字符串，值是数字。</p>
+</td>
+<td><p>参数化类型，该类型应用一组参数类型。这个想法是类似于Java泛型。</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>联合类型</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{(number|boolean)}</span></code> 一个数字或布尔值。</p></td>
+<td><p>表明一个值可能有A型或B型。</p>
+<p>括号在顶层表达式可以省略，但在子表达式不能省略，以避免歧义。</p>
+<p><code class="docutils literal notranslate"><span class="pre">{number|boolean}</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">{function():</span> <span class="pre">(number|boolean)}</span></code></p>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{(number,boolean)}</span></code> ，
+<code class="docutils literal notranslate"><span class="pre">{(number||boolean)}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>可为空的类型</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{?number}</span></code></p>
+<p>一个数字或空。</p>
+</td>
+<td><p>空类型与任意其他类型组合的简称。这仅仅是语法糖（syntactic sugar）。</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{number?}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>非空类型</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{!Object}</span></code></p>
+<p>一个对象，值非空。</p>
+</td>
+<td><p>从非空类型中过滤掉null。最常用于实例类型，默认可为空。</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{Object!}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>记录类型</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{{myNum:</span> <span class="pre">number,</span> <span class="pre">myObject}}</span></code></p>
+<p>给定成员类型的匿名类型。</p>
+</td>
+<td><p>表示该值有指定的类型的成员。在这种情况下， <code class="docutils literal notranslate"><span class="pre">myNum</span></code> 是 <code class="docutils literal notranslate"><span class="pre">number</span></code> 类型而 <code class="docutils literal notranslate"><span class="pre">myObject</span></code> 可为任何类型。</p>
+<p>注意花括号是语法类型的一部分。例如，表示一个数组对象有一个 <code class="docutils literal notranslate"><span class="pre">length</span></code> 属性，你可以写 <code class="docutils literal notranslate"><span class="pre">Array.&lt;{length}&gt;</span></code> 。</p>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>函数类型</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{function(string,</span> <span class="pre">boolean)}</span></code></p>
+<p>一个函数接受两个参数（一个字符串和一个布尔值），并拥有一个未知的返回值。</p>
+</td>
+<td><p>指定一个函数。</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>函数返回类型</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{function():</span> <span class="pre">number}</span></code></p>
+<p>一个函数没有参数并返回一个数字。</p>
+</td>
+<td><p>指定函数的返回类型。</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>函数 <code class="docutils literal notranslate"><span class="pre">this</span></code> 类型</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{function(this:goog.ui.Menu,</span> <span class="pre">string)}</span></code></p>
+<p>一个需要一个参数（字符串）的函数，执行上下文是 <code class="docutils literal notranslate"><span class="pre">goog.ui.Menu</span></code></p>
+</td>
+<td><p>指定函数类型的上下文类型。</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>函数 <code class="docutils literal notranslate"><span class="pre">new</span></code> 类型</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{function(new:goog.ui.Menu,</span> <span class="pre">string)}</span></code></p>
+<p>一个构造函数接受一个参数（一个字符串），并在使用“new”关键字时创建一个 <code class="docutils literal notranslate"><span class="pre">goog.ui.Menu</span></code> 新实例。</p>
+</td>
+<td><p>指定构造函数所构造的类型。</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>可变参数</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{function(string,</span> <span class="pre">...[number]):</span> <span class="pre">number}</span></code></p>
+<p>一个函数，它接受一个参数（一个字符串），然后一个可变数目的参数，必须是数字。</p>
+</td>
+<td><p>指定函数的变量参数。</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>可变参数（ <code class="docutils literal notranslate"><span class="pre">&#64;param</span></code> 注释）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;param</span> <span class="pre">{...number}</span> <span class="pre">var_args</span></code></p>
+<p>带注释函数的可变数目参数。</p>
+</td>
+<td><p>指定带注释函数接受一个可变数目的参数。</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>函数 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#optional">可选参数</a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{function(?string=,</span> <span class="pre">number=)}</span></code></p>
+<p>一个函数，它接受一个可选的、可以为空的字符串和一个可选的数字作为参数。“=”只用于函数类型声明。</p>
+</td>
+<td><p>指定函数的可选参数。</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>函数 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#optional">可选参数</a> （ <code class="docutils literal notranslate"><span class="pre">&#64;param</span></code> 注释）</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;param</span> <span class="pre">{number=}</span> <span class="pre">opt_argument</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">number</span></code> 类型的可选参数。</p>
+</td>
+<td><p>指定带注释函数接受一个可选的参数。</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>所有类型</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{*}</span></code></p></td>
+<td><p>表明该变量可以接受任何类型。</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>未知类型</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{?}</span></code></p></td>
+<td><p>表明该变量可以接受任何类型，编译器不应该检查其类型。</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id35">
+<h3><span class="section-number">3.6.3.9.2. </span>JavaScript中的类型<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 30%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>类型举例</p></th>
+<th class="head"><p>取值举例</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>number</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+<span class="mf">1.0</span>
+<span class="o">-</span><span class="mi">5</span>
+<span class="mf">1e5</span>
+<span class="n">Math</span><span class="o">.</span><span class="n">PI</span>
+</pre></div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Number</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new</span> <span class="n">Number</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+<td><p><a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Wrapper_objects_for_primitive_types">Number对象</a></p></td>
+</tr>
+<tr class="row-even"><td><p>string</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Hello&#39;</span>
+<span class="s2">&quot;World&quot;</span>
+<span class="n">String</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+<td><p>字符串</p></td>
+</tr>
+<tr class="row-odd"><td><p>String</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new</span> <span class="n">String</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>
+<span class="n">new</span> <span class="n">String</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+<td><p><a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Wrapper_objects_for_primitive_types">String对象</a></p></td>
+</tr>
+<tr class="row-even"><td><p>boolean</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">true</span>
+<span class="n">false</span>
+<span class="n">Boolean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+<td><p>Boolean值</p></td>
+</tr>
+<tr class="row-odd"><td><p>Boolean</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new</span> <span class="n">Boolean</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+<td><p><a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Wrapper_objects_for_primitive_types">Boolean对象</a></p></td>
+</tr>
+<tr class="row-even"><td><p>RegExp</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new</span> <span class="n">RegExp</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+<span class="o">/</span><span class="n">world</span><span class="o">/</span><span class="n">g</span>
+</pre></div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Date</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new</span> <span class="n">Date</span>
+<span class="n">new</span> <span class="n">Date</span><span class="p">()</span>
+</pre></div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>null</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">null</span>
+</pre></div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>undefined</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">undefined</span>
+</pre></div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>void</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">f</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td>
+<td><p>没有返回值</p></td>
+</tr>
+<tr class="row-odd"><td><p>Array</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">null</span><span class="p">]</span>
+<span class="p">[]</span>
+</pre></div>
+</div>
+</td>
+<td><p>无类型数组</p></td>
+</tr>
+<tr class="row-even"><td><p>Array.&lt;number&gt;</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">33</span><span class="p">]</span>
+</pre></div>
+</div>
+</td>
+<td><p>数字数组</p></td>
+</tr>
+<tr class="row-odd"><td><p>Array.&lt;Array.&lt;string&gt;&gt;</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</td>
+<td><p>以字符串为元素的数组，作为另一个数组的元素</p></td>
+</tr>
+<tr class="row-even"><td><p>Object</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{}</span>
+<span class="p">{</span><span class="n">foo</span><span class="p">:</span> <span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="n">bar</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="n">baz</span><span class="p">:</span> <span class="n">null</span><span class="p">}</span>
+</pre></div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Object.&lt;string&gt;</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</td>
+<td><p>值为字符串的对象</p></td>
+</tr>
+<tr class="row-even"><td><p>Object.&lt;number, string&gt;</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">obj</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="n">obj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</td>
+<td><p>键为整数，值为字符串的对象。
+注意，js当中键总是会隐式转换为字符串。所以 <code class="docutils literal notranslate"><span class="pre">obj['1']</span> <span class="pre">==</span> <span class="pre">obj[1]</span></code> 。键在for…in…循环中，总是字符串类型。但在对象中索引时编译器会验证键的类型。</p></td>
+</tr>
+<tr class="row-odd"><td><p>Function</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td>
+<td><p><a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Wrapper_objects_for_primitive_types">Function对象</a></p></td>
+</tr>
+<tr class="row-even"><td><p>function(number, number): number</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td>
+<td><p>函数值</p></td>
+</tr>
+<tr class="row-odd"><td><p>类</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@constructor</span> <span class="o">*/</span>
+<span class="n">function</span> <span class="n">SomeClass</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="n">new</span> <span class="n">SomeClass</span><span class="p">();</span>
+</pre></div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>接口</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@interface</span> <span class="o">*/</span>
+<span class="n">function</span> <span class="n">SomeInterface</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="n">SomeInterface</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">draw</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{};</span>
+</pre></div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>project.MyClass</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@constructor</span> <span class="o">*/</span>
+<span class="n">project</span><span class="o">.</span><span class="n">MyClass</span> <span class="o">=</span> <span class="n">function</span> <span class="p">()</span> <span class="p">{}</span>
+
+<span class="n">new</span> <span class="n">project</span><span class="o">.</span><span class="n">MyClass</span><span class="p">()</span>
+</pre></div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>project.MyEnum</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@enum</span> <span class="p">{</span><span class="n">string</span><span class="p">}</span> <span class="o">*/</span>
+<span class="n">project</span><span class="o">.</span><span class="n">MyEnum</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="o">/**</span> <span class="n">The</span> <span class="n">color</span> <span class="n">blue</span><span class="o">.</span> <span class="o">*/</span>
+  <span class="n">BLUE</span><span class="p">:</span> <span class="s1">&#39;#0000dd&#39;</span><span class="p">,</span>
+  <span class="o">/**</span> <span class="n">The</span> <span class="n">color</span> <span class="n">red</span><span class="o">.</span> <span class="o">*/</span>
+  <span class="n">RED</span><span class="p">:</span> <span class="s1">&#39;#dd0000&#39;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+<td><p>枚举</p>
+<p>JSDoc中枚举的值都是可选的.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Element</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">document</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+<td><p>DOM元素</p></td>
+</tr>
+<tr class="row-even"><td><p>Node</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">document</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">firstChild</span>
+</pre></div>
+</div>
+</td>
+<td><p>DOM节点</p></td>
+</tr>
+<tr class="row-odd"><td><p>HTMLInputElement</p></td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">htmlDocument</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</td>
+<td><p>指明类型的DOM元素</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id36">
+<h3><span class="section-number">3.6.3.9.3. </span>类型转换<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h3>
+<p>在类型检测不准确的情况下，有可能需要添加类型的注释，并且把类型转换的表达式写在括号里，括号是必须的。如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@type</span> <span class="p">{</span><span class="n">number</span><span class="p">}</span> <span class="o">*/</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id37">
+<h3><span class="section-number">3.6.3.9.4. </span>可为空与可选的参数和属性<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h3>
+<p>因为Javascript是一个弱类型的语言，明白函数参数、类属性的可选、可为空和未定义之间的细微差别是非常重要的。</p>
+<p>对象类型和引用类型默认可为空。如以下表达式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">传入值初始化的类</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">Object</span><span class="p">}</span> <span class="n">value某个值</span>
+<span class="o">*</span> <span class="nd">@constructor</span>
+<span class="o">*/</span>
+<span class="n">function</span> <span class="n">MyClass</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">/**</span>
+   <span class="o">*</span> <span class="n">Some</span> <span class="n">value</span><span class="o">.</span>
+   <span class="o">*</span> <span class="nd">@type</span> <span class="p">{</span><span class="n">Object</span><span class="p">}</span>
+   <span class="o">*</span> <span class="nd">@private</span>
+   <span class="o">*/</span>
+  <span class="n">this</span><span class="o">.</span><span class="n">myValue_</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>告诉编译器 <code class="docutils literal notranslate"><span class="pre">myValue_</span></code> 属性为一对象或null。如果 <code class="docutils literal notranslate"><span class="pre">myValue_</span></code> 永远都不会为null, 就应该如下声明:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/**
+* 传入非null值初始化的类
+* @param {!Object} value某个值
+* @constructor
+*/
+function MyClass(value) {
+  /**
+   * Some value.
+   * @type {!Object}
+   * @private
+   */
+  this.myValue_ = value;
+}
+</pre></div>
+</div>
+<p>这样，如果编译器可以识别出 <code class="docutils literal notranslate"><span class="pre">MyClass</span></code> 初始化传入值为null，就会发出一个警告。</p>
+<p>函数的可选参数在运行时可能会是undefined，所以如果他们是类的属性，那么必须声明：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/**
+* 传入可选值初始化的类
+* @param {Object=} opt_value某个值（可选）
+* @constructor
+*/
+function MyClass(opt_value) {
+  /**
+   * Some value.
+   * @type {Object|undefined}
+   * @private
+   */
+  this.myValue_ = opt_value;
+}
+</pre></div>
+</div>
+<p>这告诉编译器 <code class="docutils literal notranslate"><span class="pre">myValue_</span></code> 可能是一个对象，或 <code class="docutils literal notranslate"><span class="pre">null</span></code> ，或 <code class="docutils literal notranslate"><span class="pre">undefined</span></code> 。</p>
+<p>注意: 可选参数 <code class="docutils literal notranslate"><span class="pre">opt_value</span></code> 被声明成 <code class="docutils literal notranslate"><span class="pre">{Object=}</span></code> ，而不是 <code class="docutils literal notranslate"><span class="pre">{Object|undefined}</span></code> 。这是因为可选参数可能是undefined。虽然直接写undefined也并无害处，但鉴于可阅读性还是写成上述的样子。</p>
+<p>最后，属性的可为空和可选并不矛盾，下面的四种声明各不相同：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/**
+* 接受四个参数，两个可为空，两个可选
+* @param {!Object} nonNull 必不为null
+* @param {Object} mayBeNull 可为null
+* @param {!Object=} opt_nonNull 可选但必不为null
+* @param {Object=} opt_mayBeNull 可选可为null
+*/
+function strangeButTrue(nonNull, mayBeNull, opt_nonNull, opt_mayBeNull) {
+  // ...
+};
+</pre></div>
+</div>
+</section>
+<section id="id38">
+<h3><span class="section-number">3.6.3.9.5. </span>类型定义<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h3>
+<p>有时类型可以变得复杂。一个函数，它接受一个元素的内容可能看起来像：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/**
+* @param {string} tagName
+* @param {(string|Element|Text|Array.&lt;Element&gt;|Array.&lt;Text&gt;)} contents
+* @return {!Element}
+*/
+goog.createElement = function(tagName, contents) {
+  ...
+};
+</pre></div>
+</div>
+<p>你可以定义带 <code class="docutils literal notranslate"><span class="pre">&#64;typedef</span></code> 标记的常用类型表达式。例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/** @typedef {(string|Element|Text|Array.&lt;Element&gt;|Array.&lt;Text&gt;)} */
+goog.ElementContent;
+
+/**
+* @param {string} tagName
+* @param {goog.ElementContent} contents
+* @return {!Element}
+*/
+goog.createElement = function(tagName, contents) {
+...
+};
+</pre></div>
+</div>
+</section>
+<section id="id39">
+<h3><span class="section-number">3.6.3.9.6. </span>模板类型<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h3>
+<p>编译器对模板类型提供有限支持。它只能从字面上通过 <code class="docutils literal notranslate"><span class="pre">this</span></code> 参数的类型和 <code class="docutils literal notranslate"><span class="pre">this</span></code> 参数是否丢失推断匿名函数的 <code class="docutils literal notranslate"><span class="pre">this</span></code> 类型。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">function</span><span class="p">(</span><span class="n">this</span><span class="p">:</span><span class="n">T</span><span class="p">,</span> <span class="o">...</span><span class="p">)}</span> <span class="n">fn</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="n">thisObj</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="o">...*</span><span class="p">}</span> <span class="n">var_args</span>
+<span class="o">*</span> <span class="nd">@template</span> <span class="n">T</span>
+<span class="o">*/</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">bind</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">thisObj</span><span class="p">,</span> <span class="n">var_args</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">...</span>
+<span class="p">};</span>
+<span class="o">//</span><span class="n">可能出现属性丢失警告</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span> <span class="n">this</span><span class="o">.</span><span class="n">someProperty</span><span class="p">;</span> <span class="p">},</span> <span class="n">new</span> <span class="n">SomeClass</span><span class="p">());</span>
+<span class="o">//</span><span class="n">出现this未定义警告</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span> <span class="n">this</span><span class="o">.</span><span class="n">someProperty</span><span class="p">;</span> <span class="p">});</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="js-comments">
+<span id="id40"></span><h2><span class="section-number">3.6.3.10. </span>注释<a class="headerlink" href="#js-comments" title="Permalink to this heading"></a></h2>
+<p>使用JSDoc。</p>
+<p>我们使用 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Comments">c++的注释风格</a> 。
+所有的文件、类、方法和属性都应该用合适的 <a class="reference external" href="https://code.google.com/p/jsdoc-toolkit/">JSDoc</a> 的 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#JSDoc_Tag_Reference">标签</a> 和 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#JsTypes">类型</a> 注释。除了直观的方法名称和参数名称外，方法的描述、方法的参数以及方法的返回值也要包含进去。</p>
+<p>行内注释应该使用 <code class="docutils literal notranslate"><span class="pre">//</span></code> 的形式。</p>
+<p>为了避免出现语句片段，要使用正确的大写单词开头，并使用正确的标点符号作为结束。</p>
+<section id="id44">
+<h3><span class="section-number">3.6.3.10.1. </span>注释语法<a class="headerlink" href="#id44" title="Permalink to this heading"></a></h3>
+<p>JSDoc的语法基于 <a class="reference external" href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html">JavaDoc</a> ，许多编译工具从JSDoc注释中获取信息从而进行代码验证和优化，所以这些注释必须符合语法规则。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">A</span> <span class="n">JSDoc</span> <span class="n">comment</span> <span class="n">should</span> <span class="n">begin</span> <span class="k">with</span> <span class="n">a</span> <span class="n">slash</span> <span class="ow">and</span> <span class="mi">2</span> <span class="n">asterisks</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">Inline</span> <span class="n">tags</span> <span class="n">should</span> <span class="n">be</span> <span class="n">enclosed</span> <span class="ow">in</span> <span class="n">braces</span> <span class="n">like</span> <span class="p">{</span><span class="nd">@code</span> <span class="n">this</span><span class="p">}</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@desc</span> <span class="n">Block</span> <span class="n">tags</span> <span class="n">should</span> <span class="n">always</span> <span class="n">start</span> <span class="n">on</span> <span class="n">their</span> <span class="n">own</span> <span class="n">line</span><span class="o">.</span>
+<span class="o">*/</span>
+</pre></div>
+</div>
+</section>
+<section id="id45">
+<h3><span class="section-number">3.6.3.10.2. </span>JSDoc 缩进<a class="headerlink" href="#id45" title="Permalink to this heading"></a></h3>
+<p>如果你不得不进行换行，那么你应该像在代码里那样，使用四个空格进行缩进。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">Illustrates</span> <span class="n">line</span> <span class="n">wrapping</span> <span class="k">for</span> <span class="n">long</span> <span class="n">param</span><span class="o">/</span><span class="k">return</span> <span class="n">descriptions</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">string</span><span class="p">}</span> <span class="n">foo</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">param</span> <span class="k">with</span> <span class="n">a</span> <span class="n">description</span> <span class="n">too</span> <span class="n">long</span> <span class="n">to</span> <span class="n">fit</span> <span class="ow">in</span>
+<span class="o">*</span>     <span class="n">one</span> <span class="n">line</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@return</span> <span class="p">{</span><span class="n">number</span><span class="p">}</span> <span class="n">This</span> <span class="n">returns</span> <span class="n">something</span> <span class="n">that</span> <span class="n">has</span> <span class="n">a</span> <span class="n">description</span> <span class="n">too</span> <span class="n">long</span> <span class="n">to</span>
+<span class="o">*</span>     <span class="n">fit</span> <span class="ow">in</span> <span class="n">one</span> <span class="n">line</span><span class="o">.</span>
+<span class="o">*/</span>
+<span class="n">project</span><span class="o">.</span><span class="n">MyClass</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>不必在 <code class="docutils literal notranslate"><span class="pre">&#64;fileoverview</span></code> 标记中使用缩进。</p>
+<p>虽然不建议，但依然可以对描述文字进行排版。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">NOT</span> <span class="n">the</span> <span class="n">preferred</span> <span class="n">indentation</span> <span class="n">method</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">string</span><span class="p">}</span> <span class="n">foo</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">param</span> <span class="k">with</span> <span class="n">a</span> <span class="n">description</span> <span class="n">too</span> <span class="n">long</span> <span class="n">to</span> <span class="n">fit</span> <span class="ow">in</span>
+<span class="o">*</span>                     <span class="n">one</span> <span class="n">line</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@return</span> <span class="p">{</span><span class="n">number</span><span class="p">}</span> <span class="n">This</span> <span class="n">returns</span> <span class="n">something</span> <span class="n">that</span> <span class="n">has</span> <span class="n">a</span> <span class="n">description</span> <span class="n">too</span> <span class="n">long</span> <span class="n">to</span>
+<span class="o">*</span>                  <span class="n">fit</span> <span class="ow">in</span> <span class="n">one</span> <span class="n">line</span><span class="o">.</span>
+<span class="o">*/</span>
+<span class="n">project</span><span class="o">.</span><span class="n">MyClass</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="jsdochtml">
+<h3><span class="section-number">3.6.3.10.3. </span>JSDoc中的HTML<a class="headerlink" href="#jsdochtml" title="Permalink to this heading"></a></h3>
+<p>像JavaDoc一样, JSDoc 支持很多的HTML标签，像 <code class="docutils literal notranslate"><span class="pre">&lt;code&gt;</span></code> ， <code class="docutils literal notranslate"><span class="pre">&lt;pre&gt;</span></code> ， <code class="docutils literal notranslate"><span class="pre">&lt;tt&gt;</span></code> ， <code class="docutils literal notranslate"><span class="pre">&lt;strong&gt;</span></code> ， <code class="docutils literal notranslate"><span class="pre">&lt;ul&gt;</span></code> ， <code class="docutils literal notranslate"><span class="pre">&lt;ol&gt;</span></code> ， <code class="docutils literal notranslate"><span class="pre">&lt;li&gt;</span></code> ， <code class="docutils literal notranslate"><span class="pre">&lt;a&gt;</span></code> 等。</p>
+<p>这就意味着不建议采用纯文本的格式。所以，不要在JSDoc里使用空白符进行格式化。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">Computes</span> <span class="n">weight</span> <span class="n">based</span> <span class="n">on</span> <span class="n">three</span> <span class="n">factors</span><span class="p">:</span>
+<span class="o">*</span>  <span class="n">items</span> <span class="n">sent</span>
+<span class="o">*</span>  <span class="n">items</span> <span class="n">received</span>
+<span class="o">*</span>  <span class="n">last</span> <span class="n">timestamp</span>
+<span class="o">*/</span>
+</pre></div>
+</div>
+<p>上面的注释会变成这样：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Computes</span> <span class="n">weight</span> <span class="n">based</span> <span class="n">on</span> <span class="n">three</span> <span class="n">factors</span><span class="p">:</span> <span class="n">items</span> <span class="n">sent</span> <span class="n">items</span> <span class="n">received</span> <span class="n">items</span> <span class="n">received</span> <span class="n">last</span> <span class="n">timestamp</span>
+</pre></div>
+</div>
+<p>所以，用下面的方式代替：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">Computes</span> <span class="n">weight</span> <span class="n">based</span> <span class="n">on</span> <span class="n">three</span> <span class="n">factors</span><span class="p">:</span>
+<span class="o">*</span> <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+<span class="o">*</span> <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">items</span> <span class="n">sent</span>
+<span class="o">*</span> <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">items</span> <span class="n">received</span>
+<span class="o">*</span> <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">last</span> <span class="n">timestamp</span>
+<span class="o">*</span> <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+<span class="o">*/</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html">JavaDoc</a> 风格指南对于如何编写良好的doc注释是非常有帮助的。</p>
+</section>
+<section id="id47">
+<h3><span class="section-number">3.6.3.10.4. </span>顶层/文件层注释<a class="headerlink" href="#id47" title="Permalink to this heading"></a></h3>
+<p><a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/copyright.html">版权声明</a> 和作者信息是可选的。顶层注释的目的是为了让不熟悉代码的读者了解文件中有什么。它需要描述文件内容，依赖关系以及兼容性的信息。例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@fileoverview</span> <span class="n">Description</span> <span class="n">of</span> <span class="n">file</span><span class="p">,</span> <span class="n">its</span> <span class="n">uses</span> <span class="ow">and</span> <span class="n">information</span>
+<span class="o">*</span> <span class="n">about</span> <span class="n">its</span> <span class="n">dependencies</span><span class="o">.</span>
+<span class="o">*/</span>
+</pre></div>
+</div>
+</section>
+<section id="class">
+<h3><span class="section-number">3.6.3.10.5. </span>Class评论<a class="headerlink" href="#class" title="Permalink to this heading"></a></h3>
+<p>类必须记录说明与描述和 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#constructor-tag">一个类型的标签</a> ，标识的构造函数。类必须加以描述，若是构造函数则需标注出。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">Class</span> <span class="n">making</span> <span class="n">something</span> <span class="n">fun</span> <span class="ow">and</span> <span class="n">easy</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">string</span><span class="p">}</span> <span class="n">arg1</span> <span class="n">An</span> <span class="n">argument</span> <span class="n">that</span> <span class="n">makes</span> <span class="n">this</span> <span class="n">more</span> <span class="n">interesting</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">Array</span><span class="o">.&lt;</span><span class="n">number</span><span class="o">&gt;</span><span class="p">}</span> <span class="n">arg2</span> <span class="n">List</span> <span class="n">of</span> <span class="n">numbers</span> <span class="n">to</span> <span class="n">be</span> <span class="n">processed</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@constructor</span>
+<span class="o">*</span> <span class="nd">@extends</span> <span class="p">{</span><span class="n">goog</span><span class="o">.</span><span class="n">Disposable</span><span class="p">}</span>
+<span class="o">*/</span>
+<span class="n">project</span><span class="o">.</span><span class="n">MyClass</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="o">...</span>
+<span class="p">};</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">inherits</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">MyClass</span><span class="p">,</span> <span class="n">goog</span><span class="o">.</span><span class="n">Disposable</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id50">
+<h3><span class="section-number">3.6.3.10.6. </span>方法和功能注释<a class="headerlink" href="#id50" title="Permalink to this heading"></a></h3>
+<p>参数和返回类型应该被记录下来。如果方法描述从参数或返回类型的描述中明确可知则可以省略。方法描述应该由一个第三人称表达的句子开始。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">Operates</span> <span class="n">on</span> <span class="n">an</span> <span class="n">instance</span> <span class="n">of</span> <span class="n">MyClass</span> <span class="ow">and</span> <span class="n">returns</span> <span class="n">something</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">project</span><span class="o">.</span><span class="n">MyClass</span><span class="p">}</span> <span class="n">obj</span> <span class="n">Instance</span> <span class="n">of</span> <span class="n">MyClass</span> <span class="n">which</span> <span class="n">leads</span> <span class="n">to</span> <span class="n">a</span> <span class="n">long</span>
+<span class="o">*</span>    <span class="n">comment</span> <span class="n">that</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="n">wrapped</span> <span class="n">to</span> <span class="n">two</span> <span class="n">lines</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@return</span> <span class="p">{</span><span class="n">boolean</span><span class="p">}</span> <span class="n">Whether</span> <span class="n">something</span> <span class="n">occured</span><span class="o">.</span>
+<span class="o">*/</span>
+<span class="n">function</span> <span class="n">PR_someMethod</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id51">
+<h3><span class="section-number">3.6.3.10.7. </span>属性评论<a class="headerlink" href="#id51" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@constructor</span> <span class="o">*/</span>
+<span class="n">project</span><span class="o">.</span><span class="n">MyClass</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="o">/**</span>
+  <span class="o">*</span> <span class="n">Maximum</span> <span class="n">number</span> <span class="n">of</span> <span class="n">things</span> <span class="n">per</span> <span class="n">pane</span><span class="o">.</span>
+  <span class="o">*</span> <span class="nd">@type</span> <span class="p">{</span><span class="n">number</span><span class="p">}</span>
+  <span class="o">*/</span>
+  <span class="n">this</span><span class="o">.</span><span class="n">someProperty</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id52">
+<h3><span class="section-number">3.6.3.10.8. </span>JSDoc标签参考<a class="headerlink" href="#id52" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 30%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>标签</p></th>
+<th class="head"><p>模板及实例</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>&#64;author</p></td>
+<td><p>&#64;author <a class="reference external" href="mailto:username&#37;&#52;&#48;google&#46;com">username<span>&#64;</span>google<span>&#46;</span>com</a> (first last)</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@fileoverview</span> <span class="n">Utilities</span> <span class="k">for</span> <span class="n">handling</span> <span class="n">textareas</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@author</span> <span class="n">kuth</span><span class="nd">@google</span><span class="o">.</span><span class="n">com</span> <span class="p">(</span><span class="n">Uthur</span> <span class="n">Pendragon</span><span class="p">)</span>
+<span class="o">*/</span>
+</pre></div>
+</div>
+</td>
+<td><p>说明文件的作者是谁，一般只会在 <code class="docutils literal notranslate"><span class="pre">&#64;fileoverview</span></code> 里用到。</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;code</p></td>
+<td><p><a class="reference external" href="mailto:{&#37;&#52;&#48;code">{<span>&#64;</span>code</a> …}</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+</pre></div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li><p>Moves to the next position in the selection.</p></li>
+<li><p>Throws <a class="reference external" href="mailto:{&#37;&#52;&#48;code">{<span>&#64;</span>code</a> goog.iter.StopIteration} when it</p></li>
+<li><p>passes the end of the range.</p></li>
+<li><p>&#64;return {Node} The node at the next position.</p></li>
+</ul>
+<p><a href="#id53"><span class="problematic" id="id54">*</span></a>/
+goog.dom.RangeIterator.prototype.next = function() {</p>
+<blockquote>
+<div><p>// …</p>
+</div></blockquote>
+<p>};</p>
+</div></blockquote>
+</td>
+<td><p>表示这是一段代码，他能在文档中正确的格式化。</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;const</p></td>
+<td><p>&#64;const
+&#64;const {type}</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@const</span> \<span class="o">*/</span> <span class="n">var</span> <span class="n">MY_BEER</span> <span class="o">=</span> <span class="s1">&#39;stout&#39;</span><span class="p">;</span>
+<span class="o">/**</span>
+<span class="o">*</span> <span class="n">My</span> <span class="n">namespace</span><span class="s1">&#39;s favorite kind of beer.</span>
+<span class="o">*</span> <span class="nd">@const</span> <span class="p">{</span><span class="n">string</span><span class="p">}</span>
+<span class="o">*/</span>
+<span class="n">mynamespace</span><span class="o">.</span><span class="n">MY_BEER</span> <span class="o">=</span> <span class="s1">&#39;stout&#39;</span><span class="p">;</span>
+
+<span class="o">/**</span> <span class="nd">@const</span> \<span class="o">*/</span> <span class="n">MyClass</span><span class="o">.</span><span class="n">MY_BEER</span> <span class="o">=</span> <span class="s1">&#39;stout&#39;</span><span class="p">;</span>
+
+<span class="o">/**</span>
+<span class="o">*</span> <span class="n">Initializes</span> <span class="n">the</span> <span class="n">request</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@const</span>
+<span class="o">*/</span>
+<span class="n">mynamespace</span><span class="o">.</span><span class="n">Request</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">initialize</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">This</span> <span class="n">method</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">overriden</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">subclass</span><span class="o">.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td>
+<td><p>说明变量或者属性是只读的，适合内联。</p>
+<p>标记为 <code class="docutils literal notranslate"><span class="pre">&#64;const</span></code> 的变量是不可变的。如果变量或属性试图覆盖他的值，那么js编译器会给出警告。</p>
+<p>如果某一个值可以清楚地分辨出是不是常量，可以省略类型声明。变量附加的注释是可选的。</p>
+<p>当一个方法被标记为 <code class="docutils literal notranslate"><span class="pre">&#64;const</span></code> ，意味着这个方法不仅不可以被覆盖，而且也不能在子类中重写。</p>
+<p><code class="docutils literal notranslate"><span class="pre">&#64;const</span></code> 的更多信息，请看 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Constants">常量</a> 部分</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>&#64;constructor</p></td>
+<td><p>&#64;constructor</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">A</span> <span class="n">rectangle</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@constructor</span>
+<span class="o">*/</span>
+<span class="n">function</span> <span class="n">GM_Rect</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td>
+<td><p>在一个类的文档中表示构造函数。</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;define</p></td>
+<td><p>&#64;define {Type} description</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@define</span> <span class="p">{</span><span class="n">boolean</span><span class="p">}</span> <span class="o">*/</span>
+<span class="n">var</span> <span class="n">TR_FLAGS_ENABLE_DEBUG</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+
+<span class="o">/**</span> <span class="nd">@define</span> <span class="p">{</span><span class="n">boolean</span><span class="p">}</span> <span class="o">*/</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">userAgent</span><span class="o">.</span><span class="n">ASSUME_IE</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+</pre></div>
+</div>
+</td>
+<td><p>指明一个在编译时可以被覆盖的常量。</p>
+<p>在这个例子中，编译器标志 <code class="docutils literal notranslate"><span class="pre">--define='goog.userAgent.ASSUME_IE=true'</span></code> 表明在构建文件的时侯变量 <code class="docutils literal notranslate"><span class="pre">goog.userAgent.ASSUME_IE</span></code> 可以被赋值为 <code class="docutils literal notranslate"><span class="pre">true</span></code> 。</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>&#64;deprecated</p></td>
+<td><p>&#64;deprecated Description</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">Determines</span> <span class="n">whether</span> <span class="n">a</span> <span class="n">node</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">field</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@return</span> <span class="p">{</span><span class="n">boolean</span><span class="p">}</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">the</span> <span class="n">contents</span> <span class="n">of</span>
+<span class="o">*</span>    <span class="n">the</span> <span class="n">element</span> <span class="n">are</span> <span class="n">editable</span><span class="p">,</span> <span class="n">but</span> <span class="n">the</span> <span class="n">element</span>
+<span class="o">*</span>    <span class="n">itself</span> <span class="ow">is</span> <span class="ow">not</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@deprecated</span> <span class="n">Use</span> <span class="n">isField</span><span class="p">()</span><span class="o">.</span>
+<span class="o">*/</span>
+<span class="n">BN_EditUtil</span><span class="o">.</span><span class="n">isTopEditableField</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="o">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+<td><p>说明函数、方法或者属性已经不可用，常说明替代方法或者属性。</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;dict</p></td>
+<td><p>&#64;dict Description</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@constructor</span>
+<span class="o">*</span> <span class="nd">@dict</span>
+<span class="o">*/</span>
+<span class="n">function</span> <span class="n">Foo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">this</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">var</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Foo</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">num</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">x</span><span class="p">;</span>  <span class="o">//</span> <span class="n">warning</span>
+<span class="p">(</span><span class="o">/**</span> <span class="nd">@dict</span> \<span class="o">*/</span> <span class="p">{</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="p">})</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>  <span class="o">//</span> <span class="n">warning</span>
+</pre></div>
+</div>
+</td>
+<td><p>当构造函数 (例子里的Foo)被标记为 <code class="docutils literal notranslate"><span class="pre">&#64;dict</span></code> ，你只能使用括号表示法访问 <code class="docutils literal notranslate"><span class="pre">Foo</span></code> 的属性。这个注释也可以直接使用对象表达式。</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;enum</p></td>
+<td><p>&#64;enum {Type}</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">Enum</span> <span class="k">for</span> <span class="n">tri</span><span class="o">-</span><span class="n">state</span> <span class="n">values</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@enum</span> <span class="p">{</span><span class="n">number</span><span class="p">}</span>
+<span class="o">*/</span>
+<span class="n">project</span><span class="o">.</span><span class="n">TriState</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">TRUE</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="n">FALSE</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+  <span class="n">MAYBE</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>&#64;export</p></td>
+<td><p>&#64;export</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@export</span> <span class="o">*/</span>
+<span class="n">foo</span><span class="o">.</span><span class="n">MyPublicClass</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">myPublicMethod</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="o">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+<td><p>对于例子中的代码，当编译到 <code class="docutils literal notranslate"><span class="pre">--generate_exports</span></code> 标记时，将会产生以下代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">goog</span><span class="o">.</span><span class="n">exportSymbol</span><span class="p">(</span><span class="s1">&#39;foo.MyPublicClass.prototype.myPublicMethod&#39;</span><span class="p">,</span>
+    <span class="n">foo</span><span class="o">.</span><span class="n">MyPublicClass</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">myPublicMethod</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>也就是输出了没有编译的代码。使用&#64;export标签时，应该：</p>
+<ol class="arabic simple">
+<li><p>包含 <code class="docutils literal notranslate"><span class="pre">//javascript/closure/base.js</span></code> , 或者</p></li>
+<li><p>同时定义 <code class="docutils literal notranslate"><span class="pre">goog.exportSymbol</span></code> 和 <code class="docutils literal notranslate"><span class="pre">goog.exportProperty</span></code> 并且要使用相同的调用方法。</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td><p>&#64;expose</p></td>
+<td><p>&#64;expose</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@expose</span> <span class="o">*/</span>
+</pre></div>
+</div>
+<p>MyClass.prototype.exposedProperty = 3;</p>
+</td>
+<td><p>声明一个公开的属性，表示这个属性不可以被删除、重命名或者由编译器进行优化。相同名称的属性也不能由编译器通过任何方式进行优化。</p>
+<p><code class="docutils literal notranslate"><span class="pre">&#64;expose</span></code> 不可以出现在代码库里，因为他会阻止这个属性被删除。</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>&#64;extends</p></td>
+<td><p>&#64;extends Type
+&#64;extends {Type}</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+</pre></div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li><p>Immutable empty node list.</p></li>
+<li><p>&#64;constructor</p></li>
+<li><p>&#64;extends goog.ds.BasicNodeList</p></li>
+</ul>
+<p><a href="#id56"><span class="problematic" id="id57">*</span></a>/</p>
+</div></blockquote>
+<dl class="simple">
+<dt>goog.ds.EmptyNodeList = function() {</dt><dd><p>…</p>
+</dd>
+</dl>
+<p>};</p>
+</td>
+<td><p>和 <code class="docutils literal notranslate"><span class="pre">&#64;constructor</span></code> 一起使用，表示从哪里继承过来的。类型外的大括号是可选的。</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;externs</p></td>
+<td><p>&#64;externs</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+</pre></div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li><p>&#64;fileoverview This is an externs file.</p></li>
+<li><p>&#64;externs</p></li>
+</ul>
+<p><a href="#id58"><span class="problematic" id="id59">*</span></a>/</p>
+</div></blockquote>
+<p>var document;</p>
+</td>
+<td><p>声明一个外部文件。</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;fileoverview</p></td>
+<td><p>&#64;fileoverview Description</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+</pre></div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li><p>&#64;fileoverview Utilities for doing things that require this very long</p></li>
+<li><p>but not indented comment.</p></li>
+<li><p>&#64;author <a class="reference external" href="mailto:kuth&#37;&#52;&#48;google&#46;com">kuth<span>&#64;</span>google<span>&#46;</span>com</a> (Uthur Pendragon)</p></li>
+</ul>
+<p><a href="#id60"><span class="problematic" id="id61">*</span></a>/</p>
+</div></blockquote>
+</td>
+<td><p>使注释提供文件级别的信息。</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;implements</p></td>
+<td><p>&#64;implements Type
+&#64;implements {Type}</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+</pre></div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li><p>A shape.</p></li>
+<li><p>&#64;interface</p></li>
+</ul>
+<p><a href="#id62"><span class="problematic" id="id63">*</span></a>/</p>
+</div></blockquote>
+<p>function Shape() {};
+Shape.prototype.draw = function() {};</p>
+<dl>
+<dt>/**</dt><dd><ul class="simple">
+<li><p>&#64;constructor</p></li>
+<li><p>&#64;implements {Shape}</p></li>
+</ul>
+<p><a href="#id64"><span class="problematic" id="id65">*</span></a>/</p>
+</dd>
+</dl>
+<p>function Square() {};
+Square.prototype.draw = function() {</p>
+<blockquote>
+<div><p>…</p>
+</div></blockquote>
+<p>};</p>
+</td>
+<td><p>使用 <code class="docutils literal notranslate"><span class="pre">&#64;constructor</span></code> 来表示一个类实现了某个接口。类型外的大括号是可选的。</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;inheritDoc</p></td>
+<td><p>&#64;inheritDoc</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@inheritDoc</span> <span class="o">*/</span>
+<span class="n">project</span><span class="o">.</span><span class="n">SubClass</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">toString</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="o">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+<td><p><strong>已废弃。使用&#64;override代替</strong></p>
+<p>表示一个子类中的方法或者属性覆盖父类的方法或者属性，并且拥有相同的文档。注意， <code class="docutils literal notranslate"><span class="pre">&#64;inheritDoc</span></code> 等同 <code class="docutils literal notranslate"><span class="pre">&#64;override</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>&#64;interface</p></td>
+<td><p>&#64;interface</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">A</span> <span class="n">shape</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@interface</span>
+<span class="o">*/</span>
+<span class="n">function</span> <span class="n">Shape</span><span class="p">()</span> <span class="p">{};</span>
+<span class="n">Shape</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">draw</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{};</span>
+
+<span class="o">/**</span>
+<span class="o">*</span> <span class="n">A</span> <span class="n">polygon</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@interface</span>
+<span class="o">*</span> <span class="nd">@extends</span> <span class="p">{</span><span class="n">Shape</span><span class="p">}</span>
+<span class="o">*/</span>
+<span class="n">function</span> <span class="n">Polygon</span><span class="p">()</span> <span class="p">{};</span>
+<span class="n">Polygon</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">getSides</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{};</span>
+</pre></div>
+</div>
+</td>
+<td><p>表示一个函数定义了一个接口。</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;lends</p></td>
+<td><p>&#64;lends objectName
+&#64;lends {objectName}</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">goog</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+    <span class="n">Button</span><span class="o">.</span><span class="n">prototype</span><span class="p">,</span>
+    <span class="o">/**</span> <span class="nd">@lends</span> <span class="p">{</span><span class="n">Button</span><span class="o">.</span><span class="n">prototype</span><span class="p">}</span> <span class="o">*/</span> <span class="p">{</span>
+    <span class="n">isButton</span><span class="p">:</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">true</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+</td>
+<td><p>表示对象的键是另外一个对象的属性。这个标记只能出现在对象字面量中。</p>
+<p>注意，括号中的名称和其他标记中的类型名称不一样，它是一个对象名，表明是从哪个对象“借过来”的属性。例如， <code class="docutils literal notranslate"><span class="pre">&#64;type</span> <span class="pre">{Foo}</span></code> 意味着Foo的一个实例，但是 <code class="docutils literal notranslate"><span class="pre">&#64;lends</span> <span class="pre">{Foo}</span></code> 意味着“Foo构造函数”.</p>
+<p><a class="reference external" href="https://code.google.com/p/jsdoc-toolkit/wiki/TagLends">JSDoc Toolkit docs</a> 中有关于更多此标记的信息。</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>&#64;license or &#64;preserve</p></td>
+<td><p>&#64;license Description</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@preserve</span> <span class="n">Copyright</span> <span class="mi">2009</span> <span class="n">SomeThirdParty</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">Here</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">full</span> <span class="n">license</span> <span class="n">text</span> <span class="ow">and</span> <span class="n">copyright</span>
+<span class="o">*</span> <span class="n">notice</span> <span class="k">for</span> <span class="n">this</span> <span class="n">file</span><span class="o">.</span> <span class="n">Note</span> <span class="n">that</span> <span class="n">the</span> <span class="n">notice</span> <span class="n">can</span> <span class="n">span</span> <span class="n">several</span>
+<span class="o">*</span> <span class="n">lines</span> <span class="ow">and</span> <span class="ow">is</span> <span class="n">only</span> <span class="n">terminated</span> <span class="n">by</span> <span class="n">the</span> <span class="n">closing</span> <span class="n">star</span> <span class="ow">and</span> <span class="n">slash</span><span class="p">:</span>
+<span class="o">*/</span>
+</pre></div>
+</div>
+</td>
+<td><p>由 <code class="docutils literal notranslate"><span class="pre">&#64;licenseor</span></code> 或 <code class="docutils literal notranslate"><span class="pre">&#64;preserve</span></code> 标记的内容，会被编译器保留并放到文件的顶部。</p>
+<p>这个标记会让被标记的重要内容（例如法律许可或版权文本）原样输出，换行也是。</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>&#64;noalias</p></td>
+<td><p>&#64;noalias</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@noalias</span> <span class="o">*/</span>
+<span class="n">function</span> <span class="n">Range</span><span class="p">()</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</td>
+<td><p>用在外部文件当中，告诉编译器，这里的变量或者方法不可以重命名。</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;nosideeffects</p></td>
+<td><p>&#64;nosideeffects</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@nosideeffects</span> <span class="o">*/</span>
+<span class="n">function</span> <span class="n">noSideEffectsFn1</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="o">...</span>
+<span class="p">};</span>
+<span class="o">/**</span> <span class="nd">@nosideeffects</span> <span class="o">*/</span>
+<span class="n">var</span> <span class="n">noSideEffectsFn2</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="o">...</span>
+<span class="p">};</span>
+<span class="o">/**</span> <span class="nd">@nosideeffects</span> <span class="o">*/</span>
+<span class="n">a</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">noSideEffectsFn3</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="o">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+<td><p>用于函数和构造函数，说明调用这个函数没有副作用。如果返回值未被使用，此注释允许编译器移除对该函数的调用。</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;override</p></td>
+<td><p>&#64;override</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@return</span> <span class="p">{</span><span class="n">string</span><span class="p">}</span> <span class="n">Human</span><span class="o">-</span><span class="n">readable</span> <span class="n">representation</span> <span class="n">of</span> <span class="n">project</span><span class="o">.</span><span class="n">SubClass</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@override</span>
+<span class="o">*/</span>
+<span class="n">project</span><span class="o">.</span><span class="n">SubClass</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">toString</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="o">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+<td><p>表示子类的方法或者属性故意隐藏了父类的方法或属性。如果子类没有其他的文档，方法或属性也会从父类那里继承文档。</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;param</p></td>
+<td><p>&#64;param {Type} varname Description</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">Queries</span> <span class="n">a</span> <span class="n">Baz</span> <span class="k">for</span> <span class="n">items</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">number</span><span class="p">}</span> <span class="n">groupNum</span> <span class="n">Subgroup</span> <span class="nb">id</span> <span class="n">to</span> <span class="n">query</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">string</span><span class="o">|</span><span class="n">number</span><span class="o">|</span><span class="n">null</span><span class="p">}</span> <span class="n">term</span> <span class="n">An</span> <span class="n">itemName</span><span class="p">,</span>
+<span class="o">*</span>    <span class="ow">or</span> <span class="n">itemId</span><span class="p">,</span> <span class="ow">or</span> <span class="n">null</span> <span class="n">to</span> <span class="n">search</span> <span class="n">everything</span><span class="o">.</span>
+<span class="o">*/</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">Baz</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">groupNum</span><span class="p">,</span> <span class="n">term</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="o">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+<td><p>给方法、函数、构造函数的参数添加文档说明。</p>
+<p><a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#JsTypes">参数类型</a> 一定要写在大括号里。如果类型被省略，编译器将不做类型检测。</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>&#64;private</p></td>
+<td><p>&#64;private
+&#64;private {type}</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/**
+* Handlers that are listening to this logger.
+* @private {!Array.&lt;Function&gt;}
+*/
+this.handlers\_ = [];
+</pre></div>
+</div>
+</td>
+<td><p>与方法或属性名结尾使用一个下划线来联合表明该成员是 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Visibility__private_and_protected_fields_">私有的</a> 。随着工具对 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code> 的认可，结尾的下划线可能最终被废弃。</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;protected</p></td>
+<td><p>&#64;protected
+&#64;protected {type}</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">Sets</span> <span class="n">the</span> <span class="n">component</span><span class="s1">&#39;s root element to the given element.  Considered</span>
+<span class="o">*</span> <span class="n">protected</span> <span class="ow">and</span> <span class="n">final</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">Element</span><span class="p">}</span> <span class="n">element</span> <span class="n">Root</span> <span class="n">element</span> <span class="k">for</span> <span class="n">the</span> <span class="n">component</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@protected</span>
+<span class="o">*/</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">Component</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">setElementInternal</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="o">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+<td><p>用来表明成员或属性是 <a href="#id68"><span class="problematic" id="id69">``</span></a>受保护的 &lt;<a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Visibility__private_and_protected_fields_">http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Visibility__private_and_protected_fields_</a>&gt;``_ 。成员或属性应使用没有跟随下划线的名称。</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;return</p></td>
+<td><p>&#64;return {Type} Description</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@return</span> <span class="p">{</span><span class="n">string</span><span class="p">}</span> <span class="n">The</span> <span class="nb">hex</span> <span class="n">ID</span> <span class="n">of</span> <span class="n">the</span> <span class="n">last</span> <span class="n">item</span><span class="o">.</span>
+<span class="o">*/</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">Baz</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">getLastId</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="o">...</span>
+  <span class="k">return</span> <span class="nb">id</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+<td><p>在方法或函数调用时使用，来说明返回类型。给布尔值写注释时，写成类似“这个组件是否可见”比“如果组件可见则为true，否则为false”要好。如果没有返回值，不使用 <code class="docutils literal notranslate"><span class="pre">&#64;return</span></code> 标签。</p>
+<p><a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#JsTypes">类型</a> 名称必须包含在大括号内。如果省略类型，编译器将不会检查返回值的类型。</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>&#64;see</p></td>
+<td><p>&#64;see Link</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="n">Adds</span> <span class="n">a</span> <span class="n">single</span> <span class="n">item</span><span class="p">,</span> <span class="n">recklessly</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@see</span> <span class="c1">#addSafely</span>
+<span class="o">*</span> <span class="nd">@see</span> <span class="n">goog</span><span class="o">.</span><span class="n">Collect</span>
+<span class="o">*</span> <span class="nd">@see</span> <span class="n">goog</span><span class="o">.</span><span class="n">RecklessAdder</span><span class="c1">#add</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</td>
+<td><p>参考查找另一个类或方法。</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;struct</p></td>
+<td><p>&#64;struct Description</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@constructor</span>
+<span class="o">*</span> <span class="nd">@struct</span>
+<span class="o">*/</span>
+<span class="n">function</span> <span class="n">Foo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">this</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">var</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Foo</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">num</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">];</span>  <span class="o">//</span> <span class="n">warning</span>
+<span class="n">obj</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;asdf&quot;</span><span class="p">;</span>  <span class="o">//</span> <span class="n">warning</span>
+
+<span class="n">Foo</span><span class="o">.</span><span class="n">prototype</span> <span class="o">=</span> <span class="o">/**</span> <span class="nd">@struct</span> <span class="o">*/</span> <span class="p">{</span>
+  <span class="n">method1</span><span class="p">:</span> <span class="n">function</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">};</span>
+<span class="n">Foo</span><span class="o">.</span><span class="n">prototype</span><span class="o">.</span><span class="n">method2</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{};</span>  <span class="o">//</span> <span class="n">warning</span>
+</pre></div>
+</div>
+</td>
+<td><p>当一个构造函数（在本例中 <code class="docutils literal notranslate"><span class="pre">Foo</span></code> ）注释为 <code class="docutils literal notranslate"><span class="pre">&#64;struct</span></code> ，你只能用点符号访问Foo对象的属性。此外，Foo对象创建后不能加新的属性。此注释也可以直接使用于对象字面量。</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;supported</p></td>
+<td><p>&#64;supported Description</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@fileoverview</span> <span class="n">Event</span> <span class="n">Manager</span>
+<span class="o">*</span> <span class="n">Provides</span> <span class="n">an</span> <span class="n">abstracted</span> <span class="n">interface</span> <span class="n">to</span> <span class="n">the</span>
+<span class="o">*</span> <span class="n">browsers</span><span class="s1">&#39; event systems.</span>
+<span class="o">*</span> <span class="nd">@supported</span> <span class="n">So</span> <span class="n">far</span> <span class="n">tested</span> <span class="ow">in</span> <span class="n">IE6</span> <span class="ow">and</span> <span class="n">FF1</span><span class="mf">.5</span>
+<span class="o">*/</span>
+</pre></div>
+</div>
+</td>
+<td><p>用于在文件信息中说明该文档被哪些浏览器支持</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;suppress</p></td>
+<td><p>&#64;suppress {warning1|warning2}</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@suppress</span> <span class="p">{</span><span class="n">deprecated</span><span class="p">}</span>
+<span class="o">*/</span>
+<span class="n">function</span> <span class="n">f</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">deprecatedVersionOfF</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td>
+<td><p>标明禁止工具发出的警告。警告类别用|分隔。</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;template</p></td>
+<td><p>&#64;template</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">function</span><span class="p">(</span><span class="n">this</span><span class="p">:</span><span class="n">T</span><span class="p">,</span> <span class="o">...</span><span class="p">)}</span> <span class="n">fn</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="n">thisObj</span>
+<span class="o">*</span> <span class="nd">@param</span> <span class="p">{</span><span class="o">...*</span><span class="p">}</span> <span class="n">var_args</span>
+<span class="o">*</span> <span class="nd">@template</span> <span class="n">T</span>
+<span class="o">*/</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">bind</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">thisObj</span><span class="p">,</span> <span class="n">var_args</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+<td><p>这个注释可以用来声明一个 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Template_types">模板类型名</a> 。</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;this</p></td>
+<td><p>&#64;this Type
+&#64;this {Type}</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pinto</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">RosterWidget</span><span class="o">.</span><span class="n">extern</span><span class="p">(</span><span class="s1">&#39;getRosterElement&#39;</span><span class="p">,</span>
+<span class="o">/**</span>
+<span class="o">*</span> <span class="n">Returns</span> <span class="n">the</span> <span class="n">roster</span> <span class="n">widget</span> <span class="n">element</span><span class="o">.</span>
+<span class="o">*</span> <span class="nd">@this</span> <span class="n">pinto</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">RosterWidget</span>
+<span class="o">*</span> <span class="nd">@return</span> <span class="p">{</span><span class="n">Element</span><span class="p">}</span>
+<span class="o">*/</span>
+<span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">this</span><span class="o">.</span><span class="n">getWrappedComponent_</span><span class="p">()</span><span class="o">.</span><span class="n">getElement</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</td>
+<td><p>标明一个特定方法在其上下文中被调用的对象类型。用于 <code class="docutils literal notranslate"><span class="pre">this</span></code> 关键字是从一个非原型方法中使用时</p></td>
+</tr>
+<tr class="row-odd"><td><p>&#64;type</p></td>
+<td><p>&#64;type Type
+&#64;type {Type}</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
+</pre></div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li><p>The message hex ID.</p></li>
+<li><p>&#64;type {string}</p></li>
+</ul>
+<p><a href="#id72"><span class="problematic" id="id73">*</span></a>/</p>
+</div></blockquote>
+<p>var hexId = hexId;</p>
+</td>
+<td><p>标识变量，属性或表达式的 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#JsTypes">类型</a> 。大多数类型不需要大括号，但有些项目为了保持一致性而要求所有类型都使用大括号。</p></td>
+</tr>
+<tr class="row-even"><td><p>&#64;typedef</p></td>
+<td><p>&#64;typedef</p>
+<p>例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@typedef</span> <span class="p">{(</span><span class="n">string</span><span class="o">|</span><span class="n">number</span><span class="p">)}</span> <span class="o">*/</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">NumberLike</span><span class="p">;</span>
+<span class="o">/**</span> <span class="nd">@param</span> <span class="p">{</span><span class="n">goog</span><span class="o">.</span><span class="n">NumberLike</span><span class="p">}</span> <span class="n">x</span> <span class="n">A</span> <span class="n">number</span> <span class="ow">or</span> <span class="n">a</span> <span class="n">string</span><span class="o">.</span> <span class="o">*/</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">readNumber</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td>
+<td><p>使用此注释来声明一个更 <a class="reference external" href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Typedefs">复杂的类型</a> 的别名。</p></td>
+</tr>
+</tbody>
+</table>
+<p>你也许在第三方代码中看到其他类型JSDoc注释，这些注释出现在 <a class="reference external" href="https://code.google.com/p/jsdoc-toolkit/wiki/TagReference">JSDoc Toolkit标签的参考</a> ，但目前在谷歌的代码中不鼓励使用。你应该将他们当作“保留”字，他们包括：</p>
+<ul class="simple">
+<li><p>&#64;augments</p></li>
+<li><p>&#64;argument</p></li>
+<li><p>&#64;borrows</p></li>
+<li><p>&#64;class</p></li>
+<li><p>&#64;constant</p></li>
+<li><p>&#64;constructs</p></li>
+<li><p>&#64;default</p></li>
+<li><p>&#64;event</p></li>
+<li><p>&#64;example</p></li>
+<li><p>&#64;field</p></li>
+<li><p>&#64;function</p></li>
+<li><p>&#64;ignore</p></li>
+<li><p>&#64;inner</p></li>
+<li><p>&#64;link</p></li>
+<li><p>&#64;memberOf</p></li>
+<li><p>&#64;name</p></li>
+<li><p>&#64;namespace</p></li>
+<li><p>&#64;property</p></li>
+<li><p>&#64;public</p></li>
+<li><p>&#64;requires</p></li>
+<li><p>&#64;returns</p></li>
+<li><p>&#64;since</p></li>
+<li><p>&#64;static</p></li>
+<li><p>&#64;version</p></li>
+</ul>
+</section>
+</section>
+<section id="goog-provide">
+<h2><span class="section-number">3.6.3.11. </span>为goog.provide提供依赖<a class="headerlink" href="#goog-provide" title="Permalink to this heading"></a></h2>
+<p>只提供顶级符号。</p>
+<p>一个类上定义的所有成员应该放在一个文件中。所以，在一个在相同类中定义的包含多个成员的文件中只应该提供顶级的类（例如枚举、内部类等）。</p>
+<p>要这样写：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">goog</span><span class="o">.</span><span class="n">provide</span><span class="p">(</span><span class="s1">&#39;namespace.MyClass&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>不要这样写：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">goog</span><span class="o">.</span><span class="n">provide</span><span class="p">(</span><span class="s1">&#39;namespace.MyClass&#39;</span><span class="p">);</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">provide</span><span class="p">(</span><span class="s1">&#39;namespace.MyClass.Enum&#39;</span><span class="p">);</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">provide</span><span class="p">(</span><span class="s1">&#39;namespace.MyClass.InnerClass&#39;</span><span class="p">);</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">provide</span><span class="p">(</span><span class="s1">&#39;namespace.MyClass.TypeDef&#39;</span><span class="p">);</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">provide</span><span class="p">(</span><span class="s1">&#39;namespace.MyClass.CONSTANT&#39;</span><span class="p">);</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">provide</span><span class="p">(</span><span class="s1">&#39;namespace.MyClass.staticMethod&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>命名空间的成员也应该提供：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">goog</span><span class="o">.</span><span class="n">provide</span><span class="p">(</span><span class="s1">&#39;foo.bar&#39;</span><span class="p">);</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">provide</span><span class="p">(</span><span class="s1">&#39;foo.bar.method&#39;</span><span class="p">);</span>
+<span class="n">goog</span><span class="o">.</span><span class="n">provide</span><span class="p">(</span><span class="s1">&#39;foo.bar.CONSTANT&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id76">
+<h2><span class="section-number">3.6.3.12. </span>编译<a class="headerlink" href="#id76" title="Permalink to this heading"></a></h2>
+<p>必需。</p>
+<p>对于所有面向客户的代码来说，使用JS编辑器是必需的，如使用 <a class="reference external" href="https://developers.google.com/closure/compiler/?csw=1">Closure Compiler</a> 。</p>
+</section>
+<section id="id77">
+<h2><span class="section-number">3.6.3.13. </span>技巧和诀窍<a class="headerlink" href="#id77" title="Permalink to this heading"></a></h2>
+<p>JavaScript帮助信息</p>
+<section id="truefalse">
+<h3><span class="section-number">3.6.3.13.1. </span>True和False布尔表达式<a class="headerlink" href="#truefalse" title="Permalink to this heading"></a></h3>
+<p>下边的布尔表达式都返回false：</p>
+<ul class="simple">
+<li><p>null</p></li>
+<li><p>undefined</p></li>
+<li><p>‘’空字符串</p></li>
+<li><p>数字0</p></li>
+</ul>
+<p>但是要小心，因为以下这些返回true：</p>
+<ul class="simple">
+<li><p>字符串”0”</p></li>
+<li><p>[]空数组</p></li>
+<li><p>{}空对象</p></li>
+</ul>
+<p>下面这样写不好：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>
+</pre></div>
+</div>
+<p>你可以写成这种更短的代码（只要你不期望x为0、空字符串或者false）：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</pre></div>
+</div>
+<p>如果你想检查字符串是否为null或空，你可以这样写：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">!=</span> <span class="n">null</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
+</pre></div>
+</div>
+<p>但是以下这样会更简练更好：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+</pre></div>
+</div>
+<p>注意：还有很多不直观的关于布尔表达式的例子，这里是一些：</p>
+<ul class="simple">
+<li><p>Boolean(‘0’) == true
+‘0’ != true</p></li>
+<li><p>0 != null
+0 == []
+0 == false</p></li>
+<li><p>Boolean(null) == false
+null != true
+null != false</p></li>
+<li><p>Boolean(undefined) == false
+undefined != true
+undefined != false</p></li>
+<li><p>Boolean([]) == true
+[] != true
+[] == false</p></li>
+<li><p>Boolean({}) == true
+{} != true
+{} != false</p></li>
+</ul>
+</section>
+<section id="id78">
+<h3><span class="section-number">3.6.3.13.2. </span>条件（三元）操作符（？：）<a class="headerlink" href="#id78" title="Permalink to this heading"></a></h3>
+<p>以下这种写法可以三元操作符替换：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">foo</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">bar</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>你可以这样写来代替：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>return val ? foo() : bar();
+</pre></div>
+</div>
+<p>三元操作符在生成HTML代码时也是很有用的：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>var html = &#39;&lt;input type=&quot;checkbox&quot;&#39; +
+    (isChecked ? &#39; checked&#39; : &#39;&#39;) +
+    (isEnabled ? &#39;&#39; : &#39; disabled&#39;) +
+    &#39; name=&quot;foo&quot;&gt;&#39;;
+</pre></div>
+</div>
+</section>
+<section id="id79">
+<h3><span class="section-number">3.6.3.13.3. </span>&amp;&amp; 和 ||<a class="headerlink" href="#id79" title="Permalink to this heading"></a></h3>
+<p>二元布尔操作符是可短路的,，只有在必要时才会计算到最后一项。</p>
+<p>“||” 被称作为 ‘default’ 操作符，因为可以这样：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@param</span> <span class="p">{</span><span class="o">*=</span><span class="p">}</span> <span class="n">opt_win</span> <span class="o">*/</span>
+<span class="n">function</span> <span class="n">foo</span><span class="p">(</span><span class="n">opt_win</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">var</span> <span class="n">win</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">opt_win</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">win</span> <span class="o">=</span> <span class="n">opt_win</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">win</span> <span class="o">=</span> <span class="n">window</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="o">//</span> <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>你可以这样写：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span> <span class="nd">@param</span> <span class="p">{</span><span class="o">*=</span><span class="p">}</span> <span class="n">opt_win</span> <span class="o">*/</span>
+<span class="n">function</span> <span class="n">foo</span><span class="p">(</span><span class="n">opt_win</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">var</span> <span class="n">win</span> <span class="o">=</span> <span class="n">opt_win</span> <span class="o">||</span> <span class="n">window</span><span class="p">;</span>
+  <span class="o">//</span> <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>“&amp;&amp;” 也可以用来缩减代码。例如，以下这种写法可以被缩减：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">kids</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">kids</span><span class="p">[</span><span class="n">index</span><span class="p">])</span> <span class="p">{</span>
+      <span class="n">foo</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">kids</span><span class="p">[</span><span class="n">index</span><span class="p">]);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>你可以这样写：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="o">.</span><span class="n">kids</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="o">.</span><span class="n">kids</span><span class="p">[</span><span class="n">index</span><span class="p">])</span> <span class="p">{</span>
+  <span class="n">foo</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">kids</span><span class="p">[</span><span class="n">index</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>或者这样写：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">kid</span> <span class="o">=</span> <span class="n">node</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="o">.</span><span class="n">kids</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="o">.</span><span class="n">kids</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">kid</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">foo</span><span class="p">(</span><span class="n">kid</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>然而以下这样写就有点过头了：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">node</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="o">.</span><span class="n">kids</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="o">.</span><span class="n">kids</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">foo</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">kids</span><span class="p">[</span><span class="n">index</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="id80">
+<h3><span class="section-number">3.6.3.13.4. </span>遍历节点列表<a class="headerlink" href="#id80" title="Permalink to this heading"></a></h3>
+<p>节点列表是通过给节点迭代器加一个过滤器来实现的。这表示获取他的属性，如length的时间复杂度为O(n)，通过length来遍历整个列表需要O(n^2)。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">paragraphs</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">paragraphs</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">doSomething</span><span class="p">(</span><span class="n">paragraphs</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这样写更好：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">paragraphs</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">paragraph</span><span class="p">;</span> <span class="n">paragraph</span> <span class="o">=</span> <span class="n">paragraphs</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">doSomething</span><span class="p">(</span><span class="n">paragraph</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这种方法对所有的集合和数组(只要数组不包含被认为是false值的元素) 都适用。</p>
+<p>在上面的例子中，你也可以通过firstChild和nextSibling属性来遍历子节点。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">parentNode</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">child</span> <span class="o">=</span> <span class="n">parentNode</span><span class="o">.</span><span class="n">firstChild</span><span class="p">;</span> <span class="n">child</span><span class="p">;</span> <span class="n">child</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">nextSibling</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">doSomething</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="javascript_language_rules.html" class="btn btn-neutral float-left" title="3.6.2. Javascript语言规范" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../google-html-css-styleguide/contents.html" class="btn btn-neutral float-right" title="3.7. Google: HTML/CSS 风格指南" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

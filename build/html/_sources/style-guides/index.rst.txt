@@ -5,9 +5,16 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: 全部章节目录:
 
    uber_go_cn/index
    uber_go/index
+   google-python-styleguide/contents
+   google-shell-styleguide/contents
+   google-typescript-styleguide/contents
+   google-javascript-styleguide/contents
+   google-html-css-styleguide/contents
+   google-cpp-styleguide/contents
+   google-objc-styleguide/contents
+   google-java-styleguide/contents
 
 

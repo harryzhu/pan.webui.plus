@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.9.3. 命名 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.9.4. 注释" href="comments.html" />
+    <link rel="prev" title="3.9.2. 留白和格式" href="spacing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.9. Google: Objective-C 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html">3.9.1. Google Objective-C Style Guide 中文版</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spacing.html">3.9.2. 留白和格式</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.9.3. 命名</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.9.3.1. 文件名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#objective-c">3.9.3.2. Objective-C++</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.9.3.3. 类名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.9.3.4. 类别名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.9.3.5. Objective-C 方法名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">3.9.3.6. 变量名</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html">3.9.4. 注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="features.html">3.9.5. Cocoa 和 Objective-C 特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="patterns.html">3.9.6. Cocoa 模式</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.9. </span>Google: Objective-C 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.9.3. </span>命名</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-objc-styleguide/naming.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3.9.3. </span>命名<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p>对于易维护的代码而言，命名规则非常重要。Objective-C 的方法名往往十分长，但代码块读起来就像散文一样，不需要太多的代码注释。</p>
+<p>当编写纯粹的 Objective-C 代码时，我们基本遵守标准的 <a class="reference external" href="http://developer.apple.com/documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html">Objective-C naming rules</a>，这些命名规则可能与 C++ 风格指南中的大相径庭。例如，Google 的 C++ 风格指南中推荐使用下划线分隔的单词作为变量名，而(苹果的)风格指南则使用驼峰命名法，这在 Objective-C 社区中非常普遍。</p>
+<p>任何的类、类别、方法以及变量的名字中都使用全大写的 <a class="reference external" href="http://en.wikipedia.org/wiki/Initialism">首字母缩写</a>。这遵守了苹果的标准命名方式，如 URL、TIFF 以及 EXIF。</p>
+<p>当编写 Objective-C++ 代码时，事情就不这么简单了。许多项目需要实现跨平台的 C++ API，并混合一些 Objective-C、Cocoa 代码，或者直接以 C++ 为后端，前端用本地 Cocoa 代码。这就导致了两种命名方式直接不统一。</p>
+<p>我们的解决方案是：编码风格取决于方法/函数以哪种语言实现。如果在一个 <code class="docutils literal notranslate"><span class="pre">&#64;implementation</span></code> 语句中，就使用 Objective-C 的风格。如果实现一个 C++ 的类，就使用 C++ 的风格。这样避免了一个函数里面实例变量和局部变量命名规则混乱，严重影响可读性。</p>
+<section id="id3">
+<h2><span class="section-number">3.9.3.1. </span>文件名<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>文件名须反映出其实现了什么类 – 包括大小写。遵循你所参与项目的约定。</p>
+</div>
+<p>文件的扩展名应该如下：</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">.h</span></code></p></td>
+<td><p>C/C++/Objective-C 的头文件</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">.m</span></code></p></td>
+<td><p>Objective-C 实现文件</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">.mm</span></code></p></td>
+<td><p>Objective-C++ 的实现文件</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">.cc</span></code></p></td>
+<td><p>纯 C++ 的实现文件</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">.c</span></code></p></td>
+<td><p>纯 C 的实现文件</p></td>
+</tr>
+</tbody>
+</table>
+<p>类别的文件名应该包含被扩展的类名，如：<code class="docutils literal notranslate"><span class="pre">GTMNSString+Utils.h</span></code> 或``GTMNSTextView+Autocomplete.h``。</p>
+</section>
+<section id="objective-c">
+<h2><span class="section-number">3.9.3.2. </span>Objective-C++<a class="headerlink" href="#objective-c" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>源代码文件内，Objective-C++ 代码遵循你正在实现的函数/方法的风格。</p>
+</div>
+<p>为了最小化 Cocoa/Objective-C 与 C++ 之间命名风格的冲突，根据待实现的函数/方法选择编码风格。实现 <code class="docutils literal notranslate"><span class="pre">&#64;implementation</span></code> 语句块时，使用 Objective-C 的命名规则；如果实现一个 C++ 的类，就使用 C++ 命名规则。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="c1">// file: cross_platform_header.h</span>
+
+<span class="k">class</span><span class="w"> </span><span class="n">CrossPlatformAPI</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="n">public</span><span class="o">:</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">DoSomethingPlatformSpecific</span><span class="p">();</span><span class="w">  </span><span class="c1">// impl on each platform</span>
+<span class="w"> </span><span class="n">private</span><span class="o">:</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">an_instance_var_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// file: mac_implementation.mm</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;cross_platform_header.h&quot;</span>
+
+<span class="c1">// A typical Objective-C class, using Objective-C naming.</span>
+<span class="k">@interface</span> <span class="nc">MyDelegate</span> : <span class="bp">NSObject</span> <span class="p">{</span>
+<span class="w"> </span><span class="k">@private</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">instanceVar_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">CrossPlatformAPI</span><span class="o">*</span><span class="w"> </span><span class="n">backEndObject_</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">respondToSomething:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">something</span><span class="p">;</span>
+<span class="k">@end</span>
+<span class="k">@implementation</span> <span class="nc">MyDelegate</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">respondToSomething:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">something</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// bridge from Cocoa through our C++ backend</span>
+<span class="w">  </span><span class="n">instanceVar_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">backEndObject</span><span class="o">-&gt;</span><span class="n">DoSomethingPlatformSpecific</span><span class="p">();</span>
+<span class="w">  </span><span class="bp">NSString</span><span class="o">*</span><span class="w"> </span><span class="n">tempString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSString</span><span class="w"> </span><span class="n">stringWithInt</span><span class="o">:</span><span class="n">instanceVar_</span><span class="p">];</span>
+<span class="w">  </span><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tempString</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">@end</span>
+
+<span class="c1">// The platform-specific implementation of the C++ class, using</span>
+<span class="c1">// C++ naming.</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">CrossPlatformAPI</span><span class="o">::</span><span class="n">DoSomethingPlatformSpecific</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="bp">NSString</span><span class="o">*</span><span class="w"> </span><span class="n">temp_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="bp">NSString</span><span class="w"> </span><span class="n">stringWithInt</span><span class="o">:</span><span class="n">an_instance_var_</span><span class="p">];</span>
+<span class="w">  </span><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">temp_string</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="n">temp_string</span><span class="w"> </span><span class="n">intValue</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.9.3.3. </span>类名<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>类名（以及类别、协议名）应首字母大写，并以驼峰格式分割单词。</p>
+</div>
+<p><em>应用层</em> 的代码，应该尽量避免不必要的前缀。为每个类都添加相同的前缀无助于可读性。当编写的代码期望在不同应用程序间复用时，应使用前缀（如：<code class="docutils literal notranslate"><span class="pre">GTMSendMessage</span></code>）。</p>
+</section>
+<section id="id5">
+<h2><span class="section-number">3.9.3.4. </span>类别名<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>类别名应该有两三个字母的前缀以表示类别是项目的一部分或者该类别是通用的。类别名应该包含它所扩展的类的名字。</p>
+</div>
+<p>比如我们要基于 <code class="docutils literal notranslate"><span class="pre">NSString</span></code> 创建一个用于解析的类别，我们将把类别放在一个名为 <code class="docutils literal notranslate"><span class="pre">GTMNSString+Parsing.h</span></code> 的文件中。类别本身命名为 <code class="docutils literal notranslate"><span class="pre">GTMStringParsingAdditions</span></code> （是的，我们知道类别名和文件名不一样，但是这个文件中可能存在多个不同的与解析有关类别）。类别中的方法应该以 <code class="docutils literal notranslate"><span class="pre">gtm_myCategoryMethodOnAString:</span></code> 为前缀以避免命名冲突，因为 Objective-C 只有一个名字空间。如果代码不会分享出去，也不会运行在不同的地址空间中，方法名字就不那么重要了。</p>
+<p>类名与包含类别名的括号之间，应该以一个空格分隔。</p>
+</section>
+<section id="id6">
+<h2><span class="section-number">3.9.3.5. </span>Objective-C 方法名<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>方法名应该以小写字母开头，并混合驼峰格式。每个具名参数也应该以小写字母开头。</p>
+</div>
+<p>方法名应尽量读起来就像句子，这表示你应该选择与方法名连在一起读起来通顺的参数名。（例如，<code class="docutils literal notranslate"><span class="pre">convertPoint:fromRect:</span></code> 或 <code class="docutils literal notranslate"><span class="pre">replaceCharactersInRange:withString:</span></code>）。详情参见 <a class="reference external" href="http://developer.apple.com/documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingMethods.html">Apple’s Guide to Naming Methods</a>。</p>
+<p>访问器方法应该与他们 <code class="docutils literal notranslate"><span class="pre">要获取的</span></code> 成员变量的名字一样，但不应该以get作为前缀。例如：</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">getDelegate</span><span class="p">;</span><span class="w">  </span><span class="c1">// AVOID</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">delegate</span><span class="p">;</span><span class="w">     </span><span class="c1">// GOOD</span>
+</pre></div>
+</div>
+<p>这仅限于 Objective-C 的方法名。C++ 的方法与函数的命名规则应该遵从 C++ 风格指南中的规则。</p>
+</section>
+<section id="id7">
+<h2><span class="section-number">3.9.3.6. </span>变量名<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>变量名应该以小写字母开头，并使用驼峰格式。类的成员变量应该以下划线作为后缀。例如：<code class="docutils literal notranslate"><span class="pre">myLocalVariable</span></code>、<code class="docutils literal notranslate"><span class="pre">myInstanceVariable_</span></code>。如果不能使用 Objective-C 2.0 的 <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code>，使用 KVO/KVC 绑定的成员变量可以以一个下划线作为前缀。</p>
+</div>
+<section id="id8">
+<h3><span class="section-number">3.9.3.6.1. </span>普通变量名<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<p>对于静态的属性（<code class="docutils literal notranslate"><span class="pre">int</span></code> 或指针），不要使用匈牙利命名法。尽量为变量起一个描述性的名字。不要担心浪费列宽，因为让新的代码阅读者立即理解你的代码更重要。例如：</p>
+<ul>
+<li><p>错误的命名：</p>
+<blockquote>
+<div><div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">nerr</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">nCompConns</span><span class="p">;</span>
+<span class="n">tix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="bp">NSMutableArray</span><span class="w"> </span><span class="n">alloc</span><span class="p">]</span><span class="w"> </span><span class="n">init</span><span class="p">];</span>
+<span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">someObject</span><span class="w"> </span><span class="n">object</span><span class="p">];</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">network</span><span class="w"> </span><span class="n">port</span><span class="p">];</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>正确的命名：</p>
+<blockquote>
+<div><div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">numErrors</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">numCompletedConnections</span><span class="p">;</span>
+<span class="n">tickets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="bp">NSMutableArray</span><span class="w"> </span><span class="n">alloc</span><span class="p">]</span><span class="w"> </span><span class="n">init</span><span class="p">];</span>
+<span class="n">userInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">someObject</span><span class="w"> </span><span class="n">object</span><span class="p">];</span>
+<span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">network</span><span class="w"> </span><span class="n">port</span><span class="p">];</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="id9">
+<h3><span class="section-number">3.9.3.6.2. </span>实例变量<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<p>实例变量应该混合大小写，并以下划线作为后缀，如 <code class="docutils literal notranslate"><span class="pre">usernameTextField_</span></code>。然而，如果不能使用 Objective-C 2.0（操作系统版本的限制），并且使用了 KVO/KVC 绑定成员变量时，我们允许例外（译者注： <code class="docutils literal notranslate"><span class="pre">KVO=Key</span> <span class="pre">Value</span> <span class="pre">Observing，KVC=Key</span> <span class="pre">Value</span> <span class="pre">Coding</span></code>）。这种情况下，可以以一个下划线作为成员变量名字的前缀，这是苹果所接受的键/值命名惯例。如果可以使用 Objective-C 2.0，<code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> 以及 <code class="docutils literal notranslate"><span class="pre">&#64;synthesize</span></code> 提供了遵从这一命名规则的解决方案。</p>
+</section>
+<section id="id10">
+<h3><span class="section-number">3.9.3.6.3. </span>常量<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<p>常量名（如宏定义、枚举、静态局部变量等）应该以小写字母 <code class="docutils literal notranslate"><span class="pre">k</span></code> 开头，使用驼峰格式分隔单词，如：<code class="docutils literal notranslate"><span class="pre">kInvalidHandle，kWritePerm</span></code>。</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="spacing.html" class="btn btn-neutral float-left" title="3.9.2. 留白和格式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="comments.html" class="btn btn-neutral float-right" title="3.9.4. 注释" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

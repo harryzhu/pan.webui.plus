@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.5.2. 语法规范 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.5.3. 语言特性" href="language.html" />
+    <link rel="prev" title="3.5.1. 导言" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.5. Google: TypeScript 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">3.5.1. 导言</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.5.2. 语法规范</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ts-identifiers">3.5.2.1. 标识符</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-file-encoding">3.5.2.2. 文件编码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-comments-documentation">3.5.2.3. 注释与文档</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="language.html">3.5.3. 语言特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source_organization.html">3.5.4. 代码管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="type_system.html">3.5.5. 类型系统</a></li>
+<li class="toctree-l3"><a class="reference internal" href="consistency.html">3.5.6. 一致性</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.5. </span>Google: TypeScript 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.5.2. </span>语法规范</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-typescript-styleguide/syntax.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3.5.2. </span>语法规范<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="ts-identifiers">
+<span id="id2"></span><h2><span class="section-number">3.5.2.1. </span>标识符<a class="headerlink" href="#ts-identifiers" title="Permalink to this heading"></a></h2>
+<section id="ts-naming">
+<span id="id3"></span><h3><span class="section-number">3.5.2.1.1. </span>命名规范<a class="headerlink" href="#ts-naming" title="Permalink to this heading"></a></h3>
+<p>在 TypeScript 中，标识符只能使用 ASCII 码表中的字母、数字、下划线与 <code class="docutils literal notranslate"><span class="pre">(</span></code>。因此，合法的标识符可以使用正则表达式 <code class="docutils literal notranslate"><span class="pre">[\)\w]+</span></code> 进行匹配。根据标识符的用途不同，使用的命名法也不同，如下表所示：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>命名法</p></th>
+<th class="head"><p>分类</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>帕斯卡命名法（ <code class="docutils literal notranslate"><span class="pre">UpperCamelCase</span></code> ）</p></td>
+<td><p>类、接口、类型、枚举、装饰器、类型参数</p></td>
+</tr>
+<tr class="row-odd"><td><p>驼峰式命名法（ <code class="docutils literal notranslate"><span class="pre">lowerCamelCase</span></code> ）</p></td>
+<td><p>变量、参数、函数、方法、属性、模块别名</p></td>
+</tr>
+<tr class="row-even"><td><p>全大写下划线命名法（ <code class="docutils literal notranslate"><span class="pre">CONSTANT_CASE</span></code>）</p></td>
+<td><p>全局常量、枚举值</p></td>
+</tr>
+<tr class="row-odd"><td><p>私有成员命名法（ <code class="docutils literal notranslate"><span class="pre">#ident</span></code> ）</p></td>
+<td><p>不允许使用</p></td>
+</tr>
+</tbody>
+</table>
+<section id="ts-abbreviations">
+<span id="id4"></span><h4><span class="section-number">3.5.2.1.1.1. </span>缩写<a class="headerlink" href="#ts-abbreviations" title="Permalink to this heading"></a></h4>
+<p>缩写应被视为一个词。例如，应使用 <code class="docutils literal notranslate"><span class="pre">loadHttpUrl</span></code>，而非 <code class="docutils literal notranslate"><span class="pre">loadHTTPURL</span></code>。平台有特殊要求的标识符例外，如 <code class="docutils literal notranslate"><span class="pre">XMLHttpRequest</span></code>。</p>
+</section>
+<section id="ts-dollar-sign">
+<span id="id5"></span><h4><span class="section-number">3.5.2.1.1.2. </span>美元符号 $<a class="headerlink" href="#ts-dollar-sign" title="Permalink to this heading"></a></h4>
+<p>一般情况下，标识符不应使用 <cite>$</cite>，除非为了与第三方框架的命名规范保持一致。关于 <cite>$</cite> 的使用，可参见 <a class="reference internal" href="#ts-naming-style"><span class="std std-ref">命名风格</span></a> 一节对 <code class="docutils literal notranslate"><span class="pre">Observable</span></code> 类型的说明。</p>
+</section>
+<section id="ts-type-parameters">
+<span id="id6"></span><h4><span class="section-number">3.5.2.1.1.3. </span>类型参数<a class="headerlink" href="#ts-type-parameters" title="Permalink to this heading"></a></h4>
+<p>形如 <code class="docutils literal notranslate"><span class="pre">Array&lt;T&gt;</span></code> 的类型参数既可以使用单个大写字母（如 <code class="docutils literal notranslate"><span class="pre">T</span></code>），也可以使用帕斯卡命名法（如 <code class="docutils literal notranslate"><span class="pre">UpperCamelCase</span></code>）。</p>
+</section>
+<section id="ts-test-names">
+<span id="id7"></span><h4><span class="section-number">3.5.2.1.1.4. </span>测试用例<a class="headerlink" href="#ts-test-names" title="Permalink to this heading"></a></h4>
+<p>无论是在 <a class="reference external" href="https://github.com/google/closure-library">Closure</a> 库的 <code class="docutils literal notranslate"><span class="pre">testSuites</span></code> 还是 <a class="reference external" href="https://xunit.net/">xUnit</a> 风格的测试框架中，都可以使用 <code class="docutils literal notranslate"><span class="pre">_</span></code> 作为标识符的分隔符，例如 <code class="docutils literal notranslate"><span class="pre">testX_whenY_doesZ()</span></code>。</p>
+</section>
+<section id="ts-underscore-prefix-suffix">
+<span id="id8"></span><h4><span class="section-number">3.5.2.1.1.5. </span><code class="docutils literal notranslate"><span class="pre">_</span></code> 前缀与后缀<a class="headerlink" href="#ts-underscore-prefix-suffix" title="Permalink to this heading"></a></h4>
+<p>标识符禁止使用下划线 <code class="docutils literal notranslate"><span class="pre">_</span></code> 作为前缀或后缀。这也意味着，禁止使用单个下划线 <code class="docutils literal notranslate"><span class="pre">_</span></code> 作为标识符（例如：用来表示未被使用的参数）。</p>
+<p>如果需要从数组或元组中取出某个或某几个特定的元素的话，可以在解构语句中插入额外的逗号，忽略掉不需要的元素：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">];</span><span class="w">  </span><span class="c1">// a &lt;- 1, b &lt;- 10</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-imports">
+<span id="id9"></span><h4><span class="section-number">3.5.2.1.1.6. </span>导入模块<a class="headerlink" href="#ts-imports" title="Permalink to this heading"></a></h4>
+<p>导入模块的命名空间时使用驼峰命名法（<code class="docutils literal notranslate"><span class="pre">lowerCamelCase</span></code>），文件名则使用蛇形命名法（<code class="docutils literal notranslate"><span class="pre">snake_case</span></code>）。例如：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">fooBar</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./foo_bar&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>一些库可能会在导入命名空间时使用某种特定的前缀，这与这里规定的命名规范有所冲突。然而，由于其中的一些库已经被广泛使用，因此遵循它们的特殊规则反而能够获得更好的可读性。这些特例包括：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://jquery.com/">jQuery</a>，使用 <code class="docutils literal notranslate"><span class="pre">$</span></code> 前缀。</p></li>
+<li><p><a class="reference external" href="https://threejs.org/">three.js</a>，使用 <code class="docutils literal notranslate"><span class="pre">THREE</span></code> 前缀。</p></li>
+</ul>
+</section>
+<section id="ts-constants">
+<span id="id10"></span><h4><span class="section-number">3.5.2.1.1.7. </span>常量<a class="headerlink" href="#ts-constants" title="Permalink to this heading"></a></h4>
+<p>常量命名（<code class="docutils literal notranslate"><span class="pre">CONSTANT_CASE</span></code>）表示某个值不可被修改。它还可以用于虽然技术上可以实现，但是用户不应当试图修改的值，比如并未进行深度冻结（deep frozen）的值。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">UNIT_SUFFIXES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;milliseconds&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ms&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;seconds&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
+<span class="p">};</span>
+<span class="c1">// UNIT_SUFFIXES 使用了常量命名，</span>
+<span class="c1">// 这意味着用户不应试图修改它，</span>
+<span class="c1">// 即使它实际上是一个可变的值。</span>
+</pre></div>
+</div>
+<p>这里所说的常量，也包括类中的静态只读属性：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">MY_SPECIAL_NUMBER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">Foo</span><span class="p">.</span><span class="nx">MY_SPECIAL_NUMBER</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-others">
+<span id="id11"></span><h4><span class="section-number">3.5.2.1.1.8. </span>其他<a class="headerlink" href="#ts-others" title="Permalink to this heading"></a></h4>
+<p>如果某个值在程序的整个运行生命周期中会被多次实例化或被用户以任何方式进行修改，则它必须使用驼峰式命名法。</p>
+<p>如果某个值是作为某个接口的实现的箭头函数，则它也可以使用驼峰式命名法。</p>
+</section>
+</section>
+<section id="ts-aliases">
+<span id="id12"></span><h3><span class="section-number">3.5.2.1.2. </span>别名<a class="headerlink" href="#ts-aliases" title="Permalink to this heading"></a></h3>
+<p>在为一个已有的标识符创建具有局部作用域的别名时，别名的命名方式应当与现有的标识符和现有的命名规范保持一致。声明别名时，应使用 <code class="docutils literal notranslate"><span class="pre">const</span></code> （如果它是一个变量）或 <code class="docutils literal notranslate"><span class="pre">readonly</span></code> （如果它是类里的一个字段）。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="nx">Foo</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">SomeType</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">CAPACITY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nx">Teapot</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">readonly</span><span class="w"> </span><span class="nx">BrewStateEnum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">BrewStateEnum</span><span class="p">;</span>
+<span class="w">    </span><span class="k">readonly</span><span class="w"> </span><span class="nx">CAPACITY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">CAPACITY</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-naming-style">
+<span id="id13"></span><h3><span class="section-number">3.5.2.1.3. </span>命名风格<a class="headerlink" href="#ts-naming-style" title="Permalink to this heading"></a></h3>
+<p>TypeScript 中的类型表达了丰富的信息，因此在起名时不应与类型中所携带的信息重复。（关于更多在起名时应避免的内容，可参见谷歌的 <a class="reference external" href="https://testing.googleblog.com/2017/10/code-health-identifiernamingpostforworl.html">Testing Blog</a>。）</p>
+<p>这里有几个具体的例子：</p>
+<ul class="simple">
+<li><p>不要为私有属性或方法名添加下划线 <cite>_</cite> 前缀或后缀。</p></li>
+<li><p>不要为可选参数添加 <cite>opt_</cite> 前缀。</p>
+<ul>
+<li><p>关于在存取器中的特例，参见后文 <a class="reference internal" href="../google-cpp-styleguide/headers.html#name-and-order-of-includes"><span class="std std-ref">1.6. #include 的路径及顺序</span></a> 。</p></li>
+</ul>
+</li>
+<li><p>除非在项目中已成惯例，否则不要显式地标记接口类型（例如不要使用 <code class="docutils literal notranslate"><span class="pre">IMyInterface</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">MyFooInterface</span></code> ）。在为类添加接口时，接口名称中应包含创建这一接口的原因。（例如，在为类 <code class="docutils literal notranslate"><span class="pre">TodoItem</span></code> 创建一个将其转为 JSON 格式以用于存储或者序列化的接口时，可以将这一接口命名为 <code class="docutils literal notranslate"><span class="pre">TodoItemStorage</span></code> 。）</p></li>
+<li><p>对于 <code class="docutils literal notranslate"><span class="pre">Observable</span></code> 类型的值，通常的惯例是使用 <code class="docutils literal notranslate"><span class="pre">$</span></code> 前缀将其与一般类型的值进行区分，使之不致混淆。各个团队可以在与项目内部的现有做法保持一致的前提下，自行决定是否采用这一做法。</p></li>
+</ul>
+</section>
+<section id="ts-descriptive-names">
+<span id="id14"></span><h3><span class="section-number">3.5.2.1.4. </span>描述性命名<a class="headerlink" href="#ts-descriptive-names" title="Permalink to this heading"></a></h3>
+<p>命名应当具有描述性且易于读者理解。不要使用对项目以外的用户而言含糊不清或并不熟悉的缩写，不要通过删减单词中的字母来强行创造缩写。</p>
+<p>这一规则的例外是，对不超过十行的作用域中的变量，以及内部 API 的参数，可以使用短变量名（例如 <code class="docutils literal notranslate"><span class="pre">i</span></code> 、 <code class="docutils literal notranslate"><span class="pre">j</span></code> 等只有单个字母的变量名）。</p>
+</section>
+</section>
+<section id="ts-file-encoding">
+<span id="id15"></span><h2><span class="section-number">3.5.2.2. </span>文件编码<a class="headerlink" href="#ts-file-encoding" title="Permalink to this heading"></a></h2>
+<p>使用 UTF-8 文件编码。</p>
+<p>对于非 ASCII 字符，应使用实际的 Unicode 字符（例如 <code class="docutils literal notranslate"><span class="pre">∞</span></code> ）。对于非输出字符，使用对应的十六进制编码或 Unicode 转义编码（如 <code class="docutils literal notranslate"><span class="pre">\u221e</span></code> ），并添加注释进行说明。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 应当这样做！即使没有注释也十分易懂。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;μs&#39;</span><span class="p">;</span>
+
+<span class="c1">// 应当这样做！对非输出字符进行转义。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;\ufeff&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">content</span><span class="p">;</span><span class="w">  </span><span class="c1">// 字节顺序标记（Byte Order Mark，BOM）</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！即使加上注释也不太好读，而且容易出错。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">units</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;\u03bcs&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Greek letter mu, &#39;s&#39;</span>
+
+<span class="c1">// 不要省略注释！读者在缺少注释的情况下很难理解这个字符的含义。</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;\ufeff&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">content</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-comments-documentation">
+<span id="id16"></span><h2><span class="section-number">3.5.2.3. </span>注释与文档<a class="headerlink" href="#ts-comments-documentation" title="Permalink to this heading"></a></h2>
+<section id="jsdoc">
+<span id="ts-jsdoc-vs-comments"></span><h3><span class="section-number">3.5.2.3.1. </span>用 JSDoc 还是 注释？<a class="headerlink" href="#jsdoc" title="Permalink to this heading"></a></h3>
+<p>TypesScript 中有两种类型的注释：JSDoc <code class="docutils literal notranslate"><span class="pre">/**</span> <span class="pre">...</span> <span class="pre">*/</span></code> 和普通注释 <code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">...</span> <span class="pre">或者</span> <span class="pre">/*</span> <span class="pre">...</span> <span class="pre">*/</span></code> 。</p>
+<ul class="simple">
+<li><p>对于文档，也就是用户应当阅读的注释，使用 <code class="docutils literal notranslate"><span class="pre">/**</span> <span class="pre">JSDoc</span> <span class="pre">*/</span></code> 。</p></li>
+<li><p>对于实现说明，也就是只和代码本身的实现细节有关的注释，使用 <code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">行注释</span></code> 。</p></li>
+</ul>
+<p>JSDoc 注释能够为工具（例如编辑器或文档生成器）所识别，而普通注释只能供人阅读。</p>
+</section>
+<section id="ts-jsdoc-rules-follow-the-js-style">
+<span id="id17"></span><h3><span class="section-number">3.5.2.3.2. </span>JSDoc 规范<a class="headerlink" href="#ts-jsdoc-rules-follow-the-js-style" title="Permalink to this heading"></a></h3>
+<p>JSDoc 的规范大部分遵循 JavaScript 风格指南中的规定。具体地说，遵循 JavaScript 风格指南中 <a class="reference internal" href="../google-javascript-styleguide/javascript_style_rules.html#js-comments"><span class="std std-ref">注释</span></a> 一节的规则。本节的剩余部分只对与这些规则不一致的部分进行说明。</p>
+</section>
+<section id="ts-document-all-top-level-exports-of-modules">
+<span id="id18"></span><h3><span class="section-number">3.5.2.3.3. </span>对所有导出的顶层模块进行注释<a class="headerlink" href="#ts-document-all-top-level-exports-of-modules" title="Permalink to this heading"></a></h3>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">/**</span> <span class="pre">JSDoc</span> <span class="pre">*/</span></code> 注释为代码的用户提供信息。这些注释应当言之有物，切忌仅仅将属性名或参数名重抄一遍。如果代码的审核人认为某个属性或方法的作用不能从它的名字上一目了然地看出来的话，这些属性和方法同样应当使用 <code class="docutils literal notranslate"><span class="pre">/**</span> <span class="pre">JSDoc</span> <span class="pre">*/</span></code> 注释添加说明文档，无论它们是否被导出，是公开还是私有的。</p>
+</section>
+<section id="typescript">
+<span id="ts-omit-comments-that-are-redundant-with-ts"></span><h3><span class="section-number">3.5.2.3.4. </span>省略对于 TypeScript 而言多余的注释<a class="headerlink" href="#typescript" title="Permalink to this heading"></a></h3>
+<p>例如，不要在 <code class="docutils literal notranslate"><span class="pre">&#64;param</span></code> 或 <code class="docutils literal notranslate"><span class="pre">&#64;return</span></code> 注释中声明类型，不要在使用了 <code class="docutils literal notranslate"><span class="pre">implements</span></code> 、 <code class="docutils literal notranslate"><span class="pre">enum</span></code> 、 <code class="docutils literal notranslate"><span class="pre">private</span></code> 等关键字的地方添加 <code class="docutils literal notranslate"><span class="pre">&#64;implements</span></code> 、 <code class="docutils literal notranslate"><span class="pre">&#64;enum</span></code> 、 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code> 等注释。</p>
+</section>
+<section id="override">
+<span id="ts-do-not-use-override"></span><h3><span class="section-number">3.5.2.3.5. </span>不要使用 <code class="docutils literal notranslate"><span class="pre">&#64;override</span></code><a class="headerlink" href="#override" title="Permalink to this heading"></a></h3>
+<p>不要在 TypeScript 代码中使用 <code class="docutils literal notranslate"><span class="pre">&#64;override</span></code> 注释。 <code class="docutils literal notranslate"><span class="pre">&#64;override</span></code> 并不会被编译器视为强制性约束，这会导致注释与实现上的不一致性。如果纯粹为了文档添加这一注释，反而令人困惑。</p>
+</section>
+<section id="ts-make-comments-that-actually-add-information">
+<span id="id19"></span><h3><span class="section-number">3.5.2.3.6. </span>注释必须言之有物<a class="headerlink" href="#ts-make-comments-that-actually-add-information" title="Permalink to this heading"></a></h3>
+<p>虽然大多数情况下文档对代码十分有益，但对于那些并不用于导出的符号，有时其函数或参数的名称与类型便足以描述自身了。</p>
+<p>注释切忌照抄参数类型和参数名，如下面的反面示例：</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！这个注释没有任何有意义的内容。</span>
+<span class="cm">/** @param fooBarService Foo 应用的 Bar 服务 */</span>
+</pre></div>
+</div>
+<p>因此，只有当需要添加额外信息时才使用 <code class="docutils literal notranslate"><span class="pre">&#64;param</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&#64;return</span></code> 注释，其它情况下直接省略即可。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 发送 POST 请求，开始煮咖啡</span>
+<span class="cm"> * @param amountLitres 煮咖啡的量，注意和煮锅的尺寸对应！</span>
+<span class="cm"> */</span>
+<span class="nx">brew</span><span class="p">(</span><span class="nx">amountLitres</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">,</span><span class="w"> </span><span class="nx">logger</span><span class="o">:</span><span class="w"> </span><span class="kt">Logger</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-parameter-property-comments">
+<span id="id20"></span><h3><span class="section-number">3.5.2.3.7. </span>参数属性注释<a class="headerlink" href="#ts-parameter-property-comments" title="Permalink to this heading"></a></h3>
+<p>通过为构造函数的参数添加访问限定符，参数属性同时创建了构造函数参数和类成员。例如，如下的构造函数</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">bar</span><span class="o">:</span><span class="w"> </span><span class="kt">Bar</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>为 <code class="docutils literal notranslate"><span class="pre">Foo</span></code> 类创建了 <code class="docutils literal notranslate"><span class="pre">Bar</span></code> 类型的成员 <code class="docutils literal notranslate"><span class="pre">bar</span></code> 。</p>
+<p>如果要为这些成员添加文档，应使用 JSDoc 的 <code class="docutils literal notranslate"><span class="pre">&#64;param</span></code> 注释，这样编辑器会在调用构造函数和访问属性时显示对应的文档描述信息。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="cm">/** 这个类演示了如何为参数属性添加文档 */</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">ParamProps</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * @param percolator 煮咖啡所用的咖啡壶。</span>
+<span class="cm">     * @param beans 煮咖啡所用的咖啡豆。</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span>
+<span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">percolator</span><span class="o">:</span><span class="w"> </span><span class="kt">Percolator</span><span class="p">,</span>
+<span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="nx">beans</span><span class="o">:</span><span class="w"> </span><span class="kt">CoffeeBean</span><span class="p">[])</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="cm">/** 这个类演示了如何为普通成员添加文档 */</span>
+<span class="kd">class</span><span class="w"> </span><span class="nx">OrdinaryClass</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/** 下次调用 brew() 时所用的咖啡豆。 */</span>
+<span class="w">    </span><span class="nx">nextBean</span><span class="o">:</span><span class="w"> </span><span class="kt">CoffeeBean</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">initialBean</span><span class="o">:</span><span class="w"> </span><span class="kt">CoffeeBean</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">nextBean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">initialBean</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-comments-when-calling-a-function">
+<span id="id21"></span><h3><span class="section-number">3.5.2.3.8. </span>函数调用注释<a class="headerlink" href="#ts-comments-when-calling-a-function" title="Permalink to this heading"></a></h3>
+<p>如果有需要，可以在函数的调用点使用行内的 <code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">块注释</span> <span class="pre">*/</span></code> 为参数添加文档，或者使用字面量对象为参数添加名称并在函数声明中进行解构。注释的格式和位置没有明确的规定。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 使用行内块注释为难以理解的参数添加说明：</span>
+<span class="ow">new</span><span class="w"> </span><span class="nx">Percolator</span><span class="p">().</span><span class="nx">brew</span><span class="p">(</span><span class="cm">/* amountLitres= */</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span>
+
+<span class="c1">// 或者使用字面量对象为参数命名，并在函数 brew 的声明中将参数解构：</span>
+<span class="ow">new</span><span class="w"> </span><span class="nx">Percolator</span><span class="p">().</span><span class="nx">brew</span><span class="p">({</span><span class="nx">amountLitres</span><span class="o">:</span><span class="w"> </span><span class="kt">5</span><span class="p">});</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="cm">/** 一个古老的咖啡壶 {@link CoffeeBrewer} */</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Percolator</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">CoffeeBrewer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * 煮咖啡。</span>
+<span class="cm">     * @param amountLitres 煮咖啡的量，注意必须和煮锅的尺寸对应！</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nx">brew</span><span class="p">(</span><span class="nx">amountLitres</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 这个实现煮出来的咖啡味道差极了，不管了。</span>
+<span class="w">        </span><span class="c1">// TODO(b/12345): 优化煮咖啡的过程。</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="ts-place-documentation-prior-to-decorators">
+<span id="id22"></span><h3><span class="section-number">3.5.2.3.9. </span>将文档置于装饰器之前<a class="headerlink" href="#ts-place-documentation-prior-to-decorators" title="Permalink to this heading"></a></h3>
+<p>文档、方法或者属性如果同时具有装饰器（例如 <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code>）和 JSDoc 注释，应当将 JSDoc 置于装饰器之前。</p>
+<p>禁止将 JSDoc 置于装饰器和被装饰的对象之间。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！JSDoc 被放在装饰器 @Component 和类 FooComponent 中间了！</span>
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="cm">/** 打印 &quot;bar&quot; 的组件。 */</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">FooComponent</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+<p>应当将 JSDoc 置于装饰器之前。</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="cm">/** 打印 &quot;bar&quot; 的组件。 */</span>
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">FooComponent</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="3.5.1. 导言" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="language.html" class="btn btn-neutral float-right" title="3.5.3. 语言特性" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

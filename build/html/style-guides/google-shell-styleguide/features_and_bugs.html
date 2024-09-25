@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.4.7. 特性及错误 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.4.8. 命名约定" href="naming_conventions.html" />
+    <link rel="prev" title="3.4.6. 格式" href="formatting.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.4. Google: Shell 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html">3.4.1. 扉页</a></li>
+<li class="toctree-l3"><a class="reference internal" href="background.html">3.4.2. 背景</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shell_files_and_interpreter_invocation.html">3.4.3. Shell文件和解释器调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="environment.html">3.4.4. 环境</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html">3.4.5. 注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formatting.html">3.4.6. 格式</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.4.7. 特性及错误</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.4.7.1. 命令替换</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test">3.4.7.2. test，[和[[</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.4.7.3. 测试字符串</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.4.7.4. 文件名的通配符扩展</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eval">3.4.7.5. Eval</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#while">3.4.7.6. 管道导向while循环</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="naming_conventions.html">3.4.8. 命名约定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calling_commands.html">3.4.9. 调用命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="conclusion.html">3.4.10. 结论</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.4. </span>Google: Shell 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.4.7. </span>特性及错误</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-shell-styleguide/features_and_bugs.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">3.4.7. </span>特性及错误<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="id2">
+<h2><span class="section-number">3.4.7.1. </span>命令替换<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">$(command)</span></code> 而不是反引号。</p>
+</div>
+<p>嵌套的反引号要求用反斜杠转义内部的反引号。而 <code class="docutils literal notranslate"><span class="pre">$(command)</span></code> 形式嵌套时不需要改变，而且更易于阅读。</p>
+<p>例如：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is preferred:</span>
+<span class="nv">var</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">command</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>command1<span class="k">)</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&quot;</span>
+
+<span class="c1"># This is not:</span>
+<span class="nv">var</span><span class="o">=</span><span class="s2">&quot;`command \`command1\``&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="test">
+<h2><span class="section-number">3.4.7.2. </span>test，[和[[<a class="headerlink" href="#test" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>推荐使用 <code class="docutils literal notranslate"><span class="pre">[[</span> <span class="pre">...</span> <span class="pre">]]</span></code> ，而不是 <code class="docutils literal notranslate"><span class="pre">[</span></code> , <code class="docutils literal notranslate"><span class="pre">test</span></code> , 和 <code class="docutils literal notranslate"><span class="pre">/usr/bin/[</span></code> 。</p>
+</div>
+<p>因为在 <code class="docutils literal notranslate"><span class="pre">[[</span></code> 和 <code class="docutils literal notranslate"><span class="pre">]]</span></code> 之间不会有路径名称扩展或单词分割发生，所以使用 <code class="docutils literal notranslate"><span class="pre">[[</span> <span class="pre">...</span> <span class="pre">]]</span></code> 能够减少错误。而且 <code class="docutils literal notranslate"><span class="pre">[[</span> <span class="pre">...</span> <span class="pre">]]</span></code> 允许正则表达式匹配，而 <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">...</span> <span class="pre">]</span></code> 不允许。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># This ensures the string on the left is made up of characters in the</span>
+<span class="c1"># alnum character class followed by the string name.</span>
+<span class="c1"># Note that the RHS should not be quoted here.</span>
+<span class="c1"># For the gory details, see</span>
+<span class="c1"># E14 at http://tiswww.case.edu/php/chet/bash/FAQ</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;filename&quot;</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span>^<span class="o">[[</span>:alnum:<span class="o">]]</span>+name<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Match&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># This matches the exact pattern &quot;f*&quot; (Does not match in this case)</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;filename&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;f*&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Match&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># This gives a &quot;too many arguments&quot; error as f* is expanded to the</span>
+<span class="c1"># contents of the current directory</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;filename&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>f*<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Match&quot;</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.4.7.3. </span>测试字符串<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>尽可能使用引用，而不是过滤字符串。</p>
+</div>
+<p>Bash足以在测试中处理空字符串。所以，请使用空（非空）字符串测试，而不是填充字符，使得代码更易于阅读。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do this:</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">my_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;some_string&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>do_something
+<span class="k">fi</span>
+
+<span class="c1"># -z (string length is zero) and -n (string length is not zero) are</span>
+<span class="c1"># preferred over testing for an empty string</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">my_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>do_something
+<span class="k">fi</span>
+
+<span class="c1"># This is OK (ensure quotes on the empty side), but not preferred:</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">my_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>do_something
+<span class="k">fi</span>
+
+<span class="c1"># Not this:</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">my_var</span><span class="si">}</span><span class="s2">X&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;some_stringX&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>do_something
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p>为了避免对你测试的目的产生困惑，请明确使用`-z`或者`-n`</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use this</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">my_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>do_something
+<span class="k">fi</span>
+
+<span class="c1"># Instead of this as errors can occur if ${my_var} expands to a test</span>
+<span class="c1"># flag</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">my_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>do_something
+<span class="k">fi</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.4.7.4. </span>文件名的通配符扩展<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>当进行文件名的通配符扩展时，请使用明确的路径。</p>
+</div>
+<p>因为文件名可能以 <code class="docutils literal notranslate"><span class="pre">-</span></code> 开头，所以使用扩展通配符 <code class="docutils literal notranslate"><span class="pre">./*</span></code> 比 <code class="docutils literal notranslate"><span class="pre">*</span></code> 来得安全得多。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here&#39;s the contents of the directory:</span>
+<span class="c1"># -f  -r  somedir  somefile</span>
+
+<span class="c1"># This deletes almost everything in the directory by force</span>
+psa@bilby$<span class="w"> </span>rm<span class="w"> </span>-v<span class="w"> </span>*
+removed<span class="w"> </span>directory:<span class="w"> </span><span class="sb">`</span>somedir<span class="s1">&#39;</span>
+<span class="s1">removed `somefile&#39;</span>
+
+<span class="c1"># As opposed to:</span>
+psa@bilby$<span class="w"> </span>rm<span class="w"> </span>-v<span class="w"> </span>./*
+removed<span class="w"> </span><span class="sb">`</span>./-f<span class="s1">&#39;</span>
+<span class="s1">removed `./-r&#39;</span>
+rm:<span class="w"> </span>cannot<span class="w"> </span>remove<span class="w"> </span><span class="sb">`</span>./somedir<span class="s1">&#39;: Is a directory</span>
+<span class="s1">removed `./somefile&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="eval">
+<h2><span class="section-number">3.4.7.5. </span>Eval<a class="headerlink" href="#eval" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>应该避免使用eval。</p>
+</div>
+<p>当用于给变量赋值时，Eval解析输入，并且能够设置变量，但无法检查这些变量是什么。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># What does this set?</span>
+<span class="c1"># Did it succeed? In part or whole?</span>
+<span class="nb">eval</span><span class="w"> </span><span class="k">$(</span>set_my_variables<span class="k">)</span>
+
+<span class="c1"># What happens if one of the returned values has a space in it?</span>
+<span class="nv">variable</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">eval</span><span class="w"> </span>some_function<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="while">
+<h2><span class="section-number">3.4.7.6. </span>管道导向while循环<a class="headerlink" href="#while" title="Permalink to this heading"></a></h2>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>请使用过程替换或者for循环，而不是管道导向while循环。在while循环中被修改的变量是不能传递给父shell的，因为循环命令是在一个子shell中运行的。</p>
+</div>
+<p>管道导向while循环中的隐式子shell使得追踪bug变得很困难。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">last_line</span><span class="o">=</span><span class="s1">&#39;NULL&#39;</span>
+your_command<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>line<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="nv">last_line</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+
+<span class="c1"># This will output &#39;NULL&#39;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">last_line</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>如果你确定输入中不包含空格或者特殊符号（通常意味着不是用户输入的），那么可以使用一个for循环。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">total</span><span class="o">=</span><span class="m">0</span>
+<span class="c1"># Only do this if there are no spaces in return values.</span>
+<span class="k">for</span><span class="w"> </span>value<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span><span class="nb">command</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="nv">total</span><span class="o">+=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">value</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>使用过程替换允许重定向输出，但是请将命令放入一个显式的子shell中，而不是bash为while循环创建的隐式子shell。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">total</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">last_file</span><span class="o">=</span>
+<span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>count<span class="w"> </span>filename<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="nv">total</span><span class="o">+=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">count</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="nv">last_file</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">filename</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">done</span><span class="w"> </span>&lt;<span class="w"> </span>&lt;<span class="o">(</span>your_command<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="o">)</span>
+
+<span class="c1"># This will output the second field of the last line of output from</span>
+<span class="c1"># the command.</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Total = </span><span class="si">${</span><span class="nv">total</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Last one = </span><span class="si">${</span><span class="nv">last_file</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>当不需要传递复杂的结果给父shell时可以使用while循环。这通常需要一些更复杂的“解析”。请注意简单的例子使用如awk这类工具可能更容易完成。当你特别不希望改变父shell的范围变量时这可能也是有用的。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Trivial implementation of awk expression:</span>
+<span class="c1">#   awk &#39;$3 == &quot;nfs&quot; { print $2 &quot; maps to &quot; $1 }&#39; /proc/mounts</span>
+cat<span class="w"> </span>/proc/mounts<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>src<span class="w"> </span>dest<span class="w"> </span><span class="nb">type</span><span class="w"> </span>opts<span class="w"> </span>rest<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="si">${</span><span class="nv">type</span><span class="si">}</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;nfs&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;NFS </span><span class="si">${</span><span class="nv">dest</span><span class="si">}</span><span class="s2"> maps to </span><span class="si">${</span><span class="nv">src</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="k">fi</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="formatting.html" class="btn btn-neutral float-left" title="3.4.6. 格式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="naming_conventions.html" class="btn btn-neutral float-right" title="3.4.8. 命名约定" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

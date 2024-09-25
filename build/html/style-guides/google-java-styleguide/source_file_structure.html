@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.10.4. 3. 源文件结构 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../about.html" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3.10.5. 4. 格式" href="formatting.html" />
+    <link rel="prev" title="3.10.3. 2. 源文件基础" href="source_file_basics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.3. C++ 风格指南 - 内容目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.4. Objective-C 风格指南 - 内容目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.5. Python 风格指南 - 内容目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.6. Shell 风格指南 - 内容目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.7. Javascript 风格指南 - 内容目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.8. TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.9. HTML/CSS 风格指南 - 内容目录</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.10. Java 风格指南 - 内容目录</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html">3.10.1. 0. 扉页</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">3.10.2. 1. 介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source_file_basics.html">3.10.3. 2. 源文件基础</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.10.4. 3. 源文件结构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.10.4.1. 3.1. 许可或版权信息（如果有的话）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#package-statement">3.10.4.2. 3.2. 包声明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#import-statements">3.10.4.3. 3.3. 导入语句</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">3.10.4.4. 3.4. 类的声明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="formatting.html">3.10.5. 4. 格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html">3.10.6. 5. 命名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="programming_practices.html">3.10.7. 6. 编程习惯</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javadoc.html">3.10.8. 7. Javadoc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.10. </span>Java 风格指南 - 内容目录</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.10.4. </span>3. 源文件结构</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/style-guides/google-java-styleguide/source_file_structure.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="source-file-structure">
+<span id="id1"></span><h1><span class="section-number">3.10.4. </span>3. 源文件结构<a class="headerlink" href="#source-file-structure" title="Permalink to this heading"></a></h1>
+<p>源文件应由以下部分 <strong>按顺序</strong> 组成：</p>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>许可或版权信息（如果有的话）</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>包的声明</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>导入语句 （Import statements）</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="4">
+<li><p>有且仅有一个顶级类</p></li>
+</ol>
+</li>
+</ul>
+<p>每个部分之间用 <strong>一个</strong> 空白行隔开。</p>
+<section id="id2">
+<h2><span class="section-number">3.10.4.1. </span>3.1. 许可或版权信息（如果有的话）<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>如果文件中应包含许可证或版权信息，那么它应被放在此处。</p>
+</section>
+<section id="package-statement">
+<span id="id3"></span><h2><span class="section-number">3.10.4.2. </span>3.2. 包声明<a class="headerlink" href="#package-statement" title="Permalink to this heading"></a></h2>
+<p>包声明 <strong>不换行</strong>。列限制（4.4节，<a class="reference internal" href="formatting.html#column-limit"><span class="std std-ref">Column limit: 100</span></a>）不适用于包声明。</p>
+</section>
+<section id="import-statements">
+<span id="id4"></span><h2><span class="section-number">3.10.4.3. </span>3.3. 导入语句<a class="headerlink" href="#import-statements" title="Permalink to this heading"></a></h2>
+<section id="id5">
+<h3><span class="section-number">3.10.4.3.1. </span>3.3.1. 不使用通配符导入<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p><strong>不使用</strong> 任何形式的 <strong>通配符导入</strong> ，无论是静态的还是其他形式。</p>
+</section>
+<section id="id6">
+<h3><span class="section-number">3.10.4.3.2. </span>3.3.2. 不换行<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p>导入语句 <strong>不换行</strong> 。列限制（4.4节， <a class="reference internal" href="formatting.html#column-limit"><span class="std std-ref">Column limit: 100</span></a> ）不适用于导入语句。</p>
+</section>
+<section id="id7">
+<h3><span class="section-number">3.10.4.3.3. </span>3.3.3. 排序和间距<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<p>按以下顺序导入：</p>
+<ul class="simple">
+<li><p>所有的静态导入都在一个单独的块中。</p></li>
+<li><p>所有非静态导入都在一个单独的块中。</p></li>
+</ul>
+<p>如果既有静态导入又有非静态导入，则两个块之间有一个空白行。导入语句之间没有其他空白行。</p>
+<p>在每个块中，导入的名称按ASCII排序顺序出现。（ <strong>注意</strong> ：这不等同于按整个导入语句的ASCII排序，因为’.’排在’;’之前。）
+（译者注：这种情况只会出现在包名结尾为’.’时，所以实际上可以忽略不计。例如： <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">packageA.ClassA;</span> <span class="pre">import</span> <span class="pre">packageA.ClassA.;</span></code> ，如果按整个语句的ASCII排序，后句应排在前句之前，因为’.’在ASCII中排在’;’前。除此之外其他情况按包名排序和按整个语句排序应得到相同的结果）</p>
+</section>
+<section id="id8">
+<h3><span class="section-number">3.10.4.3.4. </span>3.3.4. 不对类使用静态导入<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<p>不使用静态导入来导入静态嵌套类，而是使用常规导入。</p>
+</section>
+</section>
+<section id="id9">
+<h2><span class="section-number">3.10.4.4. </span>3.4. 类的声明<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<section id="one-top-level">
+<span id="id10"></span><h3><span class="section-number">3.10.4.4.1. </span>3.4.1. 有且仅有一个顶级类声明<a class="headerlink" href="#one-top-level" title="Permalink to this heading"></a></h3>
+<p>每个顶级类都位于其自己的源文件中。</p>
+</section>
+<section id="id11">
+<h3><span class="section-number">3.10.4.4.2. </span>3.4.2. 类中内容的顺序<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<p>类中成员和初始化器的顺序对于代码的可读性有很大影响。然而，并没有一个唯一正确的顺序，不同的类可能会以不同的方式排列其内容。</p>
+<p>重要的是，每个类都使用 <strong>某种逻辑顺序</strong> ，并且在被问及时，其维护者可以做出相应的解释。例如，新方法不仅仅是习惯性地添加到类的末尾，因为那会导致内容是“按添加时间排序”的，这并不是一个有逻辑的排序方式。</p>
+<section id="id12">
+<h4><span class="section-number">3.10.4.4.2.1. </span>3.4.2.1. 重载：永不分割<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h4>
+<p>类中拥有同一名称的方法应出现在一个连续的组中，中间不应该有任何其他成员。对于多个构造函数（它们的名称总是相同的）也是如此。即使在方法之间的修饰符（如 <code class="docutils literal notranslate"><span class="pre">static</span></code> 或 <code class="docutils literal notranslate"><span class="pre">private</span></code> ）不同时，此规则仍然适用。</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="source_file_basics.html" class="btn btn-neutral float-left" title="3.10.3. 2. 源文件基础" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="formatting.html" class="btn btn-neutral float-right" title="3.10.5. 4. 格式" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>
