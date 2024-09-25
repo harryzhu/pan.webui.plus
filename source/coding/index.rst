@@ -3,20 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-AI 常用汇总
+编程语言 语法
 ============================
 
 
 
 .. toctree::
    :maxdepth: 2
-   :caption: 目录:
-   :numbered:
+   :caption: 全部章节目录:
 
-   best-practice/index
-   stable-diffusion/index
-   style-guides/index
-   coding/index
-   cheatsheet/index
-   
-   about
+   reStructureText_syntax
+   MarkDown_syntax
+   golang/index

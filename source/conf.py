@@ -5,25 +5,44 @@
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+from datetime import datetime
+import random
+
+language = 'zh_CN'
+currentYear = datetime.now().year
 
 project = 'AI 模型国内加速'
-copyright = '2024, harry'
-author = 'harry'
+copyright = '2024'
+author = 'Harry'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    'recommonmark',
+    'sphinx_markdown_tables',
+    'sphinx.ext.autosectionlabel',
     'sphinx_rtd_theme',
         ]
 
 templates_path = ['_templates']
 exclude_patterns = []
 
-language = 'zh-cn'
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+    '.txt': 'markdown',
+}
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+
+html_css_files = ['style.css?v='+str(random.randint(1000,2000)) ]
+
+
+
+
+
