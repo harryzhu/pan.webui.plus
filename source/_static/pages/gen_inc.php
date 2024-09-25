@@ -34,7 +34,7 @@ function get_url($name,$url_key=""){
 	if($url_key == ""){
 		$url_key  = $name;
 	}
-	return '<a href="'.$urls[$url_key].'">'.$name.'</a>';
+	return '<a href="'.$urls[$url_key].'" target="_blank">'.$name.'</a>';
 } 
 
 $hf_li = "<ul>";
