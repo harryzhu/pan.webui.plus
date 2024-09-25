@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Functional Options &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../../about.html" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">3. 编程语言 风格指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Functional Options</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/style-guides/uber_go/chapters/functional-option.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="functional-options">
+<h1>Functional Options<a class="headerlink" href="#functional-options" title="Permalink to this heading"></a></h1>
+<p>Functional options is a pattern in which you declare an opaque <code class="docutils literal notranslate"><span class="pre">Option</span></code> type
+that records information in some internal struct. You accept a variadic number
+of these options and act upon the full information recorded by the options on
+the internal struct.</p>
+<p>Use this pattern for optional arguments in constructors and other public APIs
+that you foresee needing to expand, especially if you already have three or
+more arguments on those functions.</p>
+<table>
+<thead><tr><th>Bad</th><th>Good</th></tr></thead>
+<tbody>
+<tr><td><div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// package db</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">Open</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">addr</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">cache</span><span class="w"> </span><span class="kt">bool</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">logger</span><span class="w"> </span><span class="o">*</span><span class="nx">zap</span><span class="p">.</span><span class="nx">Logger</span>
+<span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">Connection</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td><td><div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// package db</span>
+
+<span class="kd">type</span><span class="w"> </span><span class="nx">Option</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">WithCache</span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="nx">Option</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">WithLogger</span><span class="p">(</span><span class="nx">log</span><span class="w"> </span><span class="o">*</span><span class="nx">zap</span><span class="p">.</span><span class="nx">Logger</span><span class="p">)</span><span class="w"> </span><span class="nx">Option</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// Open creates a connection.</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">Open</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">addr</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">opts</span><span class="w"> </span><span class="o">...</span><span class="nx">Option</span><span class="p">,</span>
+<span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">Connection</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td></tr>
+<tr><td><p>The cache and logger parameters must always be provided, even if the user
+wants to use the default.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">DefaultCache</span><span class="p">,</span><span class="w"> </span><span class="nx">zap</span><span class="p">.</span><span class="nx">NewNop</span><span class="p">())</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">DefaultCache</span><span class="p">,</span><span class="w"> </span><span class="nx">log</span><span class="p">)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="cm">/* cache */</span><span class="p">,</span><span class="w"> </span><span class="nx">zap</span><span class="p">.</span><span class="nx">NewNop</span><span class="p">())</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="cm">/* cache */</span><span class="p">,</span><span class="w"> </span><span class="nx">log</span><span class="p">)</span>
+</pre></div>
+</div>
+</td><td><p>Options are provided only if needed.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">addr</span><span class="p">)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">WithLogger</span><span class="p">(</span><span class="nx">log</span><span class="p">))</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">WithCache</span><span class="p">(</span><span class="kc">false</span><span class="p">))</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">addr</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">WithCache</span><span class="p">(</span><span class="kc">false</span><span class="p">),</span>
+<span class="w">  </span><span class="nx">db</span><span class="p">.</span><span class="nx">WithLogger</span><span class="p">(</span><span class="nx">log</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</td></tr>
+</tbody></table><p>Our suggested way of implementing this pattern is with an <code class="docutils literal notranslate"><span class="pre">Option</span></code> interface
+that holds an unexported method, recording options on an unexported <code class="docutils literal notranslate"><span class="pre">options</span></code>
+struct.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">options</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">cache</span><span class="w">  </span><span class="kt">bool</span>
+<span class="w">  </span><span class="nx">logger</span><span class="w"> </span><span class="o">*</span><span class="nx">zap</span><span class="p">.</span><span class="nx">Logger</span>
+<span class="p">}</span>
+
+<span class="kd">type</span><span class="w"> </span><span class="nx">Option</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">apply</span><span class="p">(</span><span class="o">*</span><span class="nx">options</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">type</span><span class="w"> </span><span class="nx">cacheOption</span><span class="w"> </span><span class="kt">bool</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="nx">cacheOption</span><span class="p">)</span><span class="w"> </span><span class="nx">apply</span><span class="p">(</span><span class="nx">opts</span><span class="w"> </span><span class="o">*</span><span class="nx">options</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">opts</span><span class="p">.</span><span class="nx">cache</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">bool</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">WithCache</span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="nx">Option</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">cacheOption</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">type</span><span class="w"> </span><span class="nx">loggerOption</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">Log</span><span class="w"> </span><span class="o">*</span><span class="nx">zap</span><span class="p">.</span><span class="nx">Logger</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">l</span><span class="w"> </span><span class="nx">loggerOption</span><span class="p">)</span><span class="w"> </span><span class="nx">apply</span><span class="p">(</span><span class="nx">opts</span><span class="w"> </span><span class="o">*</span><span class="nx">options</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">opts</span><span class="p">.</span><span class="nx">logger</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">l</span><span class="p">.</span><span class="nx">Log</span>
+<span class="p">}</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">WithLogger</span><span class="p">(</span><span class="nx">log</span><span class="w"> </span><span class="o">*</span><span class="nx">zap</span><span class="p">.</span><span class="nx">Logger</span><span class="p">)</span><span class="w"> </span><span class="nx">Option</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">loggerOption</span><span class="p">{</span><span class="nx">Log</span><span class="p">:</span><span class="w"> </span><span class="nx">log</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Open creates a connection.</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">Open</span><span class="p">(</span>
+<span class="w">  </span><span class="nx">addr</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">opts</span><span class="w"> </span><span class="o">...</span><span class="nx">Option</span><span class="p">,</span>
+<span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">Connection</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">options</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">options</span><span class="p">{</span>
+<span class="w">    </span><span class="nx">cache</span><span class="p">:</span><span class="w">  </span><span class="nx">defaultCache</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">logger</span><span class="p">:</span><span class="w"> </span><span class="nx">zap</span><span class="p">.</span><span class="nx">NewNop</span><span class="p">(),</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">o</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">opts</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">o</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">options</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that there’s a method of implementing this pattern with closures but we
+believe that the pattern above provides more flexibility for authors and is
+easier to debug and test for users. In particular, it allows options to be
+compared against each other in tests and mocks, versus closures where this is
+impossible. Further, it lets options implement other interfaces, including
+<code class="docutils literal notranslate"><span class="pre">fmt.Stringer</span></code> which allows for user-readable string representations of the
+options.</p>
+<p>See also,</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html">Self-referential functions and the design of options</a></p></li>
+<li><p><a class="reference external" href="https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis">Functional options for friendly APIs</a></p></li>
+</ul>
+<!-- TODO: replace this with parameter structs and functional options, when to
+use one vs other --></section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

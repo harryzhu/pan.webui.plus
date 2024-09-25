@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. 编程语言 规范 &mdash; AI 模型国内加速  文档</title>
+  <title>3. 编程语言 风格指南 &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../_static/style.css" />
@@ -24,7 +24,7 @@
     <link rel="author" title="关于这些文档" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="3.1. Uber Go语言规范 中文" href="uber_go_cn/index.html" />
+    <link rel="next" title="3.1. Uber: Go Style Guide - English" href="uber_go/uber_go_style_en.html" />
     <link rel="prev" title="2. Stable Diffusion" href="../stable-diffusion/index.html" /> 
 </head>
 
@@ -51,9 +51,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3. 编程语言 规范</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/index.html">3.2. Uber: Go语言规范</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. 编程语言 风格指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uber_go/uber_go_style_en.html">3.1. Uber: Go Style Guide - English</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/index.html">3.2. Uber: Go语言 风格指南</a></li>
 <li class="toctree-l2"><a class="reference internal" href="google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
 <li class="toctree-l2"><a class="reference internal" href="google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
 <li class="toctree-l2"><a class="reference internal" href="google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
@@ -83,7 +83,7 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3. </span>编程语言 规范</li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>编程语言 风格指南</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/style-guides/index.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -94,83 +94,29 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">3. </span>编程语言 规范<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3. </span>编程语言 风格指南<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html">3.1.1. English</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#uber-go">3.1.2. Uber Go 语言编码规范</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#id1">3.1.3. 版本</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#id2">3.1.4. 目录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#id3">3.1.5. 介绍</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#id4">3.1.6. 指导原则</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#id20">3.1.7. 性能</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#id24">3.1.8. 规范</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#id42">3.1.9. 编程模式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#linting">3.1.10. Linting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uber_go/uber_go_style_en.html">3.1. Uber: Go Style Guide - English</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uber_go/uber_go_style_en.html#introduction">3.1.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go/uber_go_style_en.html#guidelines">3.1.2. Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go/uber_go_style_en.html#performance">3.1.3. Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go/uber_go_style_en.html#style">3.1.4. Style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go/uber_go_style_en.html#patterns">3.1.5. Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go/uber_go_style_en.html#linting">3.1.6. Linting</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="uber_go/index.html">3.2. Uber: Go语言规范</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/SUMMARY.html">3.2.1. Uber Go Style Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/atomic.html">3.2.2. Use go.uber.org/atomic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/builtin-name.html">3.2.3. Avoid Using Built-In Names</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/channel-size.html">3.2.4. Channel Size is One or None</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/consistency.html">3.2.5. Be Consistent</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/container-capacity.html">3.2.6. Prefer Specifying Container Capacity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/container-copy.html">3.2.7. Copy Slices and Maps at Boundaries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/decl-group.html">3.2.8. Group Similar Declarations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/defer-clean.html">3.2.9. Defer to Clean Up</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/else-unnecessary.html">3.2.10. Unnecessary Else</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/embed-public.html">3.2.11. Avoid Embedding Types in Public Structs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/enum-start.html">3.2.12. Start Enums at One</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/error-name.html">3.2.13. Error Naming</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/error-once.html">3.2.14. Handle Errors Once</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/error-type.html">3.2.15. Error Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/error-wrap.html">3.2.16. Error Wrapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/exit-main.html">3.2.17. Exit in Main</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/exit-once.html">3.2.18. Exit Once</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/function-name.html">3.2.19. Function Names</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/function-order.html">3.2.20. Function Grouping and Ordering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/functional-option.html">3.2.21. Functional Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/global-decl.html">3.2.22. Top-level Variable Declarations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/global-mut.html">3.2.23. Avoid Mutable Globals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/global-name.html">3.2.24. Prefix Unexported Globals with _</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/goroutine-exit.html">3.2.25. Wait for goroutines to exit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/goroutine-forget.html">3.2.26. Don’t fire-and-forget goroutines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/goroutine-init.html">3.2.27. No goroutines in <code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/import-alias.html">3.2.28. Import Aliasing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/import-group.html">3.2.29. Import Group Ordering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/init.html">3.2.30. Avoid <code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/interface-compliance.html">3.2.31. Verify Interface Compliance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/interface-pointer.html">3.2.32. Pointers to Interfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/interface-receiver.html">3.2.33. Receivers and Interfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/intro.html">3.2.34. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/line-length.html">3.2.35. Avoid overly long lines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/lint.html">3.2.36. Linting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/map-init.html">3.2.37. Initializing Maps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/mutex-zero-value.html">3.2.38. Zero-value Mutexes are Valid</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/nest-less.html">3.2.39. Reduce Nesting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/package-name.html">3.2.40. Package Names</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/panic.html">3.2.41. Don’t Panic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/param-naked.html">3.2.42. Avoid Naked Parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/performance.html">3.2.43. Performance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/printf-const.html">3.2.44. Format Strings outside Printf</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/printf-name.html">3.2.45. Naming Printf-style Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/slice-nil.html">3.2.46. nil is a valid slice</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/strconv.html">3.2.47. Prefer strconv over fmt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/string-byte-slice.html">3.2.48. Avoid repeated string-to-byte conversions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/string-escape.html">3.2.49. Use Raw String Literals to Avoid Escaping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/struct-embed.html">3.2.50. Embedding in Structs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/struct-field-key.html">3.2.51. Use Field Names to Initialize Structs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/struct-field-zero.html">3.2.52. Omit Zero Value Fields in Structs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/struct-pointer.html">3.2.53. Initializing Struct References</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/struct-tag.html">3.2.54. Use field tags in marshaled structs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/struct-zero.html">3.2.55. Use <code class="docutils literal notranslate"><span class="pre">var</span></code> for Zero Value Structs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/test-table.html">3.2.56. Test Tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/time.html">3.2.57. Use <code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code> to handle time</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/type-assert.html">3.2.58. Handle Type Assertion Failures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/var-decl.html">3.2.59. Local Variable Declarations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uber_go/var-scope.html">3.2.60. Reduce Scope of Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uber_go_cn/index.html">3.2. Uber: Go语言 风格指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html">3.2.1. English</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#uber-go">3.2.2. Uber Go 语言编码规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#id1">3.2.3. 版本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#id2">3.2.4. 目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#id3">3.2.5. 介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#id4">3.2.6. 指导原则</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#id20">3.2.7. 性能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#id24">3.2.8. 规范</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#id42">3.2.9. 编程模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uber_go_cn/uber_go_cn.html#linting">3.2.10. Linting</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a><ul>
@@ -266,7 +212,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
         <a href="../stable-diffusion/index.html" class="btn btn-neutral float-left" title="2. Stable Diffusion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="uber_go_cn/index.html" class="btn btn-neutral float-right" title="3.1. Uber Go语言规范 中文" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="uber_go/uber_go_style_en.html" class="btn btn-neutral float-right" title="3.1. Uber: Go Style Guide - English" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

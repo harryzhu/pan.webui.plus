@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uber: Go语言规范 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../../about.html" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">3. 编程语言 风格指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Uber: Go语言规范</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/style-guides/uber_go/chapters/index.rst.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="uber-go">
+<h1>Uber: Go语言规范<a class="headerlink" href="#uber-go" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SUMMARY.html">Uber Go Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atomic.html">Use go.uber.org/atomic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builtin-name.html">Avoid Using Built-In Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="channel-size.html">Channel Size is One or None</a></li>
+<li class="toctree-l1"><a class="reference internal" href="consistency.html">Be Consistent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container-capacity.html">Prefer Specifying Container Capacity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="container-capacity.html#specifying-map-capacity-hints">Specifying Map Capacity Hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="container-capacity.html#specifying-slice-capacity">Specifying Slice Capacity</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="container-copy.html">Copy Slices and Maps at Boundaries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="container-copy.html#receiving-slices-and-maps">Receiving Slices and Maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="container-copy.html#returning-slices-and-maps">Returning Slices and Maps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="decl-group.html">Group Similar Declarations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defer-clean.html">Defer to Clean Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="else-unnecessary.html">Unnecessary Else</a></li>
+<li class="toctree-l1"><a class="reference internal" href="embed-public.html">Avoid Embedding Types in Public Structs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enum-start.html">Start Enums at One</a></li>
+<li class="toctree-l1"><a class="reference internal" href="error-name.html">Error Naming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="error-once.html">Handle Errors Once</a></li>
+<li class="toctree-l1"><a class="reference internal" href="error-type.html">Error Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="error-wrap.html">Error Wrapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exit-main.html">Exit in Main</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exit-once.html">Exit Once</a></li>
+<li class="toctree-l1"><a class="reference internal" href="function-name.html">Function Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="function-order.html">Function Grouping and Ordering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functional-option.html">Functional Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global-decl.html">Top-level Variable Declarations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global-mut.html">Avoid Mutable Globals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global-name.html">Prefix Unexported Globals with _</a></li>
+<li class="toctree-l1"><a class="reference internal" href="goroutine-exit.html">Wait for goroutines to exit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="goroutine-forget.html">Don’t fire-and-forget goroutines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="goroutine-init.html">No goroutines in <code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="import-alias.html">Import Aliasing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import-group.html">Import Group Ordering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="init.html">Avoid <code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="interface-compliance.html">Verify Interface Compliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interface-pointer.html">Pointers to Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interface-receiver.html">Receivers and Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="line-length.html">Avoid overly long lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lint.html">Linting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lint.html#lint-runners">Lint Runners</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="map-init.html">Initializing Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mutex-zero-value.html">Zero-value Mutexes are Valid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nest-less.html">Reduce Nesting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package-name.html">Package Names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="panic.html">Don’t Panic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="param-naked.html">Avoid Naked Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printf-const.html">Format Strings outside Printf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printf-name.html">Naming Printf-style Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slice-nil.html">nil is a valid slice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="strconv.html">Prefer strconv over fmt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="string-byte-slice.html">Avoid repeated string-to-byte conversions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="string-escape.html">Use Raw String Literals to Avoid Escaping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="struct-embed.html">Embedding in Structs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="struct-field-key.html">Use Field Names to Initialize Structs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="struct-field-zero.html">Omit Zero Value Fields in Structs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="struct-pointer.html">Initializing Struct References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="struct-tag.html">Use field tags in marshaled structs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="struct-zero.html">Use <code class="docutils literal notranslate"><span class="pre">var</span></code> for Zero Value Structs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test-table.html">Test Tables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test-table.html#avoid-unnecessary-complexity-in-table-tests">Avoid Unnecessary Complexity in Table Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test-table.html#parallel-tests">Parallel Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">Use <code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code> to handle time</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="time.html#use-time-time-for-instants-of-time">Use <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> for instants of time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html#use-time-duration-for-periods-of-time">Use <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> for periods of time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time.html#use-time-time-and-time-duration-with-external-systems">Use <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> and <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> with external systems</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="type-assert.html">Handle Type Assertion Failures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="var-decl.html">Local Variable Declarations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="var-scope.html">Reduce Scope of Variables</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

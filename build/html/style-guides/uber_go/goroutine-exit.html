@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.2.25. Wait for goroutines to exit &mdash; AI 模型国内加速  文档</title>
+  <title>3.3.25. Wait for goroutines to exit &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
@@ -24,8 +24,8 @@
     <link rel="author" title="关于这些文档" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="3.2.26. Don’t fire-and-forget goroutines" href="goroutine-forget.html" />
-    <link rel="prev" title="3.2.24. Prefix Unexported Globals with _" href="global-name.html" /> 
+    <link rel="next" title="3.3.26. Don’t fire-and-forget goroutines" href="goroutine-forget.html" />
+    <link rel="prev" title="3.3.24. Prefix Unexported Globals with _" href="global-name.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,79 +51,80 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 风格指南</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">3.2. Uber: Go语言规范</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="SUMMARY.html">3.2.1. Uber Go Style Guide</a></li>
-<li class="toctree-l3"><a class="reference internal" href="atomic.html">3.2.2. Use go.uber.org/atomic</a></li>
-<li class="toctree-l3"><a class="reference internal" href="builtin-name.html">3.2.3. Avoid Using Built-In Names</a></li>
-<li class="toctree-l3"><a class="reference internal" href="channel-size.html">3.2.4. Channel Size is One or None</a></li>
-<li class="toctree-l3"><a class="reference internal" href="consistency.html">3.2.5. Be Consistent</a></li>
-<li class="toctree-l3"><a class="reference internal" href="container-capacity.html">3.2.6. Prefer Specifying Container Capacity</a></li>
-<li class="toctree-l3"><a class="reference internal" href="container-copy.html">3.2.7. Copy Slices and Maps at Boundaries</a></li>
-<li class="toctree-l3"><a class="reference internal" href="decl-group.html">3.2.8. Group Similar Declarations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="defer-clean.html">3.2.9. Defer to Clean Up</a></li>
-<li class="toctree-l3"><a class="reference internal" href="else-unnecessary.html">3.2.10. Unnecessary Else</a></li>
-<li class="toctree-l3"><a class="reference internal" href="embed-public.html">3.2.11. Avoid Embedding Types in Public Structs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="enum-start.html">3.2.12. Start Enums at One</a></li>
-<li class="toctree-l3"><a class="reference internal" href="error-name.html">3.2.13. Error Naming</a></li>
-<li class="toctree-l3"><a class="reference internal" href="error-once.html">3.2.14. Handle Errors Once</a></li>
-<li class="toctree-l3"><a class="reference internal" href="error-type.html">3.2.15. Error Types</a></li>
-<li class="toctree-l3"><a class="reference internal" href="error-wrap.html">3.2.16. Error Wrapping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exit-main.html">3.2.17. Exit in Main</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exit-once.html">3.2.18. Exit Once</a></li>
-<li class="toctree-l3"><a class="reference internal" href="function-name.html">3.2.19. Function Names</a></li>
-<li class="toctree-l3"><a class="reference internal" href="function-order.html">3.2.20. Function Grouping and Ordering</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functional-option.html">3.2.21. Functional Options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="global-decl.html">3.2.22. Top-level Variable Declarations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="global-mut.html">3.2.23. Avoid Mutable Globals</a></li>
-<li class="toctree-l3"><a class="reference internal" href="global-name.html">3.2.24. Prefix Unexported Globals with _</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">3.2.25. Wait for goroutines to exit</a></li>
-<li class="toctree-l3"><a class="reference internal" href="goroutine-forget.html">3.2.26. Don’t fire-and-forget goroutines</a></li>
-<li class="toctree-l3"><a class="reference internal" href="goroutine-init.html">3.2.27. No goroutines in <code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="import-alias.html">3.2.28. Import Aliasing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="import-group.html">3.2.29. Import Group Ordering</a></li>
-<li class="toctree-l3"><a class="reference internal" href="init.html">3.2.30. Avoid <code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="interface-compliance.html">3.2.31. Verify Interface Compliance</a></li>
-<li class="toctree-l3"><a class="reference internal" href="interface-pointer.html">3.2.32. Pointers to Interfaces</a></li>
-<li class="toctree-l3"><a class="reference internal" href="interface-receiver.html">3.2.33. Receivers and Interfaces</a></li>
-<li class="toctree-l3"><a class="reference internal" href="intro.html">3.2.34. Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="line-length.html">3.2.35. Avoid overly long lines</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lint.html">3.2.36. Linting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="map-init.html">3.2.37. Initializing Maps</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mutex-zero-value.html">3.2.38. Zero-value Mutexes are Valid</a></li>
-<li class="toctree-l3"><a class="reference internal" href="nest-less.html">3.2.39. Reduce Nesting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="package-name.html">3.2.40. Package Names</a></li>
-<li class="toctree-l3"><a class="reference internal" href="panic.html">3.2.41. Don’t Panic</a></li>
-<li class="toctree-l3"><a class="reference internal" href="param-naked.html">3.2.42. Avoid Naked Parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="performance.html">3.2.43. Performance</a></li>
-<li class="toctree-l3"><a class="reference internal" href="printf-const.html">3.2.44. Format Strings outside Printf</a></li>
-<li class="toctree-l3"><a class="reference internal" href="printf-name.html">3.2.45. Naming Printf-style Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slice-nil.html">3.2.46. nil is a valid slice</a></li>
-<li class="toctree-l3"><a class="reference internal" href="strconv.html">3.2.47. Prefer strconv over fmt</a></li>
-<li class="toctree-l3"><a class="reference internal" href="string-byte-slice.html">3.2.48. Avoid repeated string-to-byte conversions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="string-escape.html">3.2.49. Use Raw String Literals to Avoid Escaping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="struct-embed.html">3.2.50. Embedding in Structs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="struct-field-key.html">3.2.51. Use Field Names to Initialize Structs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="struct-field-zero.html">3.2.52. Omit Zero Value Fields in Structs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="struct-pointer.html">3.2.53. Initializing Struct References</a></li>
-<li class="toctree-l3"><a class="reference internal" href="struct-tag.html">3.2.54. Use field tags in marshaled structs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="struct-zero.html">3.2.55. Use <code class="docutils literal notranslate"><span class="pre">var</span></code> for Zero Value Structs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="test-table.html">3.2.56. Test Tables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="time.html">3.2.57. Use <code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code> to handle time</a></li>
-<li class="toctree-l3"><a class="reference internal" href="type-assert.html">3.2.58. Handle Type Assertion Failures</a></li>
-<li class="toctree-l3"><a class="reference internal" href="var-decl.html">3.2.59. Local Variable Declarations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="var-scope.html">3.2.60. Reduce Scope of Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_style_en.html">3.2. Uber Go Style Guide</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">3.3. Uber: Go语言规范</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="SUMMARY.html">3.3.1. Uber Go Style Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="atomic.html">3.3.2. Use go.uber.org/atomic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builtin-name.html">3.3.3. Avoid Using Built-In Names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel-size.html">3.3.4. Channel Size is One or None</a></li>
+<li class="toctree-l3"><a class="reference internal" href="consistency.html">3.3.5. Be Consistent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="container-capacity.html">3.3.6. Prefer Specifying Container Capacity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="container-copy.html">3.3.7. Copy Slices and Maps at Boundaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="decl-group.html">3.3.8. Group Similar Declarations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="defer-clean.html">3.3.9. Defer to Clean Up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="else-unnecessary.html">3.3.10. Unnecessary Else</a></li>
+<li class="toctree-l3"><a class="reference internal" href="embed-public.html">3.3.11. Avoid Embedding Types in Public Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="enum-start.html">3.3.12. Start Enums at One</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error-name.html">3.3.13. Error Naming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error-once.html">3.3.14. Handle Errors Once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error-type.html">3.3.15. Error Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="error-wrap.html">3.3.16. Error Wrapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exit-main.html">3.3.17. Exit in Main</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exit-once.html">3.3.18. Exit Once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function-name.html">3.3.19. Function Names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function-order.html">3.3.20. Function Grouping and Ordering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functional-option.html">3.3.21. Functional Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="global-decl.html">3.3.22. Top-level Variable Declarations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="global-mut.html">3.3.23. Avoid Mutable Globals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="global-name.html">3.3.24. Prefix Unexported Globals with _</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.3.25. Wait for goroutines to exit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goroutine-forget.html">3.3.26. Don’t fire-and-forget goroutines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goroutine-init.html">3.3.27. No goroutines in <code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="import-alias.html">3.3.28. Import Aliasing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="import-group.html">3.3.29. Import Group Ordering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="init.html">3.3.30. Avoid <code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface-compliance.html">3.3.31. Verify Interface Compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface-pointer.html">3.3.32. Pointers to Interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface-receiver.html">3.3.33. Receivers and Interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro.html">3.3.34. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="line-length.html">3.3.35. Avoid overly long lines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lint.html">3.3.36. Linting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="map-init.html">3.3.37. Initializing Maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mutex-zero-value.html">3.3.38. Zero-value Mutexes are Valid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nest-less.html">3.3.39. Reduce Nesting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="package-name.html">3.3.40. Package Names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="panic.html">3.3.41. Don’t Panic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="param-naked.html">3.3.42. Avoid Naked Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="performance.html">3.3.43. Performance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="printf-const.html">3.3.44. Format Strings outside Printf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="printf-name.html">3.3.45. Naming Printf-style Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slice-nil.html">3.3.46. nil is a valid slice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="strconv.html">3.3.47. Prefer strconv over fmt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="string-byte-slice.html">3.3.48. Avoid repeated string-to-byte conversions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="string-escape.html">3.3.49. Use Raw String Literals to Avoid Escaping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="struct-embed.html">3.3.50. Embedding in Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="struct-field-key.html">3.3.51. Use Field Names to Initialize Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="struct-field-zero.html">3.3.52. Omit Zero Value Fields in Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="struct-pointer.html">3.3.53. Initializing Struct References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="struct-tag.html">3.3.54. Use field tags in marshaled structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="struct-zero.html">3.3.55. Use <code class="docutils literal notranslate"><span class="pre">var</span></code> for Zero Value Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test-table.html">3.3.56. Test Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="time.html">3.3.57. Use <code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code> to handle time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="type-assert.html">3.3.58. Handle Type Assertion Failures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="var-decl.html">3.3.59. Local Variable Declarations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="var-scope.html">3.3.60. Reduce Scope of Variables</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.3. C++ 风格指南 - 内容目录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.4. Objective-C 风格指南 - 内容目录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.5. Python 风格指南 - 内容目录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.6. Shell 风格指南 - 内容目录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.7. Javascript 风格指南 - 内容目录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.8. TypeScript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.9. HTML/CSS 风格指南 - 内容目录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Java 风格指南 - 内容目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.4. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.5. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.6. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.7. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.8. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.9. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.10. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.11. Google: Java 风格指南</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
@@ -145,9 +146,9 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3.2. </span>Uber: Go语言规范</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3.2.25. </span>Wait for goroutines to exit</li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 风格指南</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3.3. </span>Uber: Go语言规范</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.3.25. </span>Wait for goroutines to exit</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/style-guides/uber_go/goroutine-exit.md.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -158,7 +159,7 @@
            <div itemprop="articleBody">
              
   <section id="wait-for-goroutines-to-exit">
-<h1><span class="section-number">3.2.25. </span>Wait for goroutines to exit<a class="headerlink" href="#wait-for-goroutines-to-exit" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3.3.25. </span>Wait for goroutines to exit<a class="headerlink" href="#wait-for-goroutines-to-exit" title="Permalink to this heading"></a></h1>
 <p>Given a goroutine spawned by the system,
 there must be a way to wait for the goroutine to exit.
 There are two popular ways to do this:</p>
@@ -199,8 +200,8 @@ Do this if there’s only one goroutine.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="global-name.html" class="btn btn-neutral float-left" title="3.2.24. Prefix Unexported Globals with _" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="goroutine-forget.html" class="btn btn-neutral float-right" title="3.2.26. Don’t fire-and-forget goroutines" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="global-name.html" class="btn btn-neutral float-left" title="3.3.24. Prefix Unexported Globals with _" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="goroutine-forget.html" class="btn btn-neutral float-right" title="3.3.26. Don’t fire-and-forget goroutines" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

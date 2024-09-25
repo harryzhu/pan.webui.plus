@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.1.1. English &mdash; AI 模型国内加速  文档</title>
+  <title>3.2.1. English &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
@@ -24,8 +24,8 @@
     <link rel="author" title="关于这些文档" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="3.2. Uber: Go语言规范" href="../uber_go/index.html" />
-    <link rel="prev" title="3.1. Uber Go语言规范 中文" href="index.html" /> 
+    <link rel="next" title="3.3. Google: Python 风格指南" href="../google-python-styleguide/contents.html" />
+    <link rel="prev" title="3.2. Uber: Go语言 风格指南" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,88 +51,88 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 规范</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">3.1. Uber Go语言规范 中文</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.1. English</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#uber-go">3.1.2. Uber Go 语言编码规范</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">3.1.3. 版本</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">3.1.4. 目录</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">3.1.5. 介绍</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">3.1.6. 指导原则</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#interface">3.1.6.1. 指向 interface 的指针</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">3.1.6.2. Interface 合理性验证</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#receiver">3.1.6.3. 接收器 (receiver) 与接口</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mutex">3.1.6.4. 零值 Mutex 是有效的</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#slices-maps">3.1.6.5. 在边界处拷贝 Slices 和 Maps</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#defer">3.1.6.6. 使用 defer 释放资源</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#channel-size-1">3.1.6.7. Channel 的 size 要么是 1，要么是无缓冲的</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id8">3.1.6.8. 枚举从 1 开始</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#time">3.1.6.9. 使用 time 处理时间</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#errors">3.1.6.10. Errors</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id13">3.1.6.11. 处理断言失败</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#panic">3.1.6.12. 不要使用 panic</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#go-uber-org-atomic">3.1.6.13. 使用 go.uber.org/atomic</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id14">3.1.6.14. 避免可变全局变量</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id15">3.1.6.15. 避免在公共结构中嵌入类型</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id16">3.1.6.16. 避免使用内置名称</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#init">3.1.6.17. 避免使用 <code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id17">3.1.6.18. 追加时优先指定切片容量</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#exit">3.1.6.19. 主函数退出方式 (Exit)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id19">3.1.6.20. 在序列化结构中使用字段标记</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#goroutine">3.1.6.21. 不要一劳永逸地使用 goroutine</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 风格指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/uber_go_style_en.html">3.1. Uber: Go Style Guide - English</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">3.2. Uber: Go语言 风格指南</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.2.1. English</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uber-go">3.2.2. Uber Go 语言编码规范</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">3.2.3. 版本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3.2.4. 目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3.2.5. 介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">3.2.6. 指导原则</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interface">3.2.6.1. 指向 interface 的指针</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.2.6.2. Interface 合理性验证</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#receiver">3.2.6.3. 接收器 (receiver) 与接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mutex">3.2.6.4. 零值 Mutex 是有效的</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#slices-maps">3.2.6.5. 在边界处拷贝 Slices 和 Maps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defer">3.2.6.6. 使用 defer 释放资源</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#channel-size-1">3.2.6.7. Channel 的 size 要么是 1，要么是无缓冲的</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">3.2.6.8. 枚举从 1 开始</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#time">3.2.6.9. 使用 time 处理时间</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#errors">3.2.6.10. Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">3.2.6.11. 处理断言失败</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#panic">3.2.6.12. 不要使用 panic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#go-uber-org-atomic">3.2.6.13. 使用 go.uber.org/atomic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">3.2.6.14. 避免可变全局变量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">3.2.6.15. 避免在公共结构中嵌入类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">3.2.6.16. 避免使用内置名称</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#init">3.2.6.17. 避免使用 <code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">3.2.6.18. 追加时优先指定切片容量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exit">3.2.6.19. 主函数退出方式 (Exit)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">3.2.6.20. 在序列化结构中使用字段标记</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#goroutine">3.2.6.21. 不要一劳永逸地使用 goroutine</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">3.1.7. 性能</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#strconv-fmt">3.1.7.1. 优先使用 strconv 而不是 fmt</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id21">3.1.7.2. 避免字符串到字节的转换</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id22">3.1.7.3. 指定容器容量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">3.2.7. 性能</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#strconv-fmt">3.2.7.1. 优先使用 strconv 而不是 fmt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21">3.2.7.2. 避免字符串到字节的转换</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22">3.2.7.3. 指定容器容量</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id24">3.1.8. 规范</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id25">3.1.8.1. 避免过长的行</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id26">3.1.8.2. 一致性</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id27">3.1.8.3. 相似的声明放在一组</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#import">3.1.8.4. import 分组</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id28">3.1.8.5. 包名</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id29">3.1.8.6. 函数名</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id30">3.1.8.7. 导入别名</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id31">3.1.8.8. 函数分组与顺序</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id32">3.1.8.9. 减少嵌套</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#else">3.1.8.10. 不必要的 else</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id33">3.1.8.11. 顶层变量声明</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id34">3.1.8.12. 对于未导出的顶层常量和变量，使用_作为前缀</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id35">3.1.8.13. 结构体中的嵌入</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id36">3.1.8.14. 本地变量声明</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nil-slice">3.1.8.15. nil 是一个有效的 slice</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id37">3.1.8.16. 缩小变量作用域</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#avoid-naked-parameters">3.1.8.17. 避免参数语义不明确 (Avoid Naked Parameters)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id38">3.1.8.18. 使用原始字符串字面值，避免转义</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id39">3.1.8.19. 初始化结构体</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#maps">3.1.8.20. 初始化 Maps</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#string-format">3.1.8.21. 字符串 string format</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#printf">3.1.8.22. 命名 Printf 样式的函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">3.2.8. 规范</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id25">3.2.8.1. 避免过长的行</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id26">3.2.8.2. 一致性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id27">3.2.8.3. 相似的声明放在一组</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#import">3.2.8.4. import 分组</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">3.2.8.5. 包名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id29">3.2.8.6. 函数名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id30">3.2.8.7. 导入别名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31">3.2.8.8. 函数分组与顺序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id32">3.2.8.9. 减少嵌套</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#else">3.2.8.10. 不必要的 else</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id33">3.2.8.11. 顶层变量声明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id34">3.2.8.12. 对于未导出的顶层常量和变量，使用_作为前缀</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id35">3.2.8.13. 结构体中的嵌入</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id36">3.2.8.14. 本地变量声明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nil-slice">3.2.8.15. nil 是一个有效的 slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id37">3.2.8.16. 缩小变量作用域</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#avoid-naked-parameters">3.2.8.17. 避免参数语义不明确 (Avoid Naked Parameters)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id38">3.2.8.18. 使用原始字符串字面值，避免转义</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id39">3.2.8.19. 初始化结构体</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#maps">3.2.8.20. 初始化 Maps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#string-format">3.2.8.21. 字符串 string format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#printf">3.2.8.22. 命名 Printf 样式的函数</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id42">3.1.9. 编程模式</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id43">3.1.9.1. 表驱动测试</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id44">3.1.9.2. 功能选项</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id42">3.2.9. 编程模式</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id43">3.2.9.1. 表驱动测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id44">3.2.9.2. 功能选项</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#linting">3.1.10. Linting</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#lint-runners">3.1.10.1. Lint Runners</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linting">3.2.10. Linting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lint-runners">3.2.10.1. Lint Runners</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../uber_go/index.html">3.2. Uber: Go语言规范</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.3. C++ 风格指南 - 内容目录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.4. Objective-C 风格指南 - 内容目录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.5. Python 风格指南 - 内容目录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.6. Shell 风格指南 - 内容目录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.7. Javascript 风格指南 - 内容目录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.8. TypeScript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.9. HTML/CSS 风格指南 - 内容目录</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Java 风格指南 - 内容目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
@@ -154,9 +154,9 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 规范</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3.1. </span>Uber Go语言规范 中文</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3.1.1. </span>English</li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 风格指南</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3.2. </span>Uber: Go语言 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.2.1. </span>English</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/style-guides/uber_go_cn/uber_go_cn.md.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -277,14 +277,14 @@ change.md
 # 2023-04-13
 - Errors: 只添加一次错误处理指南
 --><section id="english">
-<h1><span class="section-number">3.1.1. </span><a class="reference external" href="https://github.com/uber-go/guide/blob/master/style.md">English</a><a class="headerlink" href="#english" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3.2.1. </span><a class="reference external" href="https://github.com/uber-go/guide/blob/master/style.md">English</a><a class="headerlink" href="#english" title="Permalink to this heading"></a></h1>
 </section>
 <section id="uber-go">
-<h1><span class="section-number">3.1.2. </span>Uber Go 语言编码规范<a class="headerlink" href="#uber-go" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3.2.2. </span>Uber Go 语言编码规范<a class="headerlink" href="#uber-go" title="Permalink to this heading"></a></h1>
 <p><a class="reference external" href="https://www.uber.com/">Uber</a> 是一家美国硅谷的科技公司，也是 Go 语言的早期 adopter。其开源了很多 golang 项目，诸如被 Gopher 圈熟知的 <a class="reference external" href="https://github.com/uber-go/zap">zap</a>、<a class="reference external" href="https://github.com/jaegertracing/jaeger">jaeger</a> 等。2018 年年末 Uber 将内部的 <a class="reference external" href="https://github.com/uber-go/guide">Go 风格规范</a> 开源到 GitHub，经过一年的积累和更新，该规范已经初具规模，并受到广大 Gopher 的关注。本文是该规范的中文版本。本版本会根据原版实时更新。</p>
 </section>
 <section id="id1">
-<h1><span class="section-number">3.1.3. </span>版本<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3.2.3. </span>版本<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <ul class="simple">
 <li><p>当前更新版本：2024-08-10 版本地址：<a class="reference external" href="https://github.com/uber-go/guide/commit/a66b53bed4ec57c695992b14c4ccaafd49bd5296">commit:#217</a></p></li>
 <li><p>如果您发现任何更新、问题或改进，请随时 fork 和 PR</p></li>
@@ -292,7 +292,7 @@ change.md
 </ul>
 </section>
 <section id="id2">
-<h1><span class="section-number">3.1.4. </span>目录<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3.2.4. </span>目录<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h1>
 <ul class="simple">
 <li><p><a class="reference external" href="#uber-goguide-%E7%9A%84%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91">uber-go/guide 的中文翻译</a></p></li>
 <li><p><a class="reference external" href="#english">English</a></p></li>
@@ -412,7 +412,7 @@ change.md
 </ul>
 </section>
 <section id="id3">
-<h1><span class="section-number">3.1.5. </span>介绍<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3.2.5. </span>介绍<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h1>
 <p>样式 (style) 是支配我们代码的惯例。术语<code class="docutils literal notranslate"><span class="pre">样式</span></code>有点用词不当，因为这些约定涵盖的范围不限于由 gofmt 替我们处理的源文件格式。</p>
 <p>本指南的目的是通过详细描述在 Uber 编写 Go 代码的注意事项来管理这种复杂性。这些规则的存在是为了使代码库易于管理，同时仍然允许工程师更有效地使用 Go 语言功能。</p>
 <p>该指南最初由 <a class="reference external" href="https://github.com/prashantv">Prashant Varanasi</a> 和 <a class="reference external" href="https://github.com/nomis52">Simon Newton</a> 编写，目的是使一些同事能快速使用 Go。多年来，该指南已根据其他人的反馈进行了修改。</p>
@@ -432,9 +432,9 @@ change.md
 <a class="reference external" href="https://go.dev/wiki/IDEsAndTextEditorPlugins">https://go.dev/wiki/IDEsAndTextEditorPlugins</a></p>
 </section>
 <section id="id4">
-<h1><span class="section-number">3.1.6. </span>指导原则<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3.2.6. </span>指导原则<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h1>
 <section id="interface">
-<h2><span class="section-number">3.1.6.1. </span>指向 interface 的指针<a class="headerlink" href="#interface" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.1. </span>指向 interface 的指针<a class="headerlink" href="#interface" title="Permalink to this heading"></a></h2>
 <p>您几乎不需要指向接口类型的指针。您应该将接口作为值进行传递，在这样的传递过程中，实质上传递的底层数据仍然可以是指针。</p>
 <p>接口实质上在底层用两个字段表示：</p>
 <ol class="simple">
@@ -485,7 +485,7 @@ change.md
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">3.1.6.2. </span>Interface 合理性验证<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.2. </span>Interface 合理性验证<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <p>在编译时验证接口的符合性。这包括：</p>
 <ul class="simple">
 <li><p>将实现特定接口的导出类型作为接口 API 的一部分进行检查</p></li>
@@ -545,7 +545,7 @@ change.md
 </div>
 </section>
 <section id="receiver">
-<h2><span class="section-number">3.1.6.3. </span>接收器 (receiver) 与接口<a class="headerlink" href="#receiver" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.3. </span>接收器 (receiver) 与接口<a class="headerlink" href="#receiver" title="Permalink to this heading"></a></h2>
 <p>使用值接收器的方法既可以通过值调用，也可以通过指针调用。</p>
 <p>带指针接收器的方法只能通过指针或 <a class="reference external" href="https://golang.org/ref/spec#Method_values">addressable values</a> 调用。</p>
 <p>例如，</p>
@@ -641,7 +641,7 @@ change.md
 <p>为啥 i = s2Val 会报错，因为值方法集和接口不匹配。</p>
 </section>
 <section id="mutex">
-<h2><span class="section-number">3.1.6.4. </span>零值 Mutex 是有效的<a class="headerlink" href="#mutex" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.4. </span>零值 Mutex 是有效的<a class="headerlink" href="#mutex" title="Permalink to this heading"></a></h2>
 <p>零值 <code class="docutils literal notranslate"><span class="pre">sync.Mutex</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sync.RWMutex</span></code> 是有效的。所以指向 mutex 的指针基本是不必要的。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -705,10 +705,10 @@ change.md
  </td></tr>
  </tbody></table></section>
 <section id="slices-maps">
-<h2><span class="section-number">3.1.6.5. </span>在边界处拷贝 Slices 和 Maps<a class="headerlink" href="#slices-maps" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.5. </span>在边界处拷贝 Slices 和 Maps<a class="headerlink" href="#slices-maps" title="Permalink to this heading"></a></h2>
 <p>slices 和 maps 包含了指向底层数据的指针，因此在需要复制它们时要特别注意。</p>
 <section id="id6">
-<h3><span class="section-number">3.1.6.5.1. </span>接收 Slices 和 Maps<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.6.5.1. </span>接收 Slices 和 Maps<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
 <p>请记住，当 map 或 slice 作为函数参数传入时，如果您存储了对它们的引用，则用户可以对其进行修改。</p>
 <table>
 <thead><tr><th>Bad</th> <th>Good</th></tr></thead>
@@ -742,7 +742,7 @@ change.md
 </tr></tbody>
 </table></section>
 <section id="id7">
-<h3><span class="section-number">3.1.6.5.2. </span>返回 slices 或 maps<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.6.5.2. </span>返回 slices 或 maps<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
 <p>同样，请注意用户对暴露内部状态的 map 或 slice 的修改。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -792,7 +792,7 @@ change.md
 </tbody></table></section>
 </section>
 <section id="defer">
-<h2><span class="section-number">3.1.6.6. </span>使用 defer 释放资源<a class="headerlink" href="#defer" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.6. </span>使用 defer 释放资源<a class="headerlink" href="#defer" title="Permalink to this heading"></a></h2>
 <p>使用 defer 释放资源，诸如文件和锁。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -829,7 +829,7 @@ change.md
 </tbody></table><p>Defer 的开销非常小，只有在您可以证明函数执行时间处于纳秒级的程度时，才应避免这样做。使用 defer 提升可读性是值得的，因为使用它们的成本微不足道。尤其适用于那些不仅仅是简单内存访问的较大的方法，在这些方法中其他计算的资源消耗远超过 <code class="docutils literal notranslate"><span class="pre">defer</span></code>。</p>
 </section>
 <section id="channel-size-1">
-<h2><span class="section-number">3.1.6.7. </span>Channel 的 size 要么是 1，要么是无缓冲的<a class="headerlink" href="#channel-size-1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.7. </span>Channel 的 size 要么是 1，要么是无缓冲的<a class="headerlink" href="#channel-size-1" title="Permalink to this heading"></a></h2>
 <p>channel 通常 size 应为 1 或是无缓冲的。默认情况下，channel 是无缓冲的，其 size 为零。任何其他尺寸都必须经过严格的审查。我们需要考虑如何确定大小，考虑是什么阻止了 channel 在高负载下和阻塞写时的写入，以及当这种情况发生时系统逻辑有哪些变化。(翻译解释：按照原文意思是需要界定通道边界，竞态条件，以及逻辑上下文梳理)</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -847,7 +847,7 @@ change.md
 </td></tr>
 </tbody></table></section>
 <section id="id8">
-<h2><span class="section-number">3.1.6.8. </span>枚举从 1 开始<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.8. </span>枚举从 1 开始<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <p>在 Go 中引入枚举的标准方法是声明一个自定义类型和一个使用了 iota 的 const 组。由于变量的默认值为 0，因此通常应以非零值开头枚举。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -889,7 +889,7 @@ change.md
 </div>
 </section>
 <section id="time">
-<h2><span class="section-number">3.1.6.9. </span>使用 time 处理时间<a class="headerlink" href="#time" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.9. </span>使用 time 处理时间<a class="headerlink" href="#time" title="Permalink to this heading"></a></h2>
 <p>时间处理很复杂。关于时间的错误假设通常包括以下几点。</p>
 <ol class="simple">
 <li><p>一天有 24 小时</p></li>
@@ -901,7 +901,7 @@ change.md
 <p>例如，<em>1</em> 表示在一个时间点上加上 24 小时并不总是产生一个新的日历日。</p>
 <p>因此，在处理时间时始终使用 <a class="reference external" href="https://pkg.go.dev/time/"><code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code></a> 包，因为它有助于以更安全、更准确的方式处理这些不正确的假设。</p>
 <section id="time-time">
-<h3><span class="section-number">3.1.6.9.1. </span>使用 <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> 表达瞬时时间<a class="headerlink" href="#time-time" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.6.9.1. </span>使用 <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> 表达瞬时时间<a class="headerlink" href="#time-time" title="Permalink to this heading"></a></h3>
 <p>在处理时间的瞬间时使用 <a class="reference external" href="https://pkg.go.dev/time/#Time"><code class="docutils literal notranslate"><span class="pre">time.Time</span></code></a>，在比较、添加或减去时间时使用 <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> 中的方法。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -919,7 +919,7 @@ change.md
 </td></tr>
 </tbody></table></section>
 <section id="time-duration">
-<h3><span class="section-number">3.1.6.9.2. </span>使用 <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> 表达时间段<a class="headerlink" href="#time-duration" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.6.9.2. </span>使用 <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> 表达时间段<a class="headerlink" href="#time-duration" title="Permalink to this heading"></a></h3>
 <p>在处理时间段时使用 <a class="reference external" href="https://pkg.go.dev/time/#Duration"><code class="docutils literal notranslate"><span class="pre">time.Duration</span></code></a> .</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -950,7 +950,7 @@ change.md
 </div>
 </section>
 <section id="time-time-time-duration">
-<h3><span class="section-number">3.1.6.9.3. </span>对外部系统使用 <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> 和 <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code><a class="headerlink" href="#time-time-time-duration" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.6.9.3. </span>对外部系统使用 <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> 和 <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code><a class="headerlink" href="#time-time-time-duration" title="Permalink to this heading"></a></h3>
 <p>尽可能在与外部系统的交互中使用 <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> 和 <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> 例如 :</p>
 <ul class="simple">
 <li><p>Command-line 标志: <a class="reference external" href="https://pkg.go.dev/flag/"><code class="docutils literal notranslate"><span class="pre">flag</span></code></a> 通过 <a class="reference external" href="https://pkg.go.dev/time/#ParseDuration"><code class="docutils literal notranslate"><span class="pre">time.ParseDuration</span></code></a> 支持 <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code></p></li>
@@ -981,9 +981,9 @@ change.md
 <!-- TODO: section on String methods for enums --></section>
 </section>
 <section id="errors">
-<h2><span class="section-number">3.1.6.10. </span>Errors<a class="headerlink" href="#errors" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.10. </span>Errors<a class="headerlink" href="#errors" title="Permalink to this heading"></a></h2>
 <section id="id9">
-<h3><span class="section-number">3.1.6.10.1. </span>错误类型<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.6.10.1. </span>错误类型<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
 <p>声明错误的选项很少。
 在选择最适合您的用例的选项之前，请考虑以下事项。</p>
 <ul class="simple">
@@ -1116,7 +1116,7 @@ change.md
 它们将成为包的公共 API 的一部分。</p>
 </section>
 <section id="id10">
-<h3><span class="section-number">3.1.6.10.2. </span>错误包装<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.6.10.2. </span>错误包装<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
 <p>如果调用其他方法时出现错误, 通常有三种处理方式可以选择：</p>
 <ul class="simple">
 <li><p>将原始错误原样返回</p></li>
@@ -1167,7 +1167,7 @@ change.md
 <p>另见 <a class="reference external" href="https://dave.cheney.net/2016/04/27/dont-just-check-errors-handle-them-gracefully">不要只检查错误，优雅地处理它们</a>。</p>
 </section>
 <section id="id11">
-<h3><span class="section-number">3.1.6.10.3. </span>错误命名<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.6.10.3. </span>错误命名<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
 <p>对于存储为全局变量的错误值，
 根据是否导出，使用前缀 <code class="docutils literal notranslate"><span class="pre">Err</span></code> 或 <code class="docutils literal notranslate"><span class="pre">err</span></code>。
 请看指南 <a class="reference external" href="#%E5%AF%B9%E4%BA%8E%E6%9C%AA%E5%AF%BC%E5%87%BA%E7%9A%84%E9%A1%B6%E5%B1%82%E5%B8%B8%E9%87%8F%E5%92%8C%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8_%E4%BD%9C%E4%B8%BA%E5%89%8D%E7%BC%80">对于未导出的顶层常量和变量，使用_作为前缀</a>。</p>
@@ -1206,7 +1206,7 @@ change.md
 </div>
 </section>
 <section id="id12">
-<h3><span class="section-number">3.1.6.10.4. </span>一次处理错误<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.6.10.4. </span>一次处理错误<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h3>
 <p>当调用方从被调用方接收到错误时，它可以根据对错误的了解，以各种不同的方式进行处理。</p>
 <p>其中包括但不限于：</p>
 <ul class="simple">
@@ -1268,7 +1268,7 @@ change.md
 </tbody></table></section>
 </section>
 <section id="id13">
-<h2><span class="section-number">3.1.6.11. </span>处理断言失败<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.11. </span>处理断言失败<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
 <p><a class="reference external" href="https://golang.org/ref/spec#Type_assertions">类型断言</a> 将会在检测到不正确的类型时，以单一返回值形式返回 panic。 因此，请始终使用“逗号 ok”习语。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -1286,7 +1286,7 @@ change.md
 </tbody></table><!-- TODO: There are a few situations where the single assignment form is
 fine. --></section>
 <section id="panic">
-<h2><span class="section-number">3.1.6.12. </span>不要使用 panic<a class="headerlink" href="#panic" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.12. </span>不要使用 panic<a class="headerlink" href="#panic" title="Permalink to this heading"></a></h2>
 <p>在生产环境中运行的代码必须避免出现 panic。panic 是 <a class="reference external" href="https://en.wikipedia.org/wiki/Cascading_failure">级联失败</a> 的主要根源 。如果发生错误，该函数必须返回错误，并允许调用方决定如何处理它。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -1347,7 +1347,7 @@ fine. --></section>
 </td></tr>
 </tbody></table><!-- TODO: Explain how to use _test packages. --></section>
 <section id="go-uber-org-atomic">
-<h2><span class="section-number">3.1.6.13. </span>使用 go.uber.org/atomic<a class="headerlink" href="#go-uber-org-atomic" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.13. </span>使用 go.uber.org/atomic<a class="headerlink" href="#go-uber-org-atomic" title="Permalink to this heading"></a></h2>
 <p>使用 <a class="reference external" href="https://pkg.go.dev/sync/atomic/">sync/atomic</a> 包的原子操作对原始类型 (<code class="docutils literal notranslate"><span class="pre">int32</span></code>, <code class="docutils literal notranslate"><span class="pre">int64</span></code>等）进行操作，因为很容易忘记使用原子操作来读取或修改变量。</p>
 <p><a class="reference external" href="https://pkg.go.dev/go.uber.org/atomic">go.uber.org/atomic</a> 通过隐藏基础类型为这些操作增加了类型安全性。此外，它包括一个方便的<code class="docutils literal notranslate"><span class="pre">atomic.Bool</span></code>类型。</p>
 <table>
@@ -1390,7 +1390,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="id14">
-<h2><span class="section-number">3.1.6.14. </span>避免可变全局变量<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.14. </span>避免可变全局变量<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
 <p>使用选择依赖注入方式避免改变全局变量。
 既适用于函数指针又适用于其他值类型</p>
 <table>
@@ -1444,7 +1444,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="id15">
-<h2><span class="section-number">3.1.6.15. </span>避免在公共结构中嵌入类型<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.15. </span>避免在公共结构中嵌入类型<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
 <p>这些嵌入的类型泄漏实现细节、禁止类型演化和模糊的文档。</p>
 <p>假设您使用共享的 <code class="docutils literal notranslate"><span class="pre">AbstractList</span></code> 实现了多种列表类型，请避免在具体的列表实现中嵌入 <code class="docutils literal notranslate"><span class="pre">AbstractList</span></code>。
 相反，只需手动将方法写入具体的列表，该列表将委托给抽象列表。</p>
@@ -1528,7 +1528,7 @@ fine. --></section>
 <p>尽管编写这些委托方法是乏味的，但是额外的工作隐藏了实现细节，留下了更多的更改机会，还消除了在文档中发现完整列表接口的间接性操作。</p>
 </section>
 <section id="id16">
-<h2><span class="section-number">3.1.6.16. </span>避免使用内置名称<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.16. </span>避免使用内置名称<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h2>
 <p>Go <a class="reference external" href="https://golang.org/ref/spec">语言规范</a> 概述了几个内置的，
 不应在 Go 项目中使用的 <a class="reference external" href="https://golang.org/ref/spec#Predeclared_identifiers">预先声明的标识符</a>。</p>
 <p>根据上下文的不同，将这些标识符作为名称重复使用，
@@ -1595,7 +1595,7 @@ fine. --></section>
 但是诸如<code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">vet</span></code>之类的工具会正确地指出这些和其他情况下的隐式问题。</p>
 </section>
 <section id="init">
-<h2><span class="section-number">3.1.6.17. </span>避免使用 <code class="docutils literal notranslate"><span class="pre">init()</span></code><a class="headerlink" href="#init" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.17. </span>避免使用 <code class="docutils literal notranslate"><span class="pre">init()</span></code><a class="headerlink" href="#init" title="Permalink to this heading"></a></h2>
 <p>尽可能避免使用<code class="docutils literal notranslate"><span class="pre">init()</span></code>。当<code class="docutils literal notranslate"><span class="pre">init()</span></code>是不可避免或可取的，代码应先尝试：</p>
 <ol class="simple">
 <li><p>无论程序环境或调用如何，都要完全确定。</p></li>
@@ -1674,7 +1674,7 @@ fine. --></section>
 </ul>
 </section>
 <section id="id17">
-<h2><span class="section-number">3.1.6.18. </span>追加时优先指定切片容量<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.18. </span>追加时优先指定切片容量<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
 <p>追加时优先指定切片容量</p>
 <p>在尽可能的情况下，在初始化要追加的切片时为<code class="docutils literal notranslate"><span class="pre">make()</span></code>提供一个容量值。</p>
 <table>
@@ -1706,7 +1706,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="exit">
-<h2><span class="section-number">3.1.6.19. </span>主函数退出方式 (Exit)<a class="headerlink" href="#exit" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.19. </span>主函数退出方式 (Exit)<a class="headerlink" href="#exit" title="Permalink to this heading"></a></h2>
 <p>Go 程序使用 <a class="reference external" href="https://pkg.go.dev/os/#Exit"><code class="docutils literal notranslate"><span class="pre">os.Exit</span></code></a> 或者 <a class="reference external" href="https://pkg.go.dev/log/#Fatal"><code class="docutils literal notranslate"><span class="pre">log.Fatal*</span></code></a> 立即退出 (使用<code class="docutils literal notranslate"><span class="pre">panic</span></code>不是退出程序的好方法，请 <a class="reference external" href="#%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8-panic">不要使用 panic</a>。)</p>
 <p><strong>仅在<code class="docutils literal notranslate"><span class="pre">main()</span></code></strong> 中调用其中一个 <code class="docutils literal notranslate"><span class="pre">os.Exit</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">log.Fatal*</span></code>。所有其他函数应将错误返回到信号失败中。</p>
 <table>
@@ -1757,7 +1757,7 @@ fine. --></section>
 <li><p>跳过清理：当函数退出程序时，会跳过已经进入<code class="docutils literal notranslate"><span class="pre">defer</span></code>队列里的函数调用。这增加了跳过重要清理任务的风险。</p></li>
 </ul>
 <section id="id18">
-<h3><span class="section-number">3.1.6.19.1. </span>一次性退出<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.6.19.1. </span>一次性退出<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h3>
 <p>如果可能的话，你的<code class="docutils literal notranslate"><span class="pre">main（）</span></code>函数中 <strong>最多一次</strong> 调用 <code class="docutils literal notranslate"><span class="pre">os.Exit</span></code>或者<code class="docutils literal notranslate"><span class="pre">log.Fatal</span></code>。如果有多个错误场景停止程序执行，请将该逻辑放在单独的函数下并从中返回错误。
 这会缩短 <code class="docutils literal notranslate"><span class="pre">main()</span></code> 函数，并将所有关键业务逻辑放入一个单独的、可测试的函数中。</p>
 <table>
@@ -1842,7 +1842,7 @@ fine. --></section>
 </section>
 </section>
 <section id="id19">
-<h2><span class="section-number">3.1.6.20. </span>在序列化结构中使用字段标记<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.20. </span>在序列化结构中使用字段标记<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h2>
 <p>任何序列化到JSON、YAML、，
 或其他支持基于标记的字段命名的格式应使用相关标记进行注释。</p>
 <table>
@@ -1876,7 +1876,7 @@ fine. --></section>
 它还可以通过重构或重命名字段来防止意外违反约定。</p>
 </section>
 <section id="goroutine">
-<h2><span class="section-number">3.1.6.21. </span>不要一劳永逸地使用 goroutine<a class="headerlink" href="#goroutine" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.6.21. </span>不要一劳永逸地使用 goroutine<a class="headerlink" href="#goroutine" title="Permalink to this heading"></a></h2>
 <p>Goroutines 是轻量级的，但它们不是免费的：
 至少，它们会为堆栈和 CPU 的调度消耗内存。
 虽然这些成本对于 Goroutines 的使用来说很小，但当它们在没有受控生命周期的情况下大量生成时会导致严重的性能问题。
@@ -1930,7 +1930,7 @@ fine. --></section>
 我们可以等待它退出 <code class="docutils literal notranslate"><span class="pre">&lt;-done</span></code>.</p>
 </td></tr>
 </tbody></table><section id="goroutines">
-<h3><span class="section-number">3.1.6.21.1. </span>等待 goroutines 退出<a class="headerlink" href="#goroutines" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.6.21.1. </span>等待 goroutines 退出<a class="headerlink" href="#goroutines" title="Permalink to this heading"></a></h3>
 <p>给定一个由系统生成的 goroutine，
 必须有一种方案能等待 goroutine 的退出。
 有两种常用的方法可以做到这一点：</p>
@@ -1967,7 +1967,7 @@ fine. --></section>
 </ul>
 </section>
 <section id="init-goroutines">
-<h3><span class="section-number">3.1.6.21.2. </span>不要在 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 使用 goroutines<a class="headerlink" href="#init-goroutines" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.6.21.2. </span>不要在 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 使用 goroutines<a class="headerlink" href="#init-goroutines" title="Permalink to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">init()</span></code> 函数不应该产生 goroutines。
 另请参阅 <a class="reference external" href="#%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8-init">避免使用 init()</a>。</p>
 <p>如果一个包需要一个后台 goroutine，
@@ -2023,10 +2023,10 @@ fine. --></section>
 </section>
 </section>
 <section id="id20">
-<h1><span class="section-number">3.1.7. </span>性能<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3.2.7. </span>性能<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h1>
 <p>性能方面的特定准则只适用于高频场景。</p>
 <section id="strconv-fmt">
-<h2><span class="section-number">3.1.7.1. </span>优先使用 strconv 而不是 fmt<a class="headerlink" href="#strconv-fmt" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.7.1. </span>优先使用 strconv 而不是 fmt<a class="headerlink" href="#strconv-fmt" title="Permalink to this heading"></a></h2>
 <p>将原语转换为字符串或从字符串转换时，<code class="docutils literal notranslate"><span class="pre">strconv</span></code>速度比<code class="docutils literal notranslate"><span class="pre">fmt</span></code>快。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -2051,7 +2051,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="id21">
-<h2><span class="section-number">3.1.7.2. </span>避免字符串到字节的转换<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.7.2. </span>避免字符串到字节的转换<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h2>
 <p>不要反复从固定字符串创建字节 slice。相反，请执行一次转换并捕获结果。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -2077,10 +2077,10 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="id22">
-<h2><span class="section-number">3.1.7.3. </span>指定容器容量<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.7.3. </span>指定容器容量<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h2>
 <p>尽可能指定容器容量，以便为容器预先分配内存。这将在添加元素时最小化后续分配（通过复制和调整容器大小）。</p>
 <section id="map">
-<h3><span class="section-number">3.1.7.3.1. </span>指定 Map 容量提示<a class="headerlink" href="#map" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.7.3.1. </span>指定 Map 容量提示<a class="headerlink" href="#map" title="Permalink to this heading"></a></h3>
 <p>在尽可能的情况下，在使用 <code class="docutils literal notranslate"><span class="pre">make()</span></code> 初始化的时候提供容量信息</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="nx">T1</span><span class="p">]</span><span class="nx">T2</span><span class="p">,</span><span class="w"> </span><span class="nx">hint</span><span class="p">)</span>
 </pre></div>
@@ -2113,7 +2113,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="id23">
-<h3><span class="section-number">3.1.7.3.2. </span>指定切片容量<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.7.3.2. </span>指定切片容量<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h3>
 <p>在尽可能的情况下，在使用<code class="docutils literal notranslate"><span class="pre">make()</span></code>初始化切片时提供容量信息，特别是在追加切片时。</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nb">make</span><span class="p">([]</span><span class="nx">T</span><span class="p">,</span><span class="w"> </span><span class="nx">length</span><span class="p">,</span><span class="w"> </span><span class="nx">capacity</span><span class="p">)</span>
 </pre></div>
@@ -2151,9 +2151,9 @@ fine. --></section>
 </section>
 </section>
 <section id="id24">
-<h1><span class="section-number">3.1.8. </span>规范<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3.2.8. </span>规范<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h1>
 <section id="id25">
-<h2><span class="section-number">3.1.8.1. </span>避免过长的行<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.1. </span>避免过长的行<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h2>
 <p>避免使用需要读者水平滚动或过度转动头部的代码行。</p>
 <p>我们建议将行长度限制为 <strong>99 characters</strong> (99 个字符).
 作者应该在达到这个限制之前换行，
@@ -2161,7 +2161,7 @@ fine. --></section>
 允许代码超过此限制。</p>
 </section>
 <section id="id26">
-<h2><span class="section-number">3.1.8.2. </span>一致性<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.2. </span>一致性<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h2>
 <p>本文中概述的一些标准都是客观性的评估，是根据场景、上下文、或者主观性的判断；</p>
 <p>但是最重要的是，<strong>保持一致</strong>.</p>
 <p>一致性的代码更容易维护、是更合理的、需要更少的学习成本、并且随着新的约定出现或者出现错误后更容易迁移、更新、修复 bug</p>
@@ -2169,7 +2169,7 @@ fine. --></section>
 <p>将这些标准应用于代码库时，建议在 package（或更大）级别进行更改，子包级别的应用程序通过将多个样式引入到同一代码中，违反了上述关注点。</p>
 </section>
 <section id="id27">
-<h2><span class="section-number">3.1.8.3. </span>相似的声明放在一组<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.3. </span>相似的声明放在一组<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h2>
 <p>Go 语言支持将相似的声明放在一个组内。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -2294,7 +2294,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="import">
-<h2><span class="section-number">3.1.8.4. </span>import 分组<a class="headerlink" href="#import" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.4. </span>import 分组<a class="headerlink" href="#import" title="Permalink to this heading"></a></h2>
 <p>导入应该分为两组：</p>
 <ul class="simple">
 <li><p>标准库</p></li>
@@ -2324,7 +2324,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="id28">
-<h2><span class="section-number">3.1.8.5. </span>包名<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.5. </span>包名<a class="headerlink" href="#id28" title="Permalink to this heading"></a></h2>
 <p>当命名包时，请按下面规则选择一个名称：</p>
 <ul class="simple">
 <li><p>全部小写。没有大写或下划线。</p></li>
@@ -2336,11 +2336,11 @@ fine. --></section>
 <p>另请参阅 <a class="reference external" href="https://go.dev/blog/package-names">Go 包命名规则</a> 和 <a class="reference external" href="https://rakyll.org/style-packages/">Go 包样式指南</a>.</p>
 </section>
 <section id="id29">
-<h2><span class="section-number">3.1.8.6. </span>函数名<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.6. </span>函数名<a class="headerlink" href="#id29" title="Permalink to this heading"></a></h2>
 <p>我们遵循 Go 社区关于使用 <a class="reference external" href="https://golang.org/doc/effective_go.html#mixed-caps">MixedCaps 作为函数名</a> 的约定。有一个例外，为了对相关的测试用例进行分组，函数名可能包含下划线，如：<code class="docutils literal notranslate"><span class="pre">TestMyFunction_WhatIsBeingTested</span></code>.</p>
 </section>
 <section id="id30">
-<h2><span class="section-number">3.1.8.7. </span>导入别名<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.7. </span>导入别名<a class="headerlink" href="#id30" title="Permalink to this heading"></a></h2>
 <p>如果程序包名称与导入路径的最后一个元素不匹配，则必须使用导入别名。</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
 <span class="w">  </span><span class="s">&quot;net/http&quot;</span>
@@ -2374,7 +2374,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="id31">
-<h2><span class="section-number">3.1.8.8. </span>函数分组与顺序<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.8. </span>函数分组与顺序<a class="headerlink" href="#id31" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>函数应按粗略的调用顺序排序。</p></li>
 <li><p>同一文件中的函数应按接收者分组。</p></li>
@@ -2418,7 +2418,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="id32">
-<h2><span class="section-number">3.1.8.9. </span>减少嵌套<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.9. </span>减少嵌套<a class="headerlink" href="#id32" title="Permalink to this heading"></a></h2>
 <p>代码应通过尽可能先处理错误情况/特殊情况并尽早返回或继续循环来减少嵌套。减少嵌套多个级别的代码的代码量。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -2454,7 +2454,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="else">
-<h2><span class="section-number">3.1.8.10. </span>不必要的 else<a class="headerlink" href="#else" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.10. </span>不必要的 else<a class="headerlink" href="#else" title="Permalink to this heading"></a></h2>
 <p>如果在 if 的两个分支中都设置了变量，则可以将其替换为单个 if。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -2476,7 +2476,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="id33">
-<h2><span class="section-number">3.1.8.11. </span>顶层变量声明<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.11. </span>顶层变量声明<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h2>
 <p>在顶层，使用标准<code class="docutils literal notranslate"><span class="pre">var</span></code>关键字。请勿指定类型，除非它与表达式的类型不同。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -2507,7 +2507,7 @@ fine. --></section>
 </div>
 </section>
 <section id="id34">
-<h2><span class="section-number">3.1.8.12. </span>对于未导出的顶层常量和变量，使用_作为前缀<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.12. </span>对于未导出的顶层常量和变量，使用_作为前缀<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h2>
 <p>在未导出的顶级<code class="docutils literal notranslate"><span class="pre">vars</span></code>和<code class="docutils literal notranslate"><span class="pre">consts</span></code>， 前面加上前缀_，以使它们在使用时明确表示它们是全局符号。</p>
 <p>基本依据：顶级变量和常量具有包范围作用域。使用通用名称可能很容易在其他文件中意外使用错误的值。</p>
 <table>
@@ -2544,7 +2544,7 @@ fine. --></section>
 </tbody></table><p><strong>例外</strong>：未导出的错误值可以使用不带下划线的前缀 <code class="docutils literal notranslate"><span class="pre">err</span></code>。 参见<a class="reference external" href="#%E9%94%99%E8%AF%AF%E5%91%BD%E5%90%8D">错误命名</a>。</p>
 </section>
 <section id="id35">
-<h2><span class="section-number">3.1.8.13. </span>结构体中的嵌入<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.13. </span>结构体中的嵌入<a class="headerlink" href="#id35" title="Permalink to this heading"></a></h2>
 <p>嵌入式类型（例如 mutex）应位于结构体内的字段列表的顶部，并且必须有一个空行将嵌入式字段与常规字段分隔开。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -2650,7 +2650,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="id36">
-<h2><span class="section-number">3.1.8.14. </span>本地变量声明<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.14. </span>本地变量声明<a class="headerlink" href="#id36" title="Permalink to this heading"></a></h2>
 <p>如果将变量明确设置为某个值，则应使用短变量声明形式 (<code class="docutils literal notranslate"><span class="pre">:=</span></code>)。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -2689,7 +2689,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="nil-slice">
-<h2><span class="section-number">3.1.8.15. </span>nil 是一个有效的 slice<a class="headerlink" href="#nil-slice" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.15. </span>nil 是一个有效的 slice<a class="headerlink" href="#nil-slice" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">nil</span></code> 是一个有效的长度为 0 的 slice，这意味着，</p>
 <ul>
 <li><p>您不应明确返回长度为零的切片。应该返回<code class="docutils literal notranslate"><span class="pre">nil</span></code> 来代替。</p>
@@ -2757,7 +2757,7 @@ fine. --></section>
 <p>记住，虽然 nil 切片是有效的切片，但它不等于长度为 0 的切片（一个为 nil，另一个不是），并且在不同的情况下（例如序列化），这两个切片的处理方式可能不同。</p>
 </section>
 <section id="id37">
-<h2><span class="section-number">3.1.8.16. </span>缩小变量作用域<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.16. </span>缩小变量作用域<a class="headerlink" href="#id37" title="Permalink to this heading"></a></h2>
 <p>如果有可能，尽量缩小变量作用范围。除非它与 <a class="reference external" href="#%E5%87%8F%E5%B0%91%E5%B5%8C%E5%A5%97">减少嵌套</a>的规则冲突。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -2807,7 +2807,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="avoid-naked-parameters">
-<h2><span class="section-number">3.1.8.17. </span>避免参数语义不明确 (Avoid Naked Parameters)<a class="headerlink" href="#avoid-naked-parameters" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.17. </span>避免参数语义不明确 (Avoid Naked Parameters)<a class="headerlink" href="#avoid-naked-parameters" title="Permalink to this heading"></a></h2>
 <p>函数调用中的<code class="docutils literal notranslate"><span class="pre">意义不明确的参数</span></code>可能会损害可读性。当参数名称的含义不明显时，请为参数添加 C 样式注释 (<code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">...</span> <span class="pre">*/</span></code>)</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -2844,7 +2844,7 @@ fine. --></section>
 </div>
 </section>
 <section id="id38">
-<h2><span class="section-number">3.1.8.18. </span>使用原始字符串字面值，避免转义<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.18. </span>使用原始字符串字面值，避免转义<a class="headerlink" href="#id38" title="Permalink to this heading"></a></h2>
 <p>Go 支持使用 <a class="reference external" href="https://golang.org/ref/spec#raw_string_lit">原始字符串字面值</a>，也就是 “ ` “ 来表示原生字符串，在需要转义的场景下，我们应该尽量使用这种方案来替换。</p>
 <p>可以跨越多行并包含引号。使用这些字符串可以避免更难阅读的手工转义的字符串。</p>
 <table>
@@ -2859,9 +2859,9 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="id39">
-<h2><span class="section-number">3.1.8.19. </span>初始化结构体<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.19. </span>初始化结构体<a class="headerlink" href="#id39" title="Permalink to this heading"></a></h2>
 <section id="id40">
-<h3><span class="section-number">3.1.8.19.1. </span>使用字段名初始化结构<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.8.19.1. </span>使用字段名初始化结构<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h3>
 <p>初始化结构时，几乎应该始终指定字段名。目前由 <a class="reference external" href="https://golang.org/cmd/vet/"><code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">vet</span></code></a> 强制执行。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -2889,7 +2889,7 @@ fine. --></section>
 </div>
 </section>
 <section id="id41">
-<h3><span class="section-number">3.1.8.19.2. </span>省略结构中的零值字段<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.8.19.2. </span>省略结构中的零值字段<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h3>
 <p>初始化具有字段名的结构时，除非提供有意义的上下文，否则忽略值为零的字段。
 也就是，让我们自动将这些设置为零值</p>
 <table>
@@ -2923,7 +2923,7 @@ fine. --></section>
 </div>
 </section>
 <section id="var">
-<h3><span class="section-number">3.1.8.19.3. </span>对零值结构使用 <code class="docutils literal notranslate"><span class="pre">var</span></code><a class="headerlink" href="#var" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.8.19.3. </span>对零值结构使用 <code class="docutils literal notranslate"><span class="pre">var</span></code><a class="headerlink" href="#var" title="Permalink to this heading"></a></h3>
 <p>如果在声明中省略了结构的所有字段，请使用 <code class="docutils literal notranslate"><span class="pre">var</span></code> 声明结构。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -2939,7 +2939,7 @@ fine. --></section>
 我们倾向于<a class="reference external" href="https://go.dev/wiki/CodeReviewComments#declaring-empty-slices">声明一个空切片</a></p>
 </section>
 <section id="struct">
-<h3><span class="section-number">3.1.8.19.4. </span>初始化 Struct 引用<a class="headerlink" href="#struct" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">3.2.8.19.4. </span>初始化 Struct 引用<a class="headerlink" href="#struct" title="Permalink to this heading"></a></h3>
 <p>在初始化结构引用时，请使用<code class="docutils literal notranslate"><span class="pre">&amp;T{}</span></code>代替<code class="docutils literal notranslate"><span class="pre">new(T)</span></code>，以使其与结构体初始化一致。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -2960,7 +2960,7 @@ fine. --></section>
 </tbody></table></section>
 </section>
 <section id="maps">
-<h2><span class="section-number">3.1.8.20. </span>初始化 Maps<a class="headerlink" href="#maps" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.20. </span>初始化 Maps<a class="headerlink" href="#maps" title="Permalink to this heading"></a></h2>
 <p>对于空 map 请使用 <code class="docutils literal notranslate"><span class="pre">make(..)</span></code> 初始化， 并且 map 是通过编程方式填充的。
 这使得 map 初始化在表现上不同于声明，并且它还可以方便地在 make 后添加大小提示。</p>
 <table>
@@ -3008,7 +3008,7 @@ fine. --></section>
 </tbody></table><p>基本准则是：在初始化时使用 map 初始化列表 来添加一组固定的元素。否则使用 <code class="docutils literal notranslate"><span class="pre">make</span></code> (如果可以，请尽量指定 map 容量)。</p>
 </section>
 <section id="string-format">
-<h2><span class="section-number">3.1.8.21. </span>字符串 string format<a class="headerlink" href="#string-format" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.21. </span>字符串 string format<a class="headerlink" href="#string-format" title="Permalink to this heading"></a></h2>
 <p>如果你在函数外声明<code class="docutils literal notranslate"><span class="pre">Printf</span></code>-style 函数的格式字符串，请将其设置为<code class="docutils literal notranslate"><span class="pre">const</span></code>常量。</p>
 <p>这有助于<code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">vet</span></code>对格式字符串执行静态分析。</p>
 <table>
@@ -3025,7 +3025,7 @@ fine. --></section>
 </td></tr>
 </tbody></table></section>
 <section id="printf">
-<h2><span class="section-number">3.1.8.22. </span>命名 Printf 样式的函数<a class="headerlink" href="#printf" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.8.22. </span>命名 Printf 样式的函数<a class="headerlink" href="#printf" title="Permalink to this heading"></a></h2>
 <p>声明<code class="docutils literal notranslate"><span class="pre">Printf</span></code>-style 函数时，请确保<code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">vet</span></code>可以检测到它并检查格式字符串。</p>
 <p>这意味着您应尽可能使用预定义的<code class="docutils literal notranslate"><span class="pre">Printf</span></code>-style 函数名称。<code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">vet</span></code>将默认检查这些。有关更多信息，请参见 <a class="reference external" href="https://golang.org/cmd/vet/#hdr-Printf_family">Printf 系列</a>。</p>
 <p>如果不能使用预定义的名称，请以 f 结束选择的名称：<code class="docutils literal notranslate"><span class="pre">Wrapf</span></code>，而不是<code class="docutils literal notranslate"><span class="pre">Wrap</span></code>。<code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">vet</span></code>可以要求检查特定的 Printf 样式名称，但名称必须以<code class="docutils literal notranslate"><span class="pre">f</span></code>结尾。</p>
@@ -3036,9 +3036,9 @@ fine. --></section>
 </section>
 </section>
 <section id="id42">
-<h1><span class="section-number">3.1.9. </span>编程模式<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3.2.9. </span>编程模式<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h1>
 <section id="id43">
-<h2><span class="section-number">3.1.9.1. </span>表驱动测试<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.9.1. </span>表驱动测试<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h2>
 <p>当测试逻辑是重复的时候，通过  <a class="reference external" href="https://go.dev/blog/subtests">subtests</a> 使用 table 驱动的方式编写 case 代码看上去会更简洁。</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -3142,7 +3142,7 @@ fine. --></section>
 如果我们不这样做，大多数或所有测试都会收到一个意外的<code class="docutils literal notranslate"><span class="pre">tt</span></code>值，或者一个在运行时发生变化的值。</p>
 </section>
 <section id="id44">
-<h2><span class="section-number">3.1.9.2. </span>功能选项<a class="headerlink" href="#id44" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.9.2. </span>功能选项<a class="headerlink" href="#id44" title="Permalink to this heading"></a></h2>
 <p>功能选项是一种模式，您可以在其中声明一个不透明 Option 类型，该类型在某些内部结构中记录信息。您接受这些选项的可变编号，并根据内部结构上的选项记录的全部信息采取行动。</p>
 <p>将此模式用于您需要扩展的构造函数和其他公共 API 中的可选参数，尤其是在这些功能上已经具有三个或更多参数的情况下。</p>
 <table>
@@ -3262,7 +3262,7 @@ fine. --></section>
 use one vs other --></section>
 </section>
 <section id="linting">
-<h1><span class="section-number">3.1.10. </span>Linting<a class="headerlink" href="#linting" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">3.2.10. </span>Linting<a class="headerlink" href="#linting" title="Permalink to this heading"></a></h1>
 <p>比任何 “blessed” linter 集更重要的是，lint 在一个代码库中始终保持一致。</p>
 <p>我们建议至少使用以下 linters，因为我认为它们有助于发现最常见的问题，并在不需要规定的情况下为代码质量建立一个高标准：</p>
 <ul class="simple">
@@ -3273,7 +3273,7 @@ use one vs other --></section>
 <li><p><a class="reference external" href="https://staticcheck.io/">staticcheck</a> 各种静态分析检查</p></li>
 </ul>
 <section id="lint-runners">
-<h2><span class="section-number">3.1.10.1. </span>Lint Runners<a class="headerlink" href="#lint-runners" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">3.2.10.1. </span>Lint Runners<a class="headerlink" href="#lint-runners" title="Permalink to this heading"></a></h2>
 <p>我们推荐 <a class="reference external" href="https://github.com/golangci/golangci-lint">golangci-lint</a> 作为 go-to lint 的运行程序，这主要是因为它在较大的代码库中的性能以及能够同时配置和使用许多规范。这个 repo 有一个示例配置文件 <a class="reference external" href="https://github.com/uber-go/guide/blob/master/.golangci.yml">.golangci.yml</a> 和推荐的 linter 设置。</p>
 <p>golangci-lint 有 <a class="reference external" href="https://golangci-lint.run/usage/linters/">various-linters</a> 可供使用。建议将上述 linters 作为基本 set，我们鼓励团队添加对他们的项目有意义的任何附加 linters。</p>
 </section>
@@ -3283,8 +3283,8 @@ use one vs other --></section>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="index.html" class="btn btn-neutral float-left" title="3.1. Uber Go语言规范 中文" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="../uber_go/index.html" class="btn btn-neutral float-right" title="3.2. Uber: Go语言规范" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="3.2. Uber: Go语言 风格指南" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../google-python-styleguide/contents.html" class="btn btn-neutral float-right" title="3.3. Google: Python 风格指南" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

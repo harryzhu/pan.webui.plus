@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Use &#34;time&#34; to handle time &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../../about.html" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">3. 编程语言 风格指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coding/index.html">4. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheet/index.html">5. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">6. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Use <code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code> to handle time</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/style-guides/uber_go/chapters/time.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="use-time-to-handle-time">
+<h1>Use <code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code> to handle time<a class="headerlink" href="#use-time-to-handle-time" title="Permalink to this heading"></a></h1>
+<p>Time is complicated. Incorrect assumptions often made about time include the
+following.</p>
+<ol class="simple">
+<li><p>A day has 24 hours</p></li>
+<li><p>An hour has 60 minutes</p></li>
+<li><p>A week has 7 days</p></li>
+<li><p>A year has 365 days</p></li>
+<li><p><a class="reference external" href="https://infiniteundo.com/post/25326999628/falsehoods-programmers-believe-about-time">And a lot more</a></p></li>
+</ol>
+<p>For example, <em>1</em> means that adding 24 hours to a time instant will not always
+yield a new calendar day.</p>
+<p>Therefore, always use the <a class="reference external" href="https://pkg.go.dev/time"><code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code></a> package when dealing with time because it
+helps deal with these incorrect assumptions in a safer, more accurate manner.</p>
+<section id="use-time-time-for-instants-of-time">
+<h2>Use <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> for instants of time<a class="headerlink" href="#use-time-time-for-instants-of-time" title="Permalink to this heading"></a></h2>
+<p>Use <a class="reference external" href="https://pkg.go.dev/time#Time"><code class="docutils literal notranslate"><span class="pre">time.Time</span></code></a> when dealing with instants of time, and the methods on
+<code class="docutils literal notranslate"><span class="pre">time.Time</span></code> when comparing, adding, or subtracting time.</p>
+<table>
+<thead><tr><th>Bad</th><th>Good</th></tr></thead>
+<tbody>
+<tr><td><div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">isActive</span><span class="p">(</span><span class="nx">now</span><span class="p">,</span><span class="w"> </span><span class="nx">start</span><span class="p">,</span><span class="w"> </span><span class="nx">stop</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">stop</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td><td><div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">isActive</span><span class="p">(</span><span class="nx">now</span><span class="p">,</span><span class="w"> </span><span class="nx">start</span><span class="p">,</span><span class="w"> </span><span class="nx">stop</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">)</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="nx">start</span><span class="p">.</span><span class="nx">Before</span><span class="p">(</span><span class="nx">now</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">start</span><span class="p">.</span><span class="nx">Equal</span><span class="p">(</span><span class="nx">now</span><span class="p">))</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">now</span><span class="p">.</span><span class="nx">Before</span><span class="p">(</span><span class="nx">stop</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td></tr>
+</tbody></table></section>
+<section id="use-time-duration-for-periods-of-time">
+<h2>Use <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> for periods of time<a class="headerlink" href="#use-time-duration-for-periods-of-time" title="Permalink to this heading"></a></h2>
+<p>Use <a class="reference external" href="https://pkg.go.dev/time#Duration"><code class="docutils literal notranslate"><span class="pre">time.Duration</span></code></a> when dealing with periods of time.</p>
+<table>
+<thead><tr><th>Bad</th><th>Good</th></tr></thead>
+<tbody>
+<tr><td><div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">poll</span><span class="p">(</span><span class="nx">delay</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">(</span><span class="nx">delay</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">poll</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="c1">// was it seconds or milliseconds?</span>
+</pre></div>
+</div>
+</td><td><div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">poll</span><span class="p">(</span><span class="nx">delay</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">delay</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">poll</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</pre></div>
+</div>
+</td></tr>
+</tbody></table><p>Going back to the example of adding 24 hours to a time instant, the method we
+use to add time depends on intent. If we want the same time of the day, but on
+the next calendar day, we should use <a class="reference external" href="https://pkg.go.dev/time#Time.AddDate"><code class="docutils literal notranslate"><span class="pre">Time.AddDate</span></code></a>. However, if we want an
+instant of time guaranteed to be 24 hours after the previous time, we should
+use <a class="reference external" href="https://pkg.go.dev/time#Time.Add"><code class="docutils literal notranslate"><span class="pre">Time.Add</span></code></a>.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">newDay</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">t</span><span class="p">.</span><span class="nx">AddDate</span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="cm">/* years */</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="cm">/* months */</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="cm">/* days */</span><span class="p">)</span>
+<span class="nx">maybeNewDay</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">t</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="mi">24</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Hour</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="use-time-time-and-time-duration-with-external-systems">
+<h2>Use <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> and <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> with external systems<a class="headerlink" href="#use-time-time-and-time-duration-with-external-systems" title="Permalink to this heading"></a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> and <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> in interactions with external systems when
+possible. For example:</p>
+<ul class="simple">
+<li><p>Command-line flags: <a class="reference external" href="https://pkg.go.dev/flag"><code class="docutils literal notranslate"><span class="pre">flag</span></code></a> supports <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> via
+<a class="reference external" href="https://pkg.go.dev/time#ParseDuration"><code class="docutils literal notranslate"><span class="pre">time.ParseDuration</span></code></a></p></li>
+<li><p>JSON: <a class="reference external" href="https://pkg.go.dev/encoding/json"><code class="docutils literal notranslate"><span class="pre">encoding/json</span></code></a> supports encoding <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> as an <a class="reference external" href="https://tools.ietf.org/html/rfc3339">RFC 3339</a>
+string via its <a class="reference external" href="https://pkg.go.dev/time#Time.UnmarshalJSON"><code class="docutils literal notranslate"><span class="pre">UnmarshalJSON</span></code> method</a></p></li>
+<li><p>SQL: <a class="reference external" href="https://pkg.go.dev/database/sql"><code class="docutils literal notranslate"><span class="pre">database/sql</span></code></a> supports converting <code class="docutils literal notranslate"><span class="pre">DATETIME</span></code> or <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> columns
+into <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> and back if the underlying driver supports it</p></li>
+<li><p>YAML: <a class="reference external" href="https://pkg.go.dev/gopkg.in/yaml.v2"><code class="docutils literal notranslate"><span class="pre">gopkg.in/yaml.v2</span></code></a> supports <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> as an <a class="reference external" href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> string, and
+<code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> via <a class="reference external" href="https://pkg.go.dev/time#ParseDuration"><code class="docutils literal notranslate"><span class="pre">time.ParseDuration</span></code></a>.</p></li>
+</ul>
+<p>When it is not possible to use <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> in these interactions, use
+<code class="docutils literal notranslate"><span class="pre">int</span></code> or <code class="docutils literal notranslate"><span class="pre">float64</span></code> and include the unit in the name of the field.</p>
+<p>For example, since <code class="docutils literal notranslate"><span class="pre">encoding/json</span></code> does not support <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code>, the unit
+is included in the name of the field.</p>
+<table>
+<thead><tr><th>Bad</th><th>Good</th></tr></thead>
+<tbody>
+<tr><td><div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// {&quot;interval&quot;: 2}</span>
+<span class="kd">type</span><span class="w"> </span><span class="nx">Config</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">Interval</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="s">`json:&quot;interval&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td><td><div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// {&quot;intervalMillis&quot;: 2000}</span>
+<span class="kd">type</span><span class="w"> </span><span class="nx">Config</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">IntervalMillis</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="s">`json:&quot;intervalMillis&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td></tr>
+</tbody></table><p>When it is not possible to use <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> in these interactions, unless an
+alternative is agreed upon, use <code class="docutils literal notranslate"><span class="pre">string</span></code> and format timestamps as defined in
+<a class="reference external" href="https://tools.ietf.org/html/rfc3339">RFC 3339</a>. This format is used by default by <a class="reference external" href="https://pkg.go.dev/time#Time.UnmarshalText"><code class="docutils literal notranslate"><span class="pre">Time.UnmarshalText</span></code></a> and is
+available for use in <code class="docutils literal notranslate"><span class="pre">Time.Format</span></code> and <code class="docutils literal notranslate"><span class="pre">time.Parse</span></code> via <a class="reference external" href="https://pkg.go.dev/time#RFC3339"><code class="docutils literal notranslate"><span class="pre">time.RFC3339</span></code></a>.</p>
+<p>Although this tends to not be a problem in practice, keep in mind that the
+<code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code> package does not support parsing timestamps with leap seconds
+(<a class="reference external" href="https://github.com/golang/go/issues/8728">8728</a>), nor does it account for leap seconds in calculations (<a class="reference external" href="https://github.com/golang/go/issues/15190">15190</a>). If
+you compare two instants of time, the difference will not include the leap
+seconds that may have occurred between those two instants.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>
