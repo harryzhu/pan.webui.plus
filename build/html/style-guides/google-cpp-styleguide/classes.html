@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.8.4. 3. 类 &mdash; AI 模型国内加速  文档</title>
+  <title>4.8.4. 3. 类 &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
@@ -24,8 +24,8 @@
     <link rel="author" title="关于这些文档" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="3.8.5. 4. 函数" href="functions.html" />
-    <link rel="prev" title="3.8.3. 2. 作用域" href="scoping.html" /> 
+    <link rel="next" title="4.8.5. 4. 函数" href="functions.html" />
+    <link rel="prev" title="4.8.3. 2. 作用域" href="scoping.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,48 +51,49 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 风格指南</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_style_en.html">3.2. Uber Go Style Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.8. Google: C++ 风格指南</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="index.html">3.8.1. 扉页</a></li>
-<li class="toctree-l3"><a class="reference internal" href="headers.html">3.8.2. 1. 头文件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scoping.html">3.8.3. 2. 作用域</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">3.8.4. 3. 类</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">3.8.4.1. 3.1. 构造函数的内部操作</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#implicit-conversions">3.8.4.2. 3.2. 隐式类型转换</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#copyable-and-movable-types">3.8.4.3. 3.3. 可拷贝类型和可移动类型</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#structs-vs-classes">3.8.4.4. 3.4. 结构体还是类</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#structs-vs-pairs-and-tuples">3.8.4.5. 3.5. 结构体、数对还是元组</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#inheritance">3.8.4.6. 3.6. 继承</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#operator-overloading">3.8.4.7. 3.7. 运算符重载</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#access-control">3.8.4.8. 3.8. 访问控制</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#declaration-order">3.8.4.9. 3.9. 声明次序</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#yulefox">3.8.4.10. 译者 (YuleFox) 笔记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytorch-guides/index.html">3. Pytorch 教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 风格指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/uber_go_style_en.html">4.1. Uber: Go Style Guide - English</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">4.2. Uber: Go语言 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">4.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">4.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">4.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">4.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">4.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">4.8. Google: C++ 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html">4.8.1. 扉页</a></li>
+<li class="toctree-l3"><a class="reference internal" href="headers.html">4.8.2. 1. 头文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scoping.html">4.8.3. 2. 作用域</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.8.4. 3. 类</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">4.8.4.1. 3.1. 构造函数的内部操作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implicit-conversions">4.8.4.2. 3.2. 隐式类型转换</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#copyable-and-movable-types">4.8.4.3. 3.3. 可拷贝类型和可移动类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structs-vs-classes">4.8.4.4. 3.4. 结构体还是类</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structs-vs-pairs-and-tuples">4.8.4.5. 3.5. 结构体、数对还是元组</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inheritance">4.8.4.6. 3.6. 继承</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#operator-overloading">4.8.4.7. 3.7. 运算符重载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#access-control">4.8.4.8. 3.8. 访问控制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#declaration-order">4.8.4.9. 3.9. 声明次序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#yulefox">4.8.4.10. 译者 (YuleFox) 笔记</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="functions.html">3.8.5. 4. 函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="magic.html">3.8.6. 5. 来自 Google 的奇技</a></li>
-<li class="toctree-l3"><a class="reference internal" href="others.html">3.8.7. 6. 其他 C++ 特性</a></li>
-<li class="toctree-l3"><a class="reference internal" href="naming.html">3.8.8. 7. 命名约定</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comments.html">3.8.9. 8. 注释</a></li>
-<li class="toctree-l3"><a class="reference internal" href="formatting.html">3.8.10. 9. 格式</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exceptions.html">3.8.11. 10. 规则特例</a></li>
-<li class="toctree-l3"><a class="reference internal" href="end.html">3.8.12. 11. 结束语</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions.html">4.8.5. 4. 函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="magic.html">4.8.6. 5. 来自 Google 的奇技</a></li>
+<li class="toctree-l3"><a class="reference internal" href="others.html">4.8.7. 6. 其他 C++ 特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html">4.8.8. 7. 命名约定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html">4.8.9. 8. 注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formatting.html">4.8.10. 9. 格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exceptions.html">4.8.11. 10. 规则特例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="end.html">4.8.12. 11. 结束语</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">4.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">4.10. Google: Java 风格指南</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">7. 关于</a></li>
 </ul>
 
         </div>
@@ -109,9 +110,9 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 风格指南</a></li>
-          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.8. </span>Google: C++ 风格指南</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3.8.4. </span>3. 类</li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 风格指南</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">4.8. </span>Google: C++ 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.8.4. </span>3. 类</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/style-guides/google-cpp-styleguide/classes.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -122,10 +123,10 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">3.8.4. </span>3. 类<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">4.8.4. </span>3. 类<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <p>类 (class) 是 C++ 中最基本的代码单元. 因此，类在 C++ 中被广泛使用. 本节将列出编写类时需要注意的事项.</p>
 <section id="id2">
-<h2><span class="section-number">3.8.4.1. </span>3.1. 构造函数的内部操作<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.4.1. </span>3.1. 构造函数的内部操作<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>构造函数 (constructor) 中不得调用虚函数 (virtual method). 不要在没有错误处理机制的情况下进行可能失败的初始化.</p>
@@ -156,7 +157,7 @@
 </div></blockquote>
 </section>
 <section id="implicit-conversions">
-<span id="id4"></span><h2><span class="section-number">3.8.4.2. </span>3.2. 隐式类型转换<a class="headerlink" href="#implicit-conversions" title="Permalink to this heading"></a></h2>
+<span id="id4"></span><h2><span class="section-number">4.8.4.2. </span>3.2. 隐式类型转换<a class="headerlink" href="#implicit-conversions" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>不要定义隐式类型转换. 定义类型转换运算符和单个参数的构造函数时, 请使用 <code class="docutils literal notranslate"><span class="pre">explicit</span></code> 关键字 (keyword).</p>
@@ -204,7 +205,7 @@
 </div></blockquote>
 </section>
 <section id="copyable-and-movable-types">
-<span id="id5"></span><h2><span class="section-number">3.8.4.3. </span>3.3. 可拷贝类型和可移动类型<a class="headerlink" href="#copyable-and-movable-types" title="Permalink to this heading"></a></h2>
+<span id="id5"></span><h2><span class="section-number">4.8.4.3. </span>3.3. 可拷贝类型和可移动类型<a class="headerlink" href="#copyable-and-movable-types" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>类的公有接口必须明确指明该类是可拷贝的、仅可移动的、还是既不可拷贝也不可移动的. 如果该类型的复制和移动操作有明确的语义并且有用，则应该支持这些操作.</p>
@@ -272,7 +273,7 @@
 <p>为了避免对象切割的风险, 基类最好是抽象 (abstract) 类. 若要声明抽象类, 可以将构造函数或析构函数声明为 <code class="docutils literal notranslate"><span class="pre">protected</span></code>, 或者声明纯虚 (pure virtual) 成员函数. 尽量避免继承一个具体类 (concrete class).</p>
 </section>
 <section id="structs-vs-classes">
-<span id="id7"></span><h2><span class="section-number">3.8.4.4. </span>3.4. 结构体还是类<a class="headerlink" href="#structs-vs-classes" title="Permalink to this heading"></a></h2>
+<span id="id7"></span><h2><span class="section-number">4.8.4.4. </span>3.4. 结构体还是类<a class="headerlink" href="#structs-vs-classes" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>只能用 <code class="docutils literal notranslate"><span class="pre">struct</span></code> 定义那些用于储存数据的被动对象. 其他情况应该使用 <code class="docutils literal notranslate"><span class="pre">class</span></code>.</p>
@@ -284,7 +285,7 @@
 <p>注意, 类和结构体的成员变量具有不同的 <a class="reference internal" href="naming.html#variable-names"><span class="std std-ref">命名规则</span></a>.</p>
 </section>
 <section id="structs-vs-pairs-and-tuples">
-<span id="id8"></span><h2><span class="section-number">3.8.4.5. </span>3.5. 结构体、数对还是元组<a class="headerlink" href="#structs-vs-pairs-and-tuples" title="Permalink to this heading"></a></h2>
+<span id="id8"></span><h2><span class="section-number">4.8.4.5. </span>3.5. 结构体、数对还是元组<a class="headerlink" href="#structs-vs-pairs-and-tuples" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>如果可以给成员起一个有意义的名字, 应该用结构体而不是数对 (pair) 或元组 (tuple).</p>
@@ -293,7 +294,7 @@
 <p>数对和元组适合通用代码, 因为其中的元素没有特定含义. 与现有代码或 API 交互时也可能需要它们.</p>
 </section>
 <section id="inheritance">
-<span id="id9"></span><h2><span class="section-number">3.8.4.6. </span>3.6. 继承<a class="headerlink" href="#inheritance" title="Permalink to this heading"></a></h2>
+<span id="id9"></span><h2><span class="section-number">4.8.4.6. </span>3.6. 继承<a class="headerlink" href="#inheritance" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>通常情况下, 组合 (composition) 比继承 (inheritance) 更合适. 请使用 <code class="docutils literal notranslate"><span class="pre">public</span></code> 继承.</p>
@@ -313,7 +314,7 @@
 <p>允许多重继承, 但强烈建议避免多重实现继承.</p>
 </section>
 <section id="operator-overloading">
-<span id="id10"></span><h2><span class="section-number">3.8.4.7. </span>3.7. 运算符重载<a class="headerlink" href="#operator-overloading" title="Permalink to this heading"></a></h2>
+<span id="id10"></span><h2><span class="section-number">4.8.4.7. </span>3.7. 运算符重载<a class="headerlink" href="#operator-overloading" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>谨慎使用运算符重载 (overload). 禁止自定义字面量 (user-defined literal).</p>
@@ -346,7 +347,7 @@
 <p>类型转换运算符的内容参见 <a class="reference internal" href="#implicit-conversions"><span class="std std-ref">隐式类型转换</span></a>. <code class="docutils literal notranslate"><span class="pre">=</span></code> 运算符的内容参见 <a class="reference internal" href="#copyable-and-movable-types"><span class="std std-ref">拷贝构造函数</span></a>. 关于重载用于流 (stream) 操作的 <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> 运算符, 参见 <a class="reference internal" href="others.html#streams"><span class="std std-ref">流</span></a>. 另请参阅 <a class="reference internal" href="others.html#function-overloading"><span class="std std-ref">函数重载</span></a> 的规则, 这些规则也适用于运算符重载.</p>
 </section>
 <section id="access-control">
-<span id="id12"></span><h2><span class="section-number">3.8.4.8. </span>3.8. 访问控制<a class="headerlink" href="#access-control" title="Permalink to this heading"></a></h2>
+<span id="id12"></span><h2><span class="section-number">4.8.4.8. </span>3.8. 访问控制<a class="headerlink" href="#access-control" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>类的 <em>所有</em> 数据成员应该声明为私有 (private), 除非是常量. 这样做可以简化类的不变式 (invariant) 逻辑, 代价是需要增加一些冗余的访问器 (accessor) 代码 (通常是 const 方法).</p>
@@ -354,7 +355,7 @@
 <p>由于技术原因, 在使用 <a class="reference external" href="https://github.com/google/googletest">Google Test</a> 时, 我们允许在 <code class="docutils literal notranslate"><span class="pre">.cc</span></code> 文件中将测试夹具类 (test fixture class) 的数据成员声明为受保护的 (protected). 如果测试夹具类的声明位于使用该夹具的 <code class="docutils literal notranslate"><span class="pre">.cc</span></code> 文件之外 (例如在 <code class="docutils literal notranslate"><span class="pre">.h</span></code> 文件中), 则应该将数据成员设为私有.</p>
 </section>
 <section id="declaration-order">
-<span id="id13"></span><h2><span class="section-number">3.8.4.9. </span>3.9. 声明次序<a class="headerlink" href="#declaration-order" title="Permalink to this heading"></a></h2>
+<span id="id13"></span><h2><span class="section-number">4.8.4.9. </span>3.9. 声明次序<a class="headerlink" href="#declaration-order" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>将相似的声明放在一起. 公有 (public) 部分放在最前面.</p>
@@ -374,7 +375,7 @@
 <p>不要在类定义中放置大段的函数定义. 通常, 只有简单、对性能至关重要且非常简短的方法可以声明为内联函数. 参见 <a class="reference internal" href="headers.html#inline-functions"><span class="std std-ref">内联函数</span></a> 一节.</p>
 </section>
 <section id="yulefox">
-<h2><span class="section-number">3.8.4.10. </span>译者 (YuleFox) 笔记<a class="headerlink" href="#yulefox" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.4.10. </span>译者 (YuleFox) 笔记<a class="headerlink" href="#yulefox" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>不在构造函数中做太多逻辑相关的初始化;</p></li>
 <li><p>编译器提供的默认构造函数不会对变量进行初始化, 如果定义了其他构造函数, 编译器不再提供, 需要编码者自行提供默认构造函数;</p></li>
@@ -396,8 +397,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="scoping.html" class="btn btn-neutral float-left" title="3.8.3. 2. 作用域" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="functions.html" class="btn btn-neutral float-right" title="3.8.5. 4. 函数" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="scoping.html" class="btn btn-neutral float-left" title="4.8.3. 2. 作用域" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="functions.html" class="btn btn-neutral float-right" title="4.8.5. 4. 函数" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

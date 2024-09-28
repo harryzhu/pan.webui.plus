@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.16. 2.2 深度学习基础及数学原理 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../../about.html" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="3.1.17. 2.3 神经网络简介" href="2.3-deep-learning-neural-network-introduction.html" />
+    <link rel="prev" title="3.1.15. PyTorch 基础 :数据的加载和预处理" href="2.1.4-pytorch-basics-data-loader.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">3. Pytorch 教程</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">3.1. Pytorch 快速入门</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.1-pytorch-introduction.html">3.1.1. 1.1 Pytorch 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html">3.1.2. 1.2 Pytorch环境搭建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html#id1">3.1.3. 1.2.1 安装Pytorch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.3-deep-learning-with-pytorch-60-minute-blitz.html">3.1.4. PyTorch 深度学习:60分钟快速入门 （官方）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.4-pytorch-resource.html">3.1.5. 相关资源列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1_tensor_tutorial.html">3.1.6. PyTorch是什么?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/2_autograd_tutorial.html">3.1.7. Autograd: 自动求导机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/3_neural_networks_tutorial.html">3.1.8. Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/4_cifar10_tutorial.html">3.1.9. 训练一个分类器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/5_data_parallel_tutorial.html">3.1.10. 数据并行（选读）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/readme.html">3.1.11. PyTorch 中文手册第一章 ： PyTorch入门</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.1.pytorch-basics-tensor.html">3.1.12. PyTorch 基础 : 张量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.2-pytorch-basics-autograd.html">3.1.13. 使用PyTorch计算梯度数值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.3-pytorch-basics-nerual-network.html">3.1.14. PyTorch 基础 : 神经网络包nn和优化器optm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.4-pytorch-basics-data-loader.html">3.1.15. PyTorch 基础 :数据的加载和预处理</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.16. 2.2 深度学习基础及数学原理</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.1.16.1. 2.2.1 监督学习和无监督学习</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linear-regreesion">3.1.16.2. 2.2.2 线性回归 （Linear Regreesion）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#loss-function">3.1.16.3. 2.2.3 损失函数(Loss Function)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.1.16.4. 2.2.4 梯度下降</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.1.16.5. 2.2.5 方差/偏差</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">3.1.16.6. 2.2.6 正则化</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="2.3-deep-learning-neural-network-introduction.html">3.1.17. 2.3 神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.4-cnn.html">3.1.18. 2.4 卷积神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.5-rnn.html">3.1.19. 2.5 循环神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html">3.1.20. Pytorch 中文手册第二章 ： 基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.1-logistic-regression.html">3.1.21. 3.1 logistic回归实战</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.2-mnist.html">3.1.22. 3.2  MNIST数据集手写数字识别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.3-rnn.html">3.1.23. 3.3 通过Sin预测Cos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/readme.html">3.1.24. Pytorch 中文手册第三章 ： 实践</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.1-fine-tuning.html">3.1.25. 4.1 Fine tuning 模型微调</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.1-visdom.html">3.1.26. 4.2.1 使用Visdom在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.2-tensorboardx.html">3.1.27. 4.2.2 使用Tensorboard在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.3-cnn-visualizing.html">3.1.28. 4.2.3 可视化理解卷积神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.3-cnn-visualizing.html#backpropagation">3.1.29. 基于Backpropagation的方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.3-fastai.html">3.1.30. 4.3 fastai</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.5-multiply-gpu-parallel-training.html">3.1.31. 4.5 多GPU并行训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/distributed_data_parallel.html">3.1.32. 在PyTorch中使用DistributedDataParallel进行多GPU分布式模型训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/readme.html">3.1.33. Pytorch 中文手册第四章 ： 提高</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.1-kaggle.html">3.1.34. 5.1 kaggle介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.2-Structured-Data.html">3.1.35. 5.2 Pytorch处理结构化数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.3-Fashion-MNIST.html">3.1.36. Fashion MNIST进行分类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/readme.html">3.1.37. Pytorch 中文手册第五章 ： 应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../style-guides/index.html">4. 编程语言 风格指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">7. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><span class="section-number">3. </span>Pytorch 教程</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3.1. </span>Pytorch 快速入门</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.1.16. </span>2.2 深度学习基础及数学原理</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pytorch-guides/pytorch-cookbook/chapter2/2.2-deep-learning-basic-mathematics.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</pre></div>
+</div>
+<section id="id1">
+<h1><span class="section-number">3.1.16. </span>2.2 深度学习基础及数学原理<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p>深度学习并没有想象的那么难，甚至比有些传统的机器学习更简单。所用到的数学知识也不需要特别的高深，本章将会一边讲解深度学习中的基本理论，一边通过动手使用PyTorch实现一些简单的理论，本章内容很多，所以只做一个简短的介绍</p>
+<section id="id2">
+<h2><span class="section-number">3.1.16.1. </span>2.2.1 监督学习和无监督学习<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>监督学习、无监督学习、半监督学习、强化学习是我们日常接触到的常见的四个机器学习方法：</p>
+<ul class="simple">
+<li><p>监督学习：通过已有的训练样本（即已知数据以及其对应的输出）去训练得到一个最优模型（这个模型属于某个函数的集合，最优则表示在某个评价准则下是最佳的），再利用这个模型将所有的输入映射为相应的输出。</p></li>
+<li><p>无监督学习：它与监督学习的不同之处，在于我们事先没有任何训练样本，而需要直接对数据进行建模。</p></li>
+<li><p>半监督学习 ：在训练阶段结合了大量未标记的数据和少量标签数据。与使用所有标签数据的模型相比，使用训练集的训练模型在训练时可以更为准确。</p></li>
+<li><p>强化学习：我们设定一个回报函数（reward function），通过这个函数来确认否越来越接近目标，类似我们训练宠物，如果做对了就给他奖励，做错了就给予惩罚，最后来达到我们的训练目的。</p></li>
+</ul>
+<p>这里我们只着重介绍监督学习，因为我们后面的绝大部们课程都是使用的监督学习的方法，在训练和验证时输入的数据既包含输入x，又包含x对应的输出y，即学习数据已经事先给出了正确答案。</p>
+</section>
+<section id="linear-regreesion">
+<h2><span class="section-number">3.1.16.2. </span>2.2.2 线性回归 （Linear Regreesion）<a class="headerlink" href="#linear-regreesion" title="Permalink to this heading"></a></h2>
+<p>线性回归是利用数理统计中回归分析，来确定两种或两种以上变量间相互依赖的定量关系的一种统计分析方法，运用十分广泛。其表达形式为y = w’x+e，e为误差服从均值为0的正态分布。</p>
+<p>回归分析中，只包括一个自变量和一个因变量，且二者的关系可用一条直线近似表示，这种回归分析称为一元线性回归分析。如果回归分析中包括两个或两个以上的自变量，且因变量和自变量之间是线性关系，则称为多元线性回归分析。
+摘自<a class="reference external" href="https://baike.baidu.com/item/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/8190345">百度百科</a></p>
+<p>简单的说：
+线性回归对于输入x与输出y有一个映射f，y=f(x),而f的形式为aX+b。其中a和b是两个可调的参数，我们训练的时候就是训练a，b这两个参数。</p>
+<p>下面我们来用PyTorch的代码来做一个详细的解释</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 引用</span>
+<span class="c1"># 注意，这里我们使用了一个新库叫 seaborn 如果报错找不到包的话请使用pip install seaborn 来进行安装</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">Linear</span><span class="p">,</span> <span class="n">Module</span><span class="p">,</span> <span class="n">MSELoss</span>
+<span class="kn">from</span> <span class="nn">torch.optim</span> <span class="kn">import</span> <span class="n">SGD</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;1.0.1.post2&#39;</span>
+</pre></div>
+</div>
+<p>下面定义一个线性函数，这里使用 $y = 5x + 7$，这里的5和7就是上面说到的参数a和b，我们先使用matplot可视化一下这个函数</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">7</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span> <span class="n">at</span> <span class="mh">0x7fd40bbe57f0</span><span class="o">&gt;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_6_1.png" /></p>
+<p>下面我生成一些随机的点，来作为我们的训练数据</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="n">noise</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p>在图上显示下我们生成的数据</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_10_0.png" /></p>
+<p>我们随机生成了一些点，下面将使用PyTorch建立一个线性的模型来对其进行拟合，这就是所说的训练的过程，由于只有一层线性模型，所以我们就直接使用了</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">=</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>其中参数(1, 1)代表输入输出的特征(feature)数量都是1. <code class="docutils literal notranslate"><span class="pre">Linear</span></code> 模型的表达式是 $y=w \cdot x+b$，其中 $w$ 代表权重， $b$ 代表偏置</p>
+<p>损失函数我们使用均方损失函数：<code class="docutils literal notranslate"><span class="pre">MSELoss</span></code>，这个后面会详细介绍</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">criterion</span> <span class="o">=</span> <span class="n">MSELoss</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>优化器我们选择最常见的优化方法 <code class="docutils literal notranslate"><span class="pre">SGD</span></code>，就是每一次迭代计算 <code class="docutils literal notranslate"><span class="pre">mini-batch</span></code> 的梯度，然后对参数进行更新，学习率 0.01 ，优化器本章后面也会进行介绍</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optim</span> <span class="o">=</span> <span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>训练3000次</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">epochs</span> <span class="o">=</span> <span class="mi">3000</span>
+</pre></div>
+</div>
+<p>准备训练数据: <code class="docutils literal notranslate"><span class="pre">x_train</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code> 的形状是 (256, 1)， 代表 <code class="docutils literal notranslate"><span class="pre">mini-batch</span></code> 大小为256， <code class="docutils literal notranslate"><span class="pre">feature</span></code> 为1. <code class="docutils literal notranslate"><span class="pre">astype('float32')</span></code> 是为了下一步可以直接转换为 <code class="docutils literal notranslate"><span class="pre">torch.float</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>开始训练了</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="c1"># 整理输入和输出的数据，这里输入和输出一定要是torch的Tensor类型</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+    <span class="c1">#使用模型进行预测</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="c1">#梯度置0，否则会累加</span>
+    <span class="n">optim</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="c1"># 计算损失</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+    <span class="c1"># 反向传播</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="c1"># 使用优化器默认方法优化</span>
+    <span class="n">optim</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">100</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+        <span class="c1">#每 100次打印一下损失函数，看看效果</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;epoch </span><span class="si">{}</span><span class="s1">, loss </span><span class="si">{:1.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>       
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">epoch</span> <span class="mi">0</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">105.8649</span>
+<span class="n">epoch</span> <span class="mi">100</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.7534</span>
+<span class="n">epoch</span> <span class="mi">200</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.1216</span>
+<span class="n">epoch</span> <span class="mi">300</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.1029</span>
+<span class="n">epoch</span> <span class="mi">400</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0915</span>
+<span class="n">epoch</span> <span class="mi">500</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0828</span>
+<span class="n">epoch</span> <span class="mi">600</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0763</span>
+<span class="n">epoch</span> <span class="mi">700</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0713</span>
+<span class="n">epoch</span> <span class="mi">800</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0675</span>
+<span class="n">epoch</span> <span class="mi">900</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0647</span>
+<span class="n">epoch</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0625</span>
+<span class="n">epoch</span> <span class="mi">1100</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0608</span>
+<span class="n">epoch</span> <span class="mi">1200</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0596</span>
+<span class="n">epoch</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0586</span>
+<span class="n">epoch</span> <span class="mi">1400</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0579</span>
+<span class="n">epoch</span> <span class="mi">1500</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0574</span>
+<span class="n">epoch</span> <span class="mi">1600</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0570</span>
+<span class="n">epoch</span> <span class="mi">1700</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0566</span>
+<span class="n">epoch</span> <span class="mi">1800</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0564</span>
+<span class="n">epoch</span> <span class="mi">1900</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0562</span>
+<span class="n">epoch</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0561</span>
+<span class="n">epoch</span> <span class="mi">2100</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0560</span>
+<span class="n">epoch</span> <span class="mi">2200</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0559</span>
+<span class="n">epoch</span> <span class="mi">2300</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0558</span>
+<span class="n">epoch</span> <span class="mi">2400</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0558</span>
+<span class="n">epoch</span> <span class="mi">2500</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0558</span>
+<span class="n">epoch</span> <span class="mi">2600</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0557</span>
+<span class="n">epoch</span> <span class="mi">2700</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0557</span>
+<span class="n">epoch</span> <span class="mi">2800</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0557</span>
+<span class="n">epoch</span> <span class="mi">2900</span><span class="p">,</span> <span class="n">loss</span> <span class="mf">0.0557</span>
+</pre></div>
+</div>
+<p>训练完成了，看一下训练的成果是多少。用 <code class="docutils literal notranslate"><span class="pre">model.parameters()</span></code> 提取模型参数。 $w$， $b$ 是我们所需要训练的模型参数
+我们期望的数据 $w=5$，$b=7$ 可以做一下对比</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span><span class="n">b</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">4.994358062744141</span> <span class="mf">7.0252156257629395</span>
+</pre></div>
+</div>
+<p>再次可视化一下我们的模型，看看我们训练的数据，如果你不喜欢seaborn，可以直接使用matplot</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">predicted</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">x_train</span><span class="p">))</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s1">&#39;go&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">predicted</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;predicted&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_27_0.png" /></p>
+<p>以上就是一个使用PyTorch做线性回归的简单样例了，下面我们会对上面的内容做详细的介绍</p>
+</section>
+<section id="loss-function">
+<h2><span class="section-number">3.1.16.3. </span>2.2.3 损失函数(Loss Function)<a class="headerlink" href="#loss-function" title="Permalink to this heading"></a></h2>
+<p>损失函数（loss function）是用来估量模型的预测值(我们例子中的output)与真实值（例子中的y_train）的不一致程度，它是一个非负实值函数，损失函数越小，模型的鲁棒性就越好。
+我们训练模型的过程，就是通过不断的迭代计算，使用梯度下降的优化算法，使得损失函数越来越小。损失函数越小就表示算法达到意义上的最优。</p>
+<p>这里有一个重点：因为PyTorch是使用mini-batch来进行计算的，所以损失函数的计算出来的结果已经对mini-batch取了平均</p>
+<p>常见（PyTorch内置）的损失函数有以下几个：</p>
+<section id="nn-l1loss">
+<h3><span class="section-number">3.1.16.3.1. </span>nn.L1Loss:<a class="headerlink" href="#nn-l1loss" title="Permalink to this heading"></a></h3>
+<p>输入x和目标y之间差的绝对值，要求 x 和 y 的维度要一样（可以是向量或者矩阵），得到的 loss 维度也是对应一样的</p>
+<p>$ loss(x,y)=1/n\sum|x_i-y_i| $</p>
+</section>
+<section id="nn-nllloss">
+<h3><span class="section-number">3.1.16.3.2. </span>nn.NLLLoss:<a class="headerlink" href="#nn-nllloss" title="Permalink to this heading"></a></h3>
+<p>用于多分类的负对数似然损失函数</p>
+<p>$ loss(x, class) = -x[class]$</p>
+<p>NLLLoss中如果传递了weights参数，会对损失进行加权，公式就变成了</p>
+<p>$ loss(x, class) = -weights[class] * x[class] $</p>
+</section>
+<section id="nn-mseloss">
+<h3><span class="section-number">3.1.16.3.3. </span>nn.MSELoss:<a class="headerlink" href="#nn-mseloss" title="Permalink to this heading"></a></h3>
+<p>均方损失函数 ，输入x和目标y之间均方差</p>
+<p>$ loss(x,y)=1/n\sum(x_i-y_i)^2 $</p>
+</section>
+<section id="nn-crossentropyloss">
+<h3><span class="section-number">3.1.16.3.4. </span>nn.CrossEntropyLoss:<a class="headerlink" href="#nn-crossentropyloss" title="Permalink to this heading"></a></h3>
+<p>多分类用的交叉熵损失函数，LogSoftMax和NLLLoss集成到一个类中，会调用nn.NLLLoss函数，我们可以理解为CrossEntropyLoss()=log_softmax() + NLLLoss()</p>
+<p>$ \begin{aligned} loss(x, class) &amp;= -\text{log}\frac{exp(x[class])}{\sum_j exp(x[j]))}\ &amp;= -x[class] + log(\sum_j exp(x[j])) \end{aligned}  $</p>
+<p>因为使用了NLLLoss，所以也可以传入weight参数，这时loss的计算公式变为：</p>
+<p>$ loss(x, class) = weights[class] * (-x[class] + log(\sum_j exp(x[j]))) $</p>
+<p>所以一般多分类的情况会使用这个损失函数</p>
+</section>
+<section id="nn-bceloss">
+<h3><span class="section-number">3.1.16.3.5. </span>nn.BCELoss:<a class="headerlink" href="#nn-bceloss" title="Permalink to this heading"></a></h3>
+<p>计算 x 与 y 之间的二进制交叉熵。</p>
+<p>$ loss(o,t)=-\frac{1}{n}\sum_i(t[i]* log(o[i])+(1-t[i])* log(1-o[i])) $</p>
+<p>与NLLLoss类似，也可以添加权重参数：</p>
+<p>$ loss(o,t)=-\frac{1}{n}\sum_iweights[i]* (t[i]* log(o[i])+(1-t[i])* log(1-o[i])) $</p>
+<p>用的时候需要在该层前面加上 Sigmoid 函数。</p>
+</section>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.1.16.4. </span>2.2.4 梯度下降<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>在介绍损失函数的时候我们已经说了，梯度下降是一个使损失函数越来越小的优化算法，在无求解机器学习算法的模型参数，即约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一。所以梯度下降是我们目前所说的机器学习的核心，了解了它的含义，也就了解了机器学习算法的含义。</p>
+<section id="id4">
+<h3><span class="section-number">3.1.16.4.1. </span>梯度<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>在微积分里面，对多元函数的参数求∂偏导数，把求得的各个参数的偏导数以向量的形式写出来，就是梯度。
+例如函数f(x,y), 分别对x，y求偏导数，求得的梯度向量就是(∂f/∂x, ∂f/∂y)T，简称grad f(x,y)或者▽f(x,y)。</p>
+<p>几何上讲，梯度就是函数变化增加最快的地方，沿着梯度向量的方向，更加容易找到函数的最大值。反过来说，沿着梯度向量相反的方向梯度减少最快，也就是更加容易找到函数的最小值。</p>
+<p>我们需要最小化损失函数，可以通过梯度下降法来一步步的迭代求解，得到最小化的损失函数，和模型参数值。</p>
+</section>
+<section id="id5">
+<h3><span class="section-number">3.1.16.4.2. </span>梯度下降法直观解释<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>梯度下降法就好比下山，我们并不知道下山的路，于是决定走一步算一步，每走到一个位置的时候，求解当前位置的梯度，沿着梯度的负方向，也就是当前最陡峭的位置向下走一步，然后继续求解当前位置梯度，向这一步所在位置沿着最陡峭最易下山的位置走一步。这样一步步的走下去，一直走到觉得我们已经到了山脚。</p>
+<p>如下图所示，（此图摘自百度百科）
+<img alt="../../../_images/1.png" src="../../../_images/1.png" /></p>
+<p>这样走下去，有可能我们不能走到山脚，而是到了某一个局部的山峰低处（局部最优解）。</p>
+<p>这个问题在以前的机器学习中可能会遇到，因为机器学习中的特征比较少，所以导致很可能陷入到一个局部最优解中出不来，但是到了深度学习，动辄百万甚至上亿的特征，出现这种情况的概率几乎为0，所以我们可以不用考虑这个问题。</p>
+</section>
+<section id="mini-batch">
+<h3><span class="section-number">3.1.16.4.3. </span>Mini-batch的梯度下降法<a class="headerlink" href="#mini-batch" title="Permalink to this heading"></a></h3>
+<p>对整个训练集进行梯度下降法的时候，我们必须处理整个训练数据集，然后才能进行一步梯度下降，即每一步梯度下降法需要对整个训练集进行一次处理，如果训练数据集很大的时候处理速度会很慢，而且也不可能一次的载入到内存或者显存中，所以我们会把大数据集分成小数据集，一部分一部分的训练，这个训练子集即称为Mini-batch。
+在PyTorch中就是使用这种方法进行的训练，可以看看上一章中关于dataloader的介绍里面的batch_size就是我们一个Mini-batch的大小。</p>
+<p>为了介绍的更简洁，使用 吴恩达老师的 <a class="reference external" href="https://www.deeplearning.ai/deep-learning-specialization/">deeplearning.ai</a> 课程板书。</p>
+<p>对于普通的梯度下降法，一个epoch只能进行一次梯度下降；而对于Mini-batch梯度下降法，一个epoch可以进行Mini-batch的个数次梯度下降。
+<img alt="../../../_images/2.png" src="../../../_images/2.png" />
+普通的batch梯度下降法和Mini-batch梯度下降法代价函数的变化趋势，如下图所示：
+<img alt="../../../_images/3.png" src="../../../_images/3.png" /></p>
+<ul class="simple">
+<li><p>如果训练样本的大小比较小时，能够一次性的读取到内存中，那我们就不需要使用Mini-batch，</p></li>
+<li><p>如果训练样本的大小比较大时，一次读入不到内存或者现存中，那我们必须要使用 Mini-batch来分批的计算</p></li>
+<li><p>Mini-batch size的计算规则如下，在内存允许的最大情况下使用2的N次方个size
+<img alt="../../../_images/4.png" src="../../../_images/4.png" /></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">torch.optim</span></code>是一个实现了各种优化算法的库。大部分常用优化算法都有实现，我们直接调用即可。</p>
+</section>
+<section id="torch-optim-sgd">
+<h3><span class="section-number">3.1.16.4.4. </span>torch.optim.SGD<a class="headerlink" href="#torch-optim-sgd" title="Permalink to this heading"></a></h3>
+<p>随机梯度下降算法，带有动量（momentum）的算法作为一个可选参数可以进行设置，样例如下：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#lr参数为学习率，对于SGD来说一般选择0.1 0.01.0.001，如何设置会在后面实战的章节中详细说明</span>
+<span class="c1">##如果设置了momentum，就是带有动量的SGD，可以不设置</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="torch-optim-rmsprop">
+<h3><span class="section-number">3.1.16.4.5. </span>torch.optim.RMSprop<a class="headerlink" href="#torch-optim-rmsprop" title="Permalink to this heading"></a></h3>
+<p>除了以上的带有动量Momentum梯度下降法外，RMSprop（root mean square prop）也是一种可以加快梯度下降的算法，利用RMSprop算法，可以减小某些维度梯度更新波动较大的情况，使其梯度下降的速度变得更快</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#我们的课程基本不会使用到RMSprop所以这里只给一个实例</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.99</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="torch-optim-adam">
+<h3><span class="section-number">3.1.16.4.6. </span>torch.optim.Adam<a class="headerlink" href="#torch-optim-adam" title="Permalink to this heading"></a></h3>
+<p>Adam 优化算法的基本思想就是将 Momentum 和 RMSprop 结合起来形成的一种适用于不同深度学习结构的优化算法</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 这里的lr，betas，还有eps都是用默认值即可，所以Adam是一个使用起来最简单的优化方法</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">betas</span><span class="o">=</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">),</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-08</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id6">
+<h2><span class="section-number">3.1.16.5. </span>2.2.5 方差/偏差<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>偏差度量了学习算法的期望预测与真实结果的偏离程序，即刻画了学习算法本身的拟合能力</p></li>
+<li><p>方差度量了同样大小的训练集的变动所导致的学习性能的变化，即模型的泛化能力
+<img alt="../../../_images/5.png" src="../../../_images/5.png" /></p></li>
+</ul>
+<p>从图中我们可以看出</p>
+<ul class="simple">
+<li><p>高偏差（high bias）的情况，一般称为欠拟合（underfitting），即我们的模型并没有很好的去适配现有的数据，拟合度不够。</p></li>
+<li><p>高方差（high variance）的情况一般称作过拟合（overfitting），即模型对于训练数据拟合度太高了，失去了泛化的能力。</p></li>
+</ul>
+<p>如何解决这两种情况呢？</p>
+<p>欠拟合：</p>
+<ul class="simple">
+<li><p>增加网络结构，如增加隐藏层数目；</p></li>
+<li><p>训练更长时间；</p></li>
+<li><p>寻找合适的网络架构，使用更大的NN结构；</p></li>
+</ul>
+<p>过拟合 ：</p>
+<ul class="simple">
+<li><p>使用更多的数据；</p></li>
+<li><p>正则化（ regularization）；</p></li>
+<li><p>寻找合适的网络结构；</p></li>
+</ul>
+<p>例如我们上面的例子，可以计算出我们的偏差:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="mi">5</span><span class="o">-</span><span class="n">w</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span><span class="mi">7</span><span class="o">-</span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.005641937255859375</span> <span class="o">-</span><span class="mf">0.025215625762939453</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h2><span class="section-number">3.1.16.6. </span>2.2.6 正则化<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<p>利用正则化来解决High variance 的问题，正则化是在 Cost function 中加入一项正则化项，惩罚模型的复杂度，这里我们简单的介绍一下正则化的概念</p>
+<section id="l1">
+<h3><span class="section-number">3.1.16.6.1. </span>L1正则化<a class="headerlink" href="#l1" title="Permalink to this heading"></a></h3>
+<p>损失函数基础上加上权重参数的绝对值</p>
+<p>$ L=E_{in}+\lambda{\sum_j} \left|w_j\right|$</p>
+</section>
+<section id="l2">
+<h3><span class="section-number">3.1.16.6.2. </span>L2正则化<a class="headerlink" href="#l2" title="Permalink to this heading"></a></h3>
+<p>损失函数基础上加上权重参数的平方和</p>
+<p>$ L=E_{in}+\lambda{\sum_j} w^2_j$</p>
+<p>需要说明的是：l1 相比于 l2 会更容易获得稀疏解</p>
+<p><a class="reference external" href="https://www.zhihu.com/question/37096933/answer/70507353">知乎</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="2.1.4-pytorch-basics-data-loader.html" class="btn btn-neutral float-left" title="3.1.15. PyTorch 基础 :数据的加载和预处理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="2.3-deep-learning-neural-network-introduction.html" class="btn btn-neutral float-right" title="3.1.17. 2.3 神经网络简介" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

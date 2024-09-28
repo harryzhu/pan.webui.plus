@@ -15,6 +15,7 @@ AI 常用汇总
 
    best-practice/index
    stable-diffusion/index
+   pytorch-guides/index
    style-guides/index
    coding/index
    cheatsheet/index

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.9.5. Cocoa 和 Objective-C 特性 &mdash; AI 模型国内加速  文档</title>
+  <title>4.9.5. Cocoa 和 Objective-C 特性 &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
@@ -24,8 +24,8 @@
     <link rel="author" title="关于这些文档" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="3.9.6. Cocoa 模式" href="patterns.html" />
-    <link rel="prev" title="3.9.4. 注释" href="comments.html" /> 
+    <link rel="next" title="4.9.6. Cocoa 模式" href="patterns.html" />
+    <link rel="prev" title="4.9.4. 注释" href="comments.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,52 +51,53 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 风格指南</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_style_en.html">3.2. Uber Go Style Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.9. Google: Objective-C 风格指南</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="index.html">3.9.1. Google Objective-C Style Guide 中文版</a></li>
-<li class="toctree-l3"><a class="reference internal" href="spacing.html">3.9.2. 留白和格式</a></li>
-<li class="toctree-l3"><a class="reference internal" href="naming.html">3.9.3. 命名</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comments.html">3.9.4. 注释</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">3.9.5. Cocoa 和 Objective-C 特性</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#private">3.9.5.1. 成员变量应该是 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1">3.9.5.2. 明确指定构造函数</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">3.9.5.3. 重载指定构造函数</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nsobject">3.9.5.4. 重载 <code class="docutils literal notranslate"><span class="pre">NSObject</span></code> 的方法</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">3.9.5.5. 初始化</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#new">3.9.5.6. 避免 <code class="docutils literal notranslate"><span class="pre">+new</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#api">3.9.5.7. 保持公共 API 简单</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#import-and-include">3.9.5.8. <code class="docutils literal notranslate"><span class="pre">#import</span></code> and <code class="docutils literal notranslate"><span class="pre">#include</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">3.9.5.9. 使用根框架</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#autorelease">3.9.5.10. 构建时即设定 <code class="docutils literal notranslate"><span class="pre">autorelease</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#autorelease-retain">3.9.5.11. <code class="docutils literal notranslate"><span class="pre">autorelease</span></code> 优先 <code class="docutils literal notranslate"><span class="pre">retain</span></code> 其次</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#init-dealloc">3.9.5.12. <code class="docutils literal notranslate"><span class="pre">init</span></code> 和 <code class="docutils literal notranslate"><span class="pre">dealloc</span></code> 内避免使用访问器</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6">3.9.5.13. 按声明顺序销毁实例变量</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#setter-nsstrings">3.9.5.14. <code class="docutils literal notranslate"><span class="pre">setter</span></code> 应复制 NSStrings</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#avoid-throwing-exceptions">3.9.5.15. 避免抛异常</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nil">3.9.5.16. nil 检查</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#bool">3.9.5.17. BOOL 若干陷阱</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#property">3.9.5.18. 属性（Property）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id12">3.9.5.19. 没有实例变量的接口</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#synthesize">3.9.5.20. 自动 <code class="docutils literal notranslate"><span class="pre">synthesize</span></code> 实例变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytorch-guides/index.html">3. Pytorch 教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 风格指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/uber_go_style_en.html">4.1. Uber: Go Style Guide - English</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">4.2. Uber: Go语言 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">4.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">4.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">4.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">4.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">4.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">4.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">4.9. Google: Objective-C 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html">4.9.1. Google Objective-C Style Guide 中文版</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spacing.html">4.9.2. 留白和格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html">4.9.3. 命名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html">4.9.4. 注释</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.9.5. Cocoa 和 Objective-C 特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#private">4.9.5.1. 成员变量应该是 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">4.9.5.2. 明确指定构造函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">4.9.5.3. 重载指定构造函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nsobject">4.9.5.4. 重载 <code class="docutils literal notranslate"><span class="pre">NSObject</span></code> 的方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">4.9.5.5. 初始化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#new">4.9.5.6. 避免 <code class="docutils literal notranslate"><span class="pre">+new</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api">4.9.5.7. 保持公共 API 简单</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#import-and-include">4.9.5.8. <code class="docutils literal notranslate"><span class="pre">#import</span></code> and <code class="docutils literal notranslate"><span class="pre">#include</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">4.9.5.9. 使用根框架</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autorelease">4.9.5.10. 构建时即设定 <code class="docutils literal notranslate"><span class="pre">autorelease</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autorelease-retain">4.9.5.11. <code class="docutils literal notranslate"><span class="pre">autorelease</span></code> 优先 <code class="docutils literal notranslate"><span class="pre">retain</span></code> 其次</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#init-dealloc">4.9.5.12. <code class="docutils literal notranslate"><span class="pre">init</span></code> 和 <code class="docutils literal notranslate"><span class="pre">dealloc</span></code> 内避免使用访问器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">4.9.5.13. 按声明顺序销毁实例变量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setter-nsstrings">4.9.5.14. <code class="docutils literal notranslate"><span class="pre">setter</span></code> 应复制 NSStrings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#avoid-throwing-exceptions">4.9.5.15. 避免抛异常</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nil">4.9.5.16. nil 检查</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bool">4.9.5.17. BOOL 若干陷阱</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#property">4.9.5.18. 属性（Property）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">4.9.5.19. 没有实例变量的接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#synthesize">4.9.5.20. 自动 <code class="docutils literal notranslate"><span class="pre">synthesize</span></code> 实例变量</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="patterns.html">3.9.6. Cocoa 模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="patterns.html">4.9.6. Cocoa 模式</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">4.10. Google: Java 风格指南</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">7. 关于</a></li>
 </ul>
 
         </div>
@@ -113,9 +114,9 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 风格指南</a></li>
-          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.9. </span>Google: Objective-C 风格指南</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3.9.5. </span>Cocoa 和 Objective-C 特性</li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 风格指南</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">4.9. </span>Google: Objective-C 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.9.5. </span>Cocoa 和 Objective-C 特性</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/style-guides/google-objc-styleguide/features.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -126,9 +127,9 @@
            <div itemprop="articleBody">
              
   <section id="cocoa-objective-c">
-<h1><span class="section-number">3.9.5. </span>Cocoa 和 Objective-C 特性<a class="headerlink" href="#cocoa-objective-c" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">4.9.5. </span>Cocoa 和 Objective-C 特性<a class="headerlink" href="#cocoa-objective-c" title="Permalink to this heading"></a></h1>
 <section id="private">
-<h2><span class="section-number">3.9.5.1. </span>成员变量应该是 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code><a class="headerlink" href="#private" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.1. </span>成员变量应该是 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code><a class="headerlink" href="#private" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>成员变量应该声明为 <code class="docutils literal notranslate"><span class="pre">&#64;private</span></code></p>
@@ -145,7 +146,7 @@
 </div>
 </section>
 <section id="id1">
-<h2><span class="section-number">3.9.5.2. </span>明确指定构造函数<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.2. </span>明确指定构造函数<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>注释并且明确指定你的类的构造函数。</p>
@@ -153,7 +154,7 @@
 <p>对于需要继承你的类的人来说，明确指定构造函数十分重要。这样他们就可以只重写一个构造函数（可能是几个）来保证他们的子类的构造函数会被调用。这也有助于将来别人调试你的类时，理解初始化代码的工作流程。</p>
 </section>
 <section id="id2">
-<h2><span class="section-number">3.9.5.3. </span>重载指定构造函数<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.3. </span>重载指定构造函数<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>当你写子类的时候，如果需要 <code class="docutils literal notranslate"><span class="pre">init…</span></code> 方法，记得重载父类的指定构造函数。</p>
@@ -161,7 +162,7 @@
 <p>如果你没有重载父类的指定构造函数，你的构造函数有时可能不会被调用，这会导致非常隐秘而且难以解决的 bug。</p>
 </section>
 <section id="nsobject">
-<h2><span class="section-number">3.9.5.4. </span>重载 <code class="docutils literal notranslate"><span class="pre">NSObject</span></code> 的方法<a class="headerlink" href="#nsobject" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.4. </span>重载 <code class="docutils literal notranslate"><span class="pre">NSObject</span></code> 的方法<a class="headerlink" href="#nsobject" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>如果重载了 <code class="docutils literal notranslate"><span class="pre">NSObject</span></code> 类的方法，强烈建议把它们放在 <code class="docutils literal notranslate"><span class="pre">&#64;implementation</span></code> 内的起始处，这也是常见的操作方法。</p>
@@ -169,7 +170,7 @@
 <p>通常适用（但不局限）于 <code class="docutils literal notranslate"><span class="pre">init...</span></code>，<code class="docutils literal notranslate"><span class="pre">copyWithZone:</span></code>，以及 <code class="docutils literal notranslate"><span class="pre">dealloc</span></code> 方法。所有 <code class="docutils literal notranslate"><span class="pre">init...</span></code> 方法应该放在一起，<code class="docutils literal notranslate"><span class="pre">copyWithZone:</span></code> 紧随其后，最后才是 <code class="docutils literal notranslate"><span class="pre">dealloc</span></code> 方法。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">3.9.5.5. </span>初始化<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.5. </span>初始化<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>不要在 init 方法中，将成员变量初始化为 <code class="docutils literal notranslate"><span class="pre">0</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">nil</span></code>；毫无必要。</p>
@@ -177,7 +178,7 @@
 <p>刚分配的对象，默认值都是 0，除了 <code class="docutils literal notranslate"><span class="pre">isa</span></code> 指针（译者注：<code class="docutils literal notranslate"><span class="pre">NSObject</span></code> 的 <code class="docutils literal notranslate"><span class="pre">isa</span></code> 指针，用于标识对象的类型）。所以不要在初始化器里面写一堆将成员初始化为 <code class="docutils literal notranslate"><span class="pre">0</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">nil</span></code> 的代码。</p>
 </section>
 <section id="new">
-<h2><span class="section-number">3.9.5.6. </span>避免 <code class="docutils literal notranslate"><span class="pre">+new</span></code><a class="headerlink" href="#new" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.6. </span>避免 <code class="docutils literal notranslate"><span class="pre">+new</span></code><a class="headerlink" href="#new" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>不要调用 <code class="docutils literal notranslate"><span class="pre">NSObject</span></code> 类方法 <code class="docutils literal notranslate"><span class="pre">new</span></code>，也不要在子类中重载它。使用 <code class="docutils literal notranslate"><span class="pre">alloc</span></code> 和 <code class="docutils literal notranslate"><span class="pre">init</span></code> 方法创建并初始化对象。</p>
@@ -185,7 +186,7 @@
 <p>现代的 Objective-C 代码通过调用 <code class="docutils literal notranslate"><span class="pre">alloc</span></code> 和 <code class="docutils literal notranslate"><span class="pre">init</span></code> 方法来创建并 retain 一个对象。由于类方法 <code class="docutils literal notranslate"><span class="pre">new</span></code> 很少使用，这使得有关内存分配的代码审查更困难。</p>
 </section>
 <section id="api">
-<h2><span class="section-number">3.9.5.7. </span>保持公共 API 简单<a class="headerlink" href="#api" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.7. </span>保持公共 API 简单<a class="headerlink" href="#api" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>保持类简单；避免 “厨房水槽（kitchen-sink）” 式的 API。如果一个函数压根没必要公开，就不要这么做。用私有类别保证公共头文件整洁。</p>
@@ -217,7 +218,7 @@
 <p>Objective-C 的类别可以用来将一个大的 <code class="docutils literal notranslate"><span class="pre">&#64;implementation</span></code> 拆分成更容易理解的小块，同时，类别可以为最适合的类添加新的、特定应用程序的功能。例如，当添加一个 “middle truncation” 方法时，创建一个 <code class="docutils literal notranslate"><span class="pre">NSString</span></code> 的新类别并把方法放在里面，要比创建任意的一个新类把方法放进里面好得多。</p>
 </section>
 <section id="import-and-include">
-<h2><span class="section-number">3.9.5.8. </span><code class="docutils literal notranslate"><span class="pre">#import</span></code> and <code class="docutils literal notranslate"><span class="pre">#include</span></code><a class="headerlink" href="#import-and-include" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.8. </span><code class="docutils literal notranslate"><span class="pre">#import</span></code> and <code class="docutils literal notranslate"><span class="pre">#include</span></code><a class="headerlink" href="#import-and-include" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p><code class="docutils literal notranslate"><span class="pre">#import</span></code> Objective-C/Objective-C++ 头文件，<code class="docutils literal notranslate"><span class="pre">#include</span></code> C/C++ 头文件。</p>
@@ -238,7 +239,7 @@
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">3.9.5.9. </span>使用根框架<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.9. </span>使用根框架<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p><code class="docutils literal notranslate"><span class="pre">#import</span></code> 根框架而不是单独的零散文件</p>
@@ -253,7 +254,7 @@
 </div>
 </section>
 <section id="autorelease">
-<h2><span class="section-number">3.9.5.10. </span>构建时即设定 <code class="docutils literal notranslate"><span class="pre">autorelease</span></code><a class="headerlink" href="#autorelease" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.10. </span>构建时即设定 <code class="docutils literal notranslate"><span class="pre">autorelease</span></code><a class="headerlink" href="#autorelease" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>当创建临时对象时，在同一行使用 <code class="docutils literal notranslate"><span class="pre">autolease</span></code>，而不是在同一个方法的后面语句中使用一个单独的 <code class="docutils literal notranslate"><span class="pre">release</span></code>。</p>
@@ -270,7 +271,7 @@
 </div>
 </section>
 <section id="autorelease-retain">
-<h2><span class="section-number">3.9.5.11. </span><code class="docutils literal notranslate"><span class="pre">autorelease</span></code> 优先 <code class="docutils literal notranslate"><span class="pre">retain</span></code> 其次<a class="headerlink" href="#autorelease-retain" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.11. </span><code class="docutils literal notranslate"><span class="pre">autorelease</span></code> 优先 <code class="docutils literal notranslate"><span class="pre">retain</span></code> 其次<a class="headerlink" href="#autorelease-retain" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>给对象赋值时遵守 <code class="docutils literal notranslate"><span class="pre">autorelease``之后</span> <span class="pre">``retain</span></code> 的模式。</p>
@@ -284,7 +285,7 @@
 </div>
 </section>
 <section id="init-dealloc">
-<h2><span class="section-number">3.9.5.12. </span><code class="docutils literal notranslate"><span class="pre">init</span></code> 和 <code class="docutils literal notranslate"><span class="pre">dealloc</span></code> 内避免使用访问器<a class="headerlink" href="#init-dealloc" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.12. </span><code class="docutils literal notranslate"><span class="pre">init</span></code> 和 <code class="docutils literal notranslate"><span class="pre">dealloc</span></code> 内避免使用访问器<a class="headerlink" href="#init-dealloc" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>在 <code class="docutils literal notranslate"><span class="pre">init</span></code> 和 <code class="docutils literal notranslate"><span class="pre">dealloc</span></code> 方法执行的过程中，子类可能会处在一个不一致的状态，所以这些方法中的代码应避免调用访问器。</p>
@@ -322,7 +323,7 @@
 </div>
 </section>
 <section id="id6">
-<h2><span class="section-number">3.9.5.13. </span>按声明顺序销毁实例变量<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.13. </span>按声明顺序销毁实例变量<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p><code class="docutils literal notranslate"><span class="pre">dealloc</span></code> 中实例变量被释放的顺序应该与它们在 <code class="docutils literal notranslate"><span class="pre">&#64;interface</span></code> 中声明的顺序一致，这有助于代码审查。</p>
@@ -331,7 +332,7 @@
 <p>为了简化 <code class="docutils literal notranslate"><span class="pre">dealloc</span></code> 的审查，<code class="docutils literal notranslate"><span class="pre">retained</span></code> 实例变量被释放的顺序应该与他们在 <code class="docutils literal notranslate"><span class="pre">&#64;interface</span></code> 中声明的顺序一致。如果 <code class="docutils literal notranslate"><span class="pre">dealloc</span></code> 调用了其它方法释放成员变量，添加注释解释这些方法释放了哪些实例变量。</p>
 </section>
 <section id="setter-nsstrings">
-<h2><span class="section-number">3.9.5.14. </span><code class="docutils literal notranslate"><span class="pre">setter</span></code> 应复制 NSStrings<a class="headerlink" href="#setter-nsstrings" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.14. </span><code class="docutils literal notranslate"><span class="pre">setter</span></code> 应复制 NSStrings<a class="headerlink" href="#setter-nsstrings" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>接受 <code class="docutils literal notranslate"><span class="pre">NSString</span></code> 作为参数的 <code class="docutils literal notranslate"><span class="pre">setter</span></code>，应该总是 <code class="docutils literal notranslate"><span class="pre">copy</span></code> 传入的字符串。</p>
@@ -345,7 +346,7 @@
 </div>
 </section>
 <section id="avoid-throwing-exceptions">
-<span id="id7"></span><h2><span class="section-number">3.9.5.15. </span>避免抛异常<a class="headerlink" href="#avoid-throwing-exceptions" title="Permalink to this heading"></a></h2>
+<span id="id7"></span><h2><span class="section-number">4.9.5.15. </span>避免抛异常<a class="headerlink" href="#avoid-throwing-exceptions" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>不要 <code class="docutils literal notranslate"><span class="pre">&#64;throw</span></code> Objective-C 异常，同时也要时刻准备捕获从第三方或 OS 代码中抛出的异常。</p>
@@ -383,7 +384,7 @@
 <p>注意：这里析构函数从未被调用。这主要会影响基于栈的 <code class="docutils literal notranslate"><span class="pre">smartptr</span></code>，比如 <code class="docutils literal notranslate"><span class="pre">shared_ptr</span></code>、<code class="docutils literal notranslate"><span class="pre">linked_ptr</span></code>，以及所有你可能用到的 STL 对象。因此我们不得不痛苦的说，如果必须在 Objective-C++ 中使用异常，就只用 C++ 的异常机制。永远不应该重新抛出 Objective-C 异常，也不应该在 <code class="docutils literal notranslate"><span class="pre">&#64;try</span></code>、<code class="docutils literal notranslate"><span class="pre">&#64;catch</span></code> 或 <code class="docutils literal notranslate"><span class="pre">&#64;finally</span></code> 语句块中使用基于栈的 C++ 对象。</p>
 </section>
 <section id="nil">
-<h2><span class="section-number">3.9.5.16. </span>nil 检查<a class="headerlink" href="#nil" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.16. </span>nil 检查<a class="headerlink" href="#nil" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p><code class="docutils literal notranslate"><span class="pre">nil</span></code> 检查只用在逻辑流程中。</p>
@@ -392,7 +393,7 @@
 <p>注意，这和 C/C++ 中检查指针是否为 ‵‵NULL`` 很不一样，C/C++ 运行时不做任何检查，从而导致应用程序崩溃。因此你仍然需要保证你不会对一个 C/C++ 的空指针解引用。</p>
 </section>
 <section id="bool">
-<h2><span class="section-number">3.9.5.17. </span>BOOL 若干陷阱<a class="headerlink" href="#bool" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.17. </span>BOOL 若干陷阱<a class="headerlink" href="#bool" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>将普通整形转换成 <code class="docutils literal notranslate"><span class="pre">BOOL</span></code> 时要小心。不要直接将 <code class="docutils literal notranslate"><span class="pre">BOOL</span></code> 值与 <code class="docutils literal notranslate"><span class="pre">YES</span></code> 进行比较。</p>
@@ -436,13 +437,13 @@
 </div>
 </section>
 <section id="property">
-<h2><span class="section-number">3.9.5.18. </span>属性（Property）<a class="headerlink" href="#property" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.18. </span>属性（Property）<a class="headerlink" href="#property" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>属性（Property）通常允许使用，但需要清楚的了解：属性（Property）是 Objective-C 2.0 的特性，会限制你的代码只能跑在 iPhone 和 Mac OS X 10.5 (Leopard) 及更高版本上。点引用只允许访问声明过的 <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code>。</p>
 </div>
 <section id="id8">
-<h3><span class="section-number">3.9.5.18.1. </span>命名<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.9.5.18.1. </span>命名<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
 <p>属性所关联的实例变量的命名必须遵守以下划线作为后缀的规则。属性的名字应该与成员变量去掉下划线后缀的名字一模一样。</p>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">&#64;synthesize</span></code> 指示符来正确地重命名属性。</p>
 <div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="k">@interface</span> <span class="bp">MyClass</span> : <span class="bp">NSObject</span> <span class="p">{</span>
@@ -459,7 +460,7 @@
 </div>
 </section>
 <section id="id9">
-<h3><span class="section-number">3.9.5.18.2. </span>位置<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.9.5.18.2. </span>位置<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
 <p>属性的声明必须紧靠着类接口中的实例变量语句块。属性的定义必须在 <code class="docutils literal notranslate"><span class="pre">&#64;implementation</span></code> 的类定义的最上方。他们的缩进与包含他们的 <code class="docutils literal notranslate"><span class="pre">&#64;interface</span></code> 以及 <code class="docutils literal notranslate"><span class="pre">&#64;implementation</span></code> 语句一样。</p>
 <div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="k">@interface</span> <span class="bp">MyClass</span> : <span class="bp">NSObject</span> <span class="p">{</span>
 <span class="w"> </span><span class="k">@private</span>
@@ -478,16 +479,16 @@
 </div>
 </section>
 <section id="copy-attribute">
-<h3><span class="section-number">3.9.5.18.3. </span>字符串应使用 <code class="docutils literal notranslate"><span class="pre">copy</span></code> 属性（Attribute）<a class="headerlink" href="#copy-attribute" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.9.5.18.3. </span>字符串应使用 <code class="docutils literal notranslate"><span class="pre">copy</span></code> 属性（Attribute）<a class="headerlink" href="#copy-attribute" title="Permalink to this heading"></a></h3>
 <p>应总是用 <code class="docutils literal notranslate"><span class="pre">copy</span></code> 属性（attribute）声明 <code class="docutils literal notranslate"><span class="pre">NSString</span></code> 属性（property）。</p>
 <p>从逻辑上，确保遵守 <code class="docutils literal notranslate"><span class="pre">NSString</span></code> 的 <code class="docutils literal notranslate"><span class="pre">setter</span></code> 必须使用 <code class="docutils literal notranslate"><span class="pre">copy</span></code> 而不是 <code class="docutils literal notranslate"><span class="pre">retain</span></code> 的原则。</p>
 </section>
 <section id="id10">
-<h3><span class="section-number">3.9.5.18.4. </span>原子性<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.9.5.18.4. </span>原子性<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
 <p>一定要注意属性（property）的开销。缺省情况下，所有 <code class="docutils literal notranslate"><span class="pre">synthesize</span></code> 的 <code class="docutils literal notranslate"><span class="pre">setter</span></code> 和 <code class="docutils literal notranslate"><span class="pre">getter</span></code> 都是原子的。这会给每个 <code class="docutils literal notranslate"><span class="pre">get</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">set</span></code> 带来一定的同步开销。将属性（property）声明为 <code class="docutils literal notranslate"><span class="pre">nonatomic</span></code>，除非你需要原子性。</p>
 </section>
 <section id="id11">
-<h3><span class="section-number">3.9.5.18.5. </span>点引用<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.9.5.18.5. </span>点引用<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
 <p>点引用是地道的 Objective-C 2.0 风格。它被使用于简单的属性 <code class="docutils literal notranslate"><span class="pre">set</span></code>、<code class="docutils literal notranslate"><span class="pre">get</span></code> 操作，但不应该用它来调用对象的其它操作。</p>
 <p>正确的做法：</p>
 <div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="bp">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">oldName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myObject</span><span class="p">.</span><span class="n">name</span><span class="p">;</span>
@@ -504,7 +505,7 @@
 </section>
 </section>
 <section id="id12">
-<h2><span class="section-number">3.9.5.19. </span>没有实例变量的接口<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.19. </span>没有实例变量的接口<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>没有声明任何实例变量的接口，应省略空花括号。</p>
@@ -526,7 +527,7 @@
 </div></blockquote>
 </section>
 <section id="synthesize">
-<h2><span class="section-number">3.9.5.20. </span>自动 <code class="docutils literal notranslate"><span class="pre">synthesize</span></code> 实例变量<a class="headerlink" href="#synthesize" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.9.5.20. </span>自动 <code class="docutils literal notranslate"><span class="pre">synthesize</span></code> 实例变量<a class="headerlink" href="#synthesize" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>只运行在 iOS 下的代码，优先考虑使用自动 <code class="docutils literal notranslate"><span class="pre">synthesize</span></code> 实例变量。</p>
@@ -557,8 +558,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="comments.html" class="btn btn-neutral float-left" title="3.9.4. 注释" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="patterns.html" class="btn btn-neutral float-right" title="3.9.6. Cocoa 模式" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="comments.html" class="btn btn-neutral float-left" title="4.9.4. 注释" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="patterns.html" class="btn btn-neutral float-right" title="4.9.6. Cocoa 模式" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

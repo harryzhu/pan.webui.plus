@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.8.7. 6. 其他 C++ 特性 &mdash; AI 模型国内加速  文档</title>
+  <title>4.8.7. 6. 其他 C++ 特性 &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
@@ -24,8 +24,8 @@
     <link rel="author" title="关于这些文档" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="3.8.8. 7. 命名约定" href="naming.html" />
-    <link rel="prev" title="3.8.6. 5. 来自 Google 的奇技" href="magic.html" /> 
+    <link rel="next" title="4.8.8. 7. 命名约定" href="naming.html" />
+    <link rel="prev" title="4.8.6. 5. 来自 Google 的奇技" href="magic.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,62 +51,63 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 风格指南</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_style_en.html">3.2. Uber Go Style Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.8. Google: C++ 风格指南</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="index.html">3.8.1. 扉页</a></li>
-<li class="toctree-l3"><a class="reference internal" href="headers.html">3.8.2. 1. 头文件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scoping.html">3.8.3. 2. 作用域</a></li>
-<li class="toctree-l3"><a class="reference internal" href="classes.html">3.8.4. 3. 类</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions.html">3.8.5. 4. 函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="magic.html">3.8.6. 5. 来自 Google 的奇技</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">3.8.7. 6. 其他 C++ 特性</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">3.8.7.1. 6.1. 右值引用</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#function-overloading">3.8.7.2. 6.2. 函数重载</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">3.8.7.3. 6.3. 缺省参数</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#alloca">3.8.7.4. 6.4. 变长数组和 alloca()</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">3.8.7.5. 6.5. 友元</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#exceptions">3.8.7.6. 6.6. 异常</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#rtti">3.8.7.7. 6.7. 运行时类型识别</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7">3.8.7.8. 6.8. 类型转换</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#streams">3.8.7.9. 6.9. 流</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9">3.8.7.10. 6.10. 前置自增和自减</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#const">3.8.7.11. 6.11. <code class="docutils literal notranslate"><span class="pre">const</span></code> 用法</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#constexpr">3.8.7.12. 6.12. <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> 用法</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id10">3.8.7.13. 6.13. 整型</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id11">3.8.7.14. 6.14. 64 位下的可移植性</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#preprocessor-macros">3.8.7.15. 6.15. 预处理宏</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nullptr-null">3.8.7.16. 6.16. 0, <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> 和 <code class="docutils literal notranslate"><span class="pre">NULL</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#sizeof">3.8.7.17. 6.17. sizeof</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#auto">3.8.7.18. 6.18. auto</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#braced-initializer-list">3.8.7.19. 6.19. 列表初始化</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#lambda">3.8.7.20. 6.20. Lambda 表达式</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#template-metaprogramming">3.8.7.21. 6.21. 模板编程</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#boost">3.8.7.22. 6.22. Boost 库</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#c-11">3.8.7.23. 6.23. C++11</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#acgtyrant">3.8.7.24. 译者（acgtyrant）笔记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytorch-guides/index.html">3. Pytorch 教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 风格指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/uber_go_style_en.html">4.1. Uber: Go Style Guide - English</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">4.2. Uber: Go语言 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">4.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">4.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">4.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">4.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">4.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">4.8. Google: C++ 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html">4.8.1. 扉页</a></li>
+<li class="toctree-l3"><a class="reference internal" href="headers.html">4.8.2. 1. 头文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scoping.html">4.8.3. 2. 作用域</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classes.html">4.8.4. 3. 类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions.html">4.8.5. 4. 函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="magic.html">4.8.6. 5. 来自 Google 的奇技</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.8.7. 6. 其他 C++ 特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">4.8.7.1. 6.1. 右值引用</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#function-overloading">4.8.7.2. 6.2. 函数重载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">4.8.7.3. 6.3. 缺省参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#alloca">4.8.7.4. 6.4. 变长数组和 alloca()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">4.8.7.5. 6.5. 友元</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exceptions">4.8.7.6. 6.6. 异常</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rtti">4.8.7.7. 6.7. 运行时类型识别</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">4.8.7.8. 6.8. 类型转换</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#streams">4.8.7.9. 6.9. 流</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">4.8.7.10. 6.10. 前置自增和自减</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#const">4.8.7.11. 6.11. <code class="docutils literal notranslate"><span class="pre">const</span></code> 用法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#constexpr">4.8.7.12. 6.12. <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> 用法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">4.8.7.13. 6.13. 整型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">4.8.7.14. 6.14. 64 位下的可移植性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#preprocessor-macros">4.8.7.15. 6.15. 预处理宏</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nullptr-null">4.8.7.16. 6.16. 0, <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> 和 <code class="docutils literal notranslate"><span class="pre">NULL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sizeof">4.8.7.17. 6.17. sizeof</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auto">4.8.7.18. 6.18. auto</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#braced-initializer-list">4.8.7.19. 6.19. 列表初始化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lambda">4.8.7.20. 6.20. Lambda 表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#template-metaprogramming">4.8.7.21. 6.21. 模板编程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boost">4.8.7.22. 6.22. Boost 库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c-11">4.8.7.23. 6.23. C++11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#acgtyrant">4.8.7.24. 译者（acgtyrant）笔记</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="naming.html">3.8.8. 7. 命名约定</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comments.html">3.8.9. 8. 注释</a></li>
-<li class="toctree-l3"><a class="reference internal" href="formatting.html">3.8.10. 9. 格式</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exceptions.html">3.8.11. 10. 规则特例</a></li>
-<li class="toctree-l3"><a class="reference internal" href="end.html">3.8.12. 11. 结束语</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html">4.8.8. 7. 命名约定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html">4.8.9. 8. 注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formatting.html">4.8.10. 9. 格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exceptions.html">4.8.11. 10. 规则特例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="end.html">4.8.12. 11. 结束语</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">4.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">4.10. Google: Java 风格指南</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">7. 关于</a></li>
 </ul>
 
         </div>
@@ -123,9 +124,9 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 风格指南</a></li>
-          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.8. </span>Google: C++ 风格指南</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3.8.7. </span>6. 其他 C++ 特性</li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 风格指南</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">4.8. </span>Google: C++ 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.8.7. </span>6. 其他 C++ 特性</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/style-guides/google-cpp-styleguide/others.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -136,9 +137,9 @@
            <div itemprop="articleBody">
              
   <section id="c">
-<h1><span class="section-number">3.8.7. </span>6. 其他 C++ 特性<a class="headerlink" href="#c" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">4.8.7. </span>6. 其他 C++ 特性<a class="headerlink" href="#c" title="Permalink to this heading"></a></h1>
 <section id="id1">
-<h2><span class="section-number">3.8.7.1. </span>6.1. 右值引用<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.1. </span>6.1. 右值引用<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>仅在下面列出的某些特殊情况下使用右值引用.</p>
@@ -167,7 +168,7 @@
 </div></blockquote>
 </section>
 <section id="function-overloading">
-<span id="id2"></span><h2><span class="section-number">3.8.7.2. </span>6.2. 函数重载<a class="headerlink" href="#function-overloading" title="Permalink to this heading"></a></h2>
+<span id="id2"></span><h2><span class="section-number">4.8.7.2. </span>6.2. 函数重载<a class="headerlink" href="#function-overloading" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>若要用好函数重载，最好能让读者一看调用点（call site）就胸有成竹，不用花心思猜测调用的重载函数到底是哪一种。该规则适用于构造函数。</p>
@@ -199,7 +200,7 @@
 </div></blockquote>
 </section>
 <section id="id3">
-<h2><span class="section-number">3.8.7.3. </span>6.3. 缺省参数<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.3. </span>6.3. 缺省参数<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>我们不允许使用缺省函数参数，少数极端情况除外。尽可能改用函数重载。</p>
@@ -230,7 +231,7 @@
 </div></blockquote>
 </section>
 <section id="alloca">
-<h2><span class="section-number">3.8.7.4. </span>6.4. 变长数组和 alloca()<a class="headerlink" href="#alloca" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.4. </span>6.4. 变长数组和 alloca()<a class="headerlink" href="#alloca" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>我们不允许使用变长数组和 <code class="docutils literal notranslate"><span class="pre">alloca()</span></code>.</p>
@@ -249,7 +250,7 @@
 </div></blockquote>
 </section>
 <section id="id4">
-<h2><span class="section-number">3.8.7.5. </span>6.5. 友元<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.5. </span>6.5. 友元<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>我们允许合理的使用友元类及友元函数.</p>
@@ -258,7 +259,7 @@
 <p>友元扩大了 (但没有打破) 类的封装边界. 某些情况下, 相对于将类成员声明为 <code class="docutils literal notranslate"><span class="pre">public</span></code>, 使用友元是更好的选择, 尤其是如果你只允许另一个类访问该类的私有成员时. 当然, 大多数类都只应该通过其提供的公有成员进行互操作.</p>
 </section>
 <section id="exceptions">
-<span id="id5"></span><h2><span class="section-number">3.8.7.6. </span>6.6. 异常<a class="headerlink" href="#exceptions" title="Permalink to this heading"></a></h2>
+<span id="id5"></span><h2><span class="section-number">4.8.7.6. </span>6.6. 异常<a class="headerlink" href="#exceptions" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>我们不使用 C++ 异常.</p>
@@ -293,7 +294,7 @@
 <p>(YuleFox 注: 对于异常处理, 显然不是短短几句话能够说清楚的, 以构造函数为例, 很多 C++ 书籍上都提到当构造失败时只有异常可以处理, Google 禁止使用异常这一点, 仅仅是为了自身的方便, 说大了, 无非是基于软件管理成本上, 实际使用中还是自己决定)</p>
 </section>
 <section id="rtti">
-<span id="id6"></span><h2><span class="section-number">3.8.7.7. </span>6.7. 运行时类型识别<a class="headerlink" href="#rtti" title="Permalink to this heading"></a></h2>
+<span id="id6"></span><h2><span class="section-number">4.8.7.7. </span>6.7. 运行时类型识别<a class="headerlink" href="#rtti" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><p>TODO</p>
 </div></blockquote>
@@ -345,7 +346,7 @@
 </div></blockquote>
 </section>
 <section id="id7">
-<h2><span class="section-number">3.8.7.8. </span>6.8. 类型转换<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.8. </span>6.8. 类型转换<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>使用 C++ 的类型转换, 如 <code class="docutils literal notranslate"><span class="pre">static_cast&lt;&gt;()</span></code>. 不要使用 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">(int)x</span></code> 或 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">int(x)</span></code> 等转换方式;</p>
@@ -376,7 +377,7 @@
 </div></blockquote>
 </section>
 <section id="streams">
-<span id="id8"></span><h2><span class="section-number">3.8.7.9. </span>6.9. 流<a class="headerlink" href="#streams" title="Permalink to this heading"></a></h2>
+<span id="id8"></span><h2><span class="section-number">4.8.7.9. </span>6.9. 流<a class="headerlink" href="#streams" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>只在记录日志时使用流.</p>
@@ -425,7 +426,7 @@
 </div></blockquote>
 </section>
 <section id="id9">
-<h2><span class="section-number">3.8.7.10. </span>6.10. 前置自增和自减<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.10. </span>6.10. 前置自增和自减<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>对于迭代器和其他模板对象使用前缀形式 (<code class="docutils literal notranslate"><span class="pre">++i</span></code>) 的自增, 自减运算符.</p>
@@ -448,7 +449,7 @@
 </div></blockquote>
 </section>
 <section id="const">
-<h2><span class="section-number">3.8.7.11. </span>6.11. <code class="docutils literal notranslate"><span class="pre">const</span></code> 用法<a class="headerlink" href="#const" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.11. </span>6.11. <code class="docutils literal notranslate"><span class="pre">const</span></code> 用法<a class="headerlink" href="#const" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>我们强烈建议你在任何可能的情况下都要使用 <code class="docutils literal notranslate"><span class="pre">const</span></code>. 此外有时改用 C++11 推出的 constexpr 更好。</p>
@@ -485,7 +486,7 @@
 </div></blockquote>
 </section>
 <section id="constexpr">
-<h2><span class="section-number">3.8.7.12. </span>6.12. <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> 用法<a class="headerlink" href="#constexpr" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.12. </span>6.12. <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> 用法<a class="headerlink" href="#constexpr" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>在 C++11 里，用 constexpr 来定义真正的常量，或实现常量初始化。</p>
@@ -508,7 +509,7 @@
 </div></blockquote>
 </section>
 <section id="id10">
-<h2><span class="section-number">3.8.7.13. </span>6.13. 整型<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.13. </span>6.13. 整型<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>C++ 内建整型中, 仅使用 <code class="docutils literal notranslate"><span class="pre">int</span></code>. 如果程序中需要不同大小的变量, 可以使用 <code class="docutils literal notranslate"><span class="pre">&lt;stdint.h&gt;</span></code> 中长度精确的整型, 如 <code class="docutils literal notranslate"><span class="pre">int16_t</span></code>.如果您的变量可能不小于 2^31 (2GiB), 就用 64 位变量比如 <code class="docutils literal notranslate"><span class="pre">int64_t</span></code>. 此外要留意，哪怕您的值并不会超出 int 所能够表示的范围，在计算过程中也可能会溢出。所以拿不准时，干脆用更大的类型。</p>
@@ -547,7 +548,7 @@
 </div></blockquote>
 </section>
 <section id="id11">
-<h2><span class="section-number">3.8.7.14. </span>6.14. 64 位下的可移植性<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.14. </span>6.14. 64 位下的可移植性<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>代码应该对 64 位和 32 位系统友好. 处理打印, 比较, 结构体对齐时应切记:</p>
@@ -627,7 +628,7 @@
 </ul>
 </section>
 <section id="preprocessor-macros">
-<span id="id12"></span><h2><span class="section-number">3.8.7.15. </span>6.15. 预处理宏<a class="headerlink" href="#preprocessor-macros" title="Permalink to this heading"></a></h2>
+<span id="id12"></span><h2><span class="section-number">4.8.7.15. </span>6.15. 预处理宏<a class="headerlink" href="#preprocessor-macros" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>使用宏时要非常谨慎, 尽量以内联函数, 枚举和常量代替之.</p>
@@ -647,7 +648,7 @@
 </div></blockquote>
 </section>
 <section id="nullptr-null">
-<h2><span class="section-number">3.8.7.16. </span>6.16. 0, <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> 和 <code class="docutils literal notranslate"><span class="pre">NULL</span></code><a class="headerlink" href="#nullptr-null" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.16. </span>6.16. 0, <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> 和 <code class="docutils literal notranslate"><span class="pre">NULL</span></code><a class="headerlink" href="#nullptr-null" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>指针使用  <code class="docutils literal notranslate"><span class="pre">nullptr</span></code>，字符使用 <code class="docutils literal notranslate"><span class="pre">'\0'</span></code> (而不是 <code class="docutils literal notranslate"><span class="pre">0</span></code> 字面值)。</p>
@@ -656,7 +657,7 @@
 </div>
 </section>
 <section id="sizeof">
-<h2><span class="section-number">3.8.7.17. </span>6.17. sizeof<a class="headerlink" href="#sizeof" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.17. </span>6.17. sizeof<a class="headerlink" href="#sizeof" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>尽可能用 <code class="docutils literal notranslate"><span class="pre">sizeof(varname)</span></code> 代替 <code class="docutils literal notranslate"><span class="pre">sizeof(type)</span></code>.</p>
@@ -680,7 +681,7 @@
 </div>
 </section>
 <section id="auto">
-<h2><span class="section-number">3.8.7.18. </span>6.18. auto<a class="headerlink" href="#auto" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.18. </span>6.18. auto<a class="headerlink" href="#auto" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>用 <code class="docutils literal notranslate"><span class="pre">auto</span></code> 绕过烦琐的类型名，只要可读性好就继续用，别用在局部变量之外的地方。</p>
@@ -735,7 +736,7 @@
 </div></blockquote>
 </section>
 <section id="braced-initializer-list">
-<span id="id13"></span><h2><span class="section-number">3.8.7.19. </span>6.19. 列表初始化<a class="headerlink" href="#braced-initializer-list" title="Permalink to this heading"></a></h2>
+<span id="id13"></span><h2><span class="section-number">4.8.7.19. </span>6.19. 列表初始化<a class="headerlink" href="#braced-initializer-list" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>你可以用列表初始化。</p>
@@ -813,7 +814,7 @@
 </div>
 </section>
 <section id="lambda">
-<span id="lambda-expressions"></span><h2><span class="section-number">3.8.7.20. </span>6.20. Lambda 表达式<a class="headerlink" href="#lambda" title="Permalink to this heading"></a></h2>
+<span id="lambda-expressions"></span><h2><span class="section-number">4.8.7.20. </span>6.20. Lambda 表达式<a class="headerlink" href="#lambda" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>适当使用 lambda 表达式。当 lambda 将转移当前作用域时，首选显式捕获。</p>
@@ -916,7 +917,7 @@
 </div></blockquote>
 </section>
 <section id="template-metaprogramming">
-<span id="id16"></span><h2><span class="section-number">3.8.7.21. </span>6.21. 模板编程<a class="headerlink" href="#template-metaprogramming" title="Permalink to this heading"></a></h2>
+<span id="id16"></span><h2><span class="section-number">4.8.7.21. </span>6.21. 模板编程<a class="headerlink" href="#template-metaprogramming" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>不要使用复杂的模板编程</p>
@@ -947,7 +948,7 @@
 </div></blockquote>
 </section>
 <section id="boost">
-<span id="id17"></span><h2><span class="section-number">3.8.7.22. </span>6.22. Boost 库<a class="headerlink" href="#boost" title="Permalink to this heading"></a></h2>
+<span id="id17"></span><h2><span class="section-number">4.8.7.22. </span>6.22. Boost 库<a class="headerlink" href="#boost" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>只使用 Boost 中被认可的库.</p>
@@ -993,7 +994,7 @@
 </div></blockquote>
 </section>
 <section id="c-11">
-<h2><span class="section-number">3.8.7.23. </span>6.23. C++11<a class="headerlink" href="#c-11" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.23. </span>6.23. C++11<a class="headerlink" href="#c-11" title="Permalink to this heading"></a></h2>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>适当用 C++11（前身是 C++0x）的库和语言扩展，在贵项目用 C++11 特性前三思可移植性。</p>
@@ -1023,7 +1024,7 @@
 </div></blockquote>
 </section>
 <section id="acgtyrant">
-<h2><span class="section-number">3.8.7.24. </span>译者（acgtyrant）笔记<a class="headerlink" href="#acgtyrant" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.7.24. </span>译者（acgtyrant）笔记<a class="headerlink" href="#acgtyrant" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>实际上，<a class="reference external" href="http://www.zhihu.com/question/24439516/answer/27858964">缺省参数会改变函数签名的前提是改变了它接收的参数数量</a>，比如把 <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">a()</span></code> 改成 <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">a(int</span> <span class="pre">b</span> <span class="pre">=</span> <span class="pre">0)</span></code>, 开发者改变其代码的初衷也许是，在不改变「代码兼容性」的同时，又提供了可选 int 参数的余地，然而这终究会破坏函数指针上的兼容性，毕竟函数签名确实变了。</p></li>
 <li><p>此外把自带缺省参数的函数地址赋值给指针时，会丢失缺省参数信息。</p></li>
@@ -1044,8 +1045,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="magic.html" class="btn btn-neutral float-left" title="3.8.6. 5. 来自 Google 的奇技" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="naming.html" class="btn btn-neutral float-right" title="3.8.8. 7. 命名约定" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="magic.html" class="btn btn-neutral float-left" title="4.8.6. 5. 来自 Google 的奇技" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="naming.html" class="btn btn-neutral float-right" title="4.8.8. 7. 命名约定" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

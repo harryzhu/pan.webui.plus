@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.8.10. 9. 格式 &mdash; AI 模型国内加速  文档</title>
+  <title>4.8.10. 9. 格式 &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
@@ -24,8 +24,8 @@
     <link rel="author" title="关于这些文档" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="3.8.11. 10. 规则特例" href="exceptions.html" />
-    <link rel="prev" title="3.8.9. 8. 注释" href="comments.html" /> 
+    <link rel="next" title="4.8.11. 10. 规则特例" href="exceptions.html" />
+    <link rel="prev" title="4.8.9. 8. 注释" href="comments.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,59 +51,60 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 风格指南</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_style_en.html">3.2. Uber Go Style Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.8. Google: C++ 风格指南</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="index.html">3.8.1. 扉页</a></li>
-<li class="toctree-l3"><a class="reference internal" href="headers.html">3.8.2. 1. 头文件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scoping.html">3.8.3. 2. 作用域</a></li>
-<li class="toctree-l3"><a class="reference internal" href="classes.html">3.8.4. 3. 类</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions.html">3.8.5. 4. 函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="magic.html">3.8.6. 5. 来自 Google 的奇技</a></li>
-<li class="toctree-l3"><a class="reference internal" href="others.html">3.8.7. 6. 其他 C++ 特性</a></li>
-<li class="toctree-l3"><a class="reference internal" href="naming.html">3.8.8. 7. 命名约定</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comments.html">3.8.9. 8. 注释</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">3.8.10. 9. 格式</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#line-length">3.8.10.1. 9.1. 行长度</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ascii">3.8.10.2. 9.2. 非 ASCII 字符</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">3.8.10.3. 9.3. 空格还是制表位</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">3.8.10.4. 9.4. 函数声明与定义</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#lambda">3.8.10.5. 9.5. Lambda 表达式</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#function-calls">3.8.10.6. 9.6. 函数调用</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#braced-initializer-list-format">3.8.10.7. 9.7. 列表初始化格式</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7">3.8.10.8. 9.8. 条件语句</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id8">3.8.10.9. 9.9. 循环和开关选择语句</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9">3.8.10.10. 9.10. 指针和引用表达式</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id10">3.8.10.11. 9.11. 布尔表达式</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id11">3.8.10.12. 9.12. 函数返回值</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id12">3.8.10.13. 9.13. 变量及数组初始化</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id13">3.8.10.14. 9.14. 预处理指令</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id14">3.8.10.15. 9.15. 类格式</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id15">3.8.10.16. 9.16. 构造函数初始值列表</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id16">3.8.10.17. 9.17. 命名空间格式化</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id17">3.8.10.18. 9.18. 水平留白</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id22">3.8.10.19. 9.19. 垂直留白</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#yulefox">3.8.10.20. 译者 (YuleFox) 笔记</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#acgtyrant">3.8.10.21. 译者（acgtyrant）笔记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytorch-guides/index.html">3. Pytorch 教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 风格指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/uber_go_style_en.html">4.1. Uber: Go Style Guide - English</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">4.2. Uber: Go语言 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">4.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">4.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">4.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">4.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">4.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">4.8. Google: C++ 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html">4.8.1. 扉页</a></li>
+<li class="toctree-l3"><a class="reference internal" href="headers.html">4.8.2. 1. 头文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scoping.html">4.8.3. 2. 作用域</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classes.html">4.8.4. 3. 类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions.html">4.8.5. 4. 函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="magic.html">4.8.6. 5. 来自 Google 的奇技</a></li>
+<li class="toctree-l3"><a class="reference internal" href="others.html">4.8.7. 6. 其他 C++ 特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html">4.8.8. 7. 命名约定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html">4.8.9. 8. 注释</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.8.10. 9. 格式</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#line-length">4.8.10.1. 9.1. 行长度</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ascii">4.8.10.2. 9.2. 非 ASCII 字符</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">4.8.10.3. 9.3. 空格还是制表位</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">4.8.10.4. 9.4. 函数声明与定义</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lambda">4.8.10.5. 9.5. Lambda 表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#function-calls">4.8.10.6. 9.6. 函数调用</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#braced-initializer-list-format">4.8.10.7. 9.7. 列表初始化格式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">4.8.10.8. 9.8. 条件语句</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">4.8.10.9. 9.9. 循环和开关选择语句</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">4.8.10.10. 9.10. 指针和引用表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">4.8.10.11. 9.11. 布尔表达式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">4.8.10.12. 9.12. 函数返回值</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">4.8.10.13. 9.13. 变量及数组初始化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">4.8.10.14. 9.14. 预处理指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">4.8.10.15. 9.15. 类格式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">4.8.10.16. 9.16. 构造函数初始值列表</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">4.8.10.17. 9.17. 命名空间格式化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">4.8.10.18. 9.18. 水平留白</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22">4.8.10.19. 9.19. 垂直留白</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#yulefox">4.8.10.20. 译者 (YuleFox) 笔记</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#acgtyrant">4.8.10.21. 译者（acgtyrant）笔记</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="exceptions.html">3.8.11. 10. 规则特例</a></li>
-<li class="toctree-l3"><a class="reference internal" href="end.html">3.8.12. 11. 结束语</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exceptions.html">4.8.11. 10. 规则特例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="end.html">4.8.12. 11. 结束语</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">4.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">4.10. Google: Java 风格指南</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">7. 关于</a></li>
 </ul>
 
         </div>
@@ -120,9 +121,9 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 风格指南</a></li>
-          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.8. </span>Google: C++ 风格指南</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3.8.10. </span>9. 格式</li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 风格指南</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">4.8. </span>Google: C++ 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.8.10. </span>9. 格式</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/style-guides/google-cpp-styleguide/formatting.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -133,11 +134,11 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">3.8.10. </span>9. 格式<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">4.8.10. </span>9. 格式<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <p>每个人都可能有自己的代码风格和格式, 但如果一个项目中的所有人都遵循同一风格的话, 这个项目就能更顺利地进行. 每个人未必能同意下述的每一处格式规则, 而且其中的不少规则需要一定时间的适应, 但整个项目服从统一的编程风格是很重要的, 只有这样才能让所有人轻松地阅读和理解代码.</p>
 <p>为了帮助你正确的格式化代码, 我们写了一个 <a class="reference external" href="https://raw.githubusercontent.com/google/styleguide/gh-pages/google-c-style.el">emacs 配置文件</a>.</p>
 <section id="line-length">
-<span id="id2"></span><h2><span class="section-number">3.8.10.1. </span>9.1. 行长度<a class="headerlink" href="#line-length" title="Permalink to this heading"></a></h2>
+<span id="id2"></span><h2><span class="section-number">4.8.10.1. </span>9.1. 行长度<a class="headerlink" href="#line-length" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>每一行代码字符数不超过 80.</p>
 <p>我们也认识到这条规则是有争议的, 但很多已有代码都遵照这一规则, 因此我们感觉一致性更重要.</p>
@@ -152,7 +153,7 @@
 <p><a class="reference internal" href="headers.html#define-guard"><span class="std std-ref">头文件保护</span></a> 可以无视该原则.</p>
 </section>
 <section id="ascii">
-<h2><span class="section-number">3.8.10.2. </span>9.2. 非 ASCII 字符<a class="headerlink" href="#ascii" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.2. </span>9.2. 非 ASCII 字符<a class="headerlink" href="#ascii" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>尽量不使用非 ASCII 字符, 使用时必须使用 UTF-8 编码.</p>
 <p><strong>说明</strong></p>
@@ -163,14 +164,14 @@
 <p>别用 C++11 的 <code class="docutils literal notranslate"><span class="pre">char16_t</span></code> 和 <code class="docutils literal notranslate"><span class="pre">char32_t</span></code>, 它们和 UTF-8 文本没有关系, <code class="docutils literal notranslate"><span class="pre">wchar_t</span></code> 同理, 除非你写的代码要调用 Windows API, 后者广泛使用了 <code class="docutils literal notranslate"><span class="pre">wchar_t</span></code>.</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">3.8.10.3. </span>9.3. 空格还是制表位<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.3. </span>9.3. 空格还是制表位<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>只使用空格, 每次缩进 2 个空格.</p>
 <p><strong>说明</strong></p>
 <p>我们使用空格缩进. 不要在代码中使用制表符. 你应该设置编辑器将制表符转为空格.</p>
 </section>
 <section id="id4">
-<h2><span class="section-number">3.8.10.4. </span>9.4. 函数声明与定义<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.4. </span>9.4. 函数声明与定义<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>返回类型和函数名在同一行, 参数也尽量放在同一行, 如果放不下就对形参分行, 分行方式与 <a class="reference internal" href="#function-calls"><span class="std std-ref">函数调用</span></a> 一致.</p>
 <p><strong>说明</strong></p>
@@ -249,7 +250,7 @@
 </div>
 </section>
 <section id="lambda">
-<h2><span class="section-number">3.8.10.5. </span>9.5. Lambda 表达式<a class="headerlink" href="#lambda" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.5. </span>9.5. Lambda 表达式<a class="headerlink" href="#lambda" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>Lambda 表达式对形参和函数体的格式化和其他函数一致; 捕获列表同理, 表项用逗号隔开.</p>
 <p><strong>说明</strong></p>
@@ -269,7 +270,7 @@
 </div>
 </section>
 <section id="function-calls">
-<span id="id5"></span><h2><span class="section-number">3.8.10.6. </span>9.6. 函数调用<a class="headerlink" href="#function-calls" title="Permalink to this heading"></a></h2>
+<span id="id5"></span><h2><span class="section-number">4.8.10.6. </span>9.6. 函数调用<a class="headerlink" href="#function-calls" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>要么一行写完函数调用, 要么在圆括号里对参数分行, 要么参数另起一行且缩进四格. 如果没有其它顾虑的话, 尽可能精简行数, 比如把多个参数适当地放在同一行里.</p>
 <p><strong>说明</strong></p>
@@ -314,7 +315,7 @@
 </div>
 </section>
 <section id="braced-initializer-list-format">
-<span id="id6"></span><h2><span class="section-number">3.8.10.7. </span>9.7. 列表初始化格式<a class="headerlink" href="#braced-initializer-list-format" title="Permalink to this heading"></a></h2>
+<span id="id6"></span><h2><span class="section-number">4.8.10.7. </span>9.7. 列表初始化格式<a class="headerlink" href="#braced-initializer-list-format" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>您平时怎么格式化函数调用, 就怎么格式化 <a class="reference internal" href="others.html#braced-initializer-list"><span class="std std-ref">列表初始化</span></a>.</p>
 <p><strong>说明</strong></p>
@@ -348,7 +349,7 @@
 </div>
 </section>
 <section id="id7">
-<h2><span class="section-number">3.8.10.8. </span>9.8. 条件语句<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.8. </span>9.8. 条件语句<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>倾向于不在圆括号内使用空格. 关键字 <code class="docutils literal notranslate"><span class="pre">if</span></code> 和 <code class="docutils literal notranslate"><span class="pre">else</span></code> 另起一行.</p>
 <p><strong>说明</strong></p>
@@ -425,7 +426,7 @@
 </div>
 </section>
 <section id="id8">
-<h2><span class="section-number">3.8.10.9. </span>9.9. 循环和开关选择语句<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.9. </span>9.9. 循环和开关选择语句<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">switch</span></code> 语句可以使用大括号分段, 以表明 cases 之间不是连在一起的. 在单语句循环里, 括号可用可不用. 空循环体应使用 <code class="docutils literal notranslate"><span class="pre">{}</span></code> 或 <code class="docutils literal notranslate"><span class="pre">continue</span></code>.</p>
 <p><strong>说明</strong></p>
@@ -468,7 +469,7 @@
 </div>
 </section>
 <section id="id9">
-<h2><span class="section-number">3.8.10.10. </span>9.10. 指针和引用表达式<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.10. </span>9.10. 指针和引用表达式<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>句点或箭头前后不要有空格. 指针/地址操作符 (<code class="docutils literal notranslate"><span class="pre">*,</span> <span class="pre">&amp;</span></code>) 之后不能有空格.</p>
 <p><strong>说明</strong></p>
@@ -502,7 +503,7 @@
 <p>在单个文件内要保持风格一致, 所以, 如果是修改现有文件, 要遵照该文件的风格.</p>
 </section>
 <section id="id10">
-<h2><span class="section-number">3.8.10.11. </span>9.11. 布尔表达式<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.11. </span>9.11. 布尔表达式<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>如果一个布尔表达式超过 <a class="reference internal" href="#line-length"><span class="std std-ref">标准行宽</span></a>, 断行方式要统一一下.</p>
 <p><strong>说明</strong></p>
@@ -517,7 +518,7 @@
 <p>注意, 上例的逻辑与 (<code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>) 操作符均位于行尾. 这个格式在 Google 里很常见, 虽然把所有操作符放在开头也可以. 可以考虑额外插入圆括号, 合理使用的话对增强可读性是很有帮助的. 此外, 直接用符号形式的操作符, 比如 <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">~</span></code>, 不要用词语形式的 <code class="docutils literal notranslate"><span class="pre">and</span></code> 和 <code class="docutils literal notranslate"><span class="pre">compl</span></code>.</p>
 </section>
 <section id="id11">
-<h2><span class="section-number">3.8.10.12. </span>9.12. 函数返回值<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.12. </span>9.12. 函数返回值<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>不要在 <code class="docutils literal notranslate"><span class="pre">return</span></code> 表达式里加上非必须的圆括号.</p>
 <p><strong>说明</strong></p>
@@ -534,7 +535,7 @@
 </div>
 </section>
 <section id="id12">
-<h2><span class="section-number">3.8.10.13. </span>9.13. 变量及数组初始化<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.13. </span>9.13. 变量及数组初始化<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>用 <code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">{}</span></code> 均可.</p>
 <p><strong>说明</strong></p>
@@ -559,7 +560,7 @@
 </div>
 </section>
 <section id="id13">
-<h2><span class="section-number">3.8.10.14. </span>9.14. 预处理指令<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.14. </span>9.14. 预处理指令<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>预处理指令不要缩进, 从行首开始.</p>
 <p><strong>说明</strong></p>
@@ -587,7 +588,7 @@
 </div>
 </section>
 <section id="id14">
-<h2><span class="section-number">3.8.10.15. </span>9.15. 类格式<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.15. </span>9.15. 类格式<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>访问控制块的声明依次序是 <code class="docutils literal notranslate"><span class="pre">public:</span></code>, <code class="docutils literal notranslate"><span class="pre">protected:</span></code>, <code class="docutils literal notranslate"><span class="pre">private:</span></code>, 每个都缩进 1 个空格.</p>
 <p><strong>说明</strong></p>
@@ -624,7 +625,7 @@
 </ul>
 </section>
 <section id="id15">
-<h2><span class="section-number">3.8.10.16. </span>9.16. 构造函数初始值列表<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.16. </span>9.16. 构造函数初始值列表<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>构造函数初始化列表放在同一行或按四格缩进并排多行.</p>
 <p><strong>说明</strong></p>
@@ -657,7 +658,7 @@
 </div>
 </section>
 <section id="id16">
-<h2><span class="section-number">3.8.10.17. </span>9.17. 命名空间格式化<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.17. </span>9.17. 命名空间格式化<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>命名空间内容不缩进.</p>
 <p><strong>说明</strong></p>
@@ -689,12 +690,12 @@
 </div>
 </section>
 <section id="id17">
-<h2><span class="section-number">3.8.10.18. </span>9.18. 水平留白<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.18. </span>9.18. 水平留白<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>水平留白的使用根据在代码中的位置决定. 永远不要在行尾添加没意义的留白.</p>
 <p><strong>说明</strong></p>
 <section id="id18">
-<h3><span class="section-number">3.8.10.18.1. </span>通用<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.8.10.18.1. </span>通用<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 左大括号前总是有空格.</span>
 <span class="w">  </span><span class="p">...</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// 分号前不加空格.</span>
@@ -716,7 +717,7 @@
 <p>添加冗余的留白会给其他人编辑时造成额外负担. 因此, 行尾不要留空格. 如果确定一行代码已经修改完毕, 将多余的空格去掉; 或者在专门清理空格时去掉（尤其是在没有其他人在处理这件事的时候). (Yang.Y 注: 现在大部分代码编辑器稍加设置后, 都支持自动删除行首/行尾空格, 如果不支持, 考虑换一款编辑器或 IDE)</p>
 </section>
 <section id="id19">
-<h3><span class="section-number">3.8.10.18.2. </span>循环和条件语句<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.8.10.18.2. </span>循环和条件语句<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">          </span><span class="c1">// if 条件语句和循环语句关键字后均有空格.</span>
 <span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">          </span><span class="c1">// else 前后有空格.</span>
 <span class="p">}</span>
@@ -735,7 +736,7 @@
 </div>
 </section>
 <section id="id20">
-<h3><span class="section-number">3.8.10.18.3. </span>操作符<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.8.10.18.3. </span>操作符<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// 赋值运算符前后总是有空格.</span>
 <span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
@@ -754,7 +755,7 @@
 </div>
 </section>
 <section id="id21">
-<h3><span class="section-number">3.8.10.18.4. </span>模板和转换<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.8.10.18.4. </span>模板和转换<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// 尖括号(&lt; and &gt;) 不与空格紧邻, &lt; 前没有空格, &gt; 和 ( 之间也没有.</span>
 <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
 <span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
@@ -766,7 +767,7 @@
 </section>
 </section>
 <section id="id22">
-<h2><span class="section-number">3.8.10.19. </span>9.19. 垂直留白<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.19. </span>9.19. 垂直留白<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h2>
 <p><strong>总述</strong></p>
 <p>垂直留白越少越好.</p>
 <p><strong>说明</strong></p>
@@ -779,7 +780,7 @@
 </ul>
 </section>
 <section id="yulefox">
-<h2><span class="section-number">3.8.10.20. </span>译者 (YuleFox) 笔记<a class="headerlink" href="#yulefox" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.20. </span>译者 (YuleFox) 笔记<a class="headerlink" href="#yulefox" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>对于代码格式, 因人, 系统而异各有优缺点, 但同一个项目中遵循同一标准还是有必要的;</p></li>
 <li><p>行宽原则上不超过 80 列, 把 22 寸的显示屏都占完, 怎么也说不过去;</p></li>
@@ -796,7 +797,7 @@
 </ol>
 </section>
 <section id="acgtyrant">
-<h2><span class="section-number">3.8.10.21. </span>译者（acgtyrant）笔记<a class="headerlink" href="#acgtyrant" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.8.10.21. </span>译者（acgtyrant）笔记<a class="headerlink" href="#acgtyrant" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>80 行限制事实上有助于避免代码可读性失控, 比如超多重嵌套块, 超多重函数调用等等.</p></li>
 <li><p>Linux 上设置好了 Locale 就几乎一劳永逸设置好所有开发环境的编码, 不像奇葩的 Windows.</p></li>
@@ -814,8 +815,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="comments.html" class="btn btn-neutral float-left" title="3.8.9. 8. 注释" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="exceptions.html" class="btn btn-neutral float-right" title="3.8.11. 10. 规则特例" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="comments.html" class="btn btn-neutral float-left" title="4.8.9. 8. 注释" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="exceptions.html" class="btn btn-neutral float-right" title="4.8.11. 10. 规则特例" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

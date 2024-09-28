@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4.1. reStructureText语法 &mdash; AI 模型国内加速  文档</title>
+  <title>5.1. reStructureText语法 &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../_static/style.css" />
@@ -24,8 +24,8 @@
     <link rel="author" title="关于这些文档" href="../about.html" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="4.2. Markdown: 语法" href="MarkDown_syntax.html" />
-    <link rel="prev" title="4. 编程语言 语法" href="index.html" /> 
+    <link rel="next" title="5.2. Markdown: 语法" href="MarkDown_syntax.html" />
+    <link rel="prev" title="5. 编程语言 语法" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,60 +51,61 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../style-guides/index.html">3. 编程语言 规范</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. 编程语言 语法</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">4.1. reStructureText语法</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#inline-markup">4.1.1. 内联标记 Inline Markup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#escaping-with-backslashes">4.1.2. 反斜杠转义 Escaping with Backslashes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#section-structure">4.1.3. 章节标记 Section Structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#paragraphs">4.1.4. 段落 Paragraphs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#bullet-lists">4.1.5. 无序列表 Bullet Lists</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#enumerated-lists">4.1.6. 有序列表 Enumerated Lists</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#definition-lists">4.1.7. 定义列表Definition Lists</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#field-lists">4.1.8. 字段列表 Field Lists</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#option-lists">4.1.9. 参数(选项)列表 Option Lists</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#literal-blocks">4.1.10. 文字块 Literal Blocks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#line-blocks">4.1.11. 行块 Line Blocks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#block-quotes">4.1.12. 块引用 Block Quotes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#doctest-blocks">4.1.13. 文档测试块 Doctest Blocks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tables">4.1.14. 表格 Tables</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id9">4.1.14.1. 网格表格</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id11">4.1.14.2. 简单表格</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pytorch-guides/index.html">3. Pytorch 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../style-guides/index.html">4. 编程语言 风格指南</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. 编程语言 语法</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.1. reStructureText语法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#inline-markup">5.1.1. 内联标记 Inline Markup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#escaping-with-backslashes">5.1.2. 反斜杠转义 Escaping with Backslashes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#section-structure">5.1.3. 章节标记 Section Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#paragraphs">5.1.4. 段落 Paragraphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bullet-lists">5.1.5. 无序列表 Bullet Lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enumerated-lists">5.1.6. 有序列表 Enumerated Lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#definition-lists">5.1.7. 定义列表Definition Lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#field-lists">5.1.8. 字段列表 Field Lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#option-lists">5.1.9. 参数(选项)列表 Option Lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#literal-blocks">5.1.10. 文字块 Literal Blocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#line-blocks">5.1.11. 行块 Line Blocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#block-quotes">5.1.12. 块引用 Block Quotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#doctest-blocks">5.1.13. 文档测试块 Doctest Blocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tables">5.1.14. 表格 Tables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">5.1.14.1. 网格表格</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">5.1.14.2. 简单表格</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#transitions">4.1.15. Transitions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#footnotes">4.1.16. 脚注 Footnotes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#citations">4.1.17. 引用Citations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hyperlink-targets">4.1.18. 超链接Hyperlink Targets</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#external-hyperlink-targets">4.1.18.1. 外部链接 External Hyperlink Targets</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#internal-hyperlink-targets">4.1.18.2. 锚点链接 Internal Hyperlink Targets</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#indirect-hyperlink-targets">4.1.18.3. 间接链接 Indirect Hyperlink Targets</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#implicit-hyperlink-targets">4.1.18.4. Implicit Hyperlink Targets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transitions">5.1.15. Transitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#footnotes">5.1.16. 脚注 Footnotes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#citations">5.1.17. 引用Citations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hyperlink-targets">5.1.18. 超链接Hyperlink Targets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#external-hyperlink-targets">5.1.18.1. 外部链接 External Hyperlink Targets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#internal-hyperlink-targets">5.1.18.2. 锚点链接 Internal Hyperlink Targets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indirect-hyperlink-targets">5.1.18.3. 间接链接 Indirect Hyperlink Targets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implicit-hyperlink-targets">5.1.18.4. Implicit Hyperlink Targets</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#directives">4.1.19. 扩展指令 Directives</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#admonitions">4.1.19.1. 警告信息Admonitions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#images">4.1.19.2. 图片Images</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#body-elements">4.1.19.3. 页面元素Body Elements</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id41">4.1.19.4. 表格Tables</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#documents">4.1.19.5. 文档Documents</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#references">4.1.19.6. References</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#html-specific">4.1.19.7. HTML-Specific</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#substitution-definitions">4.1.19.8. Substitution Definitions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id42">4.1.19.9. 其他</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id43">4.1.19.10. 通用指令选项参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directives">5.1.19. 扩展指令 Directives</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#admonitions">5.1.19.1. 警告信息Admonitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#images">5.1.19.2. 图片Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#body-elements">5.1.19.3. 页面元素Body Elements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id41">5.1.19.4. 表格Tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#documents">5.1.19.5. 文档Documents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">5.1.19.6. References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#html-specific">5.1.19.7. HTML-Specific</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#substitution-definitions">5.1.19.8. Substitution Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id42">5.1.19.9. 其他</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id43">5.1.19.10. 通用指令选项参数</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#substitution-references-and-definitions">4.1.20. Substitution References and Definitions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#comments">4.1.21. Comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#substitution-references-and-definitions">5.1.20. Substitution References and Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comments">5.1.21. Comments</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="MarkDown_syntax.html">4.2. Markdown: 语法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="golang/index.html">4.3. Go 语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MarkDown_syntax.html">5.2. Markdown: 语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="golang/index.html">5.3. Go 语法</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../cheatsheet/index.html">5. Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../about.html">6. 关于</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">7. 关于</a></li>
 </ul>
 
         </div>
@@ -121,8 +122,8 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4. </span>编程语言 语法</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4.1. </span>reStructureText语法</li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5. </span>编程语言 语法</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.1. </span>reStructureText语法</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/coding/reStructureText_syntax.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -133,9 +134,9 @@
            <div itemprop="articleBody">
              
   <section id="restructuretext">
-<h1><span class="section-number">4.1. </span>reStructureText语法<a class="headerlink" href="#restructuretext" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">5.1. </span>reStructureText语法<a class="headerlink" href="#restructuretext" title="Permalink to this heading"></a></h1>
 <section id="inline-markup">
-<h2><span class="section-number">4.1.1. </span>内联标记 Inline Markup<a class="headerlink" href="#inline-markup" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.1. </span>内联标记 Inline Markup<a class="headerlink" href="#inline-markup" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>语法</p></th>
@@ -200,7 +201,7 @@
 </aside>
 </section>
 <section id="escaping-with-backslashes">
-<h2><span class="section-number">4.1.2. </span>反斜杠转义 Escaping with Backslashes<a class="headerlink" href="#escaping-with-backslashes" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.2. </span>反斜杠转义 Escaping with Backslashes<a class="headerlink" href="#escaping-with-backslashes" title="Permalink to this heading"></a></h2>
 <p>使用反斜杠来转义任意rst语法符号为符号本身，包括反斜杠自己</p>
 <ul class="simple">
 <li><p>转义内联标记：  <code class="docutils literal notranslate"><span class="pre">\*去除斜体*</span></code></p></li>
@@ -227,7 +228,7 @@
 </table>
 </section>
 <section id="section-structure">
-<h2><span class="section-number">4.1.3. </span>章节标记 Section Structure<a class="headerlink" href="#section-structure" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.3. </span>章节标记 Section Structure<a class="headerlink" href="#section-structure" title="Permalink to this heading"></a></h2>
 <p>任意可打印的7个bit的ASCII码字符都可以作为章节标识符，它们是</p>
 <p><code class="docutils literal notranslate"><span class="pre">!</span> <span class="pre">&quot;</span> <span class="pre">#</span> <span class="pre">$</span> <span class="pre">%</span> <span class="pre">&amp;</span> <span class="pre">'</span> <span class="pre">(</span> <span class="pre">)</span> <span class="pre">*</span> <span class="pre">+</span> <span class="pre">,</span> <span class="pre">-</span> <span class="pre">.</span> <span class="pre">/</span> <span class="pre">:</span> <span class="pre">;</span> <span class="pre">&lt;</span> <span class="pre">=</span> <span class="pre">&gt;</span> <span class="pre">?</span> <span class="pre">&#64;</span> <span class="pre">[</span> <span class="pre">\</span> <span class="pre">]</span> <span class="pre">^</span> <span class="pre">_</span> <span class="pre">`</span> <span class="pre">{</span> <span class="pre">|</span> <span class="pre">}</span> <span class="pre">~</span></code></p>
 <p>不过有些可能会看起来比较奇怪，因此推荐使用其中的</p>
@@ -253,7 +254,7 @@
 </div>
 </section>
 <section id="paragraphs">
-<h2><span class="section-number">4.1.4. </span>段落 Paragraphs<a class="headerlink" href="#paragraphs" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.4. </span>段落 Paragraphs<a class="headerlink" href="#paragraphs" title="Permalink to this heading"></a></h2>
 <p>段落一般隶属于某个章节中，是一块左对齐并且没有其他元素体标记的块。
 在.rst文件中，段落和其他内容的分割是靠 <strong>空行</strong> 来完成</p>
 <blockquote>
@@ -261,7 +262,7 @@
 </div></blockquote>
 </section>
 <section id="bullet-lists">
-<h2><span class="section-number">4.1.5. </span>无序列表 Bullet Lists<a class="headerlink" href="#bullet-lists" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.5. </span>无序列表 Bullet Lists<a class="headerlink" href="#bullet-lists" title="Permalink to this heading"></a></h2>
 <p>reStructuredText中 <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#bullet-lists">无序列表</a> 的语法和Markdown中的是一样的。
 一般使用 <code class="docutils literal notranslate"><span class="pre">&quot;+</span> <span class="pre">&quot;,&quot;-</span> <span class="pre">&quot;,&quot;*</span> <span class="pre">&quot;</span></code> 来作为无序列表的指示符，利用缩进来指示列表之间的嵌套关系。</p>
 <blockquote>
@@ -305,7 +306,7 @@
 </ul>
 </section>
 <section id="enumerated-lists">
-<h2><span class="section-number">4.1.6. </span>有序列表 Enumerated Lists<a class="headerlink" href="#enumerated-lists" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.6. </span>有序列表 Enumerated Lists<a class="headerlink" href="#enumerated-lists" title="Permalink to this heading"></a></h2>
 <p><a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#enumerated-lists">枚举列表</a> 即顺序列表(ordered-list)，可以使用不同的枚举序号来表示列表。</p>
 <p><strong>枚举指示符有：</strong></p>
 <ul class="simple">
@@ -369,7 +370,7 @@ smart dude.</p>
 </ol>
 </section>
 <section id="definition-lists">
-<h2><span class="section-number">4.1.7. </span>定义列表Definition Lists<a class="headerlink" href="#definition-lists" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.7. </span>定义列表Definition Lists<a class="headerlink" href="#definition-lists" title="Permalink to this heading"></a></h2>
 <p><a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#definition-lists">定义列表</a> 可以理解为解释列表，即名词解释(definition_list, classifier, definition)。</p>
 <p>条目占一行，解释文本要有缩进；多层可根据缩进实现。</p>
 <p>各个条目由三部分组成，条目名称(term)，条目属性(classifier)，条目定义(definition)， 条目名称和条目属性在同一行，使用空格、冒号、空格（” : “）连接，其中条目属性可以为空，也可以有多个
@@ -404,7 +405,7 @@ smart dude.</p>
 </dl>
 </section>
 <section id="field-lists">
-<h2><span class="section-number">4.1.8. </span>字段列表 Field Lists<a class="headerlink" href="#field-lists" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.8. </span>字段列表 Field Lists<a class="headerlink" href="#field-lists" title="Permalink to this heading"></a></h2>
 <p><a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#field-lists">字段列表</a> 用于指令解释，或者数据库字段（记录）解释的场景。</p>
 <p>它在形式上有点像两列的表格，因此在 field body中的功能是和在表格中一样的（即支持嵌套，跨行等等）。</p>
 <p><strong>示例如下：</strong></p>
@@ -445,7 +446,7 @@ and subsequent lines of the field body do not have to line up with first line.
 </dl>
 </section>
 <section id="option-lists">
-<h2><span class="section-number">4.1.9. </span>参数(选项)列表 Option Lists<a class="headerlink" href="#option-lists" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.9. </span>参数(选项)列表 Option Lists<a class="headerlink" href="#option-lists" title="Permalink to this heading"></a></h2>
 <p>选项列表是一个左列为参数，右列为参数说明的两列列表（无表头），用于command-line参数解释。</p>
 <p>支持三种参数书写形式:</p>
 <ul class="simple">
@@ -485,7 +486,7 @@ arguments</p>
 </dl>
 </section>
 <section id="literal-blocks">
-<h2><span class="section-number">4.1.10. </span>文字块 Literal Blocks<a class="headerlink" href="#literal-blocks" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.10. </span>文字块 Literal Blocks<a class="headerlink" href="#literal-blocks" title="Permalink to this heading"></a></h2>
 <p><a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#literal-blocks">文字块</a> 就是一段文字信息，指示符为连续两个冒号 <code class="docutils literal notranslate"><span class="pre">::</span></code> ，支持文字块的嵌套。</p>
 <p>文字块支持三种形式的语法(完全等价)</p>
 <ol class="arabic simple">
@@ -533,7 +534,7 @@ arguments</p>
 </div>
 </section>
 <section id="line-blocks">
-<h2><span class="section-number">4.1.11. </span>行块 Line Blocks<a class="headerlink" href="#line-blocks" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.11. </span>行块 Line Blocks<a class="headerlink" href="#line-blocks" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>| 行块使用 | 指示符，
 | 一般用于描述地址，歌
   词，诗歌，简单列表等。
@@ -546,7 +547,7 @@ arguments</p>
 </div>
 </section>
 <section id="block-quotes">
-<h2><span class="section-number">4.1.12. </span>块引用 Block Quotes<a class="headerlink" href="#block-quotes" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.12. </span>块引用 Block Quotes<a class="headerlink" href="#block-quotes" title="Permalink to this heading"></a></h2>
 <p>块引用是 <strong>通过缩进来实现</strong> 的，引用块要在前面的段落基础上缩进。</p>
 <p>通常引用结尾会加上出处(attribution)，出处的文字块开头是两个或者三个连续短横（”–“,”—”）后面加上出处信息。</p>
 <p>块引用可以使用空的注释 .. 分隔上下的块引用。</p>
@@ -576,7 +577,7 @@ arguments</p>
 </div></blockquote>
 </section>
 <section id="doctest-blocks">
-<h2><span class="section-number">4.1.13. </span>文档测试块 Doctest Blocks<a class="headerlink" href="#doctest-blocks" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.13. </span>文档测试块 Doctest Blocks<a class="headerlink" href="#doctest-blocks" title="Permalink to this heading"></a></h2>
 <p>文档测试块是交互式的Python会话，以 <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> 开始，一个空行结束，是一种特殊的文字块，<strong>内容不需要缩进</strong> 。</p>
 <p>可直接复制到python的 docstrings中，用于为doctest模块提供测试环境。</p>
 <p>当文字块语法和文档测试块语法同时出现时，文字块语法优先级更高。</p>
@@ -586,11 +587,11 @@ arguments</p>
 </div>
 </section>
 <section id="tables">
-<h2><span class="section-number">4.1.14. </span>表格 Tables<a class="headerlink" href="#tables" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.14. </span>表格 Tables<a class="headerlink" href="#tables" title="Permalink to this heading"></a></h2>
 <p>reStructureText提供两种表格：网格表格（Grid Tables）， 简单表格（Simple Tables）。</p>
 <p>表格前后都需要空行</p>
 <section id="id9">
-<h3><span class="section-number">4.1.14.1. </span>网格表格<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.14.1. </span>网格表格<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>“-” 分隔行(短破折号，减号)</p></li>
 <li><p>“=” 分隔表头和表体行</p></li>
@@ -656,11 +657,11 @@ span rows.</p></td>
 </table>
 </section>
 <section id="id11">
-<h3><span class="section-number">4.1.14.2. </span>简单表格<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.14.2. </span>简单表格<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
 <p>简单表格使用 “=” 和 “_” 来进行绘制，其中”=” 放置于表格的最外两行（首行和末行）,如果有表头，则表头也用该符号进行分隔，”_”用于跨列合并（column span）。</p>
 <p>简单表格需要各列首字母与该列指示的”=”对齐(表头可不对齐，为了保持统一，尽量保持左对齐)，每列的”=”需要覆盖该列字符的长度</p>
 <section id="id12">
-<h4><span class="section-number">4.1.14.2.1. </span>包含表头的简单表格<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">5.1.14.2.1. </span>包含表头的简单表格<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h4>
 <p><strong>语法如下：</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=====</span>  <span class="o">=====</span>  <span class="o">=======</span>
 <span class="n">A</span>      <span class="n">B</span>      <span class="n">A</span> <span class="ow">and</span> <span class="n">B</span>
@@ -701,7 +702,7 @@ span rows.</p></td>
 </table>
 </section>
 <section id="id13">
-<h4><span class="section-number">4.1.14.2.2. </span>无表头的简单表格<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">5.1.14.2.2. </span>无表头的简单表格<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h4>
 <p><strong>语法如下：</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=====</span>  <span class="o">=====</span>  <span class="o">=======</span>
 <span class="kc">False</span>  <span class="kc">False</span>  <span class="kc">False</span>
@@ -734,7 +735,7 @@ span rows.</p></td>
 </table>
 </section>
 <section id="id14">
-<h4><span class="section-number">4.1.14.2.3. </span>跨列合并<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">5.1.14.2.3. </span>跨列合并<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h4>
 <p>“_”用于跨列合并，<strong>仅支持在表头使用</strong>，”_”长度需要从起始列的第一个指示符”=”到终止列的最后一个指示符”=”</p>
 <p><strong>语法如下：</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=====</span>  <span class="o">=====</span>  <span class="o">======</span>
@@ -781,7 +782,7 @@ span rows.</p></td>
 </table>
 </section>
 <section id="id15">
-<h4><span class="section-number">4.1.14.2.4. </span>单个表格中可以多行<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">5.1.14.2.4. </span>单个表格中可以多行<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>简单表格的单个格子中可以包含多行的内容（比如列表），但是不支持行合并；</p></li>
 <li><p>增加空行可以进行换行，否则会自动将文本连接在一起。</p></li>
@@ -834,7 +835,7 @@ list (row 3, column 2).</p></li>
 </section>
 </section>
 <section id="transitions">
-<h2><span class="section-number">4.1.15. </span>Transitions<a class="headerlink" href="#transitions" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.15. </span>Transitions<a class="headerlink" href="#transitions" title="Permalink to this heading"></a></h2>
 <p>转换分隔用于段与段之间的分隔，相当于html中的&lt;hr&gt;，就是跨屏的一个横线。</p>
 <p>使用4个及以上的标点符号(推荐使用短横 “-“)就可以生成，同样需要前后空行，另外，<strong>不能连续出现</strong> ，不能在文档结尾使用。</p>
 <p><strong>示例如下:</strong></p>
@@ -863,7 +864,7 @@ list (row 3, column 2).</p></li>
 <p>不能在结尾使用</p>
 </section>
 <section id="footnotes">
-<h2><span class="section-number">4.1.16. </span>脚注 Footnotes<a class="headerlink" href="#footnotes" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.16. </span>脚注 Footnotes<a class="headerlink" href="#footnotes" title="Permalink to this heading"></a></h2>
 <p><a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#footnotes">脚注</a> 有三种形式，
 手工序号(标记序号123之类)、自动序号(填入 # 号会自动填充序号)、自动符号(填入 * 会自动生成符号)</p>
 <p>手工序号可以和 # 结合使用，会自动延续手工的序号。</p>
@@ -971,7 +972,7 @@ labels’ - for instance,
 </aside>
 </section>
 <section id="citations">
-<h2><span class="section-number">4.1.17. </span>引用Citations<a class="headerlink" href="#citations" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.17. </span>引用Citations<a class="headerlink" href="#citations" title="Permalink to this heading"></a></h2>
 <p>引用和脚注是一样的，只不过引用只能用文本而不能用数字。</p>
 <p><strong>示例如下:</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>引用参考的内容通常放在页面结尾处，比如 [One]_，Two_
@@ -994,7 +995,7 @@ labels’ - for instance,
 </div>
 </section>
 <section id="hyperlink-targets">
-<h2><span class="section-number">4.1.18. </span>超链接Hyperlink Targets<a class="headerlink" href="#hyperlink-targets" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.18. </span>超链接Hyperlink Targets<a class="headerlink" href="#hyperlink-targets" title="Permalink to this heading"></a></h2>
 <p><a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#hyperlink-targets">超链接Hyperlink</a> 有三种：</p>
 <ul class="simple" id="id36">
 <li><p>带别名的超链接 ，语法为 <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">_hyperlink-name:</span> <span class="pre">link-address</span></code> ；由 <code class="docutils literal notranslate"><span class="pre">..</span></code>，空格，短下划线”_”，别名，冒号，空格和链接地址构成。
@@ -1003,7 +1004,7 @@ labels’ - for instance,
 <li><p>匿名的超链接，另一种语法形式，语法为 <code class="docutils literal notranslate"><span class="pre">__</span> <span class="pre">link-address</span></code>  。</p></li>
 </ul>
 <section id="external-hyperlink-targets">
-<h3><span class="section-number">4.1.18.1. </span>外部链接 External Hyperlink Targets<a class="headerlink" href="#external-hyperlink-targets" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.18.1. </span>外部链接 External Hyperlink Targets<a class="headerlink" href="#external-hyperlink-targets" title="Permalink to this heading"></a></h3>
 <p>外部链接有两种方式，需要引用的话，使用上述带别名的超链接的语法形式，即</p>
 <p><strong>示例如下:</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>这是我的 reStructureText_ 实践笔记。
@@ -1022,12 +1023,12 @@ labels’ - for instance,
 <p>这是我的 <a class="reference external" href="https://sphinx-practise.readthedocs.io/zh_CN/latest/index.html">reStructureText</a> 实践笔记。</p>
 </section>
 <section id="internal-hyperlink-targets">
-<h3><span class="section-number">4.1.18.2. </span>锚点链接 Internal Hyperlink Targets<a class="headerlink" href="#internal-hyperlink-targets" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.18.2. </span>锚点链接 Internal Hyperlink Targets<a class="headerlink" href="#internal-hyperlink-targets" title="Permalink to this heading"></a></h3>
 <p>内部超链接，即锚点。</p>
 <p>锚点的语法即外部超链接中 <a class="reference internal" href="#id36">带别名的超链接</a> 去除外部链接，其他语法一致。</p>
 </section>
 <section id="indirect-hyperlink-targets">
-<h3><span class="section-number">4.1.18.3. </span>间接链接 Indirect Hyperlink Targets<a class="headerlink" href="#indirect-hyperlink-targets" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.18.3. </span>间接链接 Indirect Hyperlink Targets<a class="headerlink" href="#indirect-hyperlink-targets" title="Permalink to this heading"></a></h3>
 <p>间接超链接是基于匿名链接的基础上的，就是将匿名链接地址换成了外部引用名。</p>
 <p><strong>示例如下:</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Python_ is `my favourite
@@ -1045,7 +1046,7 @@ programming language</a>.</p>
 对这个匿名链接使用间接链接方式链接到 Python这个外部链接的链接地址上去。</p>
 </section>
 <section id="implicit-hyperlink-targets">
-<h3><span class="section-number">4.1.18.4. </span>Implicit Hyperlink Targets<a class="headerlink" href="#implicit-hyperlink-targets" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.18.4. </span>Implicit Hyperlink Targets<a class="headerlink" href="#implicit-hyperlink-targets" title="Permalink to this heading"></a></h3>
 <p>隐式超链接</p>
 <p>小节标题、脚注和引用参考会自动生成超链接地址，使用小节标题、脚注或引用参考名称作为超链接名称就可以生成隐式链接。</p>
 <p>本质上它们的写法都是和 <a class="reference internal" href="#external-hyperlink-targets">外部链接 External Hyperlink Targets</a> 相一致的, 只是做了一些微小改动，以做出区别。</p>
@@ -1056,7 +1057,7 @@ programming language</a>.</p>
 </section>
 </section>
 <section id="directives">
-<h2><span class="section-number">4.1.19. </span>扩展指令 Directives<a class="headerlink" href="#directives" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.19. </span>扩展指令 Directives<a class="headerlink" href="#directives" title="Permalink to this heading"></a></h2>
 <p>指令（Directives）是reStructureText的扩展机制。
 可以在不增加新语法的情况下，增加新的结构性支持(a way of adding support for new constructs)。</p>
 <p>指令由三部分组成</p>
@@ -1079,9 +1080,9 @@ programming language</a>.</p>
 </div>
 <p>已在 <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/directives.html">reference reStructuredText parser</a> 中实现的指令。</p>
 <section id="admonitions">
-<h3><span class="section-number">4.1.19.1. </span>警告信息Admonitions<a class="headerlink" href="#admonitions" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.19.1. </span>警告信息Admonitions<a class="headerlink" href="#admonitions" title="Permalink to this heading"></a></h3>
 <section id="id40">
-<h4><span class="section-number">4.1.19.1.1. </span>特定的警告信息<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">5.1.19.1.1. </span>特定的警告信息<a class="headerlink" href="#id40" title="Permalink to this heading"></a></h4>
 <p>格式为</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">admonition</span><span class="p">::</span> <span class="n">admonition</span><span class="o">-</span><span class="n">title</span><span class="p">(</span><span class="n">可空</span><span class="p">)</span>
    <span class="p">:</span><span class="n">class</span><span class="p">:</span> <span class="n">class</span><span class="o">-</span><span class="n">name</span><span class="p">(</span><span class="n">可选</span><span class="p">)</span>
@@ -1189,7 +1190,7 @@ second warning paragraph.</p>
 </div>
 </section>
 <section id="generic-admonition">
-<h4><span class="section-number">4.1.19.1.2. </span>通用警告信息Generic Admonition<a class="headerlink" href="#generic-admonition" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">5.1.19.1.2. </span>通用警告信息Generic Admonition<a class="headerlink" href="#generic-admonition" title="Permalink to this heading"></a></h4>
 <p>通用警告信息即不指定为特定的警告类别，使用admonition指代警告。
 与特定警告不同的是，特定警告的admonition-title在通用警告中为admonition-name，
 这是我们自定义的警告名，用于和特定警告（danger,hint,important等）提供同等标识。</p>
@@ -1207,7 +1208,7 @@ second warning paragraph.</p>
 </section>
 </section>
 <section id="images">
-<h3><span class="section-number">4.1.19.2. </span>图片Images<a class="headerlink" href="#images" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.19.2. </span>图片Images<a class="headerlink" href="#images" title="Permalink to this heading"></a></h3>
 <p>使用image</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.. image:: picture.jpeg
    :class: class-name
@@ -1261,28 +1262,28 @@ second warning paragraph.</p>
 </div>
 </section>
 <section id="body-elements">
-<h3><span class="section-number">4.1.19.3. </span>页面元素Body Elements<a class="headerlink" href="#body-elements" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.19.3. </span>页面元素Body Elements<a class="headerlink" href="#body-elements" title="Permalink to this heading"></a></h3>
 </section>
 <section id="id41">
-<h3><span class="section-number">4.1.19.4. </span>表格Tables<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.19.4. </span>表格Tables<a class="headerlink" href="#id41" title="Permalink to this heading"></a></h3>
 </section>
 <section id="documents">
-<h3><span class="section-number">4.1.19.5. </span>文档Documents<a class="headerlink" href="#documents" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.19.5. </span>文档Documents<a class="headerlink" href="#documents" title="Permalink to this heading"></a></h3>
 </section>
 <section id="references">
-<h3><span class="section-number">4.1.19.6. </span>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.19.6. </span>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h3>
 </section>
 <section id="html-specific">
-<h3><span class="section-number">4.1.19.7. </span>HTML-Specific<a class="headerlink" href="#html-specific" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.19.7. </span>HTML-Specific<a class="headerlink" href="#html-specific" title="Permalink to this heading"></a></h3>
 </section>
 <section id="substitution-definitions">
-<h3><span class="section-number">4.1.19.8. </span>Substitution Definitions<a class="headerlink" href="#substitution-definitions" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.19.8. </span>Substitution Definitions<a class="headerlink" href="#substitution-definitions" title="Permalink to this heading"></a></h3>
 </section>
 <section id="id42">
-<h3><span class="section-number">4.1.19.9. </span>其他<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.19.9. </span>其他<a class="headerlink" href="#id42" title="Permalink to this heading"></a></h3>
 </section>
 <section id="id43">
-<h3><span class="section-number">4.1.19.10. </span>通用指令选项参数<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.19.10. </span>通用指令选项参数<a class="headerlink" href="#id43" title="Permalink to this heading"></a></h3>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>:class:</p></td>
@@ -1304,10 +1305,10 @@ second warning paragraph.</p>
 </section>
 </section>
 <section id="substitution-references-and-definitions">
-<h2><span class="section-number">4.1.20. </span>Substitution References and Definitions<a class="headerlink" href="#substitution-references-and-definitions" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.20. </span>Substitution References and Definitions<a class="headerlink" href="#substitution-references-and-definitions" title="Permalink to this heading"></a></h2>
 </section>
 <section id="comments">
-<h2><span class="section-number">4.1.21. </span>Comments<a class="headerlink" href="#comments" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1.21. </span>Comments<a class="headerlink" href="#comments" title="Permalink to this heading"></a></h2>
 <p>非上述语法，则都作为Comments处理。</p>
 </section>
 </section>
@@ -1316,8 +1317,8 @@ second warning paragraph.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="index.html" class="btn btn-neutral float-left" title="4. 编程语言 语法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="MarkDown_syntax.html" class="btn btn-neutral float-right" title="4.2. Markdown: 语法" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="5. 编程语言 语法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="MarkDown_syntax.html" class="btn btn-neutral float-right" title="5.2. Markdown: 语法" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

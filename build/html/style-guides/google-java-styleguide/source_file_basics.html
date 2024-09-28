@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.10.3. 2. 源文件基础 &mdash; AI 模型国内加速  文档</title>
+  <title>4.10.3. 2. 源文件基础 &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
@@ -24,8 +24,8 @@
     <link rel="author" title="关于这些文档" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="3.10.4. 3. 源文件结构" href="source_file_structure.html" />
-    <link rel="prev" title="3.10.2. 1. 介绍" href="introduction.html" /> 
+    <link rel="next" title="4.10.4. 3. 源文件结构" href="source_file_structure.html" />
+    <link rel="prev" title="4.10.2. 1. 介绍" href="introduction.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,37 +51,38 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 风格指南</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_style_en.html">3.2. Uber Go Style Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.10. Google: Java 风格指南</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="index.html">3.10.1. 0. 扉页</a></li>
-<li class="toctree-l3"><a class="reference internal" href="introduction.html">3.10.2. 1. 介绍</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">3.10.3. 2. 源文件基础</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">3.10.3.1. 2.1. 文件名</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#utf-8">3.10.3.2. 2.2. 文件编码：UTF-8</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">3.10.3.3. 2.3. 特殊字符</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytorch-guides/index.html">3. Pytorch 教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 风格指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/uber_go_style_en.html">4.1. Uber: Go Style Guide - English</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">4.2. Uber: Go语言 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">4.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">4.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">4.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">4.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">4.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">4.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">4.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">4.10. Google: Java 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html">4.10.1. 0. 扉页</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.10.2. 1. 介绍</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.10.3. 2. 源文件基础</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">4.10.3.1. 2.1. 文件名</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utf-8">4.10.3.2. 2.2. 文件编码：UTF-8</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">4.10.3.3. 2.3. 特殊字符</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="source_file_structure.html">3.10.4. 3. 源文件结构</a></li>
-<li class="toctree-l3"><a class="reference internal" href="formatting.html">3.10.5. 4. 格式</a></li>
-<li class="toctree-l3"><a class="reference internal" href="naming.html">3.10.6. 5. 命名</a></li>
-<li class="toctree-l3"><a class="reference internal" href="programming_practices.html">3.10.7. 6. 编程习惯</a></li>
-<li class="toctree-l3"><a class="reference internal" href="javadoc.html">3.10.8. 7. Javadoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="source_file_structure.html">4.10.4. 3. 源文件结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formatting.html">4.10.5. 4. 格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html">4.10.6. 5. 命名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="programming_practices.html">4.10.7. 6. 编程习惯</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javadoc.html">4.10.8. 7. Javadoc</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">7. 关于</a></li>
 </ul>
 
         </div>
@@ -98,9 +99,9 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 风格指南</a></li>
-          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.10. </span>Google: Java 风格指南</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3.10.3. </span>2. 源文件基础</li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 风格指南</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">4.10. </span>Google: Java 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.10.3. </span>2. 源文件基础</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/style-guides/google-java-styleguide/source_file_basics.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -111,19 +112,19 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">3.10.3. </span>2. 源文件基础<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">4.10.3. </span>2. 源文件基础<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="id2">
-<h2><span class="section-number">3.10.3.1. </span>2.1. 文件名<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.10.3.1. </span>2.1. 文件名<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>源文件的文件名由其包含的 <a class="reference internal" href="source_file_structure.html#one-top-level"><span class="std std-ref">唯一的</span></a> 顶级类的名称（大小写敏感）加上 <code class="docutils literal notranslate"><span class="pre">.java</span></code> 扩展名构成。</p>
 </section>
 <section id="utf-8">
-<h2><span class="section-number">3.10.3.2. </span>2.2. 文件编码：UTF-8<a class="headerlink" href="#utf-8" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.10.3.2. </span>2.2. 文件编码：UTF-8<a class="headerlink" href="#utf-8" title="Permalink to this heading"></a></h2>
 <p>源文件应使用 <strong>UTF-8</strong> 编码。</p>
 </section>
 <section id="id3">
-<h2><span class="section-number">3.10.3.3. </span>2.3. 特殊字符<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.10.3.3. </span>2.3. 特殊字符<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <section id="id4">
-<h3><span class="section-number">3.10.3.3.1. </span>2.3.1. 空白字符<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.10.3.3.1. </span>2.3.1. 空白字符<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <p>除了换行符之外，源文件中唯一能够出现的空白字符是 <strong>ASCII的水平空格字符（0x20）</strong> 。这意味着：</p>
 <ul class="simple">
 <li><ol class="arabic simple">
@@ -137,11 +138,11 @@
 </ul>
 </section>
 <section id="id5">
-<h3><span class="section-number">3.10.3.3.2. </span>2.3.2 特殊转义序列<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.10.3.3.2. </span>2.3.2 特殊转义序列<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <p>对于任何 <a class="reference external" href="https://docs.oracle.com/javase/tutorial/java/data/characters.html">有特殊转义序列</a> 的字符（ <code class="docutils literal notranslate"><span class="pre">\b</span></code> 、 <code class="docutils literal notranslate"><span class="pre">\t</span></code> 、 <code class="docutils literal notranslate"><span class="pre">\n</span></code> 、 <code class="docutils literal notranslate"><span class="pre">\f</span></code>、 <code class="docutils literal notranslate"><span class="pre">\r</span></code>、 <code class="docutils literal notranslate"><span class="pre">\&quot;</span></code>、 <code class="docutils literal notranslate"><span class="pre">\'``和</span> <span class="pre">``\\</span></code>），应使用以上序列，而不是相应的八进制（例如 <code class="docutils literal notranslate"><span class="pre">\012</span></code>）或Unicode（例如 <code class="docutils literal notranslate"><span class="pre">\u000a</span></code>）转义。</p>
 </section>
 <section id="ascii">
-<h3><span class="section-number">3.10.3.3.3. </span>2.3.3. 非ASCII字符<a class="headerlink" href="#ascii" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.10.3.3.3. </span>2.3.3. 非ASCII字符<a class="headerlink" href="#ascii" title="Permalink to this heading"></a></h3>
 <p>对于其余的非ASCII字符，可以使用实际的Unicode字符（例如 ∞）或等效的Unicode转义（例如 <code class="docutils literal notranslate"><span class="pre">\u221e</span></code>），这只取决于哪种方式使代码 <strong>更容易阅读和理解</strong> ，尽管我们强烈不建议在字符串文本和注释之外使用Unicode转义。</p>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
@@ -184,8 +185,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="introduction.html" class="btn btn-neutral float-left" title="3.10.2. 1. 介绍" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="source_file_structure.html" class="btn btn-neutral float-right" title="3.10.4. 3. 源文件结构" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="introduction.html" class="btn btn-neutral float-left" title="4.10.2. 1. 介绍" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="source_file_structure.html" class="btn btn-neutral float-right" title="4.10.4. 3. 源文件结构" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

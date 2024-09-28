@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4.3.6. Go语言并发编程：原子操作 &mdash; AI 模型国内加速  文档</title>
+  <title>5.3.6. Go语言并发编程：原子操作 &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
@@ -24,8 +24,8 @@
     <link rel="author" title="关于这些文档" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="4.3.7. Go语言并发编程：上下文Context" href="golang-concurrent-synchronization-for-context.html" />
-    <link rel="prev" title="4.3.5. Go语言中的通道" href="golang-notes-for-channel-sync.html" /> 
+    <link rel="next" title="5.3.7. Go语言并发编程：上下文Context" href="golang-concurrent-synchronization-for-context.html" />
+    <link rel="prev" title="5.3.5. Go语言中的通道" href="golang-notes-for-channel-sync.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,37 +51,38 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../style-guides/index.html">3. 编程语言 规范</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 语法</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../reStructureText_syntax.html">4.1. reStructureText语法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../MarkDown_syntax.html">4.2. Markdown: 语法</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. Go 语法</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="golang-notes-basic-syntax.html">4.3.1. Go语言基础语法（一）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-basic-syntax-function.html">4.3.2. Go语言基础语法（二）：函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-struct-and-method.html">4.3.3. Go语言基础语法（三）：结构体及方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-string-concatenation.html">4.3.4. Go语言中的字符串拼接方法介绍</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-channel-sync.html">4.3.5. Go语言中的通道</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.6. Go语言并发编程：原子操作</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#atomic">4.3.6.1. atomic原子操作类型和方法</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#add">4.3.6.2. Add 增加</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#load">4.3.6.3. Load 加载</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#store">4.3.6.4. Store 存储</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#swap">4.3.6.5. Swap 交换</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#compareandswap">4.3.6.6. CompareAndSwap 比较并交换</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#atomic-value">4.3.6.7. atomic.Value</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1">4.3.6.8. 小结</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytorch-guides/index.html">3. Pytorch 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../style-guides/index.html">4. 编程语言 风格指南</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">5. 编程语言 语法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reStructureText_syntax.html">5.1. reStructureText语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MarkDown_syntax.html">5.2. Markdown: 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">5.3. Go 语法</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-basic-syntax.html">5.3.1. Go语言基础语法（一）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-basic-syntax-function.html">5.3.2. Go语言基础语法（二）：函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-struct-and-method.html">5.3.3. Go语言基础语法（三）：结构体及方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-string-concatenation.html">5.3.4. Go语言中的字符串拼接方法介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-channel-sync.html">5.3.5. Go语言中的通道</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.3.6. Go语言并发编程：原子操作</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#atomic">5.3.6.1. atomic原子操作类型和方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add">5.3.6.2. Add 增加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#load">5.3.6.3. Load 加载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#store">5.3.6.4. Store 存储</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#swap">5.3.6.5. Swap 交换</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compareandswap">5.3.6.6. CompareAndSwap 比较并交换</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#atomic-value">5.3.6.7. atomic.Value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">5.3.6.8. 小结</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-context.html">4.3.7. Go语言并发编程：上下文Context</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-mutex.html">4.3.8. Go语言并发编程：互斥锁</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-sync-once.html">4.3.9. Go语言并发编程：sync.Once</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-waitgroup.html">4.3.10. Go语言并发编程：WaitGroup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-context.html">5.3.7. Go语言并发编程：上下文Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-mutex.html">5.3.8. Go语言并发编程：互斥锁</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-sync-once.html">5.3.9. Go语言并发编程：sync.Once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-waitgroup.html">5.3.10. Go语言并发编程：WaitGroup</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">7. 关于</a></li>
 </ul>
 
         </div>
@@ -98,9 +99,9 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 语法</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>Go 语法</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4.3.6. </span>Go语言并发编程：原子操作</li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">5. </span>编程语言 语法</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5.3. </span>Go 语法</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.3.6. </span>Go语言并发编程：原子操作</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/coding/golang/golang-concurrent-synchronization-for-atomic-operation.md.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -111,11 +112,11 @@
            <div itemprop="articleBody">
              
   <section id="go">
-<h1><span class="section-number">4.3.6. </span>Go语言并发编程：原子操作<a class="headerlink" href="#go" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">5.3.6. </span>Go语言并发编程：原子操作<a class="headerlink" href="#go" title="Permalink to this heading"></a></h1>
 <p>在程序执行过程中，操作系统会进行线程调度，同一时刻能同时执行的程序数量跟CPU的内核线程数有关，比如4核CPU，同时最多只能有4个线程。Go 语言中的运行时系统也会对goroutine进行调度，调度器会频繁地让goroutine处于中断或者运行状态，这就不能保证代码执行的原子性（atomicity），即使使用互斥锁也不能保证原子性操作。Go语言中的atomic包提供了原子操作方法，下面来介绍它的使用方法。</p>
 <!--more--><p>原子操作过程中是不允许中断的，是绝对并发安全的。由于原子操作不允许中断，所以它非常影响系统执行效率，因此，Go 语言的sync/atomic包只针对少数数据类型提供了原子操作函数。</p>
 <section id="atomic">
-<h2><span class="section-number">4.3.6.1. </span>atomic原子操作类型和方法<a class="headerlink" href="#atomic" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.6.1. </span>atomic原子操作类型和方法<a class="headerlink" href="#atomic" title="Permalink to this heading"></a></h2>
 <p>支持的数据类型主要有7个：int32、int64、uint32、uint64、uintptr，Pointer（unsafe包）以及Value类型，Value类型可以用来存储任意类型的值。</p>
 <p>对这些类型的操作函数包括：</p>
 <ul class="simple">
@@ -129,7 +130,7 @@
 <p>注意，第一个参数值为被操作值的指针，原子操作根据指针定位到该值的内存地址，操作这个内存地址上的数据。</p>
 </section>
 <section id="add">
-<h2><span class="section-number">4.3.6.2. </span>Add 增加<a class="headerlink" href="#add" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.6.2. </span>Add 增加<a class="headerlink" href="#add" title="Permalink to this heading"></a></h2>
 <p>Add可以用于增加操作：</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
 
@@ -164,7 +165,7 @@
 </div>
 </section>
 <section id="load">
-<h2><span class="section-number">4.3.6.3. </span>Load 加载<a class="headerlink" href="#load" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.6.3. </span>Load 加载<a class="headerlink" href="#load" title="Permalink to this heading"></a></h2>
 <p>Load可以实现对值的原子读取：</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">num</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">int32</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 <span class="nx">atomic</span><span class="p">.</span><span class="nx">LoadInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">num</span><span class="p">)</span>
@@ -173,7 +174,7 @@
 </div>
 </section>
 <section id="store">
-<h2><span class="section-number">4.3.6.4. </span>Store 存储<a class="headerlink" href="#store" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.6.4. </span>Store 存储<a class="headerlink" href="#store" title="Permalink to this heading"></a></h2>
 <p>原子的存储某个值：</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">num</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">int32</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 <span class="nx">atomic</span><span class="p">.</span><span class="nx">StoreInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">num</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">)</span>
@@ -182,7 +183,7 @@
 </div>
 </section>
 <section id="swap">
-<h2><span class="section-number">4.3.6.5. </span>Swap 交换<a class="headerlink" href="#swap" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.6.5. </span>Swap 交换<a class="headerlink" href="#swap" title="Permalink to this heading"></a></h2>
 <p>将新的值赋给被操作的旧值，并返回旧值</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">num</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">int32</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 <span class="nx">old</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">atomic</span><span class="p">.</span><span class="nx">SwapInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">num</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">)</span>
@@ -192,7 +193,7 @@
 </div>
 </section>
 <section id="compareandswap">
-<h2><span class="section-number">4.3.6.6. </span>CompareAndSwap 比较并交换<a class="headerlink" href="#compareandswap" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.6.6. </span>CompareAndSwap 比较并交换<a class="headerlink" href="#compareandswap" title="Permalink to this heading"></a></h2>
 <p>比较并交换（Compare And Swap，CAS操作 ）和交换（Swap）不同，会先进行比较，满足条件后再进行交换操作，将新值赋给变量。返回值为true或者false，true表示执行了交换操作。</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">num</span><span class="o">:=</span><span class="w"> </span><span class="nb">int32</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
 <span class="nx">atomic</span><span class="p">.</span><span class="nx">CompareAndSwapInt32</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">num</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
@@ -270,7 +271,7 @@
 </div>
 </section>
 <section id="atomic-value">
-<h2><span class="section-number">4.3.6.7. </span>atomic.Value<a class="headerlink" href="#atomic-value" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.6.7. </span>atomic.Value<a class="headerlink" href="#atomic-value" title="Permalink to this heading"></a></h2>
 <p>Value类型可以被用来“原子地”存储（Store）和加载（Load）任意的值。</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">valu</span><span class="w"> </span><span class="nx">atomic</span><span class="p">.</span><span class="nx">Value</span>
 <span class="nx">valu</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">}</span>
@@ -344,7 +345,7 @@
 </div>
 </section>
 <section id="id1">
-<h2><span class="section-number">4.3.6.8. </span>小结<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.6.8. </span>小结<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>原子操作函数支持的数据类型有限，互斥锁可能使用的场景更多一些，在可以使用原子操作的情况下还是建议使用它，因为相对来说原子操作函数的执行速度比互斥锁快，且使用简单。另外在使用 CAS 操作时，要防止进入死循环，导致“阻塞”流程。</p>
 <p>在使用Value类型时要注意尽量不要存储引用类型的值，是非并发安全的。</p>
 </section>
@@ -354,8 +355,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="golang-notes-for-channel-sync.html" class="btn btn-neutral float-left" title="4.3.5. Go语言中的通道" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="golang-concurrent-synchronization-for-context.html" class="btn btn-neutral float-right" title="4.3.7. Go语言并发编程：上下文Context" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="golang-notes-for-channel-sync.html" class="btn btn-neutral float-left" title="5.3.5. Go语言中的通道" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="golang-concurrent-synchronization-for-context.html" class="btn btn-neutral float-right" title="5.3.7. Go语言并发编程：上下文Context" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

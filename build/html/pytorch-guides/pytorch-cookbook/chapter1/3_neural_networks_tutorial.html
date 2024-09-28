@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.8. Neural Networks &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../../about.html" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="3.1.9. 训练一个分类器" href="4_cifar10_tutorial.html" />
+    <link rel="prev" title="3.1.7. Autograd: 自动求导机制" href="2_autograd_tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">3. Pytorch 教程</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">3.1. Pytorch 快速入门</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="1.1-pytorch-introduction.html">3.1.1. 1.1 Pytorch 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2-pytorch-installation.html">3.1.2. 1.2 Pytorch环境搭建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.2-pytorch-installation.html#id1">3.1.3. 1.2.1 安装Pytorch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.3-deep-learning-with-pytorch-60-minute-blitz.html">3.1.4. PyTorch 深度学习:60分钟快速入门 （官方）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.4-pytorch-resource.html">3.1.5. 相关资源列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1_tensor_tutorial.html">3.1.6. PyTorch是什么?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2_autograd_tutorial.html">3.1.7. Autograd: 自动求导机制</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.8. Neural Networks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">3.1.8.1. 定义网络</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.1.8.2. 损失函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.1.8.3. 反向传播</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.1.8.4. 更新权重</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="4_cifar10_tutorial.html">3.1.9. 训练一个分类器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="5_data_parallel_tutorial.html">3.1.10. 数据并行（选读）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html">3.1.11. PyTorch 中文手册第一章 ： PyTorch入门</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.1.pytorch-basics-tensor.html">3.1.12. PyTorch 基础 : 张量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.2-pytorch-basics-autograd.html">3.1.13. 使用PyTorch计算梯度数值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.3-pytorch-basics-nerual-network.html">3.1.14. PyTorch 基础 : 神经网络包nn和优化器optm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.4-pytorch-basics-data-loader.html">3.1.15. PyTorch 基础 :数据的加载和预处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.2-deep-learning-basic-mathematics.html">3.1.16. 2.2 深度学习基础及数学原理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.3-deep-learning-neural-network-introduction.html">3.1.17. 2.3 神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.4-cnn.html">3.1.18. 2.4 卷积神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.5-rnn.html">3.1.19. 2.5 循环神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/readme.html">3.1.20. Pytorch 中文手册第二章 ： 基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.1-logistic-regression.html">3.1.21. 3.1 logistic回归实战</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.2-mnist.html">3.1.22. 3.2  MNIST数据集手写数字识别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.3-rnn.html">3.1.23. 3.3 通过Sin预测Cos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/readme.html">3.1.24. Pytorch 中文手册第三章 ： 实践</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.1-fine-tuning.html">3.1.25. 4.1 Fine tuning 模型微调</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.1-visdom.html">3.1.26. 4.2.1 使用Visdom在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.2-tensorboardx.html">3.1.27. 4.2.2 使用Tensorboard在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.3-cnn-visualizing.html">3.1.28. 4.2.3 可视化理解卷积神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.3-cnn-visualizing.html#backpropagation">3.1.29. 基于Backpropagation的方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.3-fastai.html">3.1.30. 4.3 fastai</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.5-multiply-gpu-parallel-training.html">3.1.31. 4.5 多GPU并行训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/distributed_data_parallel.html">3.1.32. 在PyTorch中使用DistributedDataParallel进行多GPU分布式模型训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/readme.html">3.1.33. Pytorch 中文手册第四章 ： 提高</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.1-kaggle.html">3.1.34. 5.1 kaggle介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.2-Structured-Data.html">3.1.35. 5.2 Pytorch处理结构化数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.3-Fashion-MNIST.html">3.1.36. Fashion MNIST进行分类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/readme.html">3.1.37. Pytorch 中文手册第五章 ： 应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../style-guides/index.html">4. 编程语言 风格指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">7. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><span class="section-number">3. </span>Pytorch 教程</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3.1. </span>Pytorch 快速入门</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.1.8. </span>Neural Networks</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pytorch-guides/pytorch-cookbook/chapter1/3_neural_networks_tutorial.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</pre></div>
+</div>
+<section id="neural-networks">
+<h1><span class="section-number">3.1.8. </span>Neural Networks<a class="headerlink" href="#neural-networks" title="Permalink to this heading"></a></h1>
+<p>使用torch.nn包来构建神经网络。</p>
+<p>上一讲已经讲过了<code class="docutils literal notranslate"><span class="pre">autograd</span></code>，<code class="docutils literal notranslate"><span class="pre">nn</span></code>包依赖<code class="docutils literal notranslate"><span class="pre">autograd</span></code>包来定义模型并求导。
+一个<code class="docutils literal notranslate"><span class="pre">nn.Module</span></code>包含各个层和一个<code class="docutils literal notranslate"><span class="pre">forward(input)</span></code>方法，该方法返回<code class="docutils literal notranslate"><span class="pre">output</span></code>。</p>
+<p>例如：</p>
+<p><img alt="https://pytorch.org/tutorials/_images/mnist.png" src="https://pytorch.org/tutorials/_images/mnist.png" /></p>
+<p>它是一个简单的前馈神经网络，它接受一个输入，然后一层接着一层地传递，最后输出计算的结果。</p>
+<p>神经网络的典型训练过程如下：</p>
+<ol class="simple">
+<li><p>定义包含一些可学习的参数(或者叫权重)神经网络模型；</p></li>
+<li><p>在数据集上迭代；</p></li>
+<li><p>通过神经网络处理输入；</p></li>
+<li><p>计算损失(输出结果和正确值的差值大小)；</p></li>
+<li><p>将梯度反向传播回网络的参数；</p></li>
+<li><p>更新网络的参数，主要使用如下简单的更新原则：
+<code class="docutils literal notranslate"><span class="pre">weight</span> <span class="pre">=</span> <span class="pre">weight</span> <span class="pre">-</span> <span class="pre">learning_rate</span> <span class="pre">*</span> <span class="pre">gradient</span></code></p></li>
+</ol>
+<section id="id1">
+<h2><span class="section-number">3.1.8.1. </span>定义网络<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>开始定义一个网络：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+
+
+<span class="k">class</span> <span class="nc">Net</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Net</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># 1 input image channel, 6 output channels, 5x5 square convolution</span>
+        <span class="c1"># kernel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="c1"># an affine operation: y = Wx + b</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">16</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">84</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># Max pooling over a (2, 2) window</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="c1"># If the size is a square you can only specify a single number</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_flat_features</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+
+    <span class="k">def</span> <span class="nf">num_flat_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">1</span><span class="p">:]</span>  <span class="c1"># all dimensions except the batch dimension</span>
+        <span class="n">num_features</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">size</span><span class="p">:</span>
+            <span class="n">num_features</span> <span class="o">*=</span> <span class="n">s</span>
+        <span class="k">return</span> <span class="n">num_features</span>
+
+
+<span class="n">net</span> <span class="o">=</span> <span class="n">Net</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Net</span><span class="p">(</span>
+  <span class="p">(</span><span class="n">conv1</span><span class="p">):</span> <span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+  <span class="p">(</span><span class="n">conv2</span><span class="p">):</span> <span class="n">Conv2d</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+  <span class="p">(</span><span class="n">fc1</span><span class="p">):</span> <span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  <span class="p">(</span><span class="n">fc2</span><span class="p">):</span> <span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">84</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  <span class="p">(</span><span class="n">fc3</span><span class="p">):</span> <span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">84</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>在模型中必须要定义 <code class="docutils literal notranslate"><span class="pre">forward</span></code> 函数，<code class="docutils literal notranslate"><span class="pre">backward</span></code>
+函数（用来计算梯度）会被<code class="docutils literal notranslate"><span class="pre">autograd</span></code>自动创建。
+可以在 <code class="docutils literal notranslate"><span class="pre">forward</span></code> 函数中使用任何针对 Tensor 的操作。</p>
+<p><code class="docutils literal notranslate"><span class="pre">net.parameters()</span></code>返回可被学习的参数（权重）列表和值</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>  <span class="c1"># conv1&#39;s .weight</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>测试随机输入32×32。
+注：这个网络（LeNet）期望的输入大小是32×32，如果使用MNIST数据集来训练这个网络，请把图片大小重新调整到32×32。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span> <span class="mf">0.1120</span><span class="p">,</span>  <span class="mf">0.0713</span><span class="p">,</span>  <span class="mf">0.1014</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0696</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1210</span><span class="p">,</span>  <span class="mf">0.0084</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0206</span><span class="p">,</span>  <span class="mf">0.1366</span><span class="p">,</span>
+         <span class="o">-</span><span class="mf">0.0455</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0036</span><span class="p">]],</span> <span class="n">grad_fn</span><span class="o">=&lt;</span><span class="n">AddmmBackward</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>将所有参数的梯度缓存清零，然后进行随机梯度的的反向传播：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">net</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<span class="n">out</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="alert alert-info"><h4>Note</h4><p>``torch.nn`` 只支持小批量输入。整个 ``torch.nn``
+包都只支持小批量样本，而不支持单个样本。<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>例如，``nn.Conv2d`` 接受一个4维的张量，
+``每一维分别是sSamples * nChannels * Height * Width（样本数*通道数*高*宽）``。
+
+如果你有单个样本，只需使用 ``input.unsqueeze(0)`` 来添加其它的维数&lt;/p&gt;&lt;/div&gt;
+</pre></div>
+</div>
+<p>在继续之前，我们回顾一下到目前为止用到的类。</p>
+<p><strong>回顾:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">torch.Tensor</span></code>：一个用过自动调用 <code class="docutils literal notranslate"><span class="pre">backward()</span></code>实现支持自动梯度计算的 <em>多维数组</em> ，
+并且保存关于这个向量的<em>梯度</em> w.r.t.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nn.Module</span></code>：神经网络模块。封装参数、移动到GPU上运行、导出、加载等。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nn.Parameter</span></code>：一种变量，当把它赋值给一个<code class="docutils literal notranslate"><span class="pre">Module</span></code>时，被 <em>自动</em> 地注册为一个参数。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">autograd.Function</span></code>：实现一个自动求导操作的前向和反向定义，每个变量操作至少创建一个函数节点，每一个<code class="docutils literal notranslate"><span class="pre">Tensor</span></code>的操作都回创建一个接到创建<code class="docutils literal notranslate"><span class="pre">Tensor</span></code>和 <em>编码其历史</em> 的函数的<code class="docutils literal notranslate"><span class="pre">Function</span></code>节点。</p></li>
+</ul>
+<p><strong>重点如下：</strong></p>
+<ul class="simple">
+<li><p>定义一个网络</p></li>
+<li><p>处理输入，调用backword</p></li>
+</ul>
+<p><strong>还剩：</strong></p>
+<ul class="simple">
+<li><p>计算损失</p></li>
+<li><p>更新网络权重</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2><span class="section-number">3.1.8.2. </span>损失函数<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>一个损失函数接受一对 (output, target) 作为输入，计算一个值来估计网络的输出和目标值相差多少。</p>
+<p><em><strong>译者注：output为网络的输出，target为实际值</strong></em></p>
+<p>nn包中有很多不同的<a class="reference external" href="https://pytorch.org/docs/nn.html#loss-functions">损失函数</a>。
+<code class="docutils literal notranslate"><span class="pre">nn.MSELoss</span></code>是一个比较简单的损失函数，它计算输出和目标间的<strong>均方误差</strong>，
+例如：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 随机值作为样例</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 使target和output的shape相同</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+
+<span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.8109</span><span class="p">,</span> <span class="n">grad_fn</span><span class="o">=&lt;</span><span class="n">MseLossBackward</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>现在，如果在反向过程中跟随<code class="docutils literal notranslate"><span class="pre">loss</span></code> ， 使用它的
+<code class="docutils literal notranslate"><span class="pre">.grad_fn</span></code> 属性，将看到如下所示的计算图。</p>
+<p>::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">input</span> <span class="o">-&gt;</span> <span class="n">conv2d</span> <span class="o">-&gt;</span> <span class="n">relu</span> <span class="o">-&gt;</span> <span class="n">maxpool2d</span> <span class="o">-&gt;</span> <span class="n">conv2d</span> <span class="o">-&gt;</span> <span class="n">relu</span> <span class="o">-&gt;</span> <span class="n">maxpool2d</span>
+      <span class="o">-&gt;</span> <span class="n">view</span> <span class="o">-&gt;</span> <span class="n">linear</span> <span class="o">-&gt;</span> <span class="n">relu</span> <span class="o">-&gt;</span> <span class="n">linear</span> <span class="o">-&gt;</span> <span class="n">relu</span> <span class="o">-&gt;</span> <span class="n">linear</span>
+      <span class="o">-&gt;</span> <span class="n">MSELoss</span>
+      <span class="o">-&gt;</span> <span class="n">loss</span>
+</pre></div>
+</div>
+<p>所以，当我们调用 <code class="docutils literal notranslate"><span class="pre">loss.backward()</span></code>时,整张计算图都会
+根据loss进行微分，而且图中所有设置为<code class="docutils literal notranslate"><span class="pre">requires_grad=True</span></code>的张量
+将会拥有一个随着梯度累积的<code class="docutils literal notranslate"><span class="pre">.grad</span></code> 张量。</p>
+<p>为了说明，让我们向后退几步:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">grad_fn</span><span class="p">)</span>  <span class="c1"># MSELoss</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">grad_fn</span><span class="o">.</span><span class="n">next_functions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Linear</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">grad_fn</span><span class="o">.</span><span class="n">next_functions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">next_functions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># ReLU</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">MseLossBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f3b49fe2470</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">AddmmBackward</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f3bb05f17f0</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">AccumulateGrad</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f3b4a3c34e0</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.1.8.3. </span>反向传播<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>调用loss.backward()获得反向传播的误差。</p>
+<p>但是在调用前需要清除已存在的梯度，否则梯度将被累加到已存在的梯度。</p>
+<p>现在，我们将调用loss.backward()，并查看conv1层的偏差（bias）项在反向传播前后的梯度。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">net</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>     <span class="c1"># 清除梯度</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;conv1.bias.grad before backward&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">conv1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+
+<span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;conv1.bias.grad after backward&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">conv1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conv1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">grad</span> <span class="n">before</span> <span class="n">backward</span>
+<span class="n">tensor</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
+<span class="n">conv1</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">grad</span> <span class="n">after</span> <span class="n">backward</span>
+<span class="n">tensor</span><span class="p">([</span> <span class="mf">0.0051</span><span class="p">,</span>  <span class="mf">0.0042</span><span class="p">,</span>  <span class="mf">0.0026</span><span class="p">,</span>  <span class="mf">0.0152</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0040</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0036</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>如何使用损失函数</p>
+<p><strong>稍后阅读：</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">nn</span></code>包，包含了各种用来构成深度神经网络构建块的模块和损失函数，完整的文档请查看<a class="reference external" href="https://pytorch.org/docs/nn">here</a>。</p>
+<p><strong>剩下的最后一件事:</strong></p>
+<ul class="simple">
+<li><p>新网络的权重</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.1.8.4. </span>更新权重<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<p>在实践中最简单的权重更新规则是随机梯度下降（SGD）：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> ``weight = weight - learning_rate * gradient``
+</pre></div>
+</div>
+<p>我们可以使用简单的Python代码实现这个规则：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">sub_</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span> <span class="o">*</span> <span class="n">learning_rate</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>但是当使用神经网络是想要使用各种不同的更新规则时，比如SGD、Nesterov-SGD、Adam、RMSPROP等，PyTorch中构建了一个包<code class="docutils literal notranslate"><span class="pre">torch.optim</span></code>实现了所有的这些规则。
+使用它们非常简单：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+
+<span class="c1"># create your optimizer</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+
+<span class="c1"># in your training loop:</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>   <span class="c1"># zero the gradient buffers</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+<span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>    <span class="c1"># Does the update</span>
+</pre></div>
+</div>
+<p>.. 注意::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  观察如何使用``optimizer.zero_grad()``手动将梯度缓冲区设置为零。
+  这是因为梯度是按Backprop部分中的说明累积的。
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="2_autograd_tutorial.html" class="btn btn-neutral float-left" title="3.1.7. Autograd: 自动求导机制" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="4_cifar10_tutorial.html" class="btn btn-neutral float-right" title="3.1.9. 训练一个分类器" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

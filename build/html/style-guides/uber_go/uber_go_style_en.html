@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.1. Uber: Go Style Guide - English &mdash; AI 模型国内加速  文档</title>
+  <title>4.1. Uber: Go Style Guide - English &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
@@ -24,8 +24,8 @@
     <link rel="author" title="关于这些文档" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="3.2. Uber: Go语言 风格指南" href="../uber_go_cn/index.html" />
-    <link rel="prev" title="3. 编程语言 风格指南" href="../index.html" /> 
+    <link rel="next" title="4.2. Uber: Go语言 风格指南" href="../uber_go_cn/index.html" />
+    <link rel="prev" title="4. 编程语言 风格指南" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,88 +51,89 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 风格指南</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3.1. Uber: Go Style Guide - English</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#introduction">3.1.1. Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#guidelines">3.1.2. Guidelines</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#pointers-to-interfaces">3.1.2.1. Pointers to Interfaces</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#verify-interface-compliance">3.1.2.2. Verify Interface Compliance</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#receivers-and-interfaces">3.1.2.3. Receivers and Interfaces</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#zero-value-mutexes-are-valid">3.1.2.4. Zero-value Mutexes are Valid</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#copy-slices-and-maps-at-boundaries">3.1.2.5. Copy Slices and Maps at Boundaries</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#defer-to-clean-up">3.1.2.6. Defer to Clean Up</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#channel-size-is-one-or-none">3.1.2.7. Channel Size is One or None</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#start-enums-at-one">3.1.2.8. Start Enums at One</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#use-time-to-handle-time">3.1.2.9. Use <code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code> to handle time</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#errors">3.1.2.10. Errors</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#handle-type-assertion-failures">3.1.2.11. Handle Type Assertion Failures</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#don-t-panic">3.1.2.12. Don’t Panic</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#use-go-uber-org-atomic">3.1.2.13. Use go.uber.org/atomic</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#avoid-mutable-globals">3.1.2.14. Avoid Mutable Globals</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#avoid-embedding-types-in-public-structs">3.1.2.15. Avoid Embedding Types in Public Structs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#avoid-using-built-in-names">3.1.2.16. Avoid Using Built-In Names</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#avoid-init">3.1.2.17. Avoid <code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#exit-in-main">3.1.2.18. Exit in Main</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#use-field-tags-in-marshaled-structs">3.1.2.19. Use field tags in marshaled structs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#don-t-fire-and-forget-goroutines">3.1.2.20. Don’t fire-and-forget goroutines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytorch-guides/index.html">3. Pytorch 教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 风格指南</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.1. Uber: Go Style Guide - English</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">4.1.1. Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#guidelines">4.1.2. Guidelines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pointers-to-interfaces">4.1.2.1. Pointers to Interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verify-interface-compliance">4.1.2.2. Verify Interface Compliance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#receivers-and-interfaces">4.1.2.3. Receivers and Interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#zero-value-mutexes-are-valid">4.1.2.4. Zero-value Mutexes are Valid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#copy-slices-and-maps-at-boundaries">4.1.2.5. Copy Slices and Maps at Boundaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defer-to-clean-up">4.1.2.6. Defer to Clean Up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#channel-size-is-one-or-none">4.1.2.7. Channel Size is One or None</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#start-enums-at-one">4.1.2.8. Start Enums at One</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-time-to-handle-time">4.1.2.9. Use <code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code> to handle time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#errors">4.1.2.10. Errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#handle-type-assertion-failures">4.1.2.11. Handle Type Assertion Failures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#don-t-panic">4.1.2.12. Don’t Panic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-go-uber-org-atomic">4.1.2.13. Use go.uber.org/atomic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#avoid-mutable-globals">4.1.2.14. Avoid Mutable Globals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#avoid-embedding-types-in-public-structs">4.1.2.15. Avoid Embedding Types in Public Structs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#avoid-using-built-in-names">4.1.2.16. Avoid Using Built-In Names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#avoid-init">4.1.2.17. Avoid <code class="docutils literal notranslate"><span class="pre">init()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exit-in-main">4.1.2.18. Exit in Main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-field-tags-in-marshaled-structs">4.1.2.19. Use field tags in marshaled structs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#don-t-fire-and-forget-goroutines">4.1.2.20. Don’t fire-and-forget goroutines</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#performance">3.1.3. Performance</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#prefer-strconv-over-fmt">3.1.3.1. Prefer strconv over fmt</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#avoid-repeated-string-to-byte-conversions">3.1.3.2. Avoid repeated string-to-byte conversions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#prefer-specifying-container-capacity">3.1.3.3. Prefer Specifying Container Capacity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance">4.1.3. Performance</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#prefer-strconv-over-fmt">4.1.3.1. Prefer strconv over fmt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#avoid-repeated-string-to-byte-conversions">4.1.3.2. Avoid repeated string-to-byte conversions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prefer-specifying-container-capacity">4.1.3.3. Prefer Specifying Container Capacity</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#style">3.1.4. Style</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#avoid-overly-long-lines">3.1.4.1. Avoid overly long lines</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#be-consistent">3.1.4.2. Be Consistent</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#group-similar-declarations">3.1.4.3. Group Similar Declarations</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#import-group-ordering">3.1.4.4. Import Group Ordering</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#package-names">3.1.4.5. Package Names</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#function-names">3.1.4.6. Function Names</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#import-aliasing">3.1.4.7. Import Aliasing</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#function-grouping-and-ordering">3.1.4.8. Function Grouping and Ordering</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#reduce-nesting">3.1.4.9. Reduce Nesting</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#unnecessary-else">3.1.4.10. Unnecessary Else</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#top-level-variable-declarations">3.1.4.11. Top-level Variable Declarations</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#prefix-unexported-globals-with">3.1.4.12. Prefix Unexported Globals with _</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#embedding-in-structs">3.1.4.13. Embedding in Structs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#local-variable-declarations">3.1.4.14. Local Variable Declarations</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nil-is-a-valid-slice">3.1.4.15. nil is a valid slice</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#reduce-scope-of-variables">3.1.4.16. Reduce Scope of Variables</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#avoid-naked-parameters">3.1.4.17. Avoid Naked Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#use-raw-string-literals-to-avoid-escaping">3.1.4.18. Use Raw String Literals to Avoid Escaping</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#initializing-structs">3.1.4.19. Initializing Structs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#initializing-maps">3.1.4.20. Initializing Maps</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#format-strings-outside-printf">3.1.4.21. Format Strings outside Printf</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#naming-printf-style-functions">3.1.4.22. Naming Printf-style Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#style">4.1.4. Style</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#avoid-overly-long-lines">4.1.4.1. Avoid overly long lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#be-consistent">4.1.4.2. Be Consistent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#group-similar-declarations">4.1.4.3. Group Similar Declarations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#import-group-ordering">4.1.4.4. Import Group Ordering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#package-names">4.1.4.5. Package Names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#function-names">4.1.4.6. Function Names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#import-aliasing">4.1.4.7. Import Aliasing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#function-grouping-and-ordering">4.1.4.8. Function Grouping and Ordering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reduce-nesting">4.1.4.9. Reduce Nesting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unnecessary-else">4.1.4.10. Unnecessary Else</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#top-level-variable-declarations">4.1.4.11. Top-level Variable Declarations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prefix-unexported-globals-with">4.1.4.12. Prefix Unexported Globals with _</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#embedding-in-structs">4.1.4.13. Embedding in Structs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#local-variable-declarations">4.1.4.14. Local Variable Declarations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nil-is-a-valid-slice">4.1.4.15. nil is a valid slice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reduce-scope-of-variables">4.1.4.16. Reduce Scope of Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#avoid-naked-parameters">4.1.4.17. Avoid Naked Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-raw-string-literals-to-avoid-escaping">4.1.4.18. Use Raw String Literals to Avoid Escaping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initializing-structs">4.1.4.19. Initializing Structs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initializing-maps">4.1.4.20. Initializing Maps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#format-strings-outside-printf">4.1.4.21. Format Strings outside Printf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#naming-printf-style-functions">4.1.4.22. Naming Printf-style Functions</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#patterns">3.1.5. Patterns</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#test-tables">3.1.5.1. Test Tables</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#functional-options">3.1.5.2. Functional Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#patterns">4.1.5. Patterns</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#test-tables">4.1.5.1. Test Tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#functional-options">4.1.5.2. Functional Options</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#linting">3.1.6. Linting</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#lint-runners">3.1.6.1. Lint Runners</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linting">4.1.6. Linting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lint-runners">4.1.6.1. Lint Runners</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.2. Uber: Go语言 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">4.2. Uber: Go语言 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">4.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">4.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">4.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">4.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">4.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">4.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">4.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">4.10. Google: Java 风格指南</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">7. 关于</a></li>
 </ul>
 
         </div>
@@ -149,8 +150,8 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 风格指南</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3.1. </span>Uber: Go Style Guide - English</li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.1. </span>Uber: Go Style Guide - English</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/style-guides/uber_go/uber_go_style_en.md.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -164,7 +165,7 @@
   This file was generated by stitchmd. DO NOT EDIT.
   To make changes, edit the files in the "src" directory.
 --><!-- markdownlint-disable MD033 --><section id="uber-go-style-guide-english">
-<h1><span class="section-number">3.1. </span>Uber: Go Style Guide - English<a class="headerlink" href="#uber-go-style-guide-english" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">4.1. </span>Uber: Go Style Guide - English<a class="headerlink" href="#uber-go-style-guide-english" title="Permalink to this heading"></a></h1>
 <ul class="simple">
 <li><p><a class="reference external" href="#introduction">Introduction</a></p></li>
 <li><p><a class="reference external" href="#guidelines">Guidelines</a></p>
@@ -256,7 +257,7 @@
 <li><p><a class="reference external" href="#linting">Linting</a></p></li>
 </ul>
 <section id="introduction">
-<h2><span class="section-number">3.1.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.1.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>Styles are the conventions that govern our code. The term style is a bit of a
 misnomer, since these conventions cover far more than just source file
 formatting—gofmt handles that for us.</p>
@@ -287,9 +288,9 @@ recommend setting up your editor to:</p>
 https://go.dev/wiki/IDEsAndTextEditorPlugins</p>
 </section>
 <section id="guidelines">
-<h2><span class="section-number">3.1.2. </span>Guidelines<a class="headerlink" href="#guidelines" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.1.2. </span>Guidelines<a class="headerlink" href="#guidelines" title="Permalink to this heading"></a></h2>
 <section id="pointers-to-interfaces">
-<h3><span class="section-number">3.1.2.1. </span>Pointers to Interfaces<a class="headerlink" href="#pointers-to-interfaces" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.1. </span>Pointers to Interfaces<a class="headerlink" href="#pointers-to-interfaces" title="Permalink to this heading"></a></h3>
 <p>You almost never need a pointer to an interface. You should be passing
 interfaces as values—the underlying data can still be a pointer.</p>
 <p>An interface is two fields:</p>
@@ -303,7 +304,7 @@ the data stored is a value, then a pointer to the value is stored.</p></li>
 pointer.</p>
 </section>
 <section id="verify-interface-compliance">
-<h3><span class="section-number">3.1.2.2. </span>Verify Interface Compliance<a class="headerlink" href="#verify-interface-compliance" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.2. </span>Verify Interface Compliance<a class="headerlink" href="#verify-interface-compliance" title="Permalink to this heading"></a></h3>
 <p>Verify interface compliance at compile time where appropriate. This includes:</p>
 <ul class="simple">
 <li><p>Exported types that are required to implement specific interfaces as part of
@@ -366,7 +367,7 @@ an empty struct for struct types.</p>
 </div>
 </section>
 <section id="receivers-and-interfaces">
-<h3><span class="section-number">3.1.2.3. </span>Receivers and Interfaces<a class="headerlink" href="#receivers-and-interfaces" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.3. </span>Receivers and Interfaces<a class="headerlink" href="#receivers-and-interfaces" title="Permalink to this heading"></a></h3>
 <p>Methods with value receivers can be called on pointers as well as values.
 Methods with pointer receivers can only be called on pointers or <a class="reference external" href="https://go.dev/ref/spec#Method_values">addressable values</a>.</p>
 <p>For example,</p>
@@ -436,7 +437,7 @@ value receiver.</p>
 <p>Effective Go has a good write up on <a class="reference external" href="https://go.dev/doc/effective_go#pointers_vs_values">Pointers vs. Values</a>.</p>
 </section>
 <section id="zero-value-mutexes-are-valid">
-<h3><span class="section-number">3.1.2.4. </span>Zero-value Mutexes are Valid<a class="headerlink" href="#zero-value-mutexes-are-valid" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.4. </span>Zero-value Mutexes are Valid<a class="headerlink" href="#zero-value-mutexes-are-valid" title="Permalink to this heading"></a></h3>
 <p>The zero-value of <code class="docutils literal notranslate"><span class="pre">sync.Mutex</span></code> and <code class="docutils literal notranslate"><span class="pre">sync.RWMutex</span></code> is valid, so you almost
 never need a pointer to a mutex.</p>
 <table>
@@ -503,11 +504,11 @@ callers.</p>
 </td></tr>
 </tbody></table></section>
 <section id="copy-slices-and-maps-at-boundaries">
-<h3><span class="section-number">3.1.2.5. </span>Copy Slices and Maps at Boundaries<a class="headerlink" href="#copy-slices-and-maps-at-boundaries" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.5. </span>Copy Slices and Maps at Boundaries<a class="headerlink" href="#copy-slices-and-maps-at-boundaries" title="Permalink to this heading"></a></h3>
 <p>Slices and maps contain pointers to the underlying data so be wary of scenarios
 when they need to be copied.</p>
 <section id="receiving-slices-and-maps">
-<h4><span class="section-number">3.1.2.5.1. </span>Receiving Slices and Maps<a class="headerlink" href="#receiving-slices-and-maps" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.2.5.1. </span>Receiving Slices and Maps<a class="headerlink" href="#receiving-slices-and-maps" title="Permalink to this heading"></a></h4>
 <p>Keep in mind that users can modify a map or slice you received as an argument
 if you store a reference to it.</p>
 <table>
@@ -542,7 +543,7 @@ if you store a reference to it.</p>
 </tr></tbody>
 </table></section>
 <section id="returning-slices-and-maps">
-<h4><span class="section-number">3.1.2.5.2. </span>Returning Slices and Maps<a class="headerlink" href="#returning-slices-and-maps" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.2.5.2. </span>Returning Slices and Maps<a class="headerlink" href="#returning-slices-and-maps" title="Permalink to this heading"></a></h4>
 <p>Similarly, be wary of user modifications to maps or slices exposing internal
 state.</p>
 <table>
@@ -590,7 +591,7 @@ state.</p>
 </tbody></table></section>
 </section>
 <section id="defer-to-clean-up">
-<h3><span class="section-number">3.1.2.6. </span>Defer to Clean Up<a class="headerlink" href="#defer-to-clean-up" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.6. </span>Defer to Clean Up<a class="headerlink" href="#defer-to-clean-up" title="Permalink to this heading"></a></h3>
 <p>Use defer to clean up resources such as files and locks.</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -631,7 +632,7 @@ is especially true for larger methods that have more than simple memory
 accesses, where the other computations are more significant than the <code class="docutils literal notranslate"><span class="pre">defer</span></code>.</p>
 </section>
 <section id="channel-size-is-one-or-none">
-<h3><span class="section-number">3.1.2.7. </span>Channel Size is One or None<a class="headerlink" href="#channel-size-is-one-or-none" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.7. </span>Channel Size is One or None<a class="headerlink" href="#channel-size-is-one-or-none" title="Permalink to this heading"></a></h3>
 <p>Channels should usually have a size of one or be unbuffered. By default,
 channels are unbuffered and have a size of zero. Any other size
 must be subject to a high level of scrutiny. Consider how the size is
@@ -653,7 +654,7 @@ writers, and what happens when this occurs.</p>
 </td></tr>
 </tbody></table></section>
 <section id="start-enums-at-one">
-<h3><span class="section-number">3.1.2.8. </span>Start Enums at One<a class="headerlink" href="#start-enums-at-one" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.8. </span>Start Enums at One<a class="headerlink" href="#start-enums-at-one" title="Permalink to this heading"></a></h3>
 <p>The standard way of introducing enumerations in Go is to declare a custom type
 and a <code class="docutils literal notranslate"><span class="pre">const</span></code> group with <code class="docutils literal notranslate"><span class="pre">iota</span></code>. Since variables have a 0 default value, you
 should usually start your enums on a non-zero value.</p>
@@ -698,7 +699,7 @@ zero value case is the desirable default behavior.</p>
 </div>
 <!-- TODO: section on String methods for enums --></section>
 <section id="use-time-to-handle-time">
-<h3><span class="section-number">3.1.2.9. </span>Use <code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code> to handle time<a class="headerlink" href="#use-time-to-handle-time" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.9. </span>Use <code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code> to handle time<a class="headerlink" href="#use-time-to-handle-time" title="Permalink to this heading"></a></h3>
 <p>Time is complicated. Incorrect assumptions often made about time include the
 following.</p>
 <ol class="simple">
@@ -713,7 +714,7 @@ yield a new calendar day.</p>
 <p>Therefore, always use the <a class="reference external" href="https://pkg.go.dev/time"><code class="docutils literal notranslate"><span class="pre">&quot;time&quot;</span></code></a> package when dealing with time because it
 helps deal with these incorrect assumptions in a safer, more accurate manner.</p>
 <section id="use-time-time-for-instants-of-time">
-<h4><span class="section-number">3.1.2.9.1. </span>Use <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> for instants of time<a class="headerlink" href="#use-time-time-for-instants-of-time" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.2.9.1. </span>Use <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> for instants of time<a class="headerlink" href="#use-time-time-for-instants-of-time" title="Permalink to this heading"></a></h4>
 <p>Use <a class="reference external" href="https://pkg.go.dev/time#Time"><code class="docutils literal notranslate"><span class="pre">time.Time</span></code></a> when dealing with instants of time, and the methods on
 <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> when comparing, adding, or subtracting time.</p>
 <table>
@@ -732,7 +733,7 @@ helps deal with these incorrect assumptions in a safer, more accurate manner.</p
 </td></tr>
 </tbody></table></section>
 <section id="use-time-duration-for-periods-of-time">
-<h4><span class="section-number">3.1.2.9.2. </span>Use <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> for periods of time<a class="headerlink" href="#use-time-duration-for-periods-of-time" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.2.9.2. </span>Use <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> for periods of time<a class="headerlink" href="#use-time-duration-for-periods-of-time" title="Permalink to this heading"></a></h4>
 <p>Use <a class="reference external" href="https://pkg.go.dev/time#Duration"><code class="docutils literal notranslate"><span class="pre">time.Duration</span></code></a> when dealing with periods of time.</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -769,7 +770,7 @@ use <a class="reference external" href="https://pkg.go.dev/time#Time.Add"><code 
 </div>
 </section>
 <section id="use-time-time-and-time-duration-with-external-systems">
-<h4><span class="section-number">3.1.2.9.3. </span>Use <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> and <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> with external systems<a class="headerlink" href="#use-time-time-and-time-duration-with-external-systems" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.2.9.3. </span>Use <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> and <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> with external systems<a class="headerlink" href="#use-time-time-and-time-duration-with-external-systems" title="Permalink to this heading"></a></h4>
 <p>Use <code class="docutils literal notranslate"><span class="pre">time.Duration</span></code> and <code class="docutils literal notranslate"><span class="pre">time.Time</span></code> in interactions with external systems when
 possible. For example:</p>
 <ul class="simple">
@@ -814,9 +815,9 @@ seconds that may have occurred between those two instants.</p>
 </section>
 </section>
 <section id="errors">
-<h3><span class="section-number">3.1.2.10. </span>Errors<a class="headerlink" href="#errors" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.10. </span>Errors<a class="headerlink" href="#errors" title="Permalink to this heading"></a></h3>
 <section id="error-types">
-<h4><span class="section-number">3.1.2.10.1. </span>Error Types<a class="headerlink" href="#error-types" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.2.10.1. </span>Error Types<a class="headerlink" href="#error-types" title="Permalink to this heading"></a></h4>
 <p>There are few options for declaring errors.
 Consider the following before picking the option best suited for your use case.</p>
 <ul class="simple">
@@ -953,7 +954,7 @@ and a custom <code class="docutils literal notranslate"><span class="pre">error<
 they will become part of the public API of the package.</p>
 </section>
 <section id="error-wrapping">
-<h4><span class="section-number">3.1.2.10.2. </span>Error Wrapping<a class="headerlink" href="#error-wrapping" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.2.10.2. </span>Error Wrapping<a class="headerlink" href="#error-wrapping" title="Permalink to this heading"></a></h4>
 <p>There are three main options for propagating errors if a call fails:</p>
 <ul class="simple">
 <li><p>return the original error as-is</p></li>
@@ -1013,7 +1014,7 @@ message is an error (e.g. an <code class="docutils literal notranslate"><span cl
 <p>See also <a class="reference external" href="https://dave.cheney.net/2016/04/27/dont-just-check-errors-handle-them-gracefully">Don’t just check errors, handle them gracefully</a>.</p>
 </section>
 <section id="error-naming">
-<h4><span class="section-number">3.1.2.10.3. </span>Error Naming<a class="headerlink" href="#error-naming" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.2.10.3. </span>Error Naming<a class="headerlink" href="#error-naming" title="Permalink to this heading"></a></h4>
 <p>For error values stored as global variables,
 use the prefix <code class="docutils literal notranslate"><span class="pre">Err</span></code> or <code class="docutils literal notranslate"><span class="pre">err</span></code> depending on whether they’re exported.
 This guidance supersedes the <a class="reference external" href="#prefix-unexported-globals-with-_">Prefix Unexported Globals with _</a>.</p>
@@ -1063,7 +1064,7 @@ This guidance supersedes the <a class="reference external" href="#prefix-unexpor
 </div>
 </section>
 <section id="handle-errors-once">
-<h4><span class="section-number">3.1.2.10.4. </span>Handle Errors Once<a class="headerlink" href="#handle-errors-once" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.2.10.4. </span>Handle Errors Once<a class="headerlink" href="#handle-errors-once" title="Permalink to this heading"></a></h4>
 <p>When a caller receives an error from a callee,
 it can handle it in a variety of different ways
 depending on what it knows about the error.</p>
@@ -1142,7 +1143,7 @@ For all other cases, wrap the error and return it.</p>
 </tbody></table></section>
 </section>
 <section id="handle-type-assertion-failures">
-<h3><span class="section-number">3.1.2.11. </span>Handle Type Assertion Failures<a class="headerlink" href="#handle-type-assertion-failures" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.11. </span>Handle Type Assertion Failures<a class="headerlink" href="#handle-type-assertion-failures" title="Permalink to this heading"></a></h3>
 <p>The single return value form of a <a class="reference external" href="https://go.dev/ref/spec#Type_assertions">type assertion</a> will panic on an incorrect
 type. Therefore, always use the “comma ok” idiom.</p>
 <table>
@@ -1161,7 +1162,7 @@ type. Therefore, always use the “comma ok” idiom.</p>
 </tbody></table><!-- TODO: There are a few situations where the single assignment form is
 fine. --></section>
 <section id="don-t-panic">
-<h3><span class="section-number">3.1.2.12. </span>Don’t Panic<a class="headerlink" href="#don-t-panic" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.12. </span>Don’t Panic<a class="headerlink" href="#don-t-panic" title="Permalink to this heading"></a></h3>
 <p>Code running in production must avoid panics. Panics are a major source of
 <a class="reference external" href="https://en.wikipedia.org/wiki/Cascading_failure">cascading failures</a>. If an error occurs, the function must return an error and
 allow the caller to decide how to handle it.</p>
@@ -1228,7 +1229,7 @@ test is marked as failed.</p>
 </td></tr>
 </tbody></table></section>
 <section id="use-go-uber-org-atomic">
-<h3><span class="section-number">3.1.2.13. </span>Use go.uber.org/atomic<a class="headerlink" href="#use-go-uber-org-atomic" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.13. </span>Use go.uber.org/atomic<a class="headerlink" href="#use-go-uber-org-atomic" title="Permalink to this heading"></a></h3>
 <p>Atomic operations with the <a class="reference external" href="https://pkg.go.dev/sync/atomic">sync/atomic</a> package operate on the raw types
 (<code class="docutils literal notranslate"><span class="pre">int32</span></code>, <code class="docutils literal notranslate"><span class="pre">int64</span></code>, etc.) so it is easy to forget to use the atomic operation to
 read or modify the variables.</p>
@@ -1274,7 +1275,7 @@ underlying type. Additionally, it includes a convenient <code class="docutils li
 </td></tr>
 </tbody></table></section>
 <section id="avoid-mutable-globals">
-<h3><span class="section-number">3.1.2.14. </span>Avoid Mutable Globals<a class="headerlink" href="#avoid-mutable-globals" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.14. </span>Avoid Mutable Globals<a class="headerlink" href="#avoid-mutable-globals" title="Permalink to this heading"></a></h3>
 <p>Avoid mutating global variables, instead opting for dependency injection.
 This applies to function pointers as well as other kinds of values.</p>
 <table>
@@ -1337,7 +1338,7 @@ This applies to function pointers as well as other kinds of values.</p>
 </td></tr>
 </tbody></table></section>
 <section id="avoid-embedding-types-in-public-structs">
-<h3><span class="section-number">3.1.2.15. </span>Avoid Embedding Types in Public Structs<a class="headerlink" href="#avoid-embedding-types-in-public-structs" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.15. </span>Avoid Embedding Types in Public Structs<a class="headerlink" href="#avoid-embedding-types-in-public-structs" title="Permalink to this heading"></a></h3>
 <p>These embedded types leak implementation details, inhibit type evolution, and
 obscure documentation.</p>
 <p>Assuming you have implemented a variety of list types using a shared
@@ -1445,7 +1446,7 @@ eliminates indirection for discovering the full List interface in
 documentation.</p>
 </section>
 <section id="avoid-using-built-in-names">
-<h3><span class="section-number">3.1.2.16. </span>Avoid Using Built-In Names<a class="headerlink" href="#avoid-using-built-in-names" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.16. </span>Avoid Using Built-In Names<a class="headerlink" href="#avoid-using-built-in-names" title="Permalink to this heading"></a></h3>
 <p>The Go <a class="reference external" href="https://go.dev/ref/spec">language specification</a> outlines several built-in,
 <a class="reference external" href="https://go.dev/ref/spec#Predeclared_identifiers">predeclared identifiers</a> that should not be used as names within Go programs.</p>
 <p>Depending on context, reusing these identifiers as names will either shadow
@@ -1520,7 +1521,7 @@ identifiers, but tools such as <code class="docutils literal notranslate"><span 
 other cases of shadowing.</p>
 </section>
 <section id="avoid-init">
-<h3><span class="section-number">3.1.2.17. </span>Avoid <code class="docutils literal notranslate"><span class="pre">init()</span></code><a class="headerlink" href="#avoid-init" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.17. </span>Avoid <code class="docutils literal notranslate"><span class="pre">init()</span></code><a class="headerlink" href="#avoid-init" title="Permalink to this heading"></a></h3>
 <p>Avoid <code class="docutils literal notranslate"><span class="pre">init()</span></code> where possible. When <code class="docutils literal notranslate"><span class="pre">init()</span></code> is unavoidable or desirable, code
 should attempt to:</p>
 <ol class="simple">
@@ -1621,7 +1622,7 @@ precomputation.</p></li>
 </ul>
 </section>
 <section id="exit-in-main">
-<h3><span class="section-number">3.1.2.18. </span>Exit in Main<a class="headerlink" href="#exit-in-main" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.18. </span>Exit in Main<a class="headerlink" href="#exit-in-main" title="Permalink to this heading"></a></h3>
 <p>Go programs use <a class="reference external" href="https://pkg.go.dev/os#Exit"><code class="docutils literal notranslate"><span class="pre">os.Exit</span></code></a> or <a class="reference external" href="https://pkg.go.dev/log#Fatal"><code class="docutils literal notranslate"><span class="pre">log.Fatal*</span></code></a> to exit immediately. (Panicking
 is not a good way to exit programs, please <a class="reference external" href="#dont-panic">don’t panic</a>.)</p>
 <p>Call one of <code class="docutils literal notranslate"><span class="pre">os.Exit</span></code> or <code class="docutils literal notranslate"><span class="pre">log.Fatal*</span></code> <strong>only in <code class="docutils literal notranslate"><span class="pre">main()</span></code></strong>. All other
@@ -1685,7 +1686,7 @@ enqueued with <code class="docutils literal notranslate"><span class="pre">defer
 cleanup tasks.</p></li>
 </ul>
 <section id="exit-once">
-<h4><span class="section-number">3.1.2.18.1. </span>Exit Once<a class="headerlink" href="#exit-once" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.2.18.1. </span>Exit Once<a class="headerlink" href="#exit-once" title="Permalink to this heading"></a></h4>
 <p>If possible, prefer to call <code class="docutils literal notranslate"><span class="pre">os.Exit</span></code> or <code class="docutils literal notranslate"><span class="pre">log.Fatal</span></code> <strong>at most once</strong> in your
 <code class="docutils literal notranslate"><span class="pre">main()</span></code>. If there are multiple error scenarios that halt program execution,
 put that logic under a separate function and return errors from it.</p>
@@ -1790,7 +1791,7 @@ responsible for actually exiting the process.</p>
 </section>
 </section>
 <section id="use-field-tags-in-marshaled-structs">
-<h3><span class="section-number">3.1.2.19. </span>Use field tags in marshaled structs<a class="headerlink" href="#use-field-tags-in-marshaled-structs" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.19. </span>Use field tags in marshaled structs<a class="headerlink" href="#use-field-tags-in-marshaled-structs" title="Permalink to this heading"></a></h3>
 <p>Any struct field that is marshaled into JSON, YAML,
 or other formats that support tag-based field naming
 should be annotated with the relevant tag.</p>
@@ -1829,7 +1830,7 @@ and it guards against accidentally breaking the contract by refactoring or
 renaming fields.</p>
 </section>
 <section id="don-t-fire-and-forget-goroutines">
-<h3><span class="section-number">3.1.2.20. </span>Don’t fire-and-forget goroutines<a class="headerlink" href="#don-t-fire-and-forget-goroutines" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.2.20. </span>Don’t fire-and-forget goroutines<a class="headerlink" href="#don-t-fire-and-forget-goroutines" title="Permalink to this heading"></a></h3>
 <p>Goroutines are lightweight, but they’re not free:
 at minimum, they cost memory for their stack and CPU to be scheduled.
 While these costs are small for typical uses of goroutines,
@@ -1891,7 +1892,7 @@ This will run until the application exits.</p>
 and we can wait for it to exit with <code class="docutils literal notranslate"><span class="pre">&lt;-done</span></code>.</p>
 </td></tr>
 </tbody></table><section id="wait-for-goroutines-to-exit">
-<h4><span class="section-number">3.1.2.20.1. </span>Wait for goroutines to exit<a class="headerlink" href="#wait-for-goroutines-to-exit" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.2.20.1. </span>Wait for goroutines to exit<a class="headerlink" href="#wait-for-goroutines-to-exit" title="Permalink to this heading"></a></h4>
 <p>Given a goroutine spawned by the system,
 there must be a way to wait for the goroutine to exit.
 There are two popular ways to do this:</p>
@@ -1928,7 +1929,7 @@ Do this if there’s only one goroutine.</p>
 </ul>
 </section>
 <section id="no-goroutines-in-init">
-<h4><span class="section-number">3.1.2.20.2. </span>No goroutines in <code class="docutils literal notranslate"><span class="pre">init()</span></code><a class="headerlink" href="#no-goroutines-in-init" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.2.20.2. </span>No goroutines in <code class="docutils literal notranslate"><span class="pre">init()</span></code><a class="headerlink" href="#no-goroutines-in-init" title="Permalink to this heading"></a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">init()</span></code> functions should not spawn goroutines.
 See also <a class="reference external" href="#avoid-init">Avoid init()</a>.</p>
 <p>If a package has need of a background goroutine,
@@ -1992,10 +1993,10 @@ See <a class="reference external" href="#wait-for-goroutines-to-exit">Wait for g
 </section>
 </section>
 <section id="performance">
-<h2><span class="section-number">3.1.3. </span>Performance<a class="headerlink" href="#performance" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.1.3. </span>Performance<a class="headerlink" href="#performance" title="Permalink to this heading"></a></h2>
 <p>Performance-specific guidelines apply only to the hot path.</p>
 <section id="prefer-strconv-over-fmt">
-<h3><span class="section-number">3.1.3.1. </span>Prefer strconv over fmt<a class="headerlink" href="#prefer-strconv-over-fmt" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.3.1. </span>Prefer strconv over fmt<a class="headerlink" href="#prefer-strconv-over-fmt" title="Permalink to this heading"></a></h3>
 <p>When converting primitives to/from strings, <code class="docutils literal notranslate"><span class="pre">strconv</span></code> is faster than
 <code class="docutils literal notranslate"><span class="pre">fmt</span></code>.</p>
 <table>
@@ -2021,7 +2022,7 @@ See <a class="reference external" href="#wait-for-goroutines-to-exit">Wait for g
 </td></tr>
 </tbody></table></section>
 <section id="avoid-repeated-string-to-byte-conversions">
-<h3><span class="section-number">3.1.3.2. </span>Avoid repeated string-to-byte conversions<a class="headerlink" href="#avoid-repeated-string-to-byte-conversions" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.3.2. </span>Avoid repeated string-to-byte conversions<a class="headerlink" href="#avoid-repeated-string-to-byte-conversions" title="Permalink to this heading"></a></h3>
 <p>Do not create byte slices from a fixed string repeatedly. Instead, perform the
 conversion once and capture the result.</p>
 <table>
@@ -2048,12 +2049,12 @@ conversion once and capture the result.</p>
 </td></tr>
 </tbody></table></section>
 <section id="prefer-specifying-container-capacity">
-<h3><span class="section-number">3.1.3.3. </span>Prefer Specifying Container Capacity<a class="headerlink" href="#prefer-specifying-container-capacity" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.3.3. </span>Prefer Specifying Container Capacity<a class="headerlink" href="#prefer-specifying-container-capacity" title="Permalink to this heading"></a></h3>
 <p>Specify container capacity where possible in order to allocate memory for the
 container up front. This minimizes subsequent allocations (by copying and
 resizing of the container) as elements are added.</p>
 <section id="specifying-map-capacity-hints">
-<h4><span class="section-number">3.1.3.3.1. </span>Specifying Map Capacity Hints<a class="headerlink" href="#specifying-map-capacity-hints" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.3.3.1. </span>Specifying Map Capacity Hints<a class="headerlink" href="#specifying-map-capacity-hints" title="Permalink to this heading"></a></h4>
 <p>Where possible, provide capacity hints when initializing
 maps with <code class="docutils literal notranslate"><span class="pre">make()</span></code>.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="nx">T1</span><span class="p">]</span><span class="nx">T2</span><span class="p">,</span><span class="w"> </span><span class="nx">hint</span><span class="p">)</span>
@@ -2093,7 +2094,7 @@ allocations at assignment time.</p>
 </td></tr>
 </tbody></table></section>
 <section id="specifying-slice-capacity">
-<h4><span class="section-number">3.1.3.3.2. </span>Specifying Slice Capacity<a class="headerlink" href="#specifying-slice-capacity" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.3.3.2. </span>Specifying Slice Capacity<a class="headerlink" href="#specifying-slice-capacity" title="Permalink to this heading"></a></h4>
 <p>Where possible, provide capacity hints when initializing slices with <code class="docutils literal notranslate"><span class="pre">make()</span></code>,
 particularly when appending.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nb">make</span><span class="p">([]</span><span class="nx">T</span><span class="p">,</span><span class="w"> </span><span class="nx">length</span><span class="p">,</span><span class="w"> </span><span class="nx">capacity</span><span class="p">)</span>
@@ -2135,9 +2136,9 @@ to hold additional elements).</p>
 </section>
 </section>
 <section id="style">
-<h2><span class="section-number">3.1.4. </span>Style<a class="headerlink" href="#style" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.1.4. </span>Style<a class="headerlink" href="#style" title="Permalink to this heading"></a></h2>
 <section id="avoid-overly-long-lines">
-<h3><span class="section-number">3.1.4.1. </span>Avoid overly long lines<a class="headerlink" href="#avoid-overly-long-lines" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.1. </span>Avoid overly long lines<a class="headerlink" href="#avoid-overly-long-lines" title="Permalink to this heading"></a></h3>
 <p>Avoid lines of code that require readers to scroll horizontally
 or turn their heads too much.</p>
 <p>We recommend a soft line length limit of <strong>99 characters</strong>.
@@ -2146,7 +2147,7 @@ but it is not a hard limit.
 Code is allowed to exceed this limit.</p>
 </section>
 <section id="be-consistent">
-<h3><span class="section-number">3.1.4.2. </span>Be Consistent<a class="headerlink" href="#be-consistent" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.2. </span>Be Consistent<a class="headerlink" href="#be-consistent" title="Permalink to this heading"></a></h3>
 <p>Some of the guidelines outlined in this document can be evaluated objectively;
 others are situational, contextual, or subjective.</p>
 <p>Above all else, <strong>be consistent</strong>.</p>
@@ -2162,7 +2163,7 @@ are made at a package (or larger) level: application at a sub-package level
 violates the above concern by introducing multiple styles into the same code.</p>
 </section>
 <section id="group-similar-declarations">
-<h3><span class="section-number">3.1.4.3. </span>Group Similar Declarations<a class="headerlink" href="#group-similar-declarations" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.3. </span>Group Similar Declarations<a class="headerlink" href="#group-similar-declarations" title="Permalink to this heading"></a></h3>
 <p>Go supports grouping similar declarations.</p>
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -2296,7 +2297,7 @@ declared together even if they are unrelated.</p>
 </td></tr>
 </tbody></table></section>
 <section id="import-group-ordering">
-<h3><span class="section-number">3.1.4.4. </span>Import Group Ordering<a class="headerlink" href="#import-group-ordering" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.4. </span>Import Group Ordering<a class="headerlink" href="#import-group-ordering" title="Permalink to this heading"></a></h3>
 <p>There should be two import groups:</p>
 <ul class="simple">
 <li><p>Standard library</p></li>
@@ -2326,7 +2327,7 @@ declared together even if they are unrelated.</p>
 </td></tr>
 </tbody></table></section>
 <section id="package-names">
-<h3><span class="section-number">3.1.4.5. </span>Package Names<a class="headerlink" href="#package-names" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.5. </span>Package Names<a class="headerlink" href="#package-names" title="Permalink to this heading"></a></h3>
 <p>When naming packages, choose a name that is:</p>
 <ul class="simple">
 <li><p>All lower-case. No capitals or underscores.</p></li>
@@ -2339,14 +2340,14 @@ site.</p></li>
 <p>See also <a class="reference external" href="https://go.dev/blog/package-names">Package Names</a> and <a class="reference external" href="https://rakyll.org/style-packages/">Style guideline for Go packages</a>.</p>
 </section>
 <section id="function-names">
-<h3><span class="section-number">3.1.4.6. </span>Function Names<a class="headerlink" href="#function-names" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.6. </span>Function Names<a class="headerlink" href="#function-names" title="Permalink to this heading"></a></h3>
 <p>We follow the Go community’s convention of using <a class="reference external" href="https://go.dev/doc/effective_go#mixed-caps">MixedCaps for function
 names</a>. An exception is made for test functions, which may contain underscores
 for the purpose of grouping related test cases, e.g.,
 <code class="docutils literal notranslate"><span class="pre">TestMyFunction_WhatIsBeingTested</span></code>.</p>
 </section>
 <section id="import-aliasing">
-<h3><span class="section-number">3.1.4.7. </span>Import Aliasing<a class="headerlink" href="#import-aliasing" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.7. </span>Import Aliasing<a class="headerlink" href="#import-aliasing" title="Permalink to this heading"></a></h3>
 <p>Import aliasing must be used if the package name does not match the last
 element of the import path.</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
@@ -2383,7 +2384,7 @@ direct conflict between imports.</p>
 </td></tr>
 </tbody></table></section>
 <section id="function-grouping-and-ordering">
-<h3><span class="section-number">3.1.4.8. </span>Function Grouping and Ordering<a class="headerlink" href="#function-grouping-and-ordering" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.8. </span>Function Grouping and Ordering<a class="headerlink" href="#function-grouping-and-ordering" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Functions should be sorted in rough call order.</p></li>
 <li><p>Functions in a file should be grouped by receiver.</p></li>
@@ -2430,7 +2431,7 @@ towards the end of the file.</p>
 </td></tr>
 </tbody></table></section>
 <section id="reduce-nesting">
-<h3><span class="section-number">3.1.4.9. </span>Reduce Nesting<a class="headerlink" href="#reduce-nesting" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.9. </span>Reduce Nesting<a class="headerlink" href="#reduce-nesting" title="Permalink to this heading"></a></h3>
 <p>Code should reduce nesting where possible by handling error cases/special
 conditions first and returning early or continuing the loop. Reduce the amount
 of code that is nested multiple levels.</p>
@@ -2468,7 +2469,7 @@ of code that is nested multiple levels.</p>
 </td></tr>
 </tbody></table></section>
 <section id="unnecessary-else">
-<h3><span class="section-number">3.1.4.10. </span>Unnecessary Else<a class="headerlink" href="#unnecessary-else" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.10. </span>Unnecessary Else<a class="headerlink" href="#unnecessary-else" title="Permalink to this heading"></a></h3>
 <p>If a variable is set in both branches of an if, it can be replaced with a
 single if.</p>
 <table>
@@ -2491,7 +2492,7 @@ single if.</p>
 </td></tr>
 </tbody></table></section>
 <section id="top-level-variable-declarations">
-<h3><span class="section-number">3.1.4.11. </span>Top-level Variable Declarations<a class="headerlink" href="#top-level-variable-declarations" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.11. </span>Top-level Variable Declarations<a class="headerlink" href="#top-level-variable-declarations" title="Permalink to this heading"></a></h3>
 <p>At the top level, use the standard <code class="docutils literal notranslate"><span class="pre">var</span></code> keyword. Do not specify the type,
 unless it is not the same type as the expression.</p>
 <table>
@@ -2524,7 +2525,7 @@ exactly.</p>
 </div>
 </section>
 <section id="prefix-unexported-globals-with">
-<h3><span class="section-number">3.1.4.12. </span>Prefix Unexported Globals with _<a class="headerlink" href="#prefix-unexported-globals-with" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.12. </span>Prefix Unexported Globals with _<a class="headerlink" href="#prefix-unexported-globals-with" title="Permalink to this heading"></a></h3>
 <p>Prefix unexported top-level <code class="docutils literal notranslate"><span class="pre">var</span></code>s and <code class="docutils literal notranslate"><span class="pre">const</span></code>s with <code class="docutils literal notranslate"><span class="pre">_</span></code> to make it clear when
 they are used that they are global symbols.</p>
 <p>Rationale: Top-level variables and constants have a package scope. Using a
@@ -2565,7 +2566,7 @@ file.</p>
 See <a class="reference external" href="#error-naming">Error Naming</a>.</p>
 </section>
 <section id="embedding-in-structs">
-<h3><span class="section-number">3.1.4.13. </span>Embedding in Structs<a class="headerlink" href="#embedding-in-structs" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.13. </span>Embedding in Structs<a class="headerlink" href="#embedding-in-structs" title="Permalink to this heading"></a></h3>
 <p>Embedded types should be at the top of the field list of a
 struct, and there must be an empty line separating embedded fields from regular
 fields.</p>
@@ -2691,7 +2692,7 @@ instead.</p>
 </td></tr>
 </tbody></table></section>
 <section id="local-variable-declarations">
-<h3><span class="section-number">3.1.4.14. </span>Local Variable Declarations<a class="headerlink" href="#local-variable-declarations" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.14. </span>Local Variable Declarations<a class="headerlink" href="#local-variable-declarations" title="Permalink to this heading"></a></h3>
 <p>Short variable declarations (<code class="docutils literal notranslate"><span class="pre">:=</span></code>) should be used if a variable is being set to
 some value explicitly.</p>
 <table>
@@ -2732,7 +2733,7 @@ keyword is used. <a class="reference external" href="https://go.dev/wiki/CodeRev
 </td></tr>
 </tbody></table></section>
 <section id="nil-is-a-valid-slice">
-<h3><span class="section-number">3.1.4.15. </span>nil is a valid slice<a class="headerlink" href="#nil-is-a-valid-slice" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.15. </span>nil is a valid slice<a class="headerlink" href="#nil-is-a-valid-slice" title="Permalink to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">nil</span></code> is a valid slice of length 0. This means that,</p>
 <ul>
 <li><p>You should not return a slice of length zero explicitly. Return <code class="docutils literal notranslate"><span class="pre">nil</span></code>
@@ -2805,7 +2806,7 @@ allocated slice of length 0 - one is nil and the other is not - and the two may
 be treated differently in different situations (such as serialization).</p>
 </section>
 <section id="reduce-scope-of-variables">
-<h3><span class="section-number">3.1.4.16. </span>Reduce Scope of Variables<a class="headerlink" href="#reduce-scope-of-variables" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.16. </span>Reduce Scope of Variables<a class="headerlink" href="#reduce-scope-of-variables" title="Permalink to this heading"></a></h3>
 <p>Where possible, reduce scope of variables and constants. Do not reduce the scope if it
 conflicts with <a class="reference external" href="#reduce-nesting">Reduce Nesting</a>.</p>
 <table>
@@ -2882,7 +2883,7 @@ or are part of an external contract of the package.</p>
 </td></tr>
 </tbody></table></section>
 <section id="avoid-naked-parameters">
-<h3><span class="section-number">3.1.4.17. </span>Avoid Naked Parameters<a class="headerlink" href="#avoid-naked-parameters" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.17. </span>Avoid Naked Parameters<a class="headerlink" href="#avoid-naked-parameters" title="Permalink to this heading"></a></h3>
 <p>Naked parameters in function calls can hurt readability. Add C-style comments
 (<code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">...</span> <span class="pre">*/</span></code>) for parameter names when their meaning is not obvious.</p>
 <table>
@@ -2922,7 +2923,7 @@ parameter in the future.</p>
 </div>
 </section>
 <section id="use-raw-string-literals-to-avoid-escaping">
-<h3><span class="section-number">3.1.4.18. </span>Use Raw String Literals to Avoid Escaping<a class="headerlink" href="#use-raw-string-literals-to-avoid-escaping" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.18. </span>Use Raw String Literals to Avoid Escaping<a class="headerlink" href="#use-raw-string-literals-to-avoid-escaping" title="Permalink to this heading"></a></h3>
 <p>Go supports <a class="reference external" href="https://go.dev/ref/spec#raw_string_lit">raw string literals</a>,
 which can span multiple lines and include quotes. Use these to avoid
 hand-escaped strings which are much harder to read.</p>
@@ -2938,9 +2939,9 @@ hand-escaped strings which are much harder to read.</p>
 </td></tr>
 </tbody></table></section>
 <section id="initializing-structs">
-<h3><span class="section-number">3.1.4.19. </span>Initializing Structs<a class="headerlink" href="#initializing-structs" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.19. </span>Initializing Structs<a class="headerlink" href="#initializing-structs" title="Permalink to this heading"></a></h3>
 <section id="use-field-names-to-initialize-structs">
-<h4><span class="section-number">3.1.4.19.1. </span>Use Field Names to Initialize Structs<a class="headerlink" href="#use-field-names-to-initialize-structs" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.4.19.1. </span>Use Field Names to Initialize Structs<a class="headerlink" href="#use-field-names-to-initialize-structs" title="Permalink to this heading"></a></h4>
 <p>You should almost always specify field names when initializing structs. This is
 now enforced by <a class="reference external" href="https://pkg.go.dev/cmd/vet"><code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">vet</span></code></a>.</p>
 <table>
@@ -2970,7 +2971,7 @@ fewer fields.</p>
 </div>
 </section>
 <section id="omit-zero-value-fields-in-structs">
-<h4><span class="section-number">3.1.4.19.2. </span>Omit Zero Value Fields in Structs<a class="headerlink" href="#omit-zero-value-fields-in-structs" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.4.19.2. </span>Omit Zero Value Fields in Structs<a class="headerlink" href="#omit-zero-value-fields-in-structs" title="Permalink to this heading"></a></h4>
 <p>When initializing structs with field names, omit fields that have zero values
 unless they provide meaningful context. Otherwise, let Go set these to zero
 values automatically.</p>
@@ -3008,7 +3009,7 @@ even when they are zero-valued.</p>
 </div>
 </section>
 <section id="use-var-for-zero-value-structs">
-<h4><span class="section-number">3.1.4.19.3. </span>Use <code class="docutils literal notranslate"><span class="pre">var</span></code> for Zero Value Structs<a class="headerlink" href="#use-var-for-zero-value-structs" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.4.19.3. </span>Use <code class="docutils literal notranslate"><span class="pre">var</span></code> for Zero Value Structs<a class="headerlink" href="#use-var-for-zero-value-structs" title="Permalink to this heading"></a></h4>
 <p>When all the fields of a struct are omitted in a declaration, use the <code class="docutils literal notranslate"><span class="pre">var</span></code>
 form to declare the struct.</p>
 <table>
@@ -3026,7 +3027,7 @@ similar to the distinction created for <a class="reference external" href="#init
 we prefer to <a class="reference external" href="https://go.dev/wiki/CodeReviewComments#declaring-empty-slices">declare empty slices</a>.</p>
 </section>
 <section id="initializing-struct-references">
-<h4><span class="section-number">3.1.4.19.4. </span>Initializing Struct References<a class="headerlink" href="#initializing-struct-references" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.4.19.4. </span>Initializing Struct References<a class="headerlink" href="#initializing-struct-references" title="Permalink to this heading"></a></h4>
 <p>Use <code class="docutils literal notranslate"><span class="pre">&amp;T{}</span></code> instead of <code class="docutils literal notranslate"><span class="pre">new(T)</span></code> when initializing struct references so that it
 is consistent with the struct initialization.</p>
 <table>
@@ -3048,7 +3049,7 @@ is consistent with the struct initialization.</p>
 </tbody></table></section>
 </section>
 <section id="initializing-maps">
-<h3><span class="section-number">3.1.4.20. </span>Initializing Maps<a class="headerlink" href="#initializing-maps" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.20. </span>Initializing Maps<a class="headerlink" href="#initializing-maps" title="Permalink to this heading"></a></h3>
 <p>Prefer <code class="docutils literal notranslate"><span class="pre">make(..)</span></code> for empty maps, and maps populated
 programmatically. This makes map initialization visually
 distinct from declaration, and it makes it easy to add size
@@ -3104,7 +3105,7 @@ elements at initialization time, otherwise use <code class="docutils literal not
 if available).</p>
 </section>
 <section id="format-strings-outside-printf">
-<h3><span class="section-number">3.1.4.21. </span>Format Strings outside Printf<a class="headerlink" href="#format-strings-outside-printf" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.21. </span>Format Strings outside Printf<a class="headerlink" href="#format-strings-outside-printf" title="Permalink to this heading"></a></h3>
 <p>If you declare format strings for <code class="docutils literal notranslate"><span class="pre">Printf</span></code>-style functions outside a string
 literal, make them <code class="docutils literal notranslate"><span class="pre">const</span></code> values.</p>
 <p>This helps <code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">vet</span></code> perform static analysis of the format string.</p>
@@ -3122,7 +3123,7 @@ literal, make them <code class="docutils literal notranslate"><span class="pre">
 </td></tr>
 </tbody></table></section>
 <section id="naming-printf-style-functions">
-<h3><span class="section-number">3.1.4.22. </span>Naming Printf-style Functions<a class="headerlink" href="#naming-printf-style-functions" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.4.22. </span>Naming Printf-style Functions<a class="headerlink" href="#naming-printf-style-functions" title="Permalink to this heading"></a></h3>
 <p>When you declare a <code class="docutils literal notranslate"><span class="pre">Printf</span></code>-style function, make sure that <code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">vet</span></code> can detect
 it and check the format string.</p>
 <p>This means that you should use predefined <code class="docutils literal notranslate"><span class="pre">Printf</span></code>-style function
@@ -3138,9 +3139,9 @@ names but they must end with f.</p>
 </section>
 </section>
 <section id="patterns">
-<h2><span class="section-number">3.1.5. </span>Patterns<a class="headerlink" href="#patterns" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.1.5. </span>Patterns<a class="headerlink" href="#patterns" title="Permalink to this heading"></a></h2>
 <section id="test-tables">
-<h3><span class="section-number">3.1.5.1. </span>Test Tables<a class="headerlink" href="#test-tables" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.5.1. </span>Test Tables<a class="headerlink" href="#test-tables" title="Permalink to this heading"></a></h3>
 <p>Table-driven tests with <a class="reference external" href="https://go.dev/blog/subtests">subtests</a> can be a helpful pattern for writing tests
 to avoid duplicating code when the core test logic is repetitive.</p>
 <p>If a system under test needs to be tested against <em>multiple conditions</em> where
@@ -3231,7 +3232,7 @@ values for each test case with <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 <section id="avoid-unnecessary-complexity-in-table-tests">
-<h4><span class="section-number">3.1.5.1.1. </span>Avoid Unnecessary Complexity in Table Tests<a class="headerlink" href="#avoid-unnecessary-complexity-in-table-tests" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.5.1.1. </span>Avoid Unnecessary Complexity in Table Tests<a class="headerlink" href="#avoid-unnecessary-complexity-in-table-tests" title="Permalink to this heading"></a></h4>
 <p>Table tests can be difficult to read and maintain if the subtests contain conditional
 assertions or other branching logic. Table tests should <strong>NOT</strong> be used whenever
 there needs to be complex or conditional logic inside subtests (i.e. complex logic inside the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop).</p>
@@ -3348,7 +3349,7 @@ always be top-of-mind when deciding between Table Tests versus separate tests
 for multiple inputs/outputs to a system.</p>
 </section>
 <section id="parallel-tests">
-<h4><span class="section-number">3.1.5.1.2. </span>Parallel Tests<a class="headerlink" href="#parallel-tests" title="Permalink to this heading"></a></h4>
+<h4><span class="section-number">4.1.5.1.2. </span>Parallel Tests<a class="headerlink" href="#parallel-tests" title="Permalink to this heading"></a></h4>
 <p>Parallel tests, like some specialized loops (for example, those that spawn
 goroutines or capture references as part of the loop body),
 must take care to explicitly assign loop variables within the loop’s scope to
@@ -3376,7 +3377,7 @@ If we do not do that, most or all tests will receive an unexpected value for
 <!-- TODO: Explain how to use _test packages. --></section>
 </section>
 <section id="functional-options">
-<h3><span class="section-number">3.1.5.2. </span>Functional Options<a class="headerlink" href="#functional-options" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.5.2. </span>Functional Options<a class="headerlink" href="#functional-options" title="Permalink to this heading"></a></h3>
 <p>Functional options is a pattern in which you declare an opaque <code class="docutils literal notranslate"><span class="pre">Option</span></code> type
 that records information in some internal struct. You accept a variadic number
 of these options and act upon the full information recorded by the options on
@@ -3510,7 +3511,7 @@ options.</p>
 use one vs other --></section>
 </section>
 <section id="linting">
-<h2><span class="section-number">3.1.6. </span>Linting<a class="headerlink" href="#linting" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">4.1.6. </span>Linting<a class="headerlink" href="#linting" title="Permalink to this heading"></a></h2>
 <p>More importantly than any “blessed” set of linters, lint consistently across a
 codebase.</p>
 <p>We recommend using the following linters at a minimum, because we feel that they
@@ -3524,7 +3525,7 @@ quality without being unnecessarily prescriptive:</p>
 <li><p><a class="reference external" href="https://staticcheck.dev">staticcheck</a> to do various static analysis checks</p></li>
 </ul>
 <section id="lint-runners">
-<h3><span class="section-number">3.1.6.1. </span>Lint Runners<a class="headerlink" href="#lint-runners" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">4.1.6.1. </span>Lint Runners<a class="headerlink" href="#lint-runners" title="Permalink to this heading"></a></h3>
 <p>We recommend <a class="reference external" href="https://github.com/golangci/golangci-lint">golangci-lint</a> as the go-to lint runner for Go code, largely due
 to its performance in larger codebases and ability to configure and use many
 canonical linters at once. This repo has an example <a class="reference external" href="https://github.com/uber-go/guide/blob/master/.golangci.yml">.golangci.yml</a> config file
@@ -3540,8 +3541,8 @@ that make sense for their projects.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="../index.html" class="btn btn-neutral float-left" title="3. 编程语言 风格指南" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="../uber_go_cn/index.html" class="btn btn-neutral float-right" title="3.2. Uber: Go语言 风格指南" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="4. 编程语言 风格指南" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../uber_go_cn/index.html" class="btn btn-neutral float-right" title="4.2. Uber: Go语言 风格指南" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

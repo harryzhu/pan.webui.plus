@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.17. 2.3 神经网络简介 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../../about.html" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="3.1.18. 2.4 卷积神经网络简介" href="2.4-cnn.html" />
+    <link rel="prev" title="3.1.16. 2.2 深度学习基础及数学原理" href="2.2-deep-learning-basic-mathematics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">3. Pytorch 教程</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">3.1. Pytorch 快速入门</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.1-pytorch-introduction.html">3.1.1. 1.1 Pytorch 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html">3.1.2. 1.2 Pytorch环境搭建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html#id1">3.1.3. 1.2.1 安装Pytorch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.3-deep-learning-with-pytorch-60-minute-blitz.html">3.1.4. PyTorch 深度学习:60分钟快速入门 （官方）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.4-pytorch-resource.html">3.1.5. 相关资源列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1_tensor_tutorial.html">3.1.6. PyTorch是什么?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/2_autograd_tutorial.html">3.1.7. Autograd: 自动求导机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/3_neural_networks_tutorial.html">3.1.8. Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/4_cifar10_tutorial.html">3.1.9. 训练一个分类器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/5_data_parallel_tutorial.html">3.1.10. 数据并行（选读）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/readme.html">3.1.11. PyTorch 中文手册第一章 ： PyTorch入门</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.1.pytorch-basics-tensor.html">3.1.12. PyTorch 基础 : 张量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.2-pytorch-basics-autograd.html">3.1.13. 使用PyTorch计算梯度数值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.3-pytorch-basics-nerual-network.html">3.1.14. PyTorch 基础 : 神经网络包nn和优化器optm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.4-pytorch-basics-data-loader.html">3.1.15. PyTorch 基础 :数据的加载和预处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2-deep-learning-basic-mathematics.html">3.1.16. 2.2 深度学习基础及数学原理</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.17. 2.3 神经网络简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.1.17.1. 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.1.17.2. 神经网络的表示</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.1.17.3. 激活函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.1.17.4. 深入理解前向传播和反向传播</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="2.4-cnn.html">3.1.18. 2.4 卷积神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.5-rnn.html">3.1.19. 2.5 循环神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html">3.1.20. Pytorch 中文手册第二章 ： 基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.1-logistic-regression.html">3.1.21. 3.1 logistic回归实战</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.2-mnist.html">3.1.22. 3.2  MNIST数据集手写数字识别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.3-rnn.html">3.1.23. 3.3 通过Sin预测Cos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/readme.html">3.1.24. Pytorch 中文手册第三章 ： 实践</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.1-fine-tuning.html">3.1.25. 4.1 Fine tuning 模型微调</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.1-visdom.html">3.1.26. 4.2.1 使用Visdom在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.2-tensorboardx.html">3.1.27. 4.2.2 使用Tensorboard在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.3-cnn-visualizing.html">3.1.28. 4.2.3 可视化理解卷积神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.3-cnn-visualizing.html#backpropagation">3.1.29. 基于Backpropagation的方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.3-fastai.html">3.1.30. 4.3 fastai</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.5-multiply-gpu-parallel-training.html">3.1.31. 4.5 多GPU并行训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/distributed_data_parallel.html">3.1.32. 在PyTorch中使用DistributedDataParallel进行多GPU分布式模型训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/readme.html">3.1.33. Pytorch 中文手册第四章 ： 提高</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.1-kaggle.html">3.1.34. 5.1 kaggle介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.2-Structured-Data.html">3.1.35. 5.2 Pytorch处理结构化数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.3-Fashion-MNIST.html">3.1.36. Fashion MNIST进行分类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/readme.html">3.1.37. Pytorch 中文手册第五章 ： 应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../style-guides/index.html">4. 编程语言 风格指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">7. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><span class="section-number">3. </span>Pytorch 教程</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3.1. </span>Pytorch 快速入门</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.1.17. </span>2.3 神经网络简介</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pytorch-guides/pytorch-cookbook/chapter2/2.3-deep-learning-neural-network-introduction.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</pre></div>
+</div>
+<section id="id1">
+<h1><span class="section-number">3.1.17. </span>2.3 神经网络简介<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p>目前最广泛使用的定义是Kohonen于1988年的描述，神经网络是由具有适应性的简单单元组成的广泛并行互连的网络，它的组织能够模拟生物神经系统对真实世界物体所做出的交互反应。</p>
+<section id="id2">
+<h2><span class="section-number">3.1.17.1. </span>概述<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>在生物神经网络中，每个神经元与其他神经元相连，当它兴奋时，就会向相连的神经元发送化学物质，从而改变这些神经元内的电位；如果某神经元的电位超过了一个阈值，那么它就会激活，即兴奋起来并向其他神经元发送化学物质。</p>
+<p>在深度学习中也借鉴了这样的结构，每一个神经元（上面说到的简单单元）接受输入x，通过带权重w的连接进行传递，将总输入信号与神经元的阈值进行比较，最后通过激活函数处理确定是否激活，并将激活后的计算结果y输出，而我们所说的训练，所训练的就是这里面的权重w。</p>
+<p><a class="reference external" href="http://www.dkriesel.com/en/science/neural_networks">参考</a></p>
+<p>每一个神经元的结构如下：
+<img alt="../../../_images/6.png" src="../../../_images/6.png" /></p>
+<p><a class="reference external" href="https://becominghuman.ai/from-perceptron-to-deep-neural-nets-504b8ff616e">来源</a></p>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.1.17.2. </span>神经网络的表示<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>我们可以将神经元拼接起来，两层神经元，即输入层+输出层(M-P神经元)，构成感知机。
+而多层功能神经元相连构成神经网络，输入层与输出层之间的所有层神经元，称为隐藏层：
+<img alt="../../../_images/7.png" src="../../../_images/7.png" />
+如上图所示，输入层和输出层只有一个，中间的隐藏层可以有很多层（输出层也可以多个，例如经典的GoogleNet，后面会详细介绍）</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.1.17.3. </span>激活函数<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<p>介绍神经网络的时候已经说到，神经元会对化学物质的刺激进行，当达到一定程度的时候，神经元才会兴奋，并向其他神经元发送信息。神经网络中的激活函数就是用来判断我们所计算的信息是否达到了往后面传输的条件。</p>
+<section id="id5">
+<h3><span class="section-number">3.1.17.3.1. </span>为什么激活函数都是非线性的<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>在神经网络的计算过程中，每层都相当于矩阵相乘，无论神经网络有多少层输出都是输入的线性组合，就算我们有几千层的计算，无非还是个矩阵相乘，和一层矩阵相乘所获得的信息差距不大，所以需要激活函数来引入非线性因素，使得神经网络可以任意逼近任何非线性函数，这样神经网络就可以应用到众多的非线性模型中，增加了神经网络模型泛化的特性。</p>
+<p>早期研究神经网络主要采用sigmoid函数或者tanh函数，输出有界，很容易充当下一层的输入。
+近些年Relu函数及其改进型（如Leaky-ReLU、P-ReLU、R-ReLU等），由于计算简单、效果好所以在多层神经网络中应用比较多。</p>
+<p>下面来总结下较常见的激活函数：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 初始化一些信息</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span><span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="sigmoid">
+<h3><span class="section-number">3.1.17.3.2. </span>sigmoid 函数<a class="headerlink" href="#sigmoid" title="Permalink to this heading"></a></h3>
+<p>$a=\frac{1}{1+e^{-z}}$ 导数 ：$a^\prime =a(1 - a)$</p>
+<p>在sigmoid函数中我们可以看到，其输出是在(0,1)这个开区间，它能够把输入的连续实值变换为0和1之间的输出，如果是非常大的负数，那么输出就是0；如果是非常大的正数输出就是1，起到了抑制的作用。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">sigmod</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span><span class="n">sigmod</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span> <span class="n">at</span> <span class="mh">0x2ad8aa2b9b0</span><span class="o">&gt;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_7_1.png" /></p>
+<p>但是sigmod由于需要进行指数运算（这个对于计算机来说是比较慢，相比relu），再加上函数输出不是以0为中心的（这样会使权重更新效率降低），当输入稍微远离了坐标原点，函数的梯度就变得很小了（几乎为零）。在神经网络反向传播的过程中不利于权重的优化，这个问题叫做梯度饱和，也可以叫梯度弥散。这些不足，所以现在使用到sigmod基本很少了，基本上只有在做二元分类（0，1）时的输出层才会使用。</p>
+</section>
+<section id="tanh">
+<h3><span class="section-number">3.1.17.3.3. </span>tanh 函数<a class="headerlink" href="#tanh" title="Permalink to this heading"></a></h3>
+<p>$a=\frac{e^z-e^{-z}}{e^z+e^{-z}}$ 导数：$a^\prime =1 - a^2$</p>
+<p>tanh是双曲正切函数，输出区间是在(-1,1)之间，而且整个函数是以0为中心的</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">tanh</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span><span class="n">tanh</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span> <span class="n">at</span> <span class="mh">0x2ad8ab67cc0</span><span class="o">&gt;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_10_1.png" /></p>
+<p>与sigmoid函数类似，当输入稍微远离了坐标原点，梯度还是会很小，但是好在tanh是以0为中心点，如果使用tanh作为激活函数，还能起到归一化（均值为0）的效果。</p>
+<p>一般二分类问题中，隐藏层用tanh函数，输出层用sigmod函数，但是随着Relu的出现所有的隐藏层基本上都使用relu来作为激活函数了</p>
+</section>
+<section id="relu">
+<h3><span class="section-number">3.1.17.3.4. </span>ReLU 函数<a class="headerlink" href="#relu" title="Permalink to this heading"></a></h3>
+<p>Relu（Rectified Linear Units）修正线性单元</p>
+<p>$a=max(0,z)$ 导数大于0时1，小于0时0。</p>
+<p>也就是说：
+z&gt;0时，梯度始终为1，从而提高神经网络基于梯度算法的运算速度。然而当
+z&lt;0时，梯度一直为0。
+ReLU函数只有线性关系（只需要判断输入是否大于0）不管是前向传播还是反向传播，都比sigmod和tanh要快很多，</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">relu</span><span class="o">=</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span><span class="n">relu</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span> <span class="n">at</span> <span class="mh">0x2ad8b097470</span><span class="o">&gt;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_13_1.png" /></p>
+<p>当输入是负数的时候，ReLU是完全不被激活的，这就表明一旦输入到了负数，ReLU就会死掉。但是到了反向传播过程中，输入负数，梯度就会完全到0，这个和sigmod函数、tanh函数有一样的问题。 但是实际的运用中，该缺陷的影响不是很大。</p>
+</section>
+<section id="leaky-relu">
+<h3><span class="section-number">3.1.17.3.5. </span>Leaky Relu 函数<a class="headerlink" href="#leaky-relu" title="Permalink to this heading"></a></h3>
+<p>为了解决relu函数z&lt;0时的问题出现了 Leaky ReLU函数，该函数保证在z&lt;0的时候，梯度仍然不为0。
+ReLU的前半段设为αz而非0，通常α=0.01 $ a=max(\alpha z,z)$</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">l_relu</span><span class="o">=</span><span class="n">F</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span> <span class="c1"># 这里的0.1是为了方便展示，理论上应为0.01甚至更小的值</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span><span class="n">l_relu</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">Line2D</span> <span class="n">at</span> <span class="mh">0x2ad8b0bd3c8</span><span class="o">&gt;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_16_1.png" /></p>
+<p>理论上来讲，Leaky ReLU有ReLU的所有优点，但是在实际操作当中，并没有完全证明Leaky ReLU总是好于ReLU。</p>
+<p>ReLU目前仍是最常用的activation function，在隐藏层中推荐优先尝试！</p>
+</section>
+</section>
+<section id="id6">
+<h2><span class="section-number">3.1.17.4. </span>深入理解前向传播和反向传播<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<p>在最后我们再详细说下神经网络中的前向传播和反向传播，这里继续使用吴恩达老师的板书
+<img alt="../../../_images/8.png" src="../../../_images/8.png" /></p>
+<section id="id7">
+<h3><span class="section-number">3.1.17.4.1. </span>正向传播<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<p>对于一个神经网络来说，把输入特征$a^{[0]}$这个输入值就是我们的输入$x$，放入第一层并计算第一层的激活函数，用$a^{[1]}$表示，本层中训练的结果用$W^{[1]}$和$b^{[l]}$来表示，这两个值与，计算的结果$z^{[1]}$值都需要进行缓存，而计算的结果还需要通过激活函数生成激活后的$a^{[1]}$，即第一层的输出值，这个值会作为第二层的输入传到第二层，第二层里，需要用到$W^{[2]}$和$b^{[2]}$，计算结果为$z^{[2]}$，第二层的激活函数$a^{[2]}$。
+后面几层以此类推，直到最后算出了$a^{[L]}$，第$L$层的最终输出值$\hat{y}$，即我们网络的预测值。正向传播其实就是我们的输入$x$通过一系列的网络计算，得到$\hat{y}$的过程。</p>
+<p>在这个过程里我们缓存的值，会在后面的反向传播中用到。</p>
+</section>
+<section id="id8">
+<h3><span class="section-number">3.1.17.4.2. </span>反向传播<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<p>对反向传播的步骤而言，就是对正向传播的一系列的反向迭代，通过反向计算梯度，来优化我们需要训练的$W$和$b$。
+把${\delta}a^{[l]}$值进行求导得到${\delta}a^{[l-1]}$，以此类推，直到我们得到${\delta}a^{[2]}$和${\delta}a^{[1]}$。反向传播步骤中也会输出 ${\delta}W^{[l]}$和${\delta}b^{[l]}$。这一步我们已经得到了权重的变化量，下面我们要通过学习率来对训练的$W$和$b$进行更新，</p>
+<p>$W=W-\alpha{\delta}W $</p>
+<p>$b=b-\alpha{\delta}b $</p>
+<p>这样反向传播就就算是完成了</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="2.2-deep-learning-basic-mathematics.html" class="btn btn-neutral float-left" title="3.1.16. 2.2 深度学习基础及数学原理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="2.4-cnn.html" class="btn btn-neutral float-right" title="3.1.18. 2.4 卷积神经网络简介" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

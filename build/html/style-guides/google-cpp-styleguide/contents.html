@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.8. Google: C++ 风格指南 &mdash; AI 模型国内加速  文档</title>
+  <title>4.8. Google: C++ 风格指南 &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
@@ -24,8 +24,8 @@
     <link rel="author" title="关于这些文档" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="3.8.1. 扉页" href="index.html" />
-    <link rel="prev" title="3.7.10. 赠言" href="../google-html-css-styleguide/parting_words.html" /> 
+    <link rel="next" title="4.8.1. 扉页" href="index.html" />
+    <link rel="prev" title="4.7.10. 赠言" href="../google-html-css-styleguide/parting_words.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,36 +51,37 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 风格指南</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_style_en.html">3.2. Uber Go Style Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">3.5. Google: TypeScript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3.8. Google: C++ 风格指南</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html">3.8.1. 扉页</a></li>
-<li class="toctree-l3"><a class="reference internal" href="headers.html">3.8.2. 1. 头文件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scoping.html">3.8.3. 2. 作用域</a></li>
-<li class="toctree-l3"><a class="reference internal" href="classes.html">3.8.4. 3. 类</a></li>
-<li class="toctree-l3"><a class="reference internal" href="functions.html">3.8.5. 4. 函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="magic.html">3.8.6. 5. 来自 Google 的奇技</a></li>
-<li class="toctree-l3"><a class="reference internal" href="others.html">3.8.7. 6. 其他 C++ 特性</a></li>
-<li class="toctree-l3"><a class="reference internal" href="naming.html">3.8.8. 7. 命名约定</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comments.html">3.8.9. 8. 注释</a></li>
-<li class="toctree-l3"><a class="reference internal" href="formatting.html">3.8.10. 9. 格式</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exceptions.html">3.8.11. 10. 规则特例</a></li>
-<li class="toctree-l3"><a class="reference internal" href="end.html">3.8.12. 11. 结束语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytorch-guides/index.html">3. Pytorch 教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 风格指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/uber_go_style_en.html">4.1. Uber: Go Style Guide - English</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">4.2. Uber: Go语言 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">4.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">4.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-typescript-styleguide/contents.html">4.5. Google: TypeScript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">4.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">4.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.8. Google: C++ 风格指南</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html">4.8.1. 扉页</a></li>
+<li class="toctree-l3"><a class="reference internal" href="headers.html">4.8.2. 1. 头文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scoping.html">4.8.3. 2. 作用域</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classes.html">4.8.4. 3. 类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions.html">4.8.5. 4. 函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="magic.html">4.8.6. 5. 来自 Google 的奇技</a></li>
+<li class="toctree-l3"><a class="reference internal" href="others.html">4.8.7. 6. 其他 C++ 特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html">4.8.8. 7. 命名约定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html">4.8.9. 8. 注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formatting.html">4.8.10. 9. 格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exceptions.html">4.8.11. 10. 规则特例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="end.html">4.8.12. 11. 结束语</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">4.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">4.10. Google: Java 风格指南</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">7. 关于</a></li>
 </ul>
 
         </div>
@@ -97,8 +98,8 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 风格指南</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3.8. </span>Google: C++ 风格指南</li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.8. </span>Google: C++ 风格指南</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/style-guides/google-cpp-styleguide/contents.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -109,7 +110,7 @@
            <div itemprop="articleBody">
              
   <section id="google-c">
-<span id="cpp-contents"></span><h1><span class="section-number">3.8. </span>Google: C++ 风格指南<a class="headerlink" href="#google-c" title="Permalink to this heading"></a></h1>
+<span id="cpp-contents"></span><h1><span class="section-number">4.8. </span>Google: C++ 风格指南<a class="headerlink" href="#google-c" title="Permalink to this heading"></a></h1>
 <nav class="contents" id="id1">
 <p class="topic-title">目录</p>
 <ul class="simple">
@@ -118,175 +119,175 @@
 </nav>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">3.8.1. 扉页</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="index.html#id3">3.8.1.1. 译者前言</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#id5">3.8.1.2. 背景</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#id6">3.8.1.3. 本指南的目标</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#c">3.8.1.4. C++ 版本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">4.8.1. 扉页</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">4.8.1.1. 译者前言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">4.8.1.2. 背景</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id6">4.8.1.3. 本指南的目标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#c">4.8.1.4. C++ 版本</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="headers.html">3.8.2. 1. 头文件</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="headers.html#self-contained-headers">3.8.2.1. 1.1. 自给自足的头文件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="headers.html#define">3.8.2.2. 1.2. #define 防护符</a></li>
-<li class="toctree-l2"><a class="reference internal" href="headers.html#include-what-you-use">3.8.2.3. 1.3. 导入你的依赖</a></li>
-<li class="toctree-l2"><a class="reference internal" href="headers.html#forward-declarations">3.8.2.4. 1.4. 前向声明</a></li>
-<li class="toctree-l2"><a class="reference internal" href="headers.html#inline-functions">3.8.2.5. 1.5. 内联函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="headers.html#include">3.8.2.6. 1.6. <code class="docutils literal notranslate"><span class="pre">#include</span></code> 的路径及顺序</a></li>
-<li class="toctree-l2"><a class="reference internal" href="headers.html#yulefox">3.8.2.7. 译者 (YuleFox) 笔记</a></li>
-<li class="toctree-l2"><a class="reference internal" href="headers.html#acgtyrant">3.8.2.8. 译者（acgtyrant）笔记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="headers.html">4.8.2. 1. 头文件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="headers.html#self-contained-headers">4.8.2.1. 1.1. 自给自足的头文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="headers.html#define">4.8.2.2. 1.2. #define 防护符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="headers.html#include-what-you-use">4.8.2.3. 1.3. 导入你的依赖</a></li>
+<li class="toctree-l2"><a class="reference internal" href="headers.html#forward-declarations">4.8.2.4. 1.4. 前向声明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="headers.html#inline-functions">4.8.2.5. 1.5. 内联函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="headers.html#include">4.8.2.6. 1.6. <code class="docutils literal notranslate"><span class="pre">#include</span></code> 的路径及顺序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="headers.html#yulefox">4.8.2.7. 译者 (YuleFox) 笔记</a></li>
+<li class="toctree-l2"><a class="reference internal" href="headers.html#acgtyrant">4.8.2.8. 译者（acgtyrant）笔记</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="scoping.html">3.8.3. 2. 作用域</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="scoping.html#namespaces">3.8.3.1. 2.1. 命名空间</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scoping.html#internal-linkage">3.8.3.2. 2.2. 内部链接</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scoping.html#nonmember-static-member-and-global-functions">3.8.3.3. 2.3. 非成员函数、静态成员函数和全局函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scoping.html#local-variables">3.8.3.4. 2.4. 局部变量</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scoping.html#static-and-global-variables">3.8.3.5. 2.5. 静态和全局变量</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scoping.html#thread-local">3.8.3.6. 2.6. thread_local 变量</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scoping.html#yulefox">3.8.3.7. 译者 (YuleFox) 笔记</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scoping.html#acgtyrant">3.8.3.8. 译者（acgtyrant）笔记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scoping.html">4.8.3. 2. 作用域</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scoping.html#namespaces">4.8.3.1. 2.1. 命名空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scoping.html#internal-linkage">4.8.3.2. 2.2. 内部链接</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scoping.html#nonmember-static-member-and-global-functions">4.8.3.3. 2.3. 非成员函数、静态成员函数和全局函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scoping.html#local-variables">4.8.3.4. 2.4. 局部变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scoping.html#static-and-global-variables">4.8.3.5. 2.5. 静态和全局变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scoping.html#thread-local">4.8.3.6. 2.6. thread_local 变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scoping.html#yulefox">4.8.3.7. 译者 (YuleFox) 笔记</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scoping.html#acgtyrant">4.8.3.8. 译者（acgtyrant）笔记</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="classes.html">3.8.4. 3. 类</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#id2">3.8.4.1. 3.1. 构造函数的内部操作</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#implicit-conversions">3.8.4.2. 3.2. 隐式类型转换</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#copyable-and-movable-types">3.8.4.3. 3.3. 可拷贝类型和可移动类型</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#structs-vs-classes">3.8.4.4. 3.4. 结构体还是类</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#structs-vs-pairs-and-tuples">3.8.4.5. 3.5. 结构体、数对还是元组</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#inheritance">3.8.4.6. 3.6. 继承</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#operator-overloading">3.8.4.7. 3.7. 运算符重载</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#access-control">3.8.4.8. 3.8. 访问控制</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#declaration-order">3.8.4.9. 3.9. 声明次序</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes.html#yulefox">3.8.4.10. 译者 (YuleFox) 笔记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">4.8.4. 3. 类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#id2">4.8.4.1. 3.1. 构造函数的内部操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#implicit-conversions">4.8.4.2. 3.2. 隐式类型转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#copyable-and-movable-types">4.8.4.3. 3.3. 可拷贝类型和可移动类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#structs-vs-classes">4.8.4.4. 3.4. 结构体还是类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#structs-vs-pairs-and-tuples">4.8.4.5. 3.5. 结构体、数对还是元组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#inheritance">4.8.4.6. 3.6. 继承</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#operator-overloading">4.8.4.7. 3.7. 运算符重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#access-control">4.8.4.8. 3.8. 访问控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#declaration-order">4.8.4.9. 3.9. 声明次序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#yulefox">4.8.4.10. 译者 (YuleFox) 笔记</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">3.8.5. 4. 函数</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#id2">3.8.5.1. 4.1. 输入和输出</a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#id3">3.8.5.2. 4.2. 编写简短函数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#id4">3.8.5.3. 4.3. 函数重载</a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#id5">3.8.5.4. 4.4. 缺省参数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#id6">3.8.5.5. 4.5. 函数返回类型后置语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">4.8.5. 4. 函数</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#id2">4.8.5.1. 4.1. 输入和输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#id3">4.8.5.2. 4.2. 编写简短函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#id4">4.8.5.3. 4.3. 函数重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#id5">4.8.5.4. 4.4. 缺省参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#id6">4.8.5.5. 4.5. 函数返回类型后置语法</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="magic.html">3.8.6. 5. 来自 Google 的奇技</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="magic.html#id1">3.8.6.1. 5.1. 所有权与智能指针</a></li>
-<li class="toctree-l2"><a class="reference internal" href="magic.html#cpplint">3.8.6.2. 5.2. Cpplint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="magic.html#acgtyrant">3.8.6.3. 译者（acgtyrant）笔记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="magic.html">4.8.6. 5. 来自 Google 的奇技</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="magic.html#id1">4.8.6.1. 5.1. 所有权与智能指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic.html#cpplint">4.8.6.2. 5.2. Cpplint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic.html#acgtyrant">4.8.6.3. 译者（acgtyrant）笔记</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="others.html">3.8.7. 6. 其他 C++ 特性</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="others.html#id1">3.8.7.1. 6.1. 右值引用</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#function-overloading">3.8.7.2. 6.2. 函数重载</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#id3">3.8.7.3. 6.3. 缺省参数</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#alloca">3.8.7.4. 6.4. 变长数组和 alloca()</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#id4">3.8.7.5. 6.5. 友元</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#exceptions">3.8.7.6. 6.6. 异常</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#rtti">3.8.7.7. 6.7. 运行时类型识别</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#id7">3.8.7.8. 6.8. 类型转换</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#streams">3.8.7.9. 6.9. 流</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#id9">3.8.7.10. 6.10. 前置自增和自减</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#const">3.8.7.11. 6.11. <code class="docutils literal notranslate"><span class="pre">const</span></code> 用法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#constexpr">3.8.7.12. 6.12. <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> 用法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#id10">3.8.7.13. 6.13. 整型</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#id11">3.8.7.14. 6.14. 64 位下的可移植性</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#preprocessor-macros">3.8.7.15. 6.15. 预处理宏</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#nullptr-null">3.8.7.16. 6.16. 0, <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> 和 <code class="docutils literal notranslate"><span class="pre">NULL</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#sizeof">3.8.7.17. 6.17. sizeof</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#auto">3.8.7.18. 6.18. auto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#braced-initializer-list">3.8.7.19. 6.19. 列表初始化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#lambda">3.8.7.20. 6.20. Lambda 表达式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#template-metaprogramming">3.8.7.21. 6.21. 模板编程</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#boost">3.8.7.22. 6.22. Boost 库</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#c-11">3.8.7.23. 6.23. C++11</a></li>
-<li class="toctree-l2"><a class="reference internal" href="others.html#acgtyrant">3.8.7.24. 译者（acgtyrant）笔记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="others.html">4.8.7. 6. 其他 C++ 特性</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="others.html#id1">4.8.7.1. 6.1. 右值引用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#function-overloading">4.8.7.2. 6.2. 函数重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#id3">4.8.7.3. 6.3. 缺省参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#alloca">4.8.7.4. 6.4. 变长数组和 alloca()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#id4">4.8.7.5. 6.5. 友元</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#exceptions">4.8.7.6. 6.6. 异常</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#rtti">4.8.7.7. 6.7. 运行时类型识别</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#id7">4.8.7.8. 6.8. 类型转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#streams">4.8.7.9. 6.9. 流</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#id9">4.8.7.10. 6.10. 前置自增和自减</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#const">4.8.7.11. 6.11. <code class="docutils literal notranslate"><span class="pre">const</span></code> 用法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#constexpr">4.8.7.12. 6.12. <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> 用法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#id10">4.8.7.13. 6.13. 整型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#id11">4.8.7.14. 6.14. 64 位下的可移植性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#preprocessor-macros">4.8.7.15. 6.15. 预处理宏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#nullptr-null">4.8.7.16. 6.16. 0, <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> 和 <code class="docutils literal notranslate"><span class="pre">NULL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#sizeof">4.8.7.17. 6.17. sizeof</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#auto">4.8.7.18. 6.18. auto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#braced-initializer-list">4.8.7.19. 6.19. 列表初始化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#lambda">4.8.7.20. 6.20. Lambda 表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#template-metaprogramming">4.8.7.21. 6.21. 模板编程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#boost">4.8.7.22. 6.22. Boost 库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#c-11">4.8.7.23. 6.23. C++11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="others.html#acgtyrant">4.8.7.24. 译者（acgtyrant）笔记</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="naming.html">3.8.8. 7. 命名约定</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="naming.html#general-naming-rules">3.8.8.1. 7.1. 通用命名规则</a></li>
-<li class="toctree-l2"><a class="reference internal" href="naming.html#id3">3.8.8.2. 7.2. 文件命名</a></li>
-<li class="toctree-l2"><a class="reference internal" href="naming.html#type-names">3.8.8.3. 7.3. 类型命名</a></li>
-<li class="toctree-l2"><a class="reference internal" href="naming.html#variable-names">3.8.8.4. 7.4. 变量命名</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="naming.html#id6">3.8.8.4.1. 普通变量命名</a></li>
-<li class="toctree-l3"><a class="reference internal" href="naming.html#id7">3.8.8.4.2. 类数据成员</a></li>
-<li class="toctree-l3"><a class="reference internal" href="naming.html#id8">3.8.8.4.3. 结构体变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="naming.html">4.8.8. 7. 命名约定</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#general-naming-rules">4.8.8.1. 7.1. 通用命名规则</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#id3">4.8.8.2. 7.2. 文件命名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#type-names">4.8.8.3. 7.3. 类型命名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#variable-names">4.8.8.4. 7.4. 变量命名</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="naming.html#id6">4.8.8.4.1. 普通变量命名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html#id7">4.8.8.4.2. 类数据成员</a></li>
+<li class="toctree-l3"><a class="reference internal" href="naming.html#id8">4.8.8.4.3. 结构体变量</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="naming.html#constant-names">3.8.8.5. 7.5. 常量命名</a></li>
-<li class="toctree-l2"><a class="reference internal" href="naming.html#function-names">3.8.8.6. 7.6. 函数命名</a></li>
-<li class="toctree-l2"><a class="reference internal" href="naming.html#id12">3.8.8.7. 7.7. 命名空间命名</a></li>
-<li class="toctree-l2"><a class="reference internal" href="naming.html#id13">3.8.8.8. 7.8. 枚举命名</a></li>
-<li class="toctree-l2"><a class="reference internal" href="naming.html#macro-names">3.8.8.9. 7.9. 宏命名</a></li>
-<li class="toctree-l2"><a class="reference internal" href="naming.html#id15">3.8.8.10. 7.10. 命名规则的特例</a></li>
-<li class="toctree-l2"><a class="reference internal" href="naming.html#acgtyrant">3.8.8.11. 译者（acgtyrant）笔记</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#constant-names">4.8.8.5. 7.5. 常量命名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#function-names">4.8.8.6. 7.6. 函数命名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#id12">4.8.8.7. 7.7. 命名空间命名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#id13">4.8.8.8. 7.8. 枚举命名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#macro-names">4.8.8.9. 7.9. 宏命名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#id15">4.8.8.10. 7.10. 命名规则的特例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naming.html#acgtyrant">4.8.8.11. 译者（acgtyrant）笔记</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="comments.html">3.8.9. 8. 注释</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="comments.html#id2">3.8.9.1. 8.1. 注释风格</a></li>
-<li class="toctree-l2"><a class="reference internal" href="comments.html#id3">3.8.9.2. 8.2. 文件注释</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="comments.html#id4">3.8.9.2.1. 法律公告和作者信息</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comments.html#id5">3.8.9.2.2. 文件内容</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comments.html">4.8.9. 8. 注释</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comments.html#id2">4.8.9.1. 8.1. 注释风格</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html#id3">4.8.9.2. 8.2. 文件注释</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comments.html#id4">4.8.9.2.1. 法律公告和作者信息</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html#id5">4.8.9.2.2. 文件内容</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="comments.html#class-comments">3.8.9.3. 8.3. 类注释</a></li>
-<li class="toctree-l2"><a class="reference internal" href="comments.html#id7">3.8.9.4. 8.4. 函数注释</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="comments.html#id8">3.8.9.4.1. 函数声明</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comments.html#id9">3.8.9.4.2. 函数定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html#class-comments">4.8.9.3. 8.3. 类注释</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html#id7">4.8.9.4. 8.4. 函数注释</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comments.html#id8">4.8.9.4.1. 函数声明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html#id9">4.8.9.4.2. 函数定义</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="comments.html#id10">3.8.9.5. 8.5. 变量注释</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="comments.html#id11">3.8.9.5.1. 类数据成员</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comments.html#id12">3.8.9.5.2. 全局变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html#id10">4.8.9.5. 8.5. 变量注释</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comments.html#id11">4.8.9.5.1. 类数据成员</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html#id12">4.8.9.5.2. 全局变量</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="comments.html#id13">3.8.9.6. 8.6. 实现注释</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="comments.html#id14">3.8.9.6.1. 代码前注释</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comments.html#id15">3.8.9.6.2. 行注释</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comments.html#id16">3.8.9.6.3. 函数参数注释</a></li>
-<li class="toctree-l3"><a class="reference internal" href="comments.html#id17">3.8.9.6.4. 不允许的行为</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html#id13">4.8.9.6. 8.6. 实现注释</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="comments.html#id14">4.8.9.6.1. 代码前注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html#id15">4.8.9.6.2. 行注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html#id16">4.8.9.6.3. 函数参数注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comments.html#id17">4.8.9.6.4. 不允许的行为</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="comments.html#id18">3.8.9.7. 8.7. 标点, 拼写和语法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="comments.html#todo">3.8.9.8. 8.8. TODO 注释</a></li>
-<li class="toctree-l2"><a class="reference internal" href="comments.html#id19">3.8.9.9. 8.9. 弃用注释</a></li>
-<li class="toctree-l2"><a class="reference internal" href="comments.html#yulefox">3.8.9.10. 译者 (YuleFox) 笔记</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html#id18">4.8.9.7. 8.7. 标点, 拼写和语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html#todo">4.8.9.8. 8.8. TODO 注释</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html#id19">4.8.9.9. 8.9. 弃用注释</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html#yulefox">4.8.9.10. 译者 (YuleFox) 笔记</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="formatting.html">3.8.10. 9. 格式</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#line-length">3.8.10.1. 9.1. 行长度</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#ascii">3.8.10.2. 9.2. 非 ASCII 字符</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#id3">3.8.10.3. 9.3. 空格还是制表位</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#id4">3.8.10.4. 9.4. 函数声明与定义</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#lambda">3.8.10.5. 9.5. Lambda 表达式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#function-calls">3.8.10.6. 9.6. 函数调用</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#braced-initializer-list-format">3.8.10.7. 9.7. 列表初始化格式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#id7">3.8.10.8. 9.8. 条件语句</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#id8">3.8.10.9. 9.9. 循环和开关选择语句</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#id9">3.8.10.10. 9.10. 指针和引用表达式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#id10">3.8.10.11. 9.11. 布尔表达式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#id11">3.8.10.12. 9.12. 函数返回值</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#id12">3.8.10.13. 9.13. 变量及数组初始化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#id13">3.8.10.14. 9.14. 预处理指令</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#id14">3.8.10.15. 9.15. 类格式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#id15">3.8.10.16. 9.16. 构造函数初始值列表</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#id16">3.8.10.17. 9.17. 命名空间格式化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#id17">3.8.10.18. 9.18. 水平留白</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="formatting.html#id18">3.8.10.18.1. 通用</a></li>
-<li class="toctree-l3"><a class="reference internal" href="formatting.html#id19">3.8.10.18.2. 循环和条件语句</a></li>
-<li class="toctree-l3"><a class="reference internal" href="formatting.html#id20">3.8.10.18.3. 操作符</a></li>
-<li class="toctree-l3"><a class="reference internal" href="formatting.html#id21">3.8.10.18.4. 模板和转换</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formatting.html">4.8.10. 9. 格式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#line-length">4.8.10.1. 9.1. 行长度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#ascii">4.8.10.2. 9.2. 非 ASCII 字符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#id3">4.8.10.3. 9.3. 空格还是制表位</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#id4">4.8.10.4. 9.4. 函数声明与定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#lambda">4.8.10.5. 9.5. Lambda 表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#function-calls">4.8.10.6. 9.6. 函数调用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#braced-initializer-list-format">4.8.10.7. 9.7. 列表初始化格式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#id7">4.8.10.8. 9.8. 条件语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#id8">4.8.10.9. 9.9. 循环和开关选择语句</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#id9">4.8.10.10. 9.10. 指针和引用表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#id10">4.8.10.11. 9.11. 布尔表达式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#id11">4.8.10.12. 9.12. 函数返回值</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#id12">4.8.10.13. 9.13. 变量及数组初始化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#id13">4.8.10.14. 9.14. 预处理指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#id14">4.8.10.15. 9.15. 类格式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#id15">4.8.10.16. 9.16. 构造函数初始值列表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#id16">4.8.10.17. 9.17. 命名空间格式化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#id17">4.8.10.18. 9.18. 水平留白</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="formatting.html#id18">4.8.10.18.1. 通用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formatting.html#id19">4.8.10.18.2. 循环和条件语句</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formatting.html#id20">4.8.10.18.3. 操作符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="formatting.html#id21">4.8.10.18.4. 模板和转换</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#id22">3.8.10.19. 9.19. 垂直留白</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#yulefox">3.8.10.20. 译者 (YuleFox) 笔记</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html#acgtyrant">3.8.10.21. 译者（acgtyrant）笔记</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#id22">4.8.10.19. 9.19. 垂直留白</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#yulefox">4.8.10.20. 译者 (YuleFox) 笔记</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html#acgtyrant">4.8.10.21. 译者（acgtyrant）笔记</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="exceptions.html">3.8.11. 10. 规则特例</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="exceptions.html#id2">3.8.11.1. 10.1. 现有不合规范的代码</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exceptions.html#windows">3.8.11.2. 10.2. Windows 代码</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">4.8.11. 10. 规则特例</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#id2">4.8.11.1. 10.1. 现有不合规范的代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#windows">4.8.11.2. 10.2. Windows 代码</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="end.html">3.8.12. 11. 结束语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="end.html">4.8.12. 11. 结束语</a></li>
 </ul>
 </div>
 </section>
@@ -295,8 +296,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="../google-html-css-styleguide/parting_words.html" class="btn btn-neutral float-left" title="3.7.10. 赠言" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="index.html" class="btn btn-neutral float-right" title="3.8.1. 扉页" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../google-html-css-styleguide/parting_words.html" class="btn btn-neutral float-left" title="4.7.10. 赠言" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="index.html" class="btn btn-neutral float-right" title="4.8.1. 扉页" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

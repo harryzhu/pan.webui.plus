@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.13. 使用PyTorch计算梯度数值 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../../about.html" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="3.1.14. PyTorch 基础 : 神经网络包nn和优化器optm" href="2.1.3-pytorch-basics-nerual-network.html" />
+    <link rel="prev" title="3.1.12. PyTorch 基础 : 张量" href="2.1.1.pytorch-basics-tensor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">3. Pytorch 教程</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">3.1. Pytorch 快速入门</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.1-pytorch-introduction.html">3.1.1. 1.1 Pytorch 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html">3.1.2. 1.2 Pytorch环境搭建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html#id1">3.1.3. 1.2.1 安装Pytorch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.3-deep-learning-with-pytorch-60-minute-blitz.html">3.1.4. PyTorch 深度学习:60分钟快速入门 （官方）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.4-pytorch-resource.html">3.1.5. 相关资源列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1_tensor_tutorial.html">3.1.6. PyTorch是什么?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/2_autograd_tutorial.html">3.1.7. Autograd: 自动求导机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/3_neural_networks_tutorial.html">3.1.8. Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/4_cifar10_tutorial.html">3.1.9. 训练一个分类器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/5_data_parallel_tutorial.html">3.1.10. 数据并行（选读）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/readme.html">3.1.11. PyTorch 中文手册第一章 ： PyTorch入门</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.1.pytorch-basics-tensor.html">3.1.12. PyTorch 基础 : 张量</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.13. 使用PyTorch计算梯度数值</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autograd">3.1.13.1. Autograd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">3.1.13.2. 简单的自动求导</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.1.13.3. 复杂的自动求导</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.1.13.4. Autograd 过程解析</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.1.13.5. 扩展Autograd</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.3-pytorch-basics-nerual-network.html">3.1.14. PyTorch 基础 : 神经网络包nn和优化器optm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.4-pytorch-basics-data-loader.html">3.1.15. PyTorch 基础 :数据的加载和预处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2-deep-learning-basic-mathematics.html">3.1.16. 2.2 深度学习基础及数学原理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.3-deep-learning-neural-network-introduction.html">3.1.17. 2.3 神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.4-cnn.html">3.1.18. 2.4 卷积神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.5-rnn.html">3.1.19. 2.5 循环神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html">3.1.20. Pytorch 中文手册第二章 ： 基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.1-logistic-regression.html">3.1.21. 3.1 logistic回归实战</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.2-mnist.html">3.1.22. 3.2  MNIST数据集手写数字识别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.3-rnn.html">3.1.23. 3.3 通过Sin预测Cos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/readme.html">3.1.24. Pytorch 中文手册第三章 ： 实践</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.1-fine-tuning.html">3.1.25. 4.1 Fine tuning 模型微调</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.1-visdom.html">3.1.26. 4.2.1 使用Visdom在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.2-tensorboardx.html">3.1.27. 4.2.2 使用Tensorboard在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.3-cnn-visualizing.html">3.1.28. 4.2.3 可视化理解卷积神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.3-cnn-visualizing.html#backpropagation">3.1.29. 基于Backpropagation的方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.3-fastai.html">3.1.30. 4.3 fastai</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.5-multiply-gpu-parallel-training.html">3.1.31. 4.5 多GPU并行训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/distributed_data_parallel.html">3.1.32. 在PyTorch中使用DistributedDataParallel进行多GPU分布式模型训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/readme.html">3.1.33. Pytorch 中文手册第四章 ： 提高</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.1-kaggle.html">3.1.34. 5.1 kaggle介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.2-Structured-Data.html">3.1.35. 5.2 Pytorch处理结构化数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.3-Fashion-MNIST.html">3.1.36. Fashion MNIST进行分类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/readme.html">3.1.37. Pytorch 中文手册第五章 ： 应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../style-guides/index.html">4. 编程语言 风格指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">7. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><span class="section-number">3. </span>Pytorch 教程</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3.1. </span>Pytorch 快速入门</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.1.13. </span>使用PyTorch计算梯度数值</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pytorch-guides/pytorch-cookbook/chapter2/2.1.2-pytorch-basics-autograd.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;1.0.1.post2&#39;</span>
+</pre></div>
+</div>
+<section id="pytorch">
+<h1><span class="section-number">3.1.13. </span>使用PyTorch计算梯度数值<a class="headerlink" href="#pytorch" title="Permalink to this heading"></a></h1>
+<p>PyTorch的Autograd模块实现了深度学习的算法中的向传播求导数，在张量（Tensor类）上的所有操作，Autograd都能为他们自动提供微分，简化了手动计算导数的复杂过程。</p>
+<p>在0.4以前的版本中，Pytorch 使用 Variable 类来自动计算所有的梯度。Variable类主要包含三个属性：
+data：保存Variable所包含的Tensor；grad：保存data对应的梯度，grad也是个Variable，而不是Tensor，它和data的形状一样；grad_fn：指向一个Function对象，这个Function用来反向传播计算输入的梯度。</p>
+<p>从0.4起， Variable 正式合并入Tensor类，通过Variable嵌套实现的自动微分功能已经整合进入了Tensor类中。虽然为了代码的兼容性还是可以使用Variable(tensor)这种方式进行嵌套，但是这个操作其实什么都没做。</p>
+<p>所以，以后的代码建议直接使用Tensor类进行操作，因为官方文档中已经将Variable设置成过期模块。</p>
+<p>要想通过Tensor类本身就支持了使用autograd功能，只需要设置.requires_grad=True</p>
+<p>Variable类中的的grad和grad_fn属性已经整合进入了Tensor类中</p>
+<section id="autograd">
+<h2><span class="section-number">3.1.13.1. </span>Autograd<a class="headerlink" href="#autograd" title="Permalink to this heading"></a></h2>
+<p>在张量创建时，通过设置 requires_grad 标识为Ture来告诉Pytorch需要对该张量进行自动求导，PyTorch会记录该张量的每一步操作历史并自动计算</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="mf">0.0403</span><span class="p">,</span> <span class="mf">0.5633</span><span class="p">,</span> <span class="mf">0.2561</span><span class="p">,</span> <span class="mf">0.4064</span><span class="p">,</span> <span class="mf">0.9596</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.6928</span><span class="p">,</span> <span class="mf">0.1832</span><span class="p">,</span> <span class="mf">0.5380</span><span class="p">,</span> <span class="mf">0.6386</span><span class="p">,</span> <span class="mf">0.8710</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.5332</span><span class="p">,</span> <span class="mf">0.8216</span><span class="p">,</span> <span class="mf">0.8139</span><span class="p">,</span> <span class="mf">0.1925</span><span class="p">,</span> <span class="mf">0.4993</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.2650</span><span class="p">,</span> <span class="mf">0.6230</span><span class="p">,</span> <span class="mf">0.5945</span><span class="p">,</span> <span class="mf">0.3230</span><span class="p">,</span> <span class="mf">0.0752</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.0919</span><span class="p">,</span> <span class="mf">0.4770</span><span class="p">,</span> <span class="mf">0.4622</span><span class="p">,</span> <span class="mf">0.6185</span><span class="p">,</span> <span class="mf">0.2761</span><span class="p">]],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="mf">0.2269</span><span class="p">,</span> <span class="mf">0.7673</span><span class="p">,</span> <span class="mf">0.8179</span><span class="p">,</span> <span class="mf">0.5558</span><span class="p">,</span> <span class="mf">0.0493</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.7762</span><span class="p">,</span> <span class="mf">0.9242</span><span class="p">,</span> <span class="mf">0.2872</span><span class="p">,</span> <span class="mf">0.0035</span><span class="p">,</span> <span class="mf">0.4197</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.4322</span><span class="p">,</span> <span class="mf">0.5281</span><span class="p">,</span> <span class="mf">0.9001</span><span class="p">,</span> <span class="mf">0.7276</span><span class="p">,</span> <span class="mf">0.3218</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.5123</span><span class="p">,</span> <span class="mf">0.6567</span><span class="p">,</span> <span class="mf">0.9465</span><span class="p">,</span> <span class="mf">0.0475</span><span class="p">,</span> <span class="mf">0.9172</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.9899</span><span class="p">,</span> <span class="mf">0.9284</span><span class="p">,</span> <span class="mf">0.5303</span><span class="p">,</span> <span class="mf">0.1718</span><span class="p">,</span> <span class="mf">0.3937</span><span class="p">]],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>PyTorch会自动追踪和记录对与张量的所有操作，当计算完成后调用.backward()方法自动计算梯度并且将计算结果保存到grad属性中。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span>
+<span class="n">z</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">(</span><span class="mf">25.6487</span><span class="p">,</span> <span class="n">grad_fn</span><span class="o">=&lt;</span><span class="n">SumBackward0</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在张量进行操作后，grad_fn已经被赋予了一个新的函数，这个函数引用了一个创建了这个Tensor类的Function对象。
+Tensor和Function互相连接生成了一个非循环图，它记录并且编码了完整的计算历史。每个张量都有一个.grad_fn属性，如果这个张量是用户手动创建的那么这个张量的grad_fn是None。</p>
+<p>下面我们来调用反向传播函数，计算其梯度</p>
+</section>
+<section id="id1">
+<h2><span class="section-number">3.1.13.2. </span>简单的自动求导<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">,</span><span class="n">y</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]])</span> <span class="n">tensor</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>如果Tensor类表示的是一个标量（即它包含一个元素的张量），则不需要为backward()指定任何参数，但是如果它有更多的元素，则需要指定一个gradient参数，它是形状匹配的张量。
+以上的 <code class="docutils literal notranslate"><span class="pre">z.backward()</span></code>相当于是<code class="docutils literal notranslate"><span class="pre">z.backward(torch.tensor(1.))</span></code>的简写。
+这种参数常出现在图像分类中的单标签分类，输出一个标量代表图像的标签。</p>
+</section>
+<section id="id2">
+<h2><span class="section-number">3.1.13.3. </span>复杂的自动求导<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">z</span><span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">y</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">z</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="mf">3.3891e-01</span><span class="p">,</span> <span class="mf">4.9468e-01</span><span class="p">,</span> <span class="mf">8.0797e-02</span><span class="p">,</span> <span class="mf">2.5656e-01</span><span class="p">,</span> <span class="mf">2.9529e-01</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">7.1946e-01</span><span class="p">,</span> <span class="mf">1.6977e-02</span><span class="p">,</span> <span class="mf">1.7965e-01</span><span class="p">,</span> <span class="mf">3.2656e-01</span><span class="p">,</span> <span class="mf">1.7665e-01</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">3.1353e-01</span><span class="p">,</span> <span class="mf">2.2096e-01</span><span class="p">,</span> <span class="mf">1.2251e+00</span><span class="p">,</span> <span class="mf">5.5087e-01</span><span class="p">,</span> <span class="mf">5.9572e-02</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.3015e+00</span><span class="p">,</span> <span class="mf">3.8029e-01</span><span class="p">,</span> <span class="mf">1.1103e+00</span><span class="p">,</span> <span class="mf">4.0392e-01</span><span class="p">,</span> <span class="mf">2.2055e-01</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">8.8726e-02</span><span class="p">,</span> <span class="mf">6.9701e-01</span><span class="p">,</span> <span class="mf">8.0164e-01</span><span class="p">,</span> <span class="mf">9.7221e-01</span><span class="p">,</span> <span class="mf">4.2239e-04</span><span class="p">]],</span>
+       <span class="n">grad_fn</span><span class="o">=&lt;</span><span class="n">AddBackward0</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#我们的返回值不是一个标量，所以需要输入一个大小相同的张量作为参数，这里我们用ones_like函数根据x生成一个张量</span>
+<span class="n">z</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="mf">0.2087</span><span class="p">,</span> <span class="mf">1.3554</span><span class="p">,</span> <span class="mf">0.5560</span><span class="p">,</span> <span class="mf">1.0009</span><span class="p">,</span> <span class="mf">0.9931</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.2655</span><span class="p">,</span> <span class="mf">0.1223</span><span class="p">,</span> <span class="mf">0.8008</span><span class="p">,</span> <span class="mf">1.1127</span><span class="p">,</span> <span class="mf">0.7261</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.1052</span><span class="p">,</span> <span class="mf">0.2579</span><span class="p">,</span> <span class="mf">1.8006</span><span class="p">,</span> <span class="mf">0.1544</span><span class="p">,</span> <span class="mf">0.3646</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.8855</span><span class="p">,</span> <span class="mf">1.2296</span><span class="p">,</span> <span class="mf">1.9061</span><span class="p">,</span> <span class="mf">0.9313</span><span class="p">,</span> <span class="mf">0.0648</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.5952</span><span class="p">,</span> <span class="mf">1.6190</span><span class="p">,</span> <span class="mf">0.8430</span><span class="p">,</span> <span class="mf">1.9213</span><span class="p">,</span> <span class="mf">0.0322</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>我们可以使用with torch.no_grad()上下文管理器临时禁止对已设置requires_grad=True的张量进行自动求导。这个方法在测试集计算准确率的时候会经常用到，例如：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">((</span><span class="n">x</span> <span class="o">+</span><span class="n">y</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+<p>使用.no_grad()进行嵌套后，代码不会跟踪历史记录，也就是说保存的这部分记录会减少内存的使用量并且会加快少许的运算速度。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.1.13.4. </span>Autograd 过程解析<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>为了说明Pytorch的自动求导原理，我们来尝试分析一下PyTorch的源代码，虽然Pytorch的 Tensor和 TensorBase都是使用CPP来实现的，但是可以使用一些Python的一些方法查看这些对象在Python的属性和状态。
+Python的 <code class="docutils literal notranslate"><span class="pre">dir()</span></code> 返回参数的属性、方法列表。<code class="docutils literal notranslate"><span class="pre">z</span></code>是一个Tensor变量，看看里面有哪些成员变量。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;__abs__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__add__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__and__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__array__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__array_priority__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__array_wrap__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__bool__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__class__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__deepcopy__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__delitem__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__dict__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__dir__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__div__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__eq__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__float__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__floordiv__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__format__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__ge__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__getitem__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__gt__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__iadd__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__iand__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__idiv__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__ilshift__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__imul__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__index__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__init__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__int__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__invert__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__ior__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__ipow__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__irshift__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__isub__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__iter__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__itruediv__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__ixor__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__le__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__len__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__long__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__lshift__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__lt__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__matmul__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__mod__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__module__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__mul__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__ne__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__neg__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__new__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__nonzero__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__or__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__pow__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__radd__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__rdiv__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__reversed__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__rfloordiv__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__rmul__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__rpow__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__rshift__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__rsub__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__rtruediv__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__setitem__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__setstate__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__str__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__sub__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__truediv__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__weakref__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__xor__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_backward_hooks&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_base&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_cdata&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_coalesced_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_dimI&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_dimV&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_grad&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_grad_fn&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_indices&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_make_subclass&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_nnz&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_values&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_version&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;abs&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;abs_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;acos&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;acos_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;add&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;add_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;addbmm&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;addbmm_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;addcdiv&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;addcdiv_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;addcmul&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;addcmul_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;addmm&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;addmm_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;addmv&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;addmv_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;addr&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;addr_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;all&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;allclose&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;any&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;apply_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;argmax&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;argmin&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;argsort&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;as_strided&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;as_strided_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;asin&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;asin_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;atan&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;atan2&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;atan2_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;atan_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;backward&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;baddbmm&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;baddbmm_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;bernoulli&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;bernoulli_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;bincount&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;bmm&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;btrifact&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;btrifact_with_info&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;btrisolve&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;byte&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;cauchy_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;ceil&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;ceil_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;char&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;cholesky&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;chunk&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;clamp&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;clamp_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;clamp_max&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;clamp_max_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;clamp_min&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;clamp_min_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;clone&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;coalesce&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;contiguous&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;copy_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;cos&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;cos_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;cosh&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;cosh_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;cpu&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;cross&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;cuda&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;cumprod&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;cumsum&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;data&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;data_ptr&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;dense_dim&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;det&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;detach&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;detach_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;device&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;diag&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;diag_embed&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;diagflat&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;diagonal&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;digamma&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;digamma_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;dim&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;dist&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;div&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;div_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;dot&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;double&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;dtype&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;eig&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;element_size&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;eq&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;eq_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;equal&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;erf&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;erf_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;erfc&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;erfc_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;erfinv&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;erfinv_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;exp&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;exp_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;expand&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;expand_as&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;expm1&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;expm1_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;exponential_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;fft&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;fill_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;flatten&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;flip&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;float&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;floor&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;floor_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;fmod&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;fmod_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;frac&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;frac_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;gather&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;ge&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;ge_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;gels&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;geometric_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;geqrf&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;ger&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;gesv&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;get_device&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;grad&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;grad_fn&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;gt&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;gt_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;half&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;hardshrink&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;histc&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;ifft&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;index_add&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;index_add_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;index_copy&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;index_copy_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;index_fill&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;index_fill_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;index_put&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;index_put_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;index_select&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;indices&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;int&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;inverse&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;irfft&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;is_coalesced&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;is_complex&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;is_contiguous&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;is_cuda&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;is_distributed&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;is_floating_point&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;is_leaf&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;is_nonzero&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;is_pinned&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;is_same_size&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;is_set_to&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;is_shared&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;is_signed&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;is_sparse&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;isclose&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;item&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;kthvalue&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;layout&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;le&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;le_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;lerp&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;lerp_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;lgamma&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;lgamma_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;log&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;log10&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;log10_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;log1p&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;log1p_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;log2&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;log2_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;log_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;log_normal_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;log_softmax&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;logdet&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;logsumexp&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;long&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;lt&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;lt_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;map2_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;map_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;masked_fill&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;masked_fill_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;masked_scatter&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;masked_scatter_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;masked_select&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;matmul&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;matrix_power&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;max&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;median&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;min&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;mm&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;mode&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;mul&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;mul_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;multinomial&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;mv&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;mvlgamma&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;mvlgamma_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;narrow&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;narrow_copy&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;ndimension&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;ne&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;ne_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;neg&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;neg_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;nelement&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;new&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;new_empty&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;new_full&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;new_ones&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;new_tensor&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;new_zeros&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;nonzero&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;norm&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;normal_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;numel&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;numpy&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;orgqr&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;ormqr&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;output_nr&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;permute&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;pin_memory&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;pinverse&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;polygamma&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;polygamma_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;potrf&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;potri&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;potrs&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;pow&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;pow_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;prelu&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;prod&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;pstrf&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;put_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;qr&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;random_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;reciprocal&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;reciprocal_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;record_stream&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;register_hook&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;reinforce&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;relu&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;relu_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;remainder&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;remainder_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;renorm&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;renorm_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;repeat&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;requires_grad&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;requires_grad_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;reshape&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;reshape_as&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;resize&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;resize_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;resize_as&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;resize_as_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;retain_grad&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;rfft&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;roll&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;rot90&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;round&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;round_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;rsqrt&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;rsqrt_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;scatter&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;scatter_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;scatter_add&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;scatter_add_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;select&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;set_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;shape&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;share_memory_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;short&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sigmoid&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sigmoid_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sign&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sign_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sin&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sin_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sinh&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sinh_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;size&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;slogdet&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;smm&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;softmax&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sort&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sparse_dim&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sparse_mask&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sparse_resize_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sparse_resize_and_clear_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;split&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;split_with_sizes&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sqrt&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sqrt_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;squeeze&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;squeeze_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sspaddmm&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;std&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;stft&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;storage&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;storage_offset&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;storage_type&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;stride&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sub&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sub_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sum&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;svd&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;symeig&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;t&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;t_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;take&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tan&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tan_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tanh&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tanh_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;to&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;to_dense&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;to_sparse&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tolist&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;topk&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;trace&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;transpose&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;transpose_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tril&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tril_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;triu&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;triu_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;trtrs&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;trunc&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;trunc_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;type&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;type_as&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;unbind&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;unfold&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;uniform_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;unique&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;unsqueeze&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;unsqueeze_&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;values&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;var&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;view&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;view_as&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;where&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;zero_&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>返回很多，我们直接排除掉一些Python中特殊方法（以__开头和结束的）和私有方法（以_开头的，直接看几个比较主要的属性：
+<code class="docutils literal notranslate"><span class="pre">.is_leaf</span></code>：记录是否是叶子节点。通过这个属性来确定这个变量的类型
+在官方文档中所说的“graph leaves”，“leaf variables”，都是指像<code class="docutils literal notranslate"><span class="pre">x</span></code>，<code class="docutils literal notranslate"><span class="pre">y</span></code>这样的手动创建的、而非运算得到的变量，这些变量称为创建变量。
+像<code class="docutils literal notranslate"><span class="pre">z</span></code>这样的，是通过计算后得到的结果称为结果变量。</p>
+<p>一个变量是创建变量还是结果变量是通过<code class="docutils literal notranslate"><span class="pre">.is_leaf</span></code>来获取的。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x.is_leaf=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;z.is_leaf=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">is_leaf</span><span class="o">=</span><span class="kc">True</span>
+<span class="n">z</span><span class="o">.</span><span class="n">is_leaf</span><span class="o">=</span><span class="kc">False</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">x</span></code>是手动创建的没有通过计算，所以他被认为是一个叶子节点也就是一个创建变量，而<code class="docutils literal notranslate"><span class="pre">z</span></code>是通过<code class="docutils literal notranslate"><span class="pre">x</span></code>与<code class="docutils literal notranslate"><span class="pre">y</span></code>的一系列计算得到的，所以不是叶子结点也就是结果变量。</p>
+<p>为什么我们执行<code class="docutils literal notranslate"><span class="pre">z.backward()</span></code>方法会更新<code class="docutils literal notranslate"><span class="pre">x.grad</span></code>和<code class="docutils literal notranslate"><span class="pre">y.grad</span></code>呢？
+<code class="docutils literal notranslate"><span class="pre">.grad_fn</span></code>属性记录的就是这部分的操作，虽然<code class="docutils literal notranslate"><span class="pre">.backward()</span></code>方法也是CPP实现的，但是可以通过Python来进行简单的探索。</p>
+<p><code class="docutils literal notranslate"><span class="pre">grad_fn</span></code>：记录并且编码了完整的计算历史</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="o">.</span><span class="n">grad_fn</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">AddBackward0</span> <span class="n">at</span> <span class="mh">0x120840a90</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">grad_fn</span></code>是一个<code class="docutils literal notranslate"><span class="pre">AddBackward0</span></code>类型的变量 <code class="docutils literal notranslate"><span class="pre">AddBackward0</span></code>这个类也是用Cpp来写的，但是我们从名字里就能够大概知道，他是加法(ADD)的反反向传播（Backward），看看里面有些什么东西</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">grad_fn</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;__call__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__class__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__dir__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__eq__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__format__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__ge__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__gt__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__init__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__le__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__lt__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__ne__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__new__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__str__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_register_hook_dict&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;metadata&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;next_functions&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;register_hook&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;requires_grad&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">next_functions</span></code>就是<code class="docutils literal notranslate"><span class="pre">grad_fn</span></code>的精华</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="o">.</span><span class="n">grad_fn</span><span class="o">.</span><span class="n">next_functions</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="o">&lt;</span><span class="n">PowBackward0</span> <span class="n">at</span> <span class="mh">0x1208409b0</span><span class="o">&gt;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">PowBackward0</span> <span class="n">at</span> <span class="mh">0x1208408d0</span><span class="o">&gt;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">next_functions</span></code>是一个tuple of tuple of PowBackward0 and int。</p>
+<p>为什么是2个tuple ？
+因为我们的操作是<code class="docutils literal notranslate"><span class="pre">z=</span> <span class="pre">x**2+y**3</span></code> 刚才的<code class="docutils literal notranslate"><span class="pre">AddBackward0</span></code>是相加，而前面的操作是乘方 <code class="docutils literal notranslate"><span class="pre">PowBackward0</span></code>。tuple第一个元素就是x相关的操作记录</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xg</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">grad_fn</span><span class="o">.</span><span class="n">next_functions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">dir</span><span class="p">(</span><span class="n">xg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;__call__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__class__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__dir__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__eq__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__format__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__ge__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__gt__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__init__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__le__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__lt__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__ne__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__new__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__str__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;_register_hook_dict&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;metadata&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;next_functions&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;register_hook&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;requires_grad&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>继续深挖</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_leaf</span><span class="o">=</span><span class="n">xg</span><span class="o">.</span><span class="n">next_functions</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">x_leaf</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AccumulateGrad</span>
+</pre></div>
+</div>
+<p>在PyTorch的反向图计算中，<code class="docutils literal notranslate"><span class="pre">AccumulateGrad</span></code>类型代表的就是叶子节点类型，也就是计算图终止节点。<code class="docutils literal notranslate"><span class="pre">AccumulateGrad</span></code>类中有一个<code class="docutils literal notranslate"><span class="pre">.variable</span></code>属性指向叶子节点。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_leaf</span><span class="o">.</span><span class="n">variable</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="mf">0.1044</span><span class="p">,</span> <span class="mf">0.6777</span><span class="p">,</span> <span class="mf">0.2780</span><span class="p">,</span> <span class="mf">0.5005</span><span class="p">,</span> <span class="mf">0.4966</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.6328</span><span class="p">,</span> <span class="mf">0.0611</span><span class="p">,</span> <span class="mf">0.4004</span><span class="p">,</span> <span class="mf">0.5564</span><span class="p">,</span> <span class="mf">0.3631</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.5526</span><span class="p">,</span> <span class="mf">0.1290</span><span class="p">,</span> <span class="mf">0.9003</span><span class="p">,</span> <span class="mf">0.0772</span><span class="p">,</span> <span class="mf">0.1823</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.9428</span><span class="p">,</span> <span class="mf">0.6148</span><span class="p">,</span> <span class="mf">0.9530</span><span class="p">,</span> <span class="mf">0.4657</span><span class="p">,</span> <span class="mf">0.0324</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.2976</span><span class="p">,</span> <span class="mf">0.8095</span><span class="p">,</span> <span class="mf">0.4215</span><span class="p">,</span> <span class="mf">0.9606</span><span class="p">,</span> <span class="mf">0.0161</span><span class="p">]],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这个<code class="docutils literal notranslate"><span class="pre">.variable</span></code>的属性就是我们的生成的变量<code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x_leaf.variable的id:&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x_leaf</span><span class="o">.</span><span class="n">variable</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x的id:&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_leaf</span><span class="o">.</span><span class="n">variable的id</span><span class="p">:</span><span class="mi">4840553424</span>
+<span class="n">x的id</span><span class="p">:</span><span class="mi">4840553424</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x_leaf</span><span class="o">.</span><span class="n">variable</span><span class="p">)</span><span class="o">==</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>这样整个规程就很清晰了：</p>
+<ol class="simple">
+<li><p>当我们执行z.backward()的时候。这个操作将调用z里面的grad_fn这个属性，执行求导的操作。</p></li>
+<li><p>这个操作将遍历grad_fn的next_functions，然后分别取出里面的Function（AccumulateGrad），执行求导操作。这部分是一个递归的过程直到最后类型为叶子节点。</p></li>
+<li><p>计算出结果以后，将结果保存到他们对应的variable 这个变量所引用的对象（x和y）的 grad这个属性里面。</p></li>
+<li><p>求导结束。所有的叶节点的grad变量都得到了相应的更新</p></li>
+</ol>
+<p>最终当我们执行完c.backward()之后，a和b里面的grad值就得到了更新。</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.1.13.5. </span>扩展Autograd<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<p>如果需要自定义autograd扩展新的功能，就需要扩展Function类。因为Function使用autograd来计算结果和梯度，并对操作历史进行编码。
+在Function类中最主要的方法就是<code class="docutils literal notranslate"><span class="pre">forward()</span></code>和<code class="docutils literal notranslate"><span class="pre">backward()</span></code>他们分别代表了前向传播和反向传播。</p>
+<p>一个自定义的Function需要一下三个方法：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>__init__ (optional)：如果这个操作需要额外的参数则需要定义这个Function的构造函数，不需要的话可以忽略。
+
+forward()：执行前向传播的计算代码
+
+backward()：反向传播时梯度计算的代码。 参数的个数和forward返回值的个数一样，每个参数代表传回到此操作的梯度。
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 引入Function便于扩展</span>
+<span class="kn">from</span> <span class="nn">torch.autograd.function</span> <span class="kn">import</span> <span class="n">Function</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 定义一个乘以常数的操作(输入参数是张量)</span>
+<span class="c1"># 方法必须是静态方法，所以要加上@staticmethod </span>
+<span class="k">class</span> <span class="nc">MulConstant</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="nd">@staticmethod</span> 
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">tensor</span><span class="p">,</span> <span class="n">constant</span><span class="p">):</span>
+        <span class="c1"># ctx 用来保存信息这里类似self，并且ctx的属性可以在backward中调用</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">constant</span><span class="o">=</span><span class="n">constant</span>
+        <span class="k">return</span> <span class="n">tensor</span> <span class="o">*</span><span class="n">constant</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">grad_output</span><span class="p">):</span>
+        <span class="c1"># 返回的参数要与输入的参数一样.</span>
+        <span class="c1"># 第一个输入为3x3的张量，第二个为一个常数</span>
+        <span class="c1"># 常数的梯度必须是 None.</span>
+        <span class="k">return</span> <span class="n">grad_output</span><span class="p">,</span> <span class="kc">None</span> 
+</pre></div>
+</div>
+<p>定义完我们的新操作后，我们来进行测试</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">b</span><span class="o">=</span><span class="n">MulConstant</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a:&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;b:&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="c1"># b为a的元素乘以5</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">:</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">0.0118</span><span class="p">,</span> <span class="mf">0.1434</span><span class="p">,</span> <span class="mf">0.8669</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.1817</span><span class="p">,</span> <span class="mf">0.8904</span><span class="p">,</span> <span class="mf">0.5852</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.7364</span><span class="p">,</span> <span class="mf">0.5234</span><span class="p">,</span> <span class="mf">0.9677</span><span class="p">]],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">b</span><span class="p">:</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">0.0588</span><span class="p">,</span> <span class="mf">0.7169</span><span class="p">,</span> <span class="mf">4.3347</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.9084</span><span class="p">,</span> <span class="mf">4.4520</span><span class="p">,</span> <span class="mf">2.9259</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">3.6820</span><span class="p">,</span> <span class="mf">2.6171</span><span class="p">,</span> <span class="mf">4.8386</span><span class="p">]],</span> <span class="n">grad_fn</span><span class="o">=&lt;</span><span class="n">MulConstantBackward</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>反向传播，返回值不是标量，所以<code class="docutils literal notranslate"><span class="pre">backward</span></code>方法需要参数</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">grad</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>梯度应为1</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="2.1.1.pytorch-basics-tensor.html" class="btn btn-neutral float-left" title="3.1.12. PyTorch 基础 : 张量" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="2.1.3-pytorch-basics-nerual-network.html" class="btn btn-neutral float-right" title="3.1.14. PyTorch 基础 : 神经网络包nn和优化器optm" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

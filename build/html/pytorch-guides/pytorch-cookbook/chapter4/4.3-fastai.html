@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.30. 4.3 fastai &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../../about.html" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="3.1.31. 4.5 多GPU并行训练" href="4.5-multiply-gpu-parallel-training.html" />
+    <link rel="prev" title="3.1.28. 4.2.3 可视化理解卷积神经网络" href="4.2.3-cnn-visualizing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">3. Pytorch 教程</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">3.1. Pytorch 快速入门</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.1-pytorch-introduction.html">3.1.1. 1.1 Pytorch 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html">3.1.2. 1.2 Pytorch环境搭建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html#id1">3.1.3. 1.2.1 安装Pytorch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.3-deep-learning-with-pytorch-60-minute-blitz.html">3.1.4. PyTorch 深度学习:60分钟快速入门 （官方）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.4-pytorch-resource.html">3.1.5. 相关资源列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1_tensor_tutorial.html">3.1.6. PyTorch是什么?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/2_autograd_tutorial.html">3.1.7. Autograd: 自动求导机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/3_neural_networks_tutorial.html">3.1.8. Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/4_cifar10_tutorial.html">3.1.9. 训练一个分类器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/5_data_parallel_tutorial.html">3.1.10. 数据并行（选读）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/readme.html">3.1.11. PyTorch 中文手册第一章 ： PyTorch入门</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.1.pytorch-basics-tensor.html">3.1.12. PyTorch 基础 : 张量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.2-pytorch-basics-autograd.html">3.1.13. 使用PyTorch计算梯度数值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.3-pytorch-basics-nerual-network.html">3.1.14. PyTorch 基础 : 神经网络包nn和优化器optm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.4-pytorch-basics-data-loader.html">3.1.15. PyTorch 基础 :数据的加载和预处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.2-deep-learning-basic-mathematics.html">3.1.16. 2.2 深度学习基础及数学原理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.3-deep-learning-neural-network-introduction.html">3.1.17. 2.3 神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.4-cnn.html">3.1.18. 2.4 卷积神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.5-rnn.html">3.1.19. 2.5 循环神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/readme.html">3.1.20. Pytorch 中文手册第二章 ： 基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.1-logistic-regression.html">3.1.21. 3.1 logistic回归实战</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.2-mnist.html">3.1.22. 3.2  MNIST数据集手写数字识别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.3-rnn.html">3.1.23. 3.3 通过Sin预测Cos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/readme.html">3.1.24. Pytorch 中文手册第三章 ： 实践</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.1-fine-tuning.html">3.1.25. 4.1 Fine tuning 模型微调</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.2.1-visdom.html">3.1.26. 4.2.1 使用Visdom在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.2.2-tensorboardx.html">3.1.27. 4.2.2 使用Tensorboard在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.2.3-cnn-visualizing.html">3.1.28. 4.2.3 可视化理解卷积神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.2.3-cnn-visualizing.html#backpropagation">3.1.29. 基于Backpropagation的方法</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.30. 4.3 fastai</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">3.1.30.1. 4.3.1 fastai介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.1.30.2. 4.3.2 fastai实践</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.1.30.3. 4.3.3 fastai文档翻译</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="4.5-multiply-gpu-parallel-training.html">3.1.31. 4.5 多GPU并行训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed_data_parallel.html">3.1.32. 在PyTorch中使用DistributedDataParallel进行多GPU分布式模型训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html">3.1.33. Pytorch 中文手册第四章 ： 提高</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.1-kaggle.html">3.1.34. 5.1 kaggle介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.2-Structured-Data.html">3.1.35. 5.2 Pytorch处理结构化数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.3-Fashion-MNIST.html">3.1.36. Fashion MNIST进行分类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/readme.html">3.1.37. Pytorch 中文手册第五章 ： 应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../style-guides/index.html">4. 编程语言 风格指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">7. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><span class="section-number">3. </span>Pytorch 教程</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3.1. </span>Pytorch 快速入门</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.1.30. </span>4.3 fastai</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pytorch-guides/pytorch-cookbook/chapter4/4.3-fastai.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">fastai</span>
+<span class="kn">from</span> <span class="nn">fastai</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">fastai.vision</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fastai</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.0.0</span>
+<span class="mf">1.0.45</span>
+</pre></div>
+</div>
+<section id="fastai">
+<h1><span class="section-number">3.1.30. </span>4.3 fastai<a class="headerlink" href="#fastai" title="Permalink to this heading"></a></h1>
+<section id="id1">
+<h2><span class="section-number">3.1.30.1. </span>4.3.1 fastai介绍<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<section id="id2">
+<h3><span class="section-number">3.1.30.1.1. </span>fastai库<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>fastai将训练一个准确的神经网络变得十分简单。fastai库是基于他的创始人Jeremy Howard 等人开发的 Deep Learning 课程深度学习的研究，为计算机视觉、文本、表格数据、时间序列、协同过滤等常见深度学习应用提供单一、一致界面的深度学习库，可以做到开箱即用。这意味着，如果你已经学会用fastai创建实用的计算机视觉（CV）模型，那你就可以用同样的方法创建自然语言处理（NLP）模型，或是其他模型。</p>
+<p>fastai 是目前把易用性和功能都做到了极致的深度学习框架，正如Jeremy所说的：如果一个深度学习框架需要写个教程给你，那它的易用性还不够好。Jeremy 说这话，不是为了夸自己，因为他甚至做了个 MOOC 出来。他自己评价说目前 fastai 的易用性依然不算成功。但在我看来它的门槛极低，你可以很轻易用几句话写个图片分类模型出来，人人都能立即上手，你甚至不需要知道深度学习的理论。</p>
+</section>
+<section id="fast-ai">
+<h3><span class="section-number">3.1.30.1.2. </span>fast.ai课程<a class="headerlink" href="#fast-ai" title="Permalink to this heading"></a></h3>
+<p>上面说到了课程，这里对fast.ai的课程做一个简单的介绍：
+课程是由kaggle赛事老司机，连续两年冠军Jeremy Howard 和 Rachel Tomas 联合创办，旨在让更多人能接受深度学习的课程，而且是完全免费！真的是业界良心，这两年深度学习火了起来，国内有培训机构推出收费课程了，教学水平参差不齐。而Jeremy和Rachel推出的课程，恰恰提现了他们的教育理念：<code class="docutils literal notranslate"><span class="pre">Make</span> <span class="pre">deep</span> <span class="pre">learning</span> <span class="pre">uncool</span> <span class="pre">!</span> <span class="pre">（让深度学习变得没那么高大上）</span></code>
+Fast.ai给人的印象一直很“接地气”：</p>
+<ul class="simple">
+<li><p>研究如何快速、可靠地把最先进的深度学习应用于实际问题。</p></li>
+<li><p>提供Fast.ai库，它不仅是让新手快速构建深度学习实现的工具包，也是提供最佳实践的一个强大而便捷的资源。</p></li>
+<li><p>课程内容简洁易懂，以便尽可能多的人从研究成果和软件中收益。</p></li>
+</ul>
+</section>
+<section id="github">
+<h3><span class="section-number">3.1.30.1.3. </span>Github<a class="headerlink" href="#github" title="Permalink to this heading"></a></h3>
+<p>这个官方的Github包含了fastai的所有内容 https://github.com/fastai</p>
+</section>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.1.30.2. </span>4.3.2 fastai实践<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<section id="mnist">
+<h3><span class="section-number">3.1.30.2.1. </span>MNIST<a class="headerlink" href="#mnist" title="Permalink to this heading"></a></h3>
+<p>我们还是以最简单的MNIST来入手看看fastai都为我们做了什么</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用fastai内置的MNIST数据集，这里会从fastai的服务器下载</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">untar_data</span><span class="p">(</span><span class="n">URLs</span><span class="o">.</span><span class="n">MNIST_SAMPLE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>URLs.MNIST_SAMPLE 只提供了3和7 两个分类的数据，这个是用来做演示的，我们正好也做个演示</p>
+<p>这里如果下载很慢的话，那么我们可以手动进行操作（建议这样，比程序下载快很多而且稳定）</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#进入我们用户目录，创建以下的目录</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/.</span><span class="n">fastai</span><span class="o">/</span><span class="n">data</span>
+<span class="n">cd</span> <span class="o">~/.</span><span class="n">fastai</span><span class="o">/</span><span class="n">data</span>
+<span class="c1"># 下载解压</span>
+<span class="n">wget</span> <span class="o">-</span><span class="n">c</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">files</span><span class="o">.</span><span class="n">fast</span><span class="o">.</span><span class="n">ai</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">mnist_sample</span><span class="o">.</span><span class="n">tgz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">mnist_sample</span><span class="o">.</span><span class="n">tgz</span>
+</pre></div>
+</div>
+<p>完成后重新执行上面的命令即可</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#使用ImageDataBunch从刚才的目录中将读入数据</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ImageDataBunch</span><span class="o">.</span><span class="n">from_folder</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 可以看一下data里面有什么？</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ImageDataBunch</span><span class="p">;</span>
+
+<span class="n">Train</span><span class="p">:</span> <span class="n">LabelList</span> <span class="p">(</span><span class="mi">12396</span> <span class="n">items</span><span class="p">)</span>
+<span class="n">x</span><span class="p">:</span> <span class="n">ImageItemList</span>
+<span class="n">Image</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span><span class="n">Image</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span><span class="n">Image</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span><span class="n">Image</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span><span class="n">Image</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="n">y</span><span class="p">:</span> <span class="n">CategoryList</span>
+<span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span>
+<span class="n">Path</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">tant</span><span class="o">/.</span><span class="n">fastai</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">mnist_sample</span><span class="p">;</span>
+
+<span class="n">Valid</span><span class="p">:</span> <span class="n">LabelList</span> <span class="p">(</span><span class="mi">2038</span> <span class="n">items</span><span class="p">)</span>
+<span class="n">x</span><span class="p">:</span> <span class="n">ImageItemList</span>
+<span class="n">Image</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span><span class="n">Image</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span><span class="n">Image</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span><span class="n">Image</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span><span class="n">Image</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="n">y</span><span class="p">:</span> <span class="n">CategoryList</span>
+<span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span>
+<span class="n">Path</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">tant</span><span class="o">/.</span><span class="n">fastai</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">mnist_sample</span><span class="p">;</span>
+
+<span class="n">Test</span><span class="p">:</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用cnn_learner来创建一个learn，这里模型我们选择resnet18，使用的计量方法是accuracy准确率</span>
+<span class="n">learn</span> <span class="o">=</span><span class="n">create_cnn</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">resnet18</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#可以直接使用train_ds来访问数据集里面的数据</span>
+<span class="n">img</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">train_ds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="n">img</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_8_1.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#或者我们直接使用show_batch方法，连标签都给我们自动生成好了</span>
+<span class="n">data</span><span class="o">.</span><span class="n">show_batch</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_9_0.png" /></p>
+<p>这里也是直接下载PyTorch官方提供的resnet18与训练模型</p>
+<p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">-P</span> <span class="pre">/Users/tant/.torch/models/</span> <span class="pre">https://download.pytorch.org/models/resnet18-5c106cde.pth</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用learn的fit方法就可以进行训练了，训练一遍</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Total time: 02:21 <p><table style='width:300px; margin-bottom:10px'></p>
+  <tr>
+    <th>epoch</th>
+    <th>train_loss</th>
+    <th>valid_loss</th>
+    <th>accuracy</th>
+  </tr>
+  <tr>
+    <th>1</th>
+    <th>0.130960</th>
+    <th>0.086702</th>
+    <th>0.969087</th>
+  </tr>
+</table><p>经过上面的训练，你一定会很纳闷：</p>
+<ul class="simple">
+<li><p>没有告诉模型类别有几个</p></li>
+<li><p>没有指定任务迁移之后接续的几个层次的数量、大小、激活函数</p></li>
+<li><p>没有告诉网络损失函数是什么
+我几乎没有提供任何的信息，网络就开始训练了？</p></li>
+</ul>
+<p>对，不需要。</p>
+<p>因为 fastai 根据你输入的上述“数据”、“模型结构”和“损失度量”信息，自动帮你把这些闲七杂八的事情默默搞定了。</p>
+<p>下面再介绍一些训练的高级用法</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#从新生成一个数据集</span>
+<span class="n">learn2</span> <span class="o">=</span><span class="n">create_cnn</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">resnet18</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">,</span><span class="n">callback_fns</span><span class="o">=</span><span class="n">ShowGraph</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这里我们使用fit_one_cycle方法。</p>
+<p>fit_one_cycle使用的是一种周期性学习率，从较小的学习率开始学习，缓慢提高至较高的学习率，然后再慢慢下降，周而复始，每个周期的长度略微缩短，在训练的最后部分，允许学习率比之前的最小值降得更低。这不仅可以加速训练，还有助于防止模型落入损失平面的陡峭区域，使模型更倾向于寻找更平坦的极小值，从而缓解过拟合现象。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">learn2</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Total time: 02:21 <p><table style='width:300px; margin-bottom:10px'></p>
+  <tr>
+    <th>epoch</th>
+    <th>train_loss</th>
+    <th>valid_loss</th>
+    <th>accuracy</th>
+  </tr>
+  <tr>
+    <th>1</th>
+    <th>0.167809</th>
+    <th>0.118627</th>
+    <th>0.956330</th>
+  </tr>
+</table><p><img alt="png" src="../../../_images/output_15_1.png" /></p>
+<p>我们使用内置ShowGraph的方法直接打印训练的状态，如果我们需要更详细的状态，可以直接调用一下的方法：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 学习率的变更</span>
+<span class="n">learn2</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">plot_lr</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_17_0.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#损失</span>
+<span class="n">learn2</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">plot_losses</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_18_0.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 我们也可以使用lr_find()找到损失仍在明显改善最高学习率</span>
+<span class="n">learn2</span><span class="o">.</span><span class="n">lr_find</span><span class="p">()</span>
+<span class="n">learn2</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LR</span> <span class="n">Finder</span> <span class="ow">is</span> <span class="n">complete</span><span class="p">,</span> <span class="nb">type</span> <span class="p">{</span><span class="n">learner_name</span><span class="p">}</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span> <span class="n">to</span> <span class="n">see</span> <span class="n">the</span> <span class="n">graph</span><span class="o">.</span>
+<span class="n">Min</span> <span class="n">numerical</span> <span class="n">gradient</span><span class="p">:</span> <span class="mf">6.31E-07</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_19_2.png" /></p>
+</section>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.1.30.3. </span>4.3.3 fastai文档翻译<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<p>由于fastai的中文资料很少而且目前官方只提供英文的文档，所以如果谁有兴趣一起翻译的话可以联系我，如果人数够了的话可以组个团队一起翻译。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="4.2.3-cnn-visualizing.html" class="btn btn-neutral float-left" title="3.1.28. 4.2.3 可视化理解卷积神经网络" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="4.5-multiply-gpu-parallel-training.html" class="btn btn-neutral float-right" title="3.1.31. 4.5 多GPU并行训练" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

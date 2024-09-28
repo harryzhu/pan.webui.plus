@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.36. Fashion MNIST进行分类 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../../about.html" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="3.1.37. Pytorch 中文手册第五章 ： 应用" href="readme.html" />
+    <link rel="prev" title="3.1.35. 5.2 Pytorch处理结构化数据" href="5.2-Structured-Data.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">3. Pytorch 教程</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">3.1. Pytorch 快速入门</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.1-pytorch-introduction.html">3.1.1. 1.1 Pytorch 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html">3.1.2. 1.2 Pytorch环境搭建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html#id1">3.1.3. 1.2.1 安装Pytorch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.3-deep-learning-with-pytorch-60-minute-blitz.html">3.1.4. PyTorch 深度学习:60分钟快速入门 （官方）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.4-pytorch-resource.html">3.1.5. 相关资源列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1_tensor_tutorial.html">3.1.6. PyTorch是什么?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/2_autograd_tutorial.html">3.1.7. Autograd: 自动求导机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/3_neural_networks_tutorial.html">3.1.8. Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/4_cifar10_tutorial.html">3.1.9. 训练一个分类器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/5_data_parallel_tutorial.html">3.1.10. 数据并行（选读）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/readme.html">3.1.11. PyTorch 中文手册第一章 ： PyTorch入门</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.1.pytorch-basics-tensor.html">3.1.12. PyTorch 基础 : 张量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.2-pytorch-basics-autograd.html">3.1.13. 使用PyTorch计算梯度数值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.3-pytorch-basics-nerual-network.html">3.1.14. PyTorch 基础 : 神经网络包nn和优化器optm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.4-pytorch-basics-data-loader.html">3.1.15. PyTorch 基础 :数据的加载和预处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.2-deep-learning-basic-mathematics.html">3.1.16. 2.2 深度学习基础及数学原理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.3-deep-learning-neural-network-introduction.html">3.1.17. 2.3 神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.4-cnn.html">3.1.18. 2.4 卷积神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.5-rnn.html">3.1.19. 2.5 循环神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/readme.html">3.1.20. Pytorch 中文手册第二章 ： 基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.1-logistic-regression.html">3.1.21. 3.1 logistic回归实战</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.2-mnist.html">3.1.22. 3.2  MNIST数据集手写数字识别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.3-rnn.html">3.1.23. 3.3 通过Sin预测Cos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/readme.html">3.1.24. Pytorch 中文手册第三章 ： 实践</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.1-fine-tuning.html">3.1.25. 4.1 Fine tuning 模型微调</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.1-visdom.html">3.1.26. 4.2.1 使用Visdom在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.2-tensorboardx.html">3.1.27. 4.2.2 使用Tensorboard在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.3-cnn-visualizing.html">3.1.28. 4.2.3 可视化理解卷积神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.3-cnn-visualizing.html#backpropagation">3.1.29. 基于Backpropagation的方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.3-fastai.html">3.1.30. 4.3 fastai</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.5-multiply-gpu-parallel-training.html">3.1.31. 4.5 多GPU并行训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/distributed_data_parallel.html">3.1.32. 在PyTorch中使用DistributedDataParallel进行多GPU分布式模型训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/readme.html">3.1.33. Pytorch 中文手册第四章 ： 提高</a></li>
+<li class="toctree-l3"><a class="reference internal" href="5.1-kaggle.html">3.1.34. 5.1 kaggle介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="5.2-Structured-Data.html">3.1.35. 5.2 Pytorch处理结构化数据</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.36. Fashion MNIST进行分类</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">3.1.36.1. Fashion MNIST 介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.1.36.2. 数据集介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">3.1.36.3. 数据加载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">3.1.36.4. 创建网络</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">3.1.36.5. 损失函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">3.1.36.6. 优化器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">3.1.36.7. 开始训练</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">3.1.36.8. 训练后操作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">3.1.36.9. 模型评估</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">3.1.36.10. 进一步优化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">3.1.36.11. 再次进行评估</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">3.1.36.12. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html">3.1.37. Pytorch 中文手册第五章 ： 应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../style-guides/index.html">4. 编程语言 风格指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">7. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><span class="section-number">3. </span>Pytorch 教程</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3.1. </span>Pytorch 快速入门</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.1.36. </span>Fashion MNIST进行分类</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pytorch-guides/pytorch-cookbook/chapter5/5.3-Fashion-MNIST.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span><span class="o">,</span><span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  
+<span class="kn">import</span> <span class="nn">torchvision.datasets</span> <span class="k">as</span> <span class="nn">dsets</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
+
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">NN</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;1.2.0&#39;</span>
+</pre></div>
+</div>
+<section id="fashion-mnist">
+<h1><span class="section-number">3.1.36. </span>Fashion MNIST进行分类<a class="headerlink" href="#fashion-mnist" title="Permalink to this heading"></a></h1>
+<section id="id1">
+<h2><span class="section-number">3.1.36.1. </span>Fashion MNIST 介绍<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>Fashion MNIST数据集 是kaggle上提供的一个图像分类入门级的数据集，其中包含10个类别的70000个灰度图像。如图所示，这些图片显示的是每件衣服的低分辨率(28×28像素)</p>
+<p>数据集的下载和介绍：<a class="reference external" href="https://www.kaggle.com/zalando-research/fashionmnist/">地址</a></p>
+<p>Fashion MNIST的目标是作为经典MNIST数据的替换——通常被用作计算机视觉机器学习程序的“Hello, World”。</p>
+<p>MNIST数据集包含手写数字(0-9等)的图像，格式与我们将在这里使用的衣服相同，MNIST只有手写的0-1数据的复杂度不高，所以他只能用来做“Hello, World”</p>
+<p>而Fashion MNIST 的由于使用的是衣服的数据，比数字要复杂的多，并且图片的内容也会更加多样性，所以它是一个比常规MNIST稍微更具挑战性的问题。</p>
+<p>Fashion MNIST这个数据集相对较小，用于验证算法是否按预期工作。它们是测试和调试代码的好起点。</p>
+</section>
+<section id="id2">
+<h2><span class="section-number">3.1.36.2. </span>数据集介绍<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<section id="id3">
+<h3><span class="section-number">3.1.36.2.1. </span>分类<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="n">T</span><span class="o">-</span><span class="n">shirt</span><span class="o">/</span><span class="n">top</span>
+<span class="mi">1</span> <span class="n">Trouser</span>
+<span class="mi">2</span> <span class="n">Pullover</span>
+<span class="mi">3</span> <span class="n">Dress</span>
+<span class="mi">4</span> <span class="n">Coat</span>
+<span class="mi">5</span> <span class="n">Sandal</span>
+<span class="mi">6</span> <span class="n">Shirt</span>
+<span class="mi">7</span> <span class="n">Sneaker</span>
+<span class="mi">8</span> <span class="n">Bag</span>
+<span class="mi">9</span> <span class="n">Ankle</span> <span class="n">boot</span> 
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3><span class="section-number">3.1.36.2.2. </span>格式<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>fashion-mnist_test.csv</p>
+<p>fashion-mnist_train.csv</p>
+<p>存储的训练的数据和测试的数据，格式如下：</p>
+<p>label是分类的标签
+pixel1-pixel784是每一个像素代表的值 因为是灰度图像，所以是一个0-255之间的数值。</p>
+<p>为什么是784个像素？ 28 * 28 = 784</p>
+</section>
+<section id="id5">
+<h3><span class="section-number">3.1.36.2.3. </span>数据提交<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>Fashion MNIST不需要我们进行数据的提交，数据集中已经帮助我们将 训练集和测试集分好了，我们只需要载入、训练、查看即可，所以Fashion MNIST 是一个非常好的入门级别的数据集</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#指定数据目录</span>
+<span class="n">DATA_PATH</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;./data/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_PATH</span> <span class="o">/</span> <span class="s2">&quot;fashion-mnist_train.csv&quot;</span><span class="p">);</span>
+<span class="n">train</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">dataframe</span> <span class="n">tbody</span> <span class="n">tr</span> <span class="n">th</span> <span class="p">{</span>
+    <span class="n">vertical</span><span class="o">-</span><span class="n">align</span><span class="p">:</span> <span class="n">top</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">.</span><span class="n">dataframe</span> <span class="n">thead</span> <span class="n">th</span> <span class="p">{</span>
+    <span class="n">text</span><span class="o">-</span><span class="n">align</span><span class="p">:</span> <span class="n">right</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>pixel1</th>
+      <th>pixel2</th>
+      <th>pixel3</th>
+      <th>pixel4</th>
+      <th>pixel5</th>
+      <th>pixel6</th>
+      <th>pixel7</th>
+      <th>pixel8</th>
+      <th>pixel9</th>
+      <th>...</th>
+      <th>pixel775</th>
+      <th>pixel776</th>
+      <th>pixel777</th>
+      <th>pixel778</th>
+      <th>pixel779</th>
+      <th>pixel780</th>
+      <th>pixel781</th>
+      <th>pixel782</th>
+      <th>pixel783</th>
+      <th>pixel784</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>30</td>
+      <td>43</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>4</td>
+      <td>5</td>
+      <td>5</td>
+      <td>3</td>
+      <td>5</td>
+      <td>...</td>
+      <td>7</td>
+      <td>8</td>
+      <td>7</td>
+      <td>4</td>
+      <td>3</td>
+      <td>7</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>14</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>203</td>
+      <td>214</td>
+      <td>166</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>10 rows × 785 columns</p>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_PATH</span> <span class="o">/</span> <span class="s2">&quot;fashion-mnist_test.csv&quot;</span><span class="p">);</span>
+<span class="n">test</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">dataframe</span> <span class="n">tbody</span> <span class="n">tr</span> <span class="n">th</span> <span class="p">{</span>
+    <span class="n">vertical</span><span class="o">-</span><span class="n">align</span><span class="p">:</span> <span class="n">top</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">.</span><span class="n">dataframe</span> <span class="n">thead</span> <span class="n">th</span> <span class="p">{</span>
+    <span class="n">text</span><span class="o">-</span><span class="n">align</span><span class="p">:</span> <span class="n">right</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>pixel1</th>
+      <th>pixel2</th>
+      <th>pixel3</th>
+      <th>pixel4</th>
+      <th>pixel5</th>
+      <th>pixel6</th>
+      <th>pixel7</th>
+      <th>pixel8</th>
+      <th>pixel9</th>
+      <th>...</th>
+      <th>pixel775</th>
+      <th>pixel776</th>
+      <th>pixel777</th>
+      <th>pixel778</th>
+      <th>pixel779</th>
+      <th>pixel780</th>
+      <th>pixel781</th>
+      <th>pixel782</th>
+      <th>pixel783</th>
+      <th>pixel784</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>9</td>
+      <td>8</td>
+      <td>...</td>
+      <td>103</td>
+      <td>87</td>
+      <td>56</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>34</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>14</td>
+      <td>53</td>
+      <td>99</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>63</td>
+      <td>53</td>
+      <td>31</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>137</td>
+      <td>126</td>
+      <td>140</td>
+      <td>0</td>
+      <td>133</td>
+      <td>224</td>
+      <td>222</td>
+      <td>56</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>44</td>
+      <td>105</td>
+      <td>44</td>
+      <td>10</td>
+      <td>...</td>
+      <td>105</td>
+      <td>64</td>
+      <td>30</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>174</td>
+      <td>136</td>
+      <td>155</td>
+      <td>31</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>57</td>
+      <td>70</td>
+      <td>28</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>10 rows × 785 columns</p>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">label</span>         <span class="mi">9</span>
+<span class="n">pixel1</span>       <span class="mi">16</span>
+<span class="n">pixel2</span>       <span class="mi">36</span>
+<span class="n">pixel3</span>      <span class="mi">226</span>
+<span class="n">pixel4</span>      <span class="mi">164</span>
+           <span class="o">...</span> 
+<span class="n">pixel780</span>    <span class="mi">255</span>
+<span class="n">pixel781</span>    <span class="mi">255</span>
+<span class="n">pixel782</span>    <span class="mi">255</span>
+<span class="n">pixel783</span>    <span class="mi">255</span>
+<span class="n">pixel784</span>    <span class="mi">170</span>
+<span class="n">Length</span><span class="p">:</span> <span class="mi">785</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+</pre></div>
+</div>
+<p>ubyte文件标识了数据的格式</p>
+<p>其中idx3的数字表示数据维度。也就是图像为3维，
+idx1 标签维1维。</p>
+<p>具体格式详解：http://yann.lecun.com/exdb/mnist/</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">struct</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span> 
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">DATA_PATH</span> <span class="o">/</span> <span class="s2">&quot;train-images-idx3-ubyte&quot;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_object</span><span class="p">:</span>
+    <span class="n">header_data</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;&gt;4I&quot;</span><span class="p">,</span><span class="n">file_object</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">header_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">2051</span><span class="p">,</span> <span class="mi">60000</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">DATA_PATH</span> <span class="o">/</span> <span class="s2">&quot;train-labels-idx1-ubyte&quot;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_object</span><span class="p">:</span>
+    <span class="n">header_data</span><span class="o">=</span><span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;&gt;2I&quot;</span><span class="p">,</span><span class="n">file_object</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">header_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">2049</span><span class="p">,</span> <span class="mi">60000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>如下是训练的图片的二进制格式</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[offset] [type]          [value]          [description]
+0000     32 bit integer  0x00000803(2051) magic number
+0004     32 bit integer  60000            number of images
+0008     32 bit integer  28               number of rows
+0012     32 bit integer  28               number of columns
+0016     unsigned byte   ??               pixel
+0017     unsigned byte   ??               pixel
+........
+xxxx     unsigned byte   ??               pixel
+</pre></div>
+</div>
+<p>有四字节的header_data，故使用<code class="docutils literal notranslate"><span class="pre">unpack_from</span></code>进行二进制转换时，偏置offset=16</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">DATA_PATH</span> <span class="o">/</span> <span class="s2">&quot;train-images-idx3-ubyte&quot;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_object</span><span class="p">:</span>
+    <span class="n">raw_img</span><span class="o">=</span><span class="n">file_object</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack_from</span><span class="p">(</span><span class="s2">&quot;&gt;784B&quot;</span><span class="p">,</span><span class="n">raw_img</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_10_11.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">DATA_PATH</span> <span class="o">/</span> <span class="s2">&quot;train-labels-idx1-ubyte&quot;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_object</span><span class="p">:</span>
+    <span class="n">raw_img</span> <span class="o">=</span> <span class="n">file_object</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;&gt;B&quot;</span><span class="p">,</span><span class="n">raw_img</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">0</span><span class="p">,)</span>
+</pre></div>
+</div>
+<p>这里好像有点错误，显示的错位了，但是我的确是按照格式进行处理的。这种格式处理起来比较复杂，并且数据集中的csv直接给出了每个像素的值，所以这里我们可以直接使用csv格式的数据。</p>
+</section>
+</section>
+<section id="id6">
+<h2><span class="section-number">3.1.36.3. </span>数据加载<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<p>为了使用pytorch的dataloader进行数据的加载，需要先创建一个自定义的dataset</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FashionMNISTDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]);</span>
+        <span class="k">del</span> <span class="n">data</span><span class="p">;</span>  <span class="c1">#结束data对数据的引用,节省空间</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">len</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#return len(self.X)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">len</span>
+        
+    
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>对于自定义的数据集，只需要实现三个函数：</p>
+<p><code class="docutils literal notranslate"><span class="pre">__init__</span></code>： 初始化函数主要用于数据的加载，这里直接使用pandas将数据读取为dataframe，然后将其转成numpy数组来进行索引</p>
+<p><code class="docutils literal notranslate"><span class="pre">__len__</span></code>： 返回数据集的总数，pytorch里面的datalorder需要知道数据集的总数的</p>
+<p><code class="docutils literal notranslate"><span class="pre">__getitem__</span></code>：会返回单张图片，它包含一个index，返回值为样本及其标签。</p>
+<p>创建训练和测试集</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">train_dataset</span> <span class="o">=</span> <span class="n">FashionMNISTDataset</span><span class="p">(</span><span class="n">csv_file</span><span class="o">=</span><span class="n">DATA_PATH</span> <span class="o">/</span> <span class="s2">&quot;fashion-mnist_train.csv&quot;</span><span class="p">)</span>
+<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">FashionMNISTDataset</span><span class="p">(</span><span class="n">csv_file</span><span class="o">=</span><span class="n">DATA_PATH</span> <span class="o">/</span> <span class="s2">&quot;fashion-mnist_test.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在使用Pytorch的DataLoader读取数据之前，需要指定一个batch size 这也是一个超参数，涉及到内存的使用量，如果出现OOM的错误则要减小这个数值，一般这个数值都为2的幂或者2的倍数。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#因为是常量，所以大写，需要说明的是，这些常量建议都使用完整的英文单词，减少歧义</span>
+<span class="n">BATCH_SIZE</span><span class="o">=</span><span class="mi">256</span> <span class="c1"># 这个batch 可以在M250的笔记本显卡中进行训练，不会oom</span>
+</pre></div>
+</div>
+<p>我们接着使用dataloader模块来使用这些数据</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span>
+                                           <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span>
+                                           <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># shuffle 标识要打乱顺序</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">test_dataset</span><span class="p">,</span>
+                                           <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span>
+                                           <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># shuffle 标识要打乱顺序，测试集不需要打乱</span>
+</pre></div>
+</div>
+<p>查看一下数据</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="nb">iter</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span>
+<span class="n">data</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">img</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">]),</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">]))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_24_0.png" /></p>
+<p>这回看着就没问题了，是一个完整的图了，所以我们还是用csv吧</p>
+</section>
+<section id="id7">
+<h2><span class="section-number">3.1.36.4. </span>创建网络<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<p>三层的简单的CNN网络</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CNN</span><span class="p">(</span><span class="n">NN</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CNN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="n">NN</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>   
+            <span class="n">NN</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">NN</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span> 
+            <span class="n">NN</span><span class="o">.</span><span class="n">ReLU</span><span class="p">())</span> <span class="c1">#16, 28, 28</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool1</span><span class="o">=</span><span class="n">NN</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#16, 14, 14</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span> <span class="o">=</span> <span class="n">NN</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">NN</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+            <span class="n">NN</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+            <span class="n">NN</span><span class="o">.</span><span class="n">ReLU</span><span class="p">())</span><span class="c1">#32, 12, 12</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer3</span> <span class="o">=</span> <span class="n">NN</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">NN</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+            <span class="n">NN</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span>
+            <span class="n">NN</span><span class="o">.</span><span class="n">ReLU</span><span class="p">())</span> <span class="c1">#64, 10, 10</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool2</span><span class="o">=</span><span class="n">NN</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1">#64, 5, 5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">NN</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="mi">64</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="c1">#print(out.shape)</span>
+        <span class="n">out</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pool1</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="c1">#print(out.shape)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="c1">#print(out.shape)</span>
+        <span class="n">out</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">layer3</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="c1">#print(out.shape)</span>
+        <span class="n">out</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pool2</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="c1">#print(out.shape)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#print(out.shape)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+</div>
+<p>以上代码看起来很简单。这里面都是包含的数学的含义。我们只讲pytorch相关的：在函数里使用torch.nn提供的模块来定义各个层，在每个卷积层后使用了批次的归一化和RELU激活并且在每一个操作分组后面进行了pooling的操作（减少信息量，避免过拟合），后我们使用了全连接层来输出10个类别。</p>
+<p>view函数用来改变输出值矩阵的形状来匹配最后一层的维度。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cnn</span> <span class="o">=</span> <span class="n">CNN</span><span class="p">();</span>
+<span class="c1">#可以通过以下方式验证，没报错说明没问题，</span>
+<span class="n">cnn</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.9031</span><span class="p">,</span>  <span class="mf">0.1854</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.2564</span><span class="p">,</span>  <span class="mf">0.0946</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9428</span><span class="p">,</span>  <span class="mf">0.9311</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4686</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5068</span><span class="p">,</span>
+         <span class="o">-</span><span class="mf">0.3318</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6995</span><span class="p">]],</span> <span class="n">grad_fn</span><span class="o">=&lt;</span><span class="n">AddmmBackward</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#打印下网络，做最后的确认</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cnn</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CNN</span><span class="p">(</span>
+  <span class="p">(</span><span class="n">layer1</span><span class="p">):</span> <span class="n">Sequential</span><span class="p">(</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">):</span> <span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">):</span> <span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-05</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">track_running_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">):</span> <span class="n">ReLU</span><span class="p">()</span>
+  <span class="p">)</span>
+  <span class="p">(</span><span class="n">pool1</span><span class="p">):</span> <span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ceil_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+  <span class="p">(</span><span class="n">layer2</span><span class="p">):</span> <span class="n">Sequential</span><span class="p">(</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">):</span> <span class="n">Conv2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">):</span> <span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-05</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">track_running_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">):</span> <span class="n">ReLU</span><span class="p">()</span>
+  <span class="p">)</span>
+  <span class="p">(</span><span class="n">layer3</span><span class="p">):</span> <span class="n">Sequential</span><span class="p">(</span>
+    <span class="p">(</span><span class="mi">0</span><span class="p">):</span> <span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">):</span> <span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-05</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">track_running_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">):</span> <span class="n">ReLU</span><span class="p">()</span>
+  <span class="p">)</span>
+  <span class="p">(</span><span class="n">pool2</span><span class="p">):</span> <span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ceil_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+  <span class="p">(</span><span class="n">fc</span><span class="p">):</span> <span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">1600</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>从定义模型开始就要指定模型计算的位置，CPU还是GPU，所以需要加另外一个参数</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DEVICE</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+        <span class="n">DEVICE</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cuda</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#先把网络放到gpu上</span>
+<span class="n">cnn</span><span class="o">=</span><span class="n">cnn</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h2><span class="section-number">3.1.36.5. </span>损失函数<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<p>多分类因为使用Softmax回归将神经网络前向传播得到的结果变成概率分布 所以使用交叉熵损失。
+在pytorch中
+NN.CrossEntropyLoss 是将 <code class="docutils literal notranslate"><span class="pre">nn.LogSoftmax()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">nn.NLLLoss()</span></code>进行了整合，<a class="reference external" href="https://pytorch.org/docs/stable/nn.html#crossentropyloss">CrossEntropyLoss</a> ,我们也可以分开来写使用两步计算，这里为了方便直接一步到位</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#损失函数也需要放到GPU中</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">NN</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h2><span class="section-number">3.1.36.6. </span>优化器<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<p>Adam 优化器：简单，暴力，最主要还是懒</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#另外一个超参数，学习率</span>
+<span class="n">LEARNING_RATE</span><span class="o">=</span><span class="mf">0.01</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#优化器不需要放GPU</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">cnn</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">LEARNING_RATE</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h2><span class="section-number">3.1.36.7. </span>开始训练<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#另外一个超参数，指定训练批次</span>
+<span class="n">TOTAL_EPOCHS</span><span class="o">=</span><span class="mi">50</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="c1">#记录损失函数</span>
+<span class="n">losses</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">TOTAL_EPOCHS</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_loader</span><span class="p">):</span>
+        <span class="n">images</span> <span class="o">=</span> <span class="n">images</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+        <span class="c1">#清零</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">cnn</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+        <span class="c1">#计算损失函数</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="n">losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">());</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Epoch : </span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">, Iter : </span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">,  Loss: </span><span class="si">%.4f</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">TOTAL_EPOCHS</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)</span><span class="o">//</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
+            
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Epoch</span> <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.4569</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.3623</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.2648</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.3044</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.2107</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.3022</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">4</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.2583</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">4</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.2837</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">5</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.2377</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">5</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.2422</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">6</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1537</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">6</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.2270</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">7</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1485</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">7</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1740</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">8</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.3264</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">8</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.2096</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">9</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1844</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">9</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1927</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">10</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1343</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">10</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.2225</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">11</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1251</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">11</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1789</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">12</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1439</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">12</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1290</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">13</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.2017</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">13</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1130</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">14</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0992</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">14</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1736</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">15</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0920</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">15</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1557</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">16</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0914</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">16</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1508</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">17</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1273</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">17</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1982</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">18</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1752</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">18</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1517</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">19</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0586</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">19</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0984</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">20</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1409</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">20</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1286</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">21</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0900</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">21</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1168</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">22</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0755</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">22</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1217</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">23</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0703</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">23</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1383</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">24</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0916</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">24</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0685</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">25</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0947</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">25</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1244</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">26</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0615</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">26</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0478</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">27</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0280</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">27</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0459</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">28</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0213</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">28</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0764</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">29</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0391</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">29</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0899</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">30</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0541</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">30</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0750</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">31</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0605</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">31</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0766</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">32</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1368</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">32</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0588</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">33</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0253</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">33</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0705</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">34</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0248</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">34</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0751</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">35</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0449</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">35</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1006</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">36</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0281</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">36</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0418</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">37</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0547</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">37</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1003</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">38</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0694</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">38</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0340</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">39</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0620</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">39</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.1004</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">40</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0588</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">40</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0309</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">41</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0387</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">41</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0136</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">42</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0149</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">42</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0448</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">43</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0076</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">43</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0593</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">44</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0267</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">44</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0308</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">45</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0150</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">45</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0764</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">46</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0221</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">46</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0325</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">47</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0190</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">47</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0359</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">48</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0256</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">48</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0374</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">49</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0198</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">49</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0300</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">50</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0465</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">50</span><span class="o">/</span><span class="mi">50</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0558</span>
+<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mi">7</span><span class="nb">min</span> <span class="mi">18</span><span class="n">s</span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h2><span class="section-number">3.1.36.8. </span>训练后操作<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h2>
+<section id="id12">
+<h3><span class="section-number">3.1.36.8.1. </span>可视化损失函数<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xkcd</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch #&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">losses</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_42_0.png" /></p>
+</section>
+<section id="id13">
+<h3><span class="section-number">3.1.36.8.2. </span>保存模型<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">cnn</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s2">&quot;fm-cnn3.pth&quot;</span><span class="p">)</span>
+<span class="c1"># 加载用这个</span>
+<span class="c1">#cnn.load_state_dict(torch.load(&quot;fm-cnn3.pth&quot;))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id14">
+<h2><span class="section-number">3.1.36.9. </span>模型评估<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h2>
+<p>模型评估就是使用测试集对模型进行的评估，应该是添加到训练中进行了，这里为了方便说明直接在训练完成后评估了</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cnn</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="n">images</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">cnn</span><span class="p">(</span><span class="n">images</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">predicted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">labels</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">correct</span> <span class="o">+=</span> <span class="p">(</span><span class="n">predicted</span> <span class="o">==</span> <span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;准确率: </span><span class="si">%.4f</span><span class="s1"> </span><span class="si">%%</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">correct</span> <span class="o">/</span> <span class="n">total</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">准确率</span><span class="p">:</span> <span class="mf">90.0000</span> <span class="o">%</span>
+</pre></div>
+</div>
+<p>模型评估的步骤如下：</p>
+<ol class="simple">
+<li><p>将网络的模式改为eval。</p></li>
+<li><p>将图片输入到网络中得到输出。</p></li>
+<li><p>通过取出one-hot输出的最大值来得到输出的 标签。</p></li>
+<li><p>统计正确的预测值。</p></li>
+</ol>
+</section>
+<section id="id15">
+<h2><span class="section-number">3.1.36.10. </span>进一步优化<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="c1">#修改学习率和批次</span>
+<span class="n">cnn</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<span class="n">LEARNING_RATE</span><span class="o">=</span><span class="n">LEARNING_RATE</span> <span class="o">/</span> <span class="mi">10</span>
+<span class="n">TOTAL_EPOCHS</span><span class="o">=</span><span class="mi">20</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">cnn</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="n">losses</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">TOTAL_EPOCHS</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_loader</span><span class="p">):</span>
+        <span class="n">images</span> <span class="o">=</span> <span class="n">images</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+        <span class="c1">#清零</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">cnn</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+        <span class="c1">#计算损失函数</span>
+        <span class="c1">#损失函数直接放到CPU中，因为还有其他的计算</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="n">losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">());</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Epoch : </span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">, Iter : </span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">,  Loss: </span><span class="si">%.4f</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">TOTAL_EPOCHS</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)</span><span class="o">//</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
+            
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Epoch</span> <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0096</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0124</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0031</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0020</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0013</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0041</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">4</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0016</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">4</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0023</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">5</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0010</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">5</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0008</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">6</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0017</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">6</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0010</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">7</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0009</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">7</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0009</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">8</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0005</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">8</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0008</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">9</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0005</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">9</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0006</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">10</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0016</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">10</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0011</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">11</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0003</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">11</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0009</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">12</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0010</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">12</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0002</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">13</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0004</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">13</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0005</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">14</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0003</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">14</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0004</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">15</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0002</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">15</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0005</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">16</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0002</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">16</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0007</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">17</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0003</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">17</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0002</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">18</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0004</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">18</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0001</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">19</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0003</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">19</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0005</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">20</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0002</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">20</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0002</span>
+<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mi">2</span><span class="nb">min</span> <span class="mi">21</span><span class="n">s</span>
+</pre></div>
+</div>
+<p>可视化一下损失</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xkcd</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch #&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">losses</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_51_0.png" /></p>
+</section>
+<section id="id16">
+<h2><span class="section-number">3.1.36.11. </span>再次进行评估<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cnn</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="n">images</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">cnn</span><span class="p">(</span><span class="n">images</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">predicted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">labels</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">correct</span> <span class="o">+=</span> <span class="p">(</span><span class="n">predicted</span> <span class="o">==</span> <span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;准确率: </span><span class="si">%.4f</span><span class="s1"> </span><span class="si">%%</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">correct</span> <span class="o">/</span> <span class="n">total</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">准确率</span><span class="p">:</span> <span class="mf">91.0000</span> <span class="o">%</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="c1">#修改学习率和批次</span>
+<span class="n">cnn</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<span class="n">LEARNING_RATE</span><span class="o">=</span><span class="n">LEARNING_RATE</span> <span class="o">/</span> <span class="mi">10</span>
+<span class="n">TOTAL_EPOCHS</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">cnn</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="n">losses</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">TOTAL_EPOCHS</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_loader</span><span class="p">):</span>
+        <span class="n">images</span> <span class="o">=</span> <span class="n">images</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+        <span class="c1">#清零</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">cnn</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+        <span class="c1">#计算损失函数</span>
+        <span class="c1">#损失函数直接放到CPU中，因为还有其他的计算</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="n">losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">());</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Epoch : </span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">, Iter : </span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">,  Loss: </span><span class="si">%.4f</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">TOTAL_EPOCHS</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)</span><span class="o">//</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
+            
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Epoch</span> <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0002</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0001</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0001</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0005</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0002</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">3</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0001</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">4</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0003</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">4</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0001</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">5</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0002</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">5</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0003</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">6</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0002</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">6</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0002</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">7</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0001</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">7</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0002</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">8</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0008</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">8</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0008</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">9</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0005</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">9</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0002</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">10</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">100</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0006</span>
+<span class="n">Epoch</span> <span class="p">:</span> <span class="mi">10</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iter</span> <span class="p">:</span> <span class="mi">200</span><span class="o">/</span><span class="mi">234</span><span class="p">,</span>  <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0002</span>
+<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mi">1</span><span class="nb">min</span> <span class="mi">9</span><span class="n">s</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xkcd</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch #&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">losses</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_55_0.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cnn</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="n">images</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">cnn</span><span class="p">(</span><span class="n">images</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">predicted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">labels</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">correct</span> <span class="o">+=</span> <span class="p">(</span><span class="n">predicted</span> <span class="o">==</span> <span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;准确率: </span><span class="si">%.4f</span><span class="s1"> </span><span class="si">%%</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">correct</span> <span class="o">/</span> <span class="n">total</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">准确率</span><span class="p">:</span> <span class="mf">91.0000</span> <span class="o">%</span>
+</pre></div>
+</div>
+<p>损失小了，但是准确率没有提高，这就说明已经接近模型的瓶颈了，如果再要进行优化，就需要修改模型了。另外还有一个判断模型是否到瓶颈的标准，就是看损失函数，最后一次的训练的损失函数明显的没有下降的趋势，只是在震荡，这说明已经没有什么优化的空间了。</p>
+<p>通过简单的操作，我们也能够看到Adam优化器的暴力性，我们只要简单的修改学习率就能够达到优化的效果，Adam优化器的使用一般情况下是首先使用0.1进行预热，然后再用0.01进行大批次的训练，最后使用0.001这个学习率进行收尾，再小的学习率一般情况就不需要了。</p>
+</section>
+<section id="id17">
+<h2><span class="section-number">3.1.36.12. </span>总结<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
+<p>最后我们再总结一下几个超参数:</p>
+<p><code class="docutils literal notranslate"><span class="pre">BATCH_SIZE</span></code>: 批次数量，定义每次训练时多少数据作为一批，这个批次需要在dataloader初始化时进行设置，并且需要这对模型和显存进行配置，如果出现OOM有线减小，一般设为2的倍数</p>
+<p><code class="docutils literal notranslate"><span class="pre">DEVICE</span></code>：进行计算的设备，主要是CPU还是GPU</p>
+<p><code class="docutils literal notranslate"><span class="pre">LEARNING_RATE</span></code>：学习率，反向传播时使用</p>
+<p><code class="docutils literal notranslate"><span class="pre">TOTAL_EPOCHS</span></code>：训练的批次，一般情况下会根据损失和准确率等阈值</p>
+<p>其实优化器和损失函数也算超参数，这里就不说了</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="5.2-Structured-Data.html" class="btn btn-neutral float-left" title="3.1.35. 5.2 Pytorch处理结构化数据" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="readme.html" class="btn btn-neutral float-right" title="3.1.37. Pytorch 中文手册第五章 ： 应用" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

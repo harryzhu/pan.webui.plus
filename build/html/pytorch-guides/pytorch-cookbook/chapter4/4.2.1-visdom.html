@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.26. 4.2.1 使用Visdom在 PyTorch 中进行可视化 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../../about.html" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="3.1.27. 4.2.2 使用Tensorboard在 PyTorch 中进行可视化" href="4.2.2-tensorboardx.html" />
+    <link rel="prev" title="3.1.25. 4.1 Fine tuning 模型微调" href="4.1-fine-tuning.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">3. Pytorch 教程</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">3.1. Pytorch 快速入门</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.1-pytorch-introduction.html">3.1.1. 1.1 Pytorch 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html">3.1.2. 1.2 Pytorch环境搭建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html#id1">3.1.3. 1.2.1 安装Pytorch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.3-deep-learning-with-pytorch-60-minute-blitz.html">3.1.4. PyTorch 深度学习:60分钟快速入门 （官方）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.4-pytorch-resource.html">3.1.5. 相关资源列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1_tensor_tutorial.html">3.1.6. PyTorch是什么?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/2_autograd_tutorial.html">3.1.7. Autograd: 自动求导机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/3_neural_networks_tutorial.html">3.1.8. Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/4_cifar10_tutorial.html">3.1.9. 训练一个分类器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/5_data_parallel_tutorial.html">3.1.10. 数据并行（选读）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/readme.html">3.1.11. PyTorch 中文手册第一章 ： PyTorch入门</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.1.pytorch-basics-tensor.html">3.1.12. PyTorch 基础 : 张量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.2-pytorch-basics-autograd.html">3.1.13. 使用PyTorch计算梯度数值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.3-pytorch-basics-nerual-network.html">3.1.14. PyTorch 基础 : 神经网络包nn和优化器optm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.4-pytorch-basics-data-loader.html">3.1.15. PyTorch 基础 :数据的加载和预处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.2-deep-learning-basic-mathematics.html">3.1.16. 2.2 深度学习基础及数学原理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.3-deep-learning-neural-network-introduction.html">3.1.17. 2.3 神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.4-cnn.html">3.1.18. 2.4 卷积神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.5-rnn.html">3.1.19. 2.5 循环神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/readme.html">3.1.20. Pytorch 中文手册第二章 ： 基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.1-logistic-regression.html">3.1.21. 3.1 logistic回归实战</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.2-mnist.html">3.1.22. 3.2  MNIST数据集手写数字识别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.3-rnn.html">3.1.23. 3.3 通过Sin预测Cos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/readme.html">3.1.24. Pytorch 中文手册第三章 ： 实践</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.1-fine-tuning.html">3.1.25. 4.1 Fine tuning 模型微调</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.26. 4.2.1 使用Visdom在 PyTorch 中进行可视化</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">3.1.26.1. 安装</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.1.26.2. 坑</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.1.26.3. 基本概念</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#panes">3.1.26.4. Panes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.1.26.5. 可视化接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.1.26.6. 使用</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">3.1.26.7. 更新损失函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="4.2.2-tensorboardx.html">3.1.27. 4.2.2 使用Tensorboard在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.2.3-cnn-visualizing.html">3.1.28. 4.2.3 可视化理解卷积神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.2.3-cnn-visualizing.html#backpropagation">3.1.29. 基于Backpropagation的方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.3-fastai.html">3.1.30. 4.3 fastai</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.5-multiply-gpu-parallel-training.html">3.1.31. 4.5 多GPU并行训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed_data_parallel.html">3.1.32. 在PyTorch中使用DistributedDataParallel进行多GPU分布式模型训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html">3.1.33. Pytorch 中文手册第四章 ： 提高</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.1-kaggle.html">3.1.34. 5.1 kaggle介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.2-Structured-Data.html">3.1.35. 5.2 Pytorch处理结构化数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.3-Fashion-MNIST.html">3.1.36. Fashion MNIST进行分类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/readme.html">3.1.37. Pytorch 中文手册第五章 ： 应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../style-guides/index.html">4. 编程语言 风格指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">7. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><span class="section-number">3. </span>Pytorch 教程</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3.1. </span>Pytorch 快速入门</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.1.26. </span>4.2.1 使用Visdom在 PyTorch 中进行可视化</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pytorch-guides/pytorch-cookbook/chapter4/4.2.1-visdom.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">visdom</span> <span class="kn">import</span> <span class="n">Visdom</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;1.0.0&#39;</span>
+</pre></div>
+</div>
+<section id="visdom-pytorch">
+<h1><span class="section-number">3.1.26. </span>4.2.1 使用Visdom在 PyTorch 中进行可视化<a class="headerlink" href="#visdom-pytorch" title="Permalink to this heading"></a></h1>
+<p>Visdom是Facebook在2017年发布的一款针对PyTorch的可视化工具。<a class="reference external" href="https://github.com/facebookresearch/visdom">官网</a>,visdom由于其功能简单，一般会被定义为服务器端的matplot，也就是说我们可以直接使用python的控制台模式进行开发并在服务器上执行，将一些可视化的数据传送到Visdom服务上，通过Visdom服务进行可视化</p>
+<section id="id1">
+<h2><span class="section-number">3.1.26.1. </span>安装<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>Visdom的安装很简单，直接使用命令<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">visdom</span></code>安装即可。
+在安装完成后，使用命令<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">visdom.server</span></code> 在本地启动服务器，启动后会提示<code class="docutils literal notranslate"><span class="pre">It's</span> <span class="pre">Alive!</span> <span class="pre">You</span> <span class="pre">can</span> <span class="pre">navigate</span> <span class="pre">to</span> <span class="pre">http://localhost:8097</span></code> 这就说明服务已经可用，我们打开浏览器，输入<code class="docutils literal notranslate"><span class="pre">http://localhost:8097</span></code> 即可看到页面。</p>
+<p>端口8097是默认的端口可以在启动命令后加 <code class="docutils literal notranslate"><span class="pre">-port</span></code>参数指定端口，常用的参数还有 <code class="docutils literal notranslate"><span class="pre">--hostname</span></code>，<code class="docutils literal notranslate"><span class="pre">-base_url</span></code>等</p>
+</section>
+<section id="id2">
+<h2><span class="section-number">3.1.26.2. </span>坑<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>Visdom的服务在启动时会自动下载一些静态文件，这里坑就来了，因为某些无法描述的原因，导致下载会失败，比如类似这样的提示 <code class="docutils literal notranslate"><span class="pre">ERROR:root:Error</span> <span class="pre">404</span> <span class="pre">while</span> <span class="pre">downloading</span> <span class="pre">https://unpkg.com/layout-bin-packer&#64;1.4.0</span></code> 就说明静态文件没有下载完全，这样有可能就会打不开或者页面中没有菜单栏，那么需要手动进行下载，这里我打包了一份正常的静态文件，直接复制到<code class="docutils literal notranslate"><span class="pre">Lib\site-packages\visdom</span></code>中即可。</p>
+<p>如果不知道conda的环境目录在哪里，可以使用<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">list</span></code> 查看</p>
+<p>感谢CSDN的伙伴提供的缺失文件，原文<a class="reference external" href="https://blog.csdn.net/qq_36941368/article/details/82288154">这里</a></p>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.1.26.3. </span>基本概念<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<section id="environments">
+<h3><span class="section-number">3.1.26.3.1. </span>Environments<a class="headerlink" href="#environments" title="Permalink to this heading"></a></h3>
+<p>Environments的作用是对可视化区域进行分区，每个用户都会有一个叫做main的默认分区，如图所示:
+<img alt="../../../_images/1.PNG" src="../../../_images/1.PNG" />
+在程序指定的情况下，默认的图表都会放到这里面</p>
+</section>
+</section>
+<section id="panes">
+<h2><span class="section-number">3.1.26.4. </span>Panes<a class="headerlink" href="#panes" title="Permalink to this heading"></a></h2>
+<p>Panes是作为每一个可视化图表的容器，可以使用生成的图表，图片，文本进行填充，我们可以对Panes进行拖放，删除，调整大小和销毁等操作：
+<img alt="../../../_images/2.PNG" src="../../../_images/2.PNG" />
+Panes和Environments是一对多的关系，即一个Environments可以包含多个Panes</p>
+<section id="view">
+<h3><span class="section-number">3.1.26.4.1. </span>VIEW<a class="headerlink" href="#view" title="Permalink to this heading"></a></h3>
+<p>在对Panes进行调整后，可以通过VIEW对状态进行管理：
+<img alt="../../../_images/3.PNG" src="../../../_images/3.PNG" /></p>
+</section>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.1.26.5. </span>可视化接口<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<p>Visdom是由Plotly 提供的可视化支持，所以提供一下可视化的接口:</p>
+<ul class="simple">
+<li><p>vis.scatter : 2D 或 3D 散点图</p></li>
+<li><p>vis.line : 线图</p></li>
+<li><p>vis.stem : 茎叶图</p></li>
+<li><p>vis.heatmap : 热力图</p></li>
+<li><p>vis.bar : 条形图</p></li>
+<li><p>vis.histogram: 直方图</p></li>
+<li><p>vis.boxplot : 箱型图</p></li>
+<li><p>vis.surf : 表面图</p></li>
+<li><p>vis.contour : 轮廓图</p></li>
+<li><p>vis.quiver : 绘出二维矢量场</p></li>
+<li><p>vis.image : 图片</p></li>
+<li><p>vis.text : 文本</p></li>
+<li><p>vis.mesh : 网格图</p></li>
+<li><p>vis.save : 序列化状态</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><span class="section-number">3.1.26.6. </span>使用<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<section id="id6">
+<h3><span class="section-number">3.1.26.6.1. </span>绘制简单的图形<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p>这里我们使用官方的DEMO来做样例</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">Visdom</span><span class="p">()</span> 
+<span class="k">assert</span> <span class="n">env</span><span class="o">.</span><span class="n">check_connection</span><span class="p">()</span> <span class="c1">#测试一下链接，链接错误的话会报错</span>
+</pre></div>
+</div>
+<p>这里生成sin和cos两条曲线数据</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">Y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">Y</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>使用茎叶图展示</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span>
+        <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
+        <span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span>
+        <span class="n">opts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sine&#39;</span><span class="p">,</span> <span class="s1">&#39;Cosine&#39;</span><span class="p">])</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;window_36f18bc34b4992&#39;</span>
+</pre></div>
+</div>
+<p>可以通过env参数指定Environments，如果名称包含了下划线<code class="docutils literal notranslate"><span class="pre">_</span></code>那么visdom会跟根据下划线分割并自动分组</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">envtest</span> <span class="o">=</span> <span class="n">Visdom</span><span class="p">(</span><span class="n">env</span><span class="o">=</span><span class="s1">&#39;test_mesh&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">envtest</span><span class="o">.</span><span class="n">check_connection</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>生成一个网格图</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">j</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">k</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+<span class="n">envtest</span><span class="o">.</span><span class="n">mesh</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span> <span class="n">opts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;window_36f18bc533e990&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">3.1.26.7. </span>更新损失函数<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<p>在训练的时候我们每一批次都会打印一下训练的损失和测试的准确率，这样展示的图表是需要动态增加数据的，下面我们来模拟一下这种情况</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">env2</span> <span class="o">=</span> <span class="n">Visdom</span><span class="p">()</span>
+<span class="n">pane1</span><span class="o">=</span> <span class="n">env2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
+    <span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">]),</span>
+    <span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">y</span><span class="p">]),</span>
+    <span class="n">opts</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;dynamic data&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#每隔一秒钟打印一次数据</span>
+    <span class="n">x</span><span class="o">+=</span><span class="n">i</span>
+    <span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="mf">1.5</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">env2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
+        <span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">]),</span>
+        <span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">y</span><span class="p">]),</span>
+        <span class="n">win</span><span class="o">=</span><span class="n">pane1</span><span class="p">,</span><span class="c1">#win参数确认使用哪一个pane</span>
+        <span class="n">update</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">)</span> <span class="c1">#我们做的动作是追加，除了追加意外还有其他方式，这里我们不做介绍了</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="mf">0.0</span>
+<span class="mi">1</span> <span class="mf">1.5</span>
+<span class="mi">3</span> <span class="mf">5.25</span>
+<span class="mi">6</span> <span class="mf">12.375</span>
+<span class="mi">10</span> <span class="mf">24.5625</span>
+<span class="mi">15</span> <span class="mf">44.34375</span>
+<span class="mi">21</span> <span class="mf">75.515625</span>
+<span class="mi">28</span> <span class="mf">123.7734375</span>
+<span class="mi">36</span> <span class="mf">197.66015625</span>
+<span class="mi">45</span> <span class="mf">309.990234375</span>
+</pre></div>
+</div>
+<p>在运行完上述程序时，切换到visdom，看看效果吧</p>
+<p>visdom的基本用法介绍完毕，下一节介绍更加强大的 tensorboardx</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="4.1-fine-tuning.html" class="btn btn-neutral float-left" title="3.1.25. 4.1 Fine tuning 模型微调" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="4.2.2-tensorboardx.html" class="btn btn-neutral float-right" title="3.1.27. 4.2.2 使用Tensorboard在 PyTorch 中进行可视化" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

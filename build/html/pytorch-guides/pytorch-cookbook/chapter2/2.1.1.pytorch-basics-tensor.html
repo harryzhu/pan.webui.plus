@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.12. PyTorch 基础 : 张量 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../../about.html" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="3.1.13. 使用PyTorch计算梯度数值" href="2.1.2-pytorch-basics-autograd.html" />
+    <link rel="prev" title="3.1.11. PyTorch 中文手册第一章 ： PyTorch入门" href="../chapter1/readme.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">3. Pytorch 教程</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">3.1. Pytorch 快速入门</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.1-pytorch-introduction.html">3.1.1. 1.1 Pytorch 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html">3.1.2. 1.2 Pytorch环境搭建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html#id1">3.1.3. 1.2.1 安装Pytorch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.3-deep-learning-with-pytorch-60-minute-blitz.html">3.1.4. PyTorch 深度学习:60分钟快速入门 （官方）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.4-pytorch-resource.html">3.1.5. 相关资源列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1_tensor_tutorial.html">3.1.6. PyTorch是什么?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/2_autograd_tutorial.html">3.1.7. Autograd: 自动求导机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/3_neural_networks_tutorial.html">3.1.8. Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/4_cifar10_tutorial.html">3.1.9. 训练一个分类器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/5_data_parallel_tutorial.html">3.1.10. 数据并行（选读）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/readme.html">3.1.11. PyTorch 中文手册第一章 ： PyTorch入门</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.12. PyTorch 基础 : 张量</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tensor">3.1.12.1. 张量(Tensor)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.2-pytorch-basics-autograd.html">3.1.13. 使用PyTorch计算梯度数值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.3-pytorch-basics-nerual-network.html">3.1.14. PyTorch 基础 : 神经网络包nn和优化器optm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.1.4-pytorch-basics-data-loader.html">3.1.15. PyTorch 基础 :数据的加载和预处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.2-deep-learning-basic-mathematics.html">3.1.16. 2.2 深度学习基础及数学原理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.3-deep-learning-neural-network-introduction.html">3.1.17. 2.3 神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.4-cnn.html">3.1.18. 2.4 卷积神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2.5-rnn.html">3.1.19. 2.5 循环神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html">3.1.20. Pytorch 中文手册第二章 ： 基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.1-logistic-regression.html">3.1.21. 3.1 logistic回归实战</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.2-mnist.html">3.1.22. 3.2  MNIST数据集手写数字识别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.3-rnn.html">3.1.23. 3.3 通过Sin预测Cos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/readme.html">3.1.24. Pytorch 中文手册第三章 ： 实践</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.1-fine-tuning.html">3.1.25. 4.1 Fine tuning 模型微调</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.1-visdom.html">3.1.26. 4.2.1 使用Visdom在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.2-tensorboardx.html">3.1.27. 4.2.2 使用Tensorboard在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.3-cnn-visualizing.html">3.1.28. 4.2.3 可视化理解卷积神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.2.3-cnn-visualizing.html#backpropagation">3.1.29. 基于Backpropagation的方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.3-fastai.html">3.1.30. 4.3 fastai</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/4.5-multiply-gpu-parallel-training.html">3.1.31. 4.5 多GPU并行训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/distributed_data_parallel.html">3.1.32. 在PyTorch中使用DistributedDataParallel进行多GPU分布式模型训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter4/readme.html">3.1.33. Pytorch 中文手册第四章 ： 提高</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.1-kaggle.html">3.1.34. 5.1 kaggle介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.2-Structured-Data.html">3.1.35. 5.2 Pytorch处理结构化数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.3-Fashion-MNIST.html">3.1.36. Fashion MNIST进行分类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/readme.html">3.1.37. Pytorch 中文手册第五章 ： 应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../style-guides/index.html">4. 编程语言 风格指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">7. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><span class="section-number">3. </span>Pytorch 教程</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3.1. </span>Pytorch 快速入门</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.1.12. </span>PyTorch 基础 : 张量</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pytorch-guides/pytorch-cookbook/chapter2/2.1.1.pytorch-basics-tensor.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pytorch">
+<h1><span class="section-number">3.1.12. </span>PyTorch 基础 : 张量<a class="headerlink" href="#pytorch" title="Permalink to this heading"></a></h1>
+<p>在第一章中我们已经通过官方的入门教程对PyTorch有了一定的了解，这一章会详细介绍PyTorch 里面的基础知识。
+全部掌握了这些基础知识，在后面的应用中才能更加快速进阶，如果你已经对PyTorch有一定的了解，可以跳过此章</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 首先要引入相关的包</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1">#打印一下版本</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;1.0.0&#39;</span>
+</pre></div>
+</div>
+<section id="tensor">
+<h2><span class="section-number">3.1.12.1. </span>张量(Tensor)<a class="headerlink" href="#tensor" title="Permalink to this heading"></a></h2>
+<p>张量的英文是Tensor，它是PyTorch里面基础的运算单位，与Numpy的ndarray相同都表示的是一个多维的矩阵。
+与ndarray的最大区别就是，PyTorch的Tensor可以在 GPU 上运行，而 numpy 的 ndarray 只能在 CPU 上运行，在GPU上运行大大加快了运算速度。</p>
+<p>下面我们生成一个简单的张量</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="mf">0.6904</span><span class="p">,</span> <span class="mf">0.7419</span><span class="p">,</span> <span class="mf">0.8010</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.1722</span><span class="p">,</span> <span class="mf">0.2442</span><span class="p">,</span> <span class="mf">0.8181</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>以上生成了一个，2行3列的的矩阵，我们看一下他的大小：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 可以使用与numpy相同的shape属性查看</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># 也可以使用size()函数，返回的结果都是相同的</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>张量（Tensor）是一个定义在一些向量空间和一些对偶空间的笛卡儿积上的多重线性映射，其坐标是|n|维空间内，有|n|个分量的一种量， 其中每个分量都是坐标的函数， 而在坐标变换时，这些分量也依照某些规则作线性变换。r称为该张量的秩或阶（与矩阵的秩和阶均无关系）。 (来自百度百科)</p>
+<p>下面我们来生成一些多维的张量：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+
+
+
+
+
+<span class="n">tensor</span><span class="p">([[[[</span><span class="mf">0.9071</span><span class="p">,</span> <span class="mf">0.0616</span><span class="p">,</span> <span class="mf">0.0006</span><span class="p">,</span> <span class="mf">0.6031</span><span class="p">,</span> <span class="mf">0.0714</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.6592</span><span class="p">,</span> <span class="mf">0.9700</span><span class="p">,</span> <span class="mf">0.0253</span><span class="p">,</span> <span class="mf">0.0726</span><span class="p">,</span> <span class="mf">0.5360</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.5416</span><span class="p">,</span> <span class="mf">0.1138</span><span class="p">,</span> <span class="mf">0.9592</span><span class="p">,</span> <span class="mf">0.6779</span><span class="p">,</span> <span class="mf">0.6501</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.0546</span><span class="p">,</span> <span class="mf">0.8287</span><span class="p">,</span> <span class="mf">0.7748</span><span class="p">,</span> <span class="mf">0.4352</span><span class="p">,</span> <span class="mf">0.9232</span><span class="p">]],</span>
+
+         <span class="p">[[</span><span class="mf">0.0730</span><span class="p">,</span> <span class="mf">0.4228</span><span class="p">,</span> <span class="mf">0.7407</span><span class="p">,</span> <span class="mf">0.4099</span><span class="p">,</span> <span class="mf">0.1482</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.5408</span><span class="p">,</span> <span class="mf">0.9156</span><span class="p">,</span> <span class="mf">0.6554</span><span class="p">,</span> <span class="mf">0.5787</span><span class="p">,</span> <span class="mf">0.9775</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.4262</span><span class="p">,</span> <span class="mf">0.3644</span><span class="p">,</span> <span class="mf">0.1993</span><span class="p">,</span> <span class="mf">0.4143</span><span class="p">,</span> <span class="mf">0.5757</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.9307</span><span class="p">,</span> <span class="mf">0.8839</span><span class="p">,</span> <span class="mf">0.8462</span><span class="p">,</span> <span class="mf">0.0933</span><span class="p">,</span> <span class="mf">0.6688</span><span class="p">]],</span>
+
+         <span class="p">[[</span><span class="mf">0.4447</span><span class="p">,</span> <span class="mf">0.0929</span><span class="p">,</span> <span class="mf">0.9882</span><span class="p">,</span> <span class="mf">0.5392</span><span class="p">,</span> <span class="mf">0.1159</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.4790</span><span class="p">,</span> <span class="mf">0.5115</span><span class="p">,</span> <span class="mf">0.4005</span><span class="p">,</span> <span class="mf">0.9486</span><span class="p">,</span> <span class="mf">0.0054</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.8955</span><span class="p">,</span> <span class="mf">0.8097</span><span class="p">,</span> <span class="mf">0.1227</span><span class="p">,</span> <span class="mf">0.2250</span><span class="p">,</span> <span class="mf">0.5830</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.8483</span><span class="p">,</span> <span class="mf">0.2070</span><span class="p">,</span> <span class="mf">0.1067</span><span class="p">,</span> <span class="mf">0.4727</span><span class="p">,</span> <span class="mf">0.5095</span><span class="p">]]],</span>
+
+
+        <span class="p">[[[</span><span class="mf">0.9438</span><span class="p">,</span> <span class="mf">0.2601</span><span class="p">,</span> <span class="mf">0.2885</span><span class="p">,</span> <span class="mf">0.5457</span><span class="p">,</span> <span class="mf">0.7528</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.2971</span><span class="p">,</span> <span class="mf">0.2171</span><span class="p">,</span> <span class="mf">0.3910</span><span class="p">,</span> <span class="mf">0.1924</span><span class="p">,</span> <span class="mf">0.2570</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.7491</span><span class="p">,</span> <span class="mf">0.9749</span><span class="p">,</span> <span class="mf">0.2703</span><span class="p">,</span> <span class="mf">0.2198</span><span class="p">,</span> <span class="mf">0.9472</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.1216</span><span class="p">,</span> <span class="mf">0.6647</span><span class="p">,</span> <span class="mf">0.8809</span><span class="p">,</span> <span class="mf">0.0125</span><span class="p">,</span> <span class="mf">0.5513</span><span class="p">]],</span>
+
+         <span class="p">[[</span><span class="mf">0.0870</span><span class="p">,</span> <span class="mf">0.6622</span><span class="p">,</span> <span class="mf">0.7252</span><span class="p">,</span> <span class="mf">0.4783</span><span class="p">,</span> <span class="mf">0.0160</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.7832</span><span class="p">,</span> <span class="mf">0.6050</span><span class="p">,</span> <span class="mf">0.7469</span><span class="p">,</span> <span class="mf">0.7947</span><span class="p">,</span> <span class="mf">0.8052</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.1755</span><span class="p">,</span> <span class="mf">0.4489</span><span class="p">,</span> <span class="mf">0.0602</span><span class="p">,</span> <span class="mf">0.8073</span><span class="p">,</span> <span class="mf">0.3028</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.9937</span><span class="p">,</span> <span class="mf">0.6780</span><span class="p">,</span> <span class="mf">0.9425</span><span class="p">,</span> <span class="mf">0.0059</span><span class="p">,</span> <span class="mf">0.0451</span><span class="p">]],</span>
+
+         <span class="p">[[</span><span class="mf">0.3851</span><span class="p">,</span> <span class="mf">0.8742</span><span class="p">,</span> <span class="mf">0.5932</span><span class="p">,</span> <span class="mf">0.4899</span><span class="p">,</span> <span class="mf">0.8354</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.8577</span><span class="p">,</span> <span class="mf">0.3705</span><span class="p">,</span> <span class="mf">0.0229</span><span class="p">,</span> <span class="mf">0.7097</span><span class="p">,</span> <span class="mf">0.7557</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.1505</span><span class="p">,</span> <span class="mf">0.3527</span><span class="p">,</span> <span class="mf">0.0843</span><span class="p">,</span> <span class="mf">0.0088</span><span class="p">,</span> <span class="mf">0.8741</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">0.6041</span><span class="p">,</span> <span class="mf">0.8797</span><span class="p">,</span> <span class="mf">0.6189</span><span class="p">,</span> <span class="mf">0.9495</span><span class="p">,</span> <span class="mf">0.1479</span><span class="p">]]]])</span>
+</pre></div>
+</div>
+<p>在同构的意义下，第零阶张量 （r = 0） 为标量 （Scalar），第一阶张量 （r = 1） 为向量 （Vector）， 第二阶张量 （r = 2） 则成为矩阵 （Matrix），第三阶以上的统称为多维张量。</p>
+<p>其中要特别注意的就是标量，我们先生成一个标量：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#我们直接使用现有数字生成</span>
+<span class="n">scalar</span> <span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">3.1433223</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scalar</span><span class="p">)</span>
+<span class="c1">#打印标量的大小</span>
+<span class="n">scalar</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">(</span><span class="mf">3.1433</span><span class="p">)</span>
+
+
+
+
+
+<span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([])</span>
+</pre></div>
+</div>
+<p>对于标量，我们可以直接使用 .item() 从中取出其对应的python对象的数值</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scalar</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">3.143322229385376</span>
+</pre></div>
+</div>
+<p>特别的：如果张量中只有一个元素的tensor也可以调用<code class="docutils literal notranslate"><span class="pre">tensor.item</span></code>方法</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">3.1433223</span><span class="p">])</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">tensor</span><span class="p">)</span>
+<span class="n">tensor</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([</span><span class="mf">3.1433</span><span class="p">])</span>
+
+
+
+
+
+<span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">3.143322229385376</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3><span class="section-number">3.1.12.1.1. </span>基本类型<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>Tensor的基本数据类型有五种：</p>
+<ul class="simple">
+<li><p>32位浮点型：torch.FloatTensor。 (默认)</p></li>
+<li><p>64位整型：torch.LongTensor。</p></li>
+<li><p>32位整型：torch.IntTensor。</p></li>
+<li><p>16位整型：torch.ShortTensor。</p></li>
+<li><p>64位浮点型：torch.DoubleTensor。</p></li>
+</ul>
+<p>除以上数字类型外，还有
+byte和chart型</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">long</span><span class="o">=</span><span class="n">tensor</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+<span class="n">long</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">half</span><span class="o">=</span><span class="n">tensor</span><span class="o">.</span><span class="n">half</span><span class="p">()</span>
+<span class="n">half</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([</span><span class="mf">3.1426</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">int_t</span><span class="o">=</span><span class="n">tensor</span><span class="o">.</span><span class="n">int</span><span class="p">()</span>
+<span class="n">int_t</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([</span><span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">flo</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+<span class="n">flo</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([</span><span class="mf">3.1433</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">short</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">short</span><span class="p">()</span>
+<span class="n">short</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([</span><span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ch</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">char</span><span class="p">()</span>
+<span class="n">ch</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([</span><span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bt</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">byte</span><span class="p">()</span>
+<span class="n">bt</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([</span><span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="numpy">
+<h3><span class="section-number">3.1.12.1.2. </span>Numpy转换<a class="headerlink" href="#numpy" title="Permalink to this heading"></a></h3>
+<p>使用numpy方法将Tensor转为ndarray</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="c1"># tensor转化为numpy</span>
+<span class="n">numpy_a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numpy_a</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span> <span class="mf">0.46819344</span>  <span class="mf">1.3774964</span> <span class="p">]</span>
+ <span class="p">[</span> <span class="mf">0.9491934</span>   <span class="mf">1.4543315</span> <span class="p">]</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.42792308</span>  <span class="mf">0.99790514</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>numpy转化为Tensor</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">torch_a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">numpy_a</span><span class="p">)</span>
+<span class="n">torch_a</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span> <span class="mf">0.4682</span><span class="p">,</span>  <span class="mf">1.3775</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">0.9492</span><span class="p">,</span>  <span class="mf">1.4543</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><span class="mf">0.4279</span><span class="p">,</span>  <span class="mf">0.9979</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p><em><strong>Tensor和numpy对象共享内存，所以他们之间的转换很快，而且几乎不会消耗什么资源。但这也意味着，如果其中一个变了，另外一个也会随之改变。</strong></em></p>
+</section>
+<section id="id2">
+<h3><span class="section-number">3.1.12.1.3. </span>设备间转换<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>一般情况下可以使用.cuda方法将tensor移动到gpu，这步操作需要cuda设备支持</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cpu_a</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">cpu_a</span><span class="o">.</span><span class="n">type</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;torch.FloatTensor&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gpu_a</span><span class="o">=</span><span class="n">cpu_a</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">gpu_a</span><span class="o">.</span><span class="n">type</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;torch.cuda.FloatTensor&#39;</span>
+</pre></div>
+</div>
+<p>使用.cpu方法将tensor移动到cpu</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cpu_b</span><span class="o">=</span><span class="n">gpu_a</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+<span class="n">cpu_b</span><span class="o">.</span><span class="n">type</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;torch.FloatTensor&#39;</span>
+</pre></div>
+</div>
+<p>如果我们有多GPU的情况，可以使用to方法来确定使用那个设备，这里只做个简单的实例：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#使用torch.cuda.is_available()来确定是否有cuda设备</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="c1">#将tensor传送到设备</span>
+<span class="n">gpu_b</span><span class="o">=</span><span class="n">cpu_b</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">gpu_b</span><span class="o">.</span><span class="n">type</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cuda</span>
+
+
+
+
+
+<span class="s1">&#39;torch.cuda.FloatTensor&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3><span class="section-number">3.1.12.1.4. </span>初始化<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>Pytorch中有许多默认的初始化方法可以使用</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用[0,1]均匀分布随机初始化二维数组</span>
+<span class="n">rnd</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">rnd</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="mf">0.3804</span><span class="p">,</span> <span class="mf">0.0297</span><span class="p">,</span> <span class="mf">0.5241</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.4111</span><span class="p">,</span> <span class="mf">0.8887</span><span class="p">,</span> <span class="mf">0.4642</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.7302</span><span class="p">,</span> <span class="mf">0.5913</span><span class="p">,</span> <span class="mf">0.7182</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.3048</span><span class="p">,</span> <span class="mf">0.8055</span><span class="p">,</span> <span class="mf">0.2176</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.6195</span><span class="p">,</span> <span class="mf">0.1620</span><span class="p">,</span> <span class="mf">0.7726</span><span class="p">]])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##初始化，使用1填充</span>
+<span class="n">one</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">one</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##初始化，使用0填充</span>
+<span class="n">zero</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">zero</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#初始化一个单位矩阵，即对角线为1 其他为0</span>
+<span class="n">eye</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">eye</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]])</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3><span class="section-number">3.1.12.1.5. </span>常用方法<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>PyTorch中对张量的操作api 和 NumPy 非常相似，如果熟悉 NumPy 中的操作，那么他们二者基本是一致的：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span> <span class="mf">0.6922</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4824</span><span class="p">,</span>  <span class="mf">0.8594</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">0.4509</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8155</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0368</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">1.3533</span><span class="p">,</span>  <span class="mf">0.5545</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0509</span><span class="p">]])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 沿着行取最大值</span>
+<span class="n">max_value</span><span class="p">,</span> <span class="n">max_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">max_value</span><span class="p">,</span> <span class="n">max_idx</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.8594</span><span class="p">,</span> <span class="mf">0.4509</span><span class="p">,</span> <span class="mf">1.3533</span><span class="p">])</span> <span class="n">tensor</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 每行 x 求和</span>
+<span class="n">sum_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sum_x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([</span> <span class="mf">1.0692</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4014</span><span class="p">,</span>  <span class="mf">1.8568</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.3821</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.6932</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.3884</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">0.7468</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7697</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0883</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">0.7688</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.3485</span><span class="p">,</span>  <span class="mf">0.7517</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>正如官方60分钟教程中所说，以_为结尾的，均会改变调用值</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># add 完成后x的值改变了</span>
+<span class="n">x</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.3821</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.6932</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.3884</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">0.7468</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7697</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0883</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">0.7688</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.3485</span><span class="p">,</span>  <span class="mf">0.7517</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>张量的基本操作都介绍的的差不多了，下一章介绍PyTorch的自动求导机制</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../chapter1/readme.html" class="btn btn-neutral float-left" title="3.1.11. PyTorch 中文手册第一章 ： PyTorch入门" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="2.1.2-pytorch-basics-autograd.html" class="btn btn-neutral float-right" title="3.1.13. 使用PyTorch计算梯度数值" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

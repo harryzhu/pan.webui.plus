@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.1.28. 4.2.3 可视化理解卷积神经网络 &mdash; AI 模型国内加速  文档</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/style.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="关于这些文档" href="../../../about.html" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="3.1.30. 4.3 fastai" href="4.3-fastai.html" />
+    <link rel="prev" title="3.1.27. 4.2.2 使用Tensorboard在 PyTorch 中进行可视化" href="4.2.2-tensorboardx.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            AI 模型国内加速
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">3. Pytorch 教程</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">3.1. Pytorch 快速入门</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.1-pytorch-introduction.html">3.1.1. 1.1 Pytorch 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html">3.1.2. 1.2 Pytorch环境搭建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.2-pytorch-installation.html#id1">3.1.3. 1.2.1 安装Pytorch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.3-deep-learning-with-pytorch-60-minute-blitz.html">3.1.4. PyTorch 深度学习:60分钟快速入门 （官方）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1.4-pytorch-resource.html">3.1.5. 相关资源列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/1_tensor_tutorial.html">3.1.6. PyTorch是什么?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/2_autograd_tutorial.html">3.1.7. Autograd: 自动求导机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/3_neural_networks_tutorial.html">3.1.8. Neural Networks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/4_cifar10_tutorial.html">3.1.9. 训练一个分类器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/5_data_parallel_tutorial.html">3.1.10. 数据并行（选读）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter1/readme.html">3.1.11. PyTorch 中文手册第一章 ： PyTorch入门</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.1.pytorch-basics-tensor.html">3.1.12. PyTorch 基础 : 张量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.2-pytorch-basics-autograd.html">3.1.13. 使用PyTorch计算梯度数值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.3-pytorch-basics-nerual-network.html">3.1.14. PyTorch 基础 : 神经网络包nn和优化器optm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.1.4-pytorch-basics-data-loader.html">3.1.15. PyTorch 基础 :数据的加载和预处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.2-deep-learning-basic-mathematics.html">3.1.16. 2.2 深度学习基础及数学原理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.3-deep-learning-neural-network-introduction.html">3.1.17. 2.3 神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.4-cnn.html">3.1.18. 2.4 卷积神经网络简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/2.5-rnn.html">3.1.19. 2.5 循环神经网络</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter2/readme.html">3.1.20. Pytorch 中文手册第二章 ： 基础</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.1-logistic-regression.html">3.1.21. 3.1 logistic回归实战</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.2-mnist.html">3.1.22. 3.2  MNIST数据集手写数字识别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/3.3-rnn.html">3.1.23. 3.3 通过Sin预测Cos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter3/readme.html">3.1.24. Pytorch 中文手册第三章 ： 实践</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.1-fine-tuning.html">3.1.25. 4.1 Fine tuning 模型微调</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.2.1-visdom.html">3.1.26. 4.2.1 使用Visdom在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.2.2-tensorboardx.html">3.1.27. 4.2.2 使用Tensorboard在 PyTorch 中进行可视化</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.28. 4.2.3 可视化理解卷积神经网络</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">3.1.28.1. 背景</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deconvolution">3.1.28.2. 基于Deconvolution的方法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#backpropagation">3.1.29. 基于Backpropagation的方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#guided-backpropagation">3.1.29.1. Guided-Backpropagation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cam-class-activation-map">3.1.29.2. CAM（Class Activation Map）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grad-cam">3.1.29.3. Grad-CAM</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="4.3-fastai.html">3.1.30. 4.3 fastai</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4.5-multiply-gpu-parallel-training.html">3.1.31. 4.5 多GPU并行训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed_data_parallel.html">3.1.32. 在PyTorch中使用DistributedDataParallel进行多GPU分布式模型训练</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html">3.1.33. Pytorch 中文手册第四章 ： 提高</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.1-kaggle.html">3.1.34. 5.1 kaggle介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.2-Structured-Data.html">3.1.35. 5.2 Pytorch处理结构化数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/5.3-Fashion-MNIST.html">3.1.36. Fashion MNIST进行分类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chapter5/readme.html">3.1.37. Pytorch 中文手册第五章 ： 应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../style-guides/index.html">4. 编程语言 风格指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">7. 关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">AI 模型国内加速</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><span class="section-number">3. </span>Pytorch 教程</a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3.1. </span>Pytorch 快速入门</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.1.28. </span>4.2.3 可视化理解卷积神经网络</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/pytorch-guides/pytorch-cookbook/chapter4/4.2.3-cnn-visualizing.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
+<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">models</span><span class="p">,</span><span class="n">datasets</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;1.0.0&#39;</span>
+</pre></div>
+</div>
+<section id="id1">
+<h1><span class="section-number">3.1.28. </span>4.2.3 可视化理解卷积神经网络<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p>在上一节中我们已经通过一个预训练的VGG16模型对一张图片进行了分类，下面我们粘贴上一节的代码</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cat_img</span><span class="o">=</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;./1280px-Felis_silvestris_catus_lying_on_rice_straw.jpg&#39;</span><span class="p">)</span>
+<span class="n">transform_224</span><span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="mi">224</span><span class="p">),</span> 
+    <span class="n">transforms</span><span class="o">.</span><span class="n">CenterCrop</span><span class="p">((</span><span class="mi">224</span><span class="p">,</span><span class="mi">224</span><span class="p">)),</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+    <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">],</span>
+                                <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">])</span>
+<span class="p">])</span>
+
+
+<span class="n">cat_img_224</span><span class="o">=</span><span class="n">transform_224</span><span class="p">(</span><span class="n">cat_img</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>上面的代码是我们读取了一张图片，并对图片进行了一些预处理，下面我们来创建vgg16的预训练好网络模型</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">net</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">vgg16</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="c1"># 修改这里可以更换其他与训练的模型</span>
+<span class="n">inputs</span><span class="o">=</span><span class="n">cat_img_224</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="c1">#这两个方法都可以cat_img_224[None,::]</span>
+</pre></div>
+</div>
+<p>进行一次前向的传播，看看得到了什么结果</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">preds</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">preds</span>
+<span class="n">label</span><span class="o">=</span><span class="n">preds</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">label</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">287</span>
+</pre></div>
+</div>
+<p>我们看到了，这里返回的是285，代码几乎一样，但是返回的结果与上一节的样例有差别，这是什么原因呢？
+首先我们先看一下这个数字的含义，我们使用的是通过imagenet来作为预训练的模型，imagenet里面有1000个分类，我们如何去找这个含义呢？
+有好心人已经给我们准备好了 <a class="reference external" href="https://gist.githubusercontent.com/yrevar/942d3a0ac09ec9e5eb3a/raw/c2c91c8e767d04621020c30ed31192724b863041/imagenet1000_clsid_to_human.txt">这个连接</a>
+我们找一下 285: ‘Egyptian cat’, 说明识别出了是一只猫，种类还是埃及猫，应该还是比较准确的，但是这张图片是我特意寻找的，里面包含了很多隐藏的细节，这里就不多介绍了，大家如果有兴趣，可以换一个模型，或者修改下transforms方法，看看模型都会识别出来是什么类别。</p>
+<p>注：不同的预训练权重也会出现不同的结果，我测试出现过277，282，287等结果</p>
+<p>下面我们开始进入正题，卷积神经网络的可视化</p>
+<section id="id2">
+<h2><span class="section-number">3.1.28.1. </span>背景<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>CNN模型虽然在图像处理上表现出非常良好的性能和准确性，但一直以来都被认为是一个黑盒模型，人们无法了解里面的工作机制。
+针对这个问题，研究人员除了从理论层面去寻找解释外，也提出了一些可视化的方法直观地理解CNN的内部机理，毕竟眼见为实，看到了大家就相信了。
+这里介绍两类方法，一种是基于Deconvolution, 另一种则是基于反向传播的方法。我们主要使用代码实现基于反向传播的方法的可视化。</p>
+</section>
+<section id="deconvolution">
+<h2><span class="section-number">3.1.28.2. </span>基于Deconvolution的方法<a class="headerlink" href="#deconvolution" title="Permalink to this heading"></a></h2>
+<p><a class="reference external" href="https://arxiv.org/abs/1311.2901">Visualizing and Understanding Convolutional Networks</a>
+主要是将激活函数的特征映射回像素空间，来揭示什么样的输入模式能够产生特定的输出,因为网络是有层级关系的，所以越靠近输出的层级学到的特征越抽象，与实际任务越相关，这里就不多介绍了，<a class="reference external" href="https://github.com/saketd403/Visualizing-and-Understanding-Convolutional-neural-networks">这里</a>有一个使用 keras的实现，有兴趣的可以看看</p>
+</section>
+</section>
+<section id="backpropagation">
+<h1><span class="section-number">3.1.29. </span>基于Backpropagation的方法<a class="headerlink" href="#backpropagation" title="Permalink to this heading"></a></h1>
+<p>另外一类的实现就是基于Backpropagation的方法，这里我们主要进行介绍，在介绍之前，我们首先要引用一下别人写的代码
+<a class="reference external" href="https://github.com/utkuozbulak/pytorch-cnn-visualizations">pytorch-cnn-visualizations </a>,将这个代码的src目录放到与这个notebook同级别目录下，我们后面会直接调用他的代码进行演示操作。</p>
+<p>首先，我们做一些准备工作</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;./src/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">rgb2gray</span><span class="p">(</span><span class="n">rgb</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">rgb</span><span class="p">[</span><span class="o">...</span><span class="p">,:</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.299</span><span class="p">,</span> <span class="mf">0.587</span><span class="p">,</span> <span class="mf">0.114</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">rescale_grads</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span><span class="n">gradtype</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">gradtype</span><span class="o">==</span><span class="s2">&quot;pos&quot;</span><span class="p">):</span>    
+        <span class="nb">map</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">map</span><span class="p">)</span> <span class="o">/</span> <span class="nb">map</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="k">elif</span> <span class="n">gradtype</span><span class="o">==</span><span class="s2">&quot;neg&quot;</span><span class="p">:</span>
+        <span class="nb">map</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="nb">map</span><span class="p">)</span> <span class="o">/</span> <span class="o">-</span><span class="nb">map</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">map</span> <span class="o">=</span> <span class="nb">map</span> <span class="o">-</span> <span class="nb">map</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="nb">map</span> <span class="o">/=</span> <span class="nb">map</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">map</span>
+</pre></div>
+</div>
+<section id="guided-backpropagation">
+<h2><span class="section-number">3.1.29.1. </span>Guided-Backpropagation<a class="headerlink" href="#guided-backpropagation" title="Permalink to this heading"></a></h2>
+<p>这个方法来自于ICLR-2015 的文章<a class="reference external" href="https://arxiv.org/abs/1412.6806">《Striving for Simplicity: The All Convolutional Net》</a>，文中提出了使用stride convolution 替代pooling 操作，这样整个结构都只有卷积操作。作者为了研究这种结构的有效性，提出了guided-backpropagation的方法。</p>
+<p>大致的方法为：选择某一种输出模式，然后通过反向传播计算输出对输入的梯度。这种方式与上一种deconvnet的方式的唯一区别在于对ReLU梯度的处理。</p>
+<p>ReLU在反向传播的计算采用的前向传播的特征作为门阀，而deconvnet采用的是梯度值，guided-backpropagation则将两者组合在一起使用，这样有助于得到的重构都是正数。</p>
+<p>这段话可能有点绕，具体细节还是看论文吧,我们这里只关注如何实现</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span><span class="o">.</span><span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span> <span class="c1"># 这句话必须要有，否则会报错</span>
+<span class="kn">from</span> <span class="nn">guided_backprop</span> <span class="kn">import</span> <span class="n">GuidedBackprop</span> <span class="c1">#这里直接引用写好的方法，在src，目录找想对应的文件</span>
+<span class="n">GB</span><span class="o">=</span><span class="n">GuidedBackprop</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+<span class="n">gp_grads</span><span class="o">=</span><span class="n">GB</span><span class="o">.</span><span class="n">generate_gradients</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+<span class="n">gp_grads</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">gp_grads</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#我们分别计算三类的gp</span>
+<span class="n">ag</span><span class="o">=</span><span class="n">rescale_grads</span><span class="p">(</span><span class="n">gp_grads</span><span class="p">,</span><span class="n">gradtype</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="n">pg</span><span class="o">=</span><span class="n">rescale_grads</span><span class="p">(</span><span class="n">gp_grads</span><span class="p">,</span><span class="n">gradtype</span><span class="o">=</span><span class="s2">&quot;pos&quot;</span><span class="p">)</span>
+<span class="n">ng</span><span class="o">=</span><span class="n">rescale_grads</span><span class="p">(</span><span class="n">gp_grads</span><span class="p">,</span><span class="n">gradtype</span><span class="o">=</span><span class="s2">&quot;neg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>下面我们使用matplotlib看看结果</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cat_img</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">AxesImage</span> <span class="n">at</span> <span class="mh">0x23d840392e8</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_15_1.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ag</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">AxesImage</span> <span class="n">at</span> <span class="mh">0x23d8441c7f0</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_16_11.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ng</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">AxesImage</span> <span class="n">at</span> <span class="mh">0x23d84487080</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_17_1.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ag</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">AxesImage</span> <span class="n">at</span> <span class="mh">0x23d854b44e0</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_18_1.png" /></p>
+<p>上面三张图是rbg三个通道的展示结果，下面我们合并成一个通道再看一下</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gag</span><span class="o">=</span><span class="n">rgb2gray</span><span class="p">(</span><span class="n">ag</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gag</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">AxesImage</span> <span class="n">at</span> <span class="mh">0x23d8550fe80</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_20_1.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gpg</span><span class="o">=</span><span class="n">rgb2gray</span><span class="p">(</span><span class="n">pg</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gpg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">AxesImage</span> <span class="n">at</span> <span class="mh">0x23d85576710</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_21_1.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gng</span><span class="o">=</span><span class="n">rgb2gray</span><span class="p">(</span><span class="n">ng</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">gng</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">AxesImage</span> <span class="n">at</span> <span class="mh">0x23d855d4fd0</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_22_1.png" /></p>
+</section>
+<section id="cam-class-activation-map">
+<h2><span class="section-number">3.1.29.2. </span>CAM（Class Activation Map）<a class="headerlink" href="#cam-class-activation-map" title="Permalink to this heading"></a></h2>
+<p>这个方法严格来说不是基于梯度的，但是后面我们会将反向传播与CAM整合，所以简单的对CAM做个说明。</p>
+<p>CAM 来自CVPR 2016 <a class="reference external" href="https://arxiv.org/abs/1512.04150">《Learning Deep Features for Discriminative Localization》</a>，作者在研究global average pooling（GAP）时，发现GAP不止作为一种正则，减轻过拟合，在稍加改进后，可以使得CNN具有定位的能力，CAM（class activation map）是指输入中的什么区域能够指示CNN进行正确的识别。</p>
+<p>通常特征图上每个位置的值在存在其感知野里面某种模式时被激活，最后的class activation map是这些模式的线性组合，我们可以通过上采样，将class activation map 还原到与原图一样的大小，通过叠加，我们就可以知道哪些区域是与最后分类结果息息相关的部分。</p>
+<p>这里就不介绍了</p>
+</section>
+<section id="grad-cam">
+<h2><span class="section-number">3.1.29.3. </span>Grad-CAM<a class="headerlink" href="#grad-cam" title="Permalink to this heading"></a></h2>
+<p><a class="reference external" href="https://arxiv.org/abs/1610.02391">Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization</a></p>
+<p>顾名思义 Grad-CAM的加权系数是通过反向传播得到的，而CAM的特征加权系数是分类器的权值。</p>
+<p>Grad-CAM 与 CAM相比，它的优点是适用的范围更广，Grad-CAM对各类结构，各种任务都可以使用。这两种方法也可以应用于进行弱监督下的目标检测，后续也有相关工作基于它们进行改进来做弱监督目标检测。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">gradcam</span> <span class="kn">import</span> <span class="n">GradCam</span>
+<span class="kn">from</span> <span class="nn">guided_gradcam</span> <span class="kn">import</span> <span class="n">guided_grad_cam</span>
+<span class="kn">from</span> <span class="nn">guided_backprop</span> <span class="kn">import</span> <span class="n">GuidedBackprop</span>
+<span class="n">nlayers</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">_modules</span><span class="o">.</span><span class="n">items</span><span class="p">())</span><span class="o">-</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nlayers</span><span class="p">)</span> <span class="c1"># 打印一下一共有多少层</span>
+<span class="n">cam_list</span><span class="o">=</span><span class="p">[]</span>
+<span class="c1">#下面我们循环每一层</span>
+
+<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nlayers</span><span class="p">):</span>
+    <span class="c1">#GradCam</span>
+    <span class="n">grad_cam</span> <span class="o">=</span> <span class="n">GradCam</span><span class="p">(</span><span class="n">net</span><span class="p">,</span><span class="n">target_layer</span><span class="o">=</span><span class="n">layer</span><span class="p">)</span>
+    <span class="n">cam</span> <span class="o">=</span> <span class="n">grad_cam</span><span class="o">.</span><span class="n">generate_cam</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+    
+    <span class="c1">#GuidedBackprop</span>
+    <span class="n">GBP</span> <span class="o">=</span> <span class="n">GuidedBackprop</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+    <span class="n">guided_grads</span> <span class="o">=</span> <span class="n">GBP</span><span class="o">.</span><span class="n">generate_gradients</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+    
+    <span class="c1"># Guided Grad cam</span>
+    <span class="n">cam_gb</span> <span class="o">=</span> <span class="n">guided_grad_cam</span><span class="p">(</span><span class="n">cam</span><span class="p">,</span> <span class="n">guided_grads</span><span class="p">)</span>
+    <span class="n">cam_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rgb2gray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">cam_gb</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">30</span>
+</pre></div>
+</div>
+<p>我们选个图，看看效果</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cam_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">AxesImage</span> <span class="n">at</span> <span class="mh">0x23d858b7588</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><img alt="png" src="../../../_images/output_27_1.png" /></p>
+<p>在 Visualizing and Understanding Convolutional Networks  中作者还给出了其他不同的方法，这里就不详细说明了</p>
+<p>需要注意的是，在使用 Visualizing and Understanding Convolutional Networks的时候，对网络模型是有要求的，要求网络将模型包含名为features的组合层，这部分是代码中写死的，所以在pytorch的内置模型中，vgg、alexnet、densenet、squeezenet是可以直接使用的，inception(googlenet)和resnet没有名为features的组合层，如果要使用的话是需要对代码进行修改的。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="4.2.2-tensorboardx.html" class="btn btn-neutral float-left" title="3.1.27. 4.2.2 使用Tensorboard在 PyTorch 中进行可视化" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="4.3-fastai.html" class="btn btn-neutral float-right" title="3.1.30. 4.3 fastai" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2024.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+  
+<div class="view_counter">
+      <img class="img_view_counter" src="https://s01.flagcounter.com/count2/m02K/bg_FFFFFF/txt_F77B1B/border_CCCCCC/columns_3/maxflags_6/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="View Counter" border="0" />
+</div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="版本">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Read the Docs</span>
+        v: latest
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>版本</dt>
+            <dd><a href="#">latest</a></dd>
+        </dl>
+    </div>
+</div>
+
+</body>
+</html>

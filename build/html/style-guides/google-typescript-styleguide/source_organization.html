@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.5.4. 代码管理 &mdash; AI 模型国内加速  文档</title>
+  <title>4.5.4. 代码管理 &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
@@ -24,8 +24,8 @@
     <link rel="author" title="关于这些文档" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="3.5.5. 类型系统" href="type_system.html" />
-    <link rel="prev" title="3.5.3. 语言特性" href="language.html" /> 
+    <link rel="next" title="4.5.5. 类型系统" href="type_system.html" />
+    <link rel="prev" title="4.5.3. 语言特性" href="language.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,36 +51,37 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. 编程语言 风格指南</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">3.1. Uber Go语言规范 中文</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../uber_go_style_en.html">3.2. Uber Go Style Guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">3.3. Google: Python 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">3.4. Google: Shell 风格指南</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="contents.html">3.5. Google: TypeScript 风格指南</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="introduction.html">3.5.1. 导言</a></li>
-<li class="toctree-l3"><a class="reference internal" href="syntax.html">3.5.2. 语法规范</a></li>
-<li class="toctree-l3"><a class="reference internal" href="language.html">3.5.3. 语言特性</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">3.5.4. 代码管理</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#ts-modules">3.5.4.1. 模块</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ts-exports">3.5.4.2. 导出</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ts-imports-source-organization">3.5.4.3. 导入</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ts-organize-by-feature">3.5.4.4. 根据特征组织代码</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytorch-guides/index.html">3. Pytorch 教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 风格指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../uber_go/uber_go_style_en.html">4.1. Uber: Go Style Guide - English</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uber_go_cn/index.html">4.2. Uber: Go语言 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-python-styleguide/contents.html">4.3. Google: Python 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-shell-styleguide/contents.html">4.4. Google: Shell 风格指南</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="contents.html">4.5. Google: TypeScript 风格指南</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">4.5.1. 导言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syntax.html">4.5.2. 语法规范</a></li>
+<li class="toctree-l3"><a class="reference internal" href="language.html">4.5.3. 语言特性</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4.5.4. 代码管理</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ts-modules">4.5.4.1. 模块</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-exports">4.5.4.2. 导出</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-imports-source-organization">4.5.4.3. 导入</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ts-organize-by-feature">4.5.4.4. 根据特征组织代码</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="type_system.html">3.5.5. 类型系统</a></li>
-<li class="toctree-l3"><a class="reference internal" href="consistency.html">3.5.6. 一致性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="type_system.html">4.5.5. 类型系统</a></li>
+<li class="toctree-l3"><a class="reference internal" href="consistency.html">4.5.6. 一致性</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">3.6. Google: Javascript 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">3.7. Google: HTML/CSS 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">3.8. Google: C++ 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">3.9. Google: Objective-C 风格指南</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">3.10. Google: Java 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-javascript-styleguide/contents.html">4.6. Google: Javascript 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-html-css-styleguide/contents.html">4.7. Google: HTML/CSS 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-cpp-styleguide/contents.html">4.8. Google: C++ 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-objc-styleguide/contents.html">4.9. Google: Objective-C 风格指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../google-java-styleguide/contents.html">4.10. Google: Java 风格指南</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">4. 编程语言 语法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coding/index.html">5. 编程语言 语法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">7. 关于</a></li>
 </ul>
 
         </div>
@@ -97,9 +98,9 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>编程语言 风格指南</a></li>
-          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">3.5. </span>Google: TypeScript 风格指南</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3.5.4. </span>代码管理</li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 风格指南</a></li>
+          <li class="breadcrumb-item"><a href="contents.html"><span class="section-number">4.5. </span>Google: TypeScript 风格指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.5.4. </span>代码管理</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/style-guides/google-typescript-styleguide/source_organization.rst.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -110,11 +111,11 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1><span class="section-number">3.5.4. </span>代码管理<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">4.5.4. </span>代码管理<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="ts-modules">
-<span id="id2"></span><h2><span class="section-number">3.5.4.1. </span>模块<a class="headerlink" href="#ts-modules" title="Permalink to this heading"></a></h2>
+<span id="id2"></span><h2><span class="section-number">4.5.4.1. </span>模块<a class="headerlink" href="#ts-modules" title="Permalink to this heading"></a></h2>
 <section id="import-paths">
-<span id="id3"></span><h3><span class="section-number">3.5.4.1.1. </span>导入路径<a class="headerlink" href="#import-paths" title="Permalink to this heading"></a></h3>
+<span id="id3"></span><h3><span class="section-number">4.5.4.1.1. </span>导入路径<a class="headerlink" href="#import-paths" title="Permalink to this heading"></a></h3>
 <p>TypeScript 代码必须使用路径进行导入。这里的路径既可以是相对路径，以 <code class="docutils literal notranslate"><span class="pre">.</span></code> 或 <code class="docutils literal notranslate"><span class="pre">..</span></code> 开头，也可以是从项目根目录开始的绝对路径，如 <code class="docutils literal notranslate"><span class="pre">root/path/to/file</span></code> 。</p>
 <p>在引用逻辑上属于同一项目的文件时，应使用相对路径 <code class="docutils literal notranslate"><span class="pre">./foo</span></code> ，不要使用绝对路径 <code class="docutils literal notranslate"><span class="pre">path/to/foo</span></code> 。</p>
 <p>应尽可能地限制父层级的数量（避免出现诸如 <code class="docutils literal notranslate"><span class="pre">../../../</span></code> 的路径），过多的层级会导致模块和路径结构难以理解。</p>
@@ -125,7 +126,7 @@
 </div>
 </section>
 <section id="namespaces-vs-modules">
-<span id="id4"></span><h3><span class="section-number">3.5.4.1.2. </span>用 命名空间 还是 模块？<a class="headerlink" href="#namespaces-vs-modules" title="Permalink to this heading"></a></h3>
+<span id="id4"></span><h3><span class="section-number">4.5.4.1.2. </span>用 命名空间 还是 模块？<a class="headerlink" href="#namespaces-vs-modules" title="Permalink to this heading"></a></h3>
 <p>在 TypeScript 有两种组织代码的方式：命名空间（namespace）和模块（module）。</p>
 <p>不允许使用命名空间，在 TypeScript 中必须使用模块（即 <a class="reference external" href="http://exploringjs.com/es6/ch_modules.html">ES6 模块</a> ）。也就是说，在引用其它文件中的代码时必须以 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">{foo}</span> <span class="pre">from</span> <span class="pre">'bar'</span></code> 的形式进行导入和导出。</p>
 <p>不允许使用 <code class="docutils literal notranslate"><span class="pre">namespace</span> <span class="pre">Foo</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code> 的形式组织代码。命名空间只能在所用的外部第三方库有要求时才能使用。如果需要在语义上对代码划分命名空间，应当通过分成不同文件的方式实现。</p>
@@ -149,7 +150,7 @@
 </section>
 </section>
 <section id="ts-exports">
-<span id="id5"></span><h2><span class="section-number">3.5.4.2. </span>导出<a class="headerlink" href="#ts-exports" title="Permalink to this heading"></a></h2>
+<span id="id5"></span><h2><span class="section-number">4.5.4.2. </span>导出<a class="headerlink" href="#ts-exports" title="Permalink to this heading"></a></h2>
 <p>代码中必须使用具名的导出声明。</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Use named exports:</span>
 <span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Foo</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
@@ -203,11 +204,11 @@
 </pre></div>
 </div>
 <section id="ts-export-visibility">
-<span id="id6"></span><h3><span class="section-number">3.5.4.2.1. </span>导出可见性<a class="headerlink" href="#ts-export-visibility" title="Permalink to this heading"></a></h3>
+<span id="id6"></span><h3><span class="section-number">4.5.4.2.1. </span>导出可见性<a class="headerlink" href="#ts-export-visibility" title="Permalink to this heading"></a></h3>
 <p>TypeScript 不支持限制导出符号的可见性。因此，不要导出不用于模块以外的符号。一般来说，应当尽量减小模块的外部 API 的规模。</p>
 </section>
 <section id="ts-mutable-exports">
-<span id="id7"></span><h3><span class="section-number">3.5.4.2.2. </span>可变导出<a class="headerlink" href="#ts-mutable-exports" title="Permalink to this heading"></a></h3>
+<span id="id7"></span><h3><span class="section-number">4.5.4.2.2. </span>可变导出<a class="headerlink" href="#ts-mutable-exports" title="Permalink to this heading"></a></h3>
 <p>虽然技术上可以实现，但是可变导出会造成难以理解和调试的代码，尤其是对于在多个模块中经过了多次重新导出的符号。这条规则的一个例子是，不允许使用 <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">let</span></code> 。</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
 <span class="k">export</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
@@ -238,7 +239,7 @@
 </div>
 </section>
 <section id="ts-container-classes">
-<span id="id8"></span><h3><span class="section-number">3.5.4.2.3. </span>容器类<a class="headerlink" href="#ts-container-classes" title="Permalink to this heading"></a></h3>
+<span id="id8"></span><h3><span class="section-number">4.5.4.2.3. </span>容器类<a class="headerlink" href="#ts-container-classes" title="Permalink to this heading"></a></h3>
 <p>不要为了实现命名空间创建含有静态方法或属性的容器类。</p>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 不要这样做！</span>
 <span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">Container</span><span class="w"> </span><span class="p">{</span>
@@ -256,7 +257,7 @@
 </section>
 </section>
 <section id="ts-imports-source-organization">
-<span id="id9"></span><h2><span class="section-number">3.5.4.3. </span>导入<a class="headerlink" href="#ts-imports-source-organization" title="Permalink to this heading"></a></h2>
+<span id="id9"></span><h2><span class="section-number">4.5.4.3. </span>导入<a class="headerlink" href="#ts-imports-source-organization" title="Permalink to this heading"></a></h2>
 <p>在 ES6 和 TypeScript 中，导入语句共有四种变体：</p>
 <table class="docutils align-default">
 <thead>
@@ -297,7 +298,7 @@
 </pre></div>
 </div>
 <section id="ts-module-versus-destructuring-imports">
-<span id="id10"></span><h3><span class="section-number">3.5.4.3.1. </span>选择模块导入还是解构导入？<a class="headerlink" href="#ts-module-versus-destructuring-imports" title="Permalink to this heading"></a></h3>
+<span id="id10"></span><h3><span class="section-number">4.5.4.3.1. </span>选择模块导入还是解构导入？<a class="headerlink" href="#ts-module-versus-destructuring-imports" title="Permalink to this heading"></a></h3>
 <p>根据使用场景的不同，模块导入和解构导入分别有其各自的优势。</p>
 <p>虽然模块导入语句中出现了通配符 <code class="docutils literal notranslate"><span class="pre">*</span></code> ，但模块导入并不能因此被视为其它语言中的通配符导入。相反地，模块导入语句为整个模块提供了一个名称，模块中的所有符号都通过这个名称进行访问，这为代码提供了更好的可读性，同时令模块中的所有符号可以进行自动补全。模块导入减少了导入语句的数量（模块中的所有符号都可以使用），降低了命名冲突的出现几率，同时还允许为被导入的模块提供一个简洁的名称。在从一个大型 API 中导入多个不同的符号时，模块导入语句尤其有用。</p>
 <p>解构导入语句则为每一个被导入的符号提供一个局部的名称，这样在使用被导入的符号时，代码可以更简洁。对那些十分常用的符号，例如 Jasmine 的 <code class="docutils literal notranslate"><span class="pre">describe</span></code> 和 <code class="docutils literal notranslate"><span class="pre">it</span></code> 来说，这一点尤其有用。</p>
@@ -339,7 +340,7 @@
 </div>
 </section>
 <section id="ts-renaming-imports">
-<span id="id11"></span><h3><span class="section-number">3.5.4.3.2. </span>重命名导入<a class="headerlink" href="#ts-renaming-imports" title="Permalink to this heading"></a></h3>
+<span id="id11"></span><h3><span class="section-number">4.5.4.3.2. </span>重命名导入<a class="headerlink" href="#ts-renaming-imports" title="Permalink to this heading"></a></h3>
 <p>在代码中，应当通过使用模块导入或重命名导出解决命名冲突。此外，在需要时，也可以使用重命名导入（例如 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">{SomeThing</span> <span class="pre">as</span> <span class="pre">SomeOtherThing}</span></code> ）。</p>
 <p>在以下几种情况下，重命名导入可能较为有用：</p>
 <ol class="arabic simple">
@@ -349,7 +350,7 @@
 </ol>
 </section>
 <section id="import-type-export-type">
-<span id="ts-import-export-type"></span><h3><span class="section-number">3.5.4.3.3. </span><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">type</span></code> 和 <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">type</span></code><a class="headerlink" href="#import-type-export-type" title="Permalink to this heading"></a></h3>
+<span id="ts-import-export-type"></span><h3><span class="section-number">4.5.4.3.3. </span><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">type</span></code> 和 <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">type</span></code><a class="headerlink" href="#import-type-export-type" title="Permalink to this heading"></a></h3>
 <p>不要使用 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">type</span> <span class="pre">...</span> <span class="pre">from</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">type</span> <span class="pre">...</span> <span class="pre">from</span></code> 。</p>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
@@ -372,7 +373,7 @@
 </section>
 </section>
 <section id="ts-organize-by-feature">
-<span id="id12"></span><h2><span class="section-number">3.5.4.4. </span>根据特征组织代码<a class="headerlink" href="#ts-organize-by-feature" title="Permalink to this heading"></a></h2>
+<span id="id12"></span><h2><span class="section-number">4.5.4.4. </span>根据特征组织代码<a class="headerlink" href="#ts-organize-by-feature" title="Permalink to this heading"></a></h2>
 <p>应当根据特征而非类型组织代码。例如，一个在线商城的代码应当按照 <code class="docutils literal notranslate"><span class="pre">products</span></code> ， <code class="docutils literal notranslate"><span class="pre">checkout</span></code> ， <code class="docutils literal notranslate"><span class="pre">backend</span></code> 等分类，而不是 <code class="docutils literal notranslate"><span class="pre">views</span></code> ， <code class="docutils literal notranslate"><span class="pre">models</span></code> ， <code class="docutils literal notranslate"><span class="pre">controllers</span></code> 。</p>
 </section>
 </section>
@@ -381,8 +382,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="language.html" class="btn btn-neutral float-left" title="3.5.3. 语言特性" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="type_system.html" class="btn btn-neutral float-right" title="3.5.5. 类型系统" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="language.html" class="btn btn-neutral float-left" title="4.5.3. 语言特性" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="type_system.html" class="btn btn-neutral float-right" title="4.5.5. 类型系统" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4.3.1. Go语言基础语法（一） &mdash; AI 模型国内加速  文档</title>
+  <title>5.3.1. Go语言基础语法（一） &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
@@ -24,8 +24,8 @@
     <link rel="author" title="关于这些文档" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="4.3.2. Go语言基础语法（二）：函数" href="golang-notes-for-basic-syntax-function.html" />
-    <link rel="prev" title="4.3. Go 语法" href="index.html" /> 
+    <link rel="next" title="5.3.2. Go语言基础语法（二）：函数" href="golang-notes-for-basic-syntax-function.html" />
+    <link rel="prev" title="5.3. Go 语法" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,37 +51,38 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../style-guides/index.html">3. 编程语言 规范</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 语法</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../reStructureText_syntax.html">4.1. reStructureText语法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../MarkDown_syntax.html">4.2. Markdown: 语法</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. Go 语法</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.1. Go语言基础语法（一）</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">4.3.1.1. go简单小例子</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">4.3.1.2. 格式化输出</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">4.3.1.3. 数据类型</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">4.3.1.4. 常量声明</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5">4.3.1.5. 变量声明</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6">4.3.1.6. 运算符</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7">4.3.1.7. 条件语句</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id8">4.3.1.8. 循环语句</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytorch-guides/index.html">3. Pytorch 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../style-guides/index.html">4. 编程语言 风格指南</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">5. 编程语言 语法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reStructureText_syntax.html">5.1. reStructureText语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MarkDown_syntax.html">5.2. Markdown: 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">5.3. Go 语法</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.3.1. Go语言基础语法（一）</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">5.3.1.1. go简单小例子</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">5.3.1.2. 格式化输出</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">5.3.1.3. 数据类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">5.3.1.4. 常量声明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">5.3.1.5. 变量声明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">5.3.1.6. 运算符</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">5.3.1.7. 条件语句</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">5.3.1.8. 循环语句</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-basic-syntax-function.html">4.3.2. Go语言基础语法（二）：函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-struct-and-method.html">4.3.3. Go语言基础语法（三）：结构体及方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-string-concatenation.html">4.3.4. Go语言中的字符串拼接方法介绍</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-channel-sync.html">4.3.5. Go语言中的通道</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-atomic-operation.html">4.3.6. Go语言并发编程：原子操作</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-context.html">4.3.7. Go语言并发编程：上下文Context</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-mutex.html">4.3.8. Go语言并发编程：互斥锁</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-sync-once.html">4.3.9. Go语言并发编程：sync.Once</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-waitgroup.html">4.3.10. Go语言并发编程：WaitGroup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-basic-syntax-function.html">5.3.2. Go语言基础语法（二）：函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-struct-and-method.html">5.3.3. Go语言基础语法（三）：结构体及方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-string-concatenation.html">5.3.4. Go语言中的字符串拼接方法介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-channel-sync.html">5.3.5. Go语言中的通道</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-atomic-operation.html">5.3.6. Go语言并发编程：原子操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-context.html">5.3.7. Go语言并发编程：上下文Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-mutex.html">5.3.8. Go语言并发编程：互斥锁</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-sync-once.html">5.3.9. Go语言并发编程：sync.Once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-waitgroup.html">5.3.10. Go语言并发编程：WaitGroup</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">7. 关于</a></li>
 </ul>
 
         </div>
@@ -98,9 +99,9 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 语法</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>Go 语法</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4.3.1. </span>Go语言基础语法（一）</li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">5. </span>编程语言 语法</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5.3. </span>Go 语法</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.3.1. </span>Go语言基础语法（一）</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/coding/golang/golang-notes-basic-syntax.md.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -111,10 +112,10 @@
            <div itemprop="articleBody">
              
   <section id="go">
-<h1><span class="section-number">4.3.1. </span>Go语言基础语法（一）<a class="headerlink" href="#go" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">5.3.1. </span>Go语言基础语法（一）<a class="headerlink" href="#go" title="Permalink to this heading"></a></h1>
 <p>本文介绍一些Go语言的基础语法。</p>
 <!--more--><section id="id1">
-<h2><span class="section-number">4.3.1.1. </span>go简单小例子<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.1.1. </span>go简单小例子<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>先来看一个简单的go语言代码：</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
 <span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
@@ -156,10 +157,10 @@ main<span class="w">  </span>init....
 <p>下面来进一步介绍go的基础语法。</p>
 </section>
 <section id="id2">
-<h2><span class="section-number">4.3.1.2. </span>格式化输出<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.1.2. </span>格式化输出<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>go语言中格式化输出可以使用 fmt 和 log 这两个标准库，</p>
 <section id="fmt">
-<h3><span class="section-number">4.3.1.2.1. </span>fmt<a class="headerlink" href="#fmt" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.3.1.2.1. </span>fmt<a class="headerlink" href="#fmt" title="Permalink to this heading"></a></h3>
 <p>常用方法：</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">fmt.Printf</span></code>：格式化输出</p></li>
@@ -199,7 +200,7 @@ type of str_hex: string
 <p>更多格式化方法可以访问<a class="reference external" href="https://studygolang.com/pkgdoc">https://studygolang.com/pkgdoc</a>中的fmt包。</p>
 </section>
 <section id="log">
-<h3><span class="section-number">4.3.1.2.2. </span>log<a class="headerlink" href="#log" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.3.1.2.2. </span>log<a class="headerlink" href="#log" title="Permalink to this heading"></a></h3>
 <p>log包实现了简单的日志服务，也提供了一些格式化输出的方法。</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">log.Printf</span></code>：格式化输出，和fmt.Printf类似</p></li>
@@ -234,7 +235,7 @@ type of str_hex: string
 </section>
 </section>
 <section id="id3">
-<h2><span class="section-number">4.3.1.3. </span>数据类型<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.1.3. </span>数据类型<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p>下表列出了go语言的数据类型：</p>
 <table border="1" class="docutils">
 <thead>
@@ -304,7 +305,7 @@ type of str_hex: string
 </table><p>int、float、bool、string、数组和struct属于值类型，这些类型的变量直接指向存在内存中的值；slice、map、chan、pointer等是引用类型，存储的是一个地址，这个地址存储最终的值。</p>
 </section>
 <section id="id4">
-<h2><span class="section-number">4.3.1.4. </span>常量声明<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.1.4. </span>常量声明<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p>常量是在程序编译时就确定下来的值，程序运行时无法改变。</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
 
@@ -332,7 +333,7 @@ type of str_hex: string
 </div>
 </section>
 <section id="id5">
-<h2><span class="section-number">4.3.1.5. </span>变量声明<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.1.5. </span>变量声明<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <p>go的变量声明主要包括三种方法：</p>
 <ul class="simple">
 <li><p>变量声明可指定变量类型，如果没有初始化，则变量默认为零值。</p></li>
@@ -377,7 +378,7 @@ type of str_hex: string
 </div>
 </section>
 <section id="id6">
-<h2><span class="section-number">4.3.1.6. </span>运算符<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.1.6. </span>运算符<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <p>Go 语言的运算符主要包括算术运算符、关系运算符、逻辑运算符、位运算符、赋值运算符以及指针相关运算符。</p>
 <p>算术运算符：</p>
 <table border="1" class="docutils">
@@ -577,10 +578,10 @@ type of str_hex: string
 </tbody>
 </table></section>
 <section id="id7">
-<h2><span class="section-number">4.3.1.7. </span>条件语句<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.1.7. </span>条件语句<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <p>下面介绍一下go语言中的if语句和switch语句。另外还有一种控制语句叫select语句，通常与通道联用，这里不做介绍。</p>
 <section id="if">
-<h3><span class="section-number">4.3.1.7.1. </span>if语句<a class="headerlink" href="#if" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.3.1.7.1. </span>if语句<a class="headerlink" href="#if" title="Permalink to this heading"></a></h3>
 <p>if语法格式如下：</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">[</span><span class="nx">布尔表达式</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
 <span class="w">   </span><span class="c1">// do something</span>
@@ -626,7 +627,7 @@ type of str_hex: string
 </div>
 </section>
 <section id="switch">
-<h3><span class="section-number">4.3.1.7.2. </span>switch 语句<a class="headerlink" href="#switch" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.3.1.7.2. </span>switch 语句<a class="headerlink" href="#switch" title="Permalink to this heading"></a></h3>
 <p>语法格式：</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="k">switch</span><span class="w"> </span><span class="nx">var1</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="nx">cond1</span><span class="p">:</span>
@@ -668,10 +669,10 @@ type of str_hex: string
 </section>
 </section>
 <section id="id8">
-<h2><span class="section-number">4.3.1.8. </span>循环语句<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.3.1.8. </span>循环语句<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <p>下面介绍几种循环语句：</p>
 <section id="for">
-<h3><span class="section-number">4.3.1.8.1. </span>for循环：使用分号<a class="headerlink" href="#for" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.3.1.8.1. </span>for循环：使用分号<a class="headerlink" href="#for" title="Permalink to this heading"></a></h3>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
@@ -688,7 +689,7 @@ type of str_hex: string
 </div>
 </section>
 <section id="while">
-<h3><span class="section-number">4.3.1.8.2. </span>实现while效果<a class="headerlink" href="#while" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.3.1.8.2. </span>实现while效果<a class="headerlink" href="#while" title="Permalink to this heading"></a></h3>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
@@ -707,7 +708,7 @@ type of str_hex: string
 </div>
 </section>
 <section id="id9">
-<h3><span class="section-number">4.3.1.8.3. </span>死循环<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.3.1.8.3. </span>死循环<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
@@ -723,7 +724,7 @@ type of str_hex: string
 </div>
 </section>
 <section id="for-range">
-<h3><span class="section-number">4.3.1.8.4. </span>for range 遍历<a class="headerlink" href="#for-range" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.3.1.8.4. </span>for range 遍历<a class="headerlink" href="#for-range" title="Permalink to this heading"></a></h3>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
@@ -743,7 +744,7 @@ type of str_hex: string
 </div>
 </section>
 <section id="id10">
-<h3><span class="section-number">4.3.1.8.5. </span>退出循环<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.3.1.8.5. </span>退出循环<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>continue：结束当前迭代，进入下一次迭代</p></li>
 <li><p>break：结束当前for循环</p></li>
@@ -798,7 +799,7 @@ type of str_hex: string
 </div>
 </section>
 <section id="goto">
-<h3><span class="section-number">4.3.1.8.6. </span>goto语句<a class="headerlink" href="#goto" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.3.1.8.6. </span>goto语句<a class="headerlink" href="#goto" title="Permalink to this heading"></a></h3>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
@@ -830,8 +831,8 @@ type of str_hex: string
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="index.html" class="btn btn-neutral float-left" title="4.3. Go 语法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="golang-notes-for-basic-syntax-function.html" class="btn btn-neutral float-right" title="4.3.2. Go语言基础语法（二）：函数" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="5.3. Go 语法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="golang-notes-for-basic-syntax-function.html" class="btn btn-neutral float-right" title="5.3.2. Go语言基础语法（二）：函数" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

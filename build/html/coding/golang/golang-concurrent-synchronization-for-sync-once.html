@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4.3.9. Go语言并发编程：sync.Once &mdash; AI 模型国内加速  文档</title>
+  <title>5.3.9. Go语言并发编程：sync.Once &mdash; AI 模型国内加速  文档</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
@@ -24,8 +24,8 @@
     <link rel="author" title="关于这些文档" href="../../about.html" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
-    <link rel="next" title="4.3.10. Go语言并发编程：WaitGroup" href="golang-concurrent-synchronization-for-waitgroup.html" />
-    <link rel="prev" title="4.3.8. Go语言并发编程：互斥锁" href="golang-concurrent-synchronization-for-mutex.html" /> 
+    <link rel="next" title="5.3.10. Go语言并发编程：WaitGroup" href="golang-concurrent-synchronization-for-waitgroup.html" />
+    <link rel="prev" title="5.3.8. Go语言并发编程：互斥锁" href="golang-concurrent-synchronization-for-mutex.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,27 +51,28 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../best-practice/index.html">1. 【AI网盘】人工智能资源汇总</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stable-diffusion/index.html">2. Stable Diffusion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../style-guides/index.html">3. 编程语言 规范</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">4. 编程语言 语法</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../reStructureText_syntax.html">4.1. reStructureText语法</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../MarkDown_syntax.html">4.2. Markdown: 语法</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">4.3. Go 语法</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="golang-notes-basic-syntax.html">4.3.1. Go语言基础语法（一）</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-basic-syntax-function.html">4.3.2. Go语言基础语法（二）：函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-struct-and-method.html">4.3.3. Go语言基础语法（三）：结构体及方法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-string-concatenation.html">4.3.4. Go语言中的字符串拼接方法介绍</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-channel-sync.html">4.3.5. Go语言中的通道</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-atomic-operation.html">4.3.6. Go语言并发编程：原子操作</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-context.html">4.3.7. Go语言并发编程：上下文Context</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-mutex.html">4.3.8. Go语言并发编程：互斥锁</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">4.3.9. Go语言并发编程：sync.Once</a></li>
-<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-waitgroup.html">4.3.10. Go语言并发编程：WaitGroup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytorch-guides/index.html">3. Pytorch 教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../style-guides/index.html">4. 编程语言 风格指南</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">5. 编程语言 语法</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../reStructureText_syntax.html">5.1. reStructureText语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../MarkDown_syntax.html">5.2. Markdown: 语法</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">5.3. Go 语法</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-basic-syntax.html">5.3.1. Go语言基础语法（一）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-basic-syntax-function.html">5.3.2. Go语言基础语法（二）：函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-struct-and-method.html">5.3.3. Go语言基础语法（三）：结构体及方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-string-concatenation.html">5.3.4. Go语言中的字符串拼接方法介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-notes-for-channel-sync.html">5.3.5. Go语言中的通道</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-atomic-operation.html">5.3.6. Go语言并发编程：原子操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-context.html">5.3.7. Go语言并发编程：上下文Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-mutex.html">5.3.8. Go语言并发编程：互斥锁</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.3.9. Go语言并发编程：sync.Once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="golang-concurrent-synchronization-for-waitgroup.html">5.3.10. Go语言并发编程：WaitGroup</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">5. Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">6. 关于</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheet/index.html">6. Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">7. 关于</a></li>
 </ul>
 
         </div>
@@ -88,9 +89,9 @@
           <div role="navigation" aria-label="页面导航">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">4. </span>编程语言 语法</a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4.3. </span>Go 语法</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4.3.9. </span>Go语言并发编程：sync.Once</li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">5. </span>编程语言 语法</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5.3. </span>Go 语法</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.3.9. </span>Go语言并发编程：sync.Once</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/coding/golang/golang-concurrent-synchronization-for-sync-once.md.txt" rel="nofollow"> 查看页面源码</a>
       </li>
@@ -101,7 +102,7 @@
            <div itemprop="articleBody">
              
   <section id="go-sync-once">
-<h1><span class="section-number">4.3.9. </span>Go语言并发编程：sync.Once<a class="headerlink" href="#go-sync-once" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">5.3.9. </span>Go语言并发编程：sync.Once<a class="headerlink" href="#go-sync-once" title="Permalink to this heading"></a></h1>
 <p>sync.Once用于保证某个动作只被执行一次，可用于单例模式中，比如初始化配置。我们知道init()函数也只会执行一次，不过它是在main()函数之前执行，如果想要在代码执行过程中只运行某个动作一次，可以使用sync.Once，下面来介绍一下它的使用方法。</p>
 <p>先来看下面的代码：</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
@@ -193,8 +194,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="golang-concurrent-synchronization-for-mutex.html" class="btn btn-neutral float-left" title="4.3.8. Go语言并发编程：互斥锁" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
-        <a href="golang-concurrent-synchronization-for-waitgroup.html" class="btn btn-neutral float-right" title="4.3.10. Go语言并发编程：WaitGroup" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="golang-concurrent-synchronization-for-mutex.html" class="btn btn-neutral float-left" title="5.3.8. Go语言并发编程：互斥锁" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="golang-concurrent-synchronization-for-waitgroup.html" class="btn btn-neutral float-right" title="5.3.10. Go语言并发编程：WaitGroup" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
